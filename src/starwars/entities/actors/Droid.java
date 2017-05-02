@@ -63,7 +63,7 @@ public class Droid extends SWActor {
 			}
 
 			Direction heading = possibledirections.get((int) (Math.floor(Math.random() * possibledirections.size())));
-			say(getShortDescription() + "is heading " + heading + " next.");
+			say(getShortDescription() + " is heading " + heading + " next.");
 			Move myMove = new Move(heading, messageRenderer, world);
 
 			scheduler.schedule(myMove, this, 1);
