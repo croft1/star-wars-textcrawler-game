@@ -34,7 +34,7 @@ public class Droid extends SWActor {
 	 * 
 	 */
 	public Droid(int hitpoints, String name, MessageRenderer m, SWWorld world) {
-		super(Team.DROID, 50, m, world);
+		super(Team.NEUTRAL, 50, m, world);
 		// TODO Auto-generated constructor stub
 		this.name = name;
 	}
