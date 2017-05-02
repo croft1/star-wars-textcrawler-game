@@ -26,6 +26,7 @@ import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.actions.Attack;
 import starwars.actions.Move;
+import starwars.entities.Force;
 
 public abstract class SWActor extends Actor<SWActionInterface> implements SWEntityInterface {
 	
@@ -52,6 +53,15 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	/**A set of <code>Capabilities</code> of this <code>SWActor</code>*/
 	private HashSet<Capability> capabilities;
+	
+	/**The set actors entity of the <code>Force </code> of this <code>SWActor</code>*/
+	private Force force;
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * Constructor for the <code>SWActor</code>.
@@ -85,6 +95,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		//SWActors are given the Attack affordance hence they can be attacked
 		SWAffordance attack = new Attack(this, m);
 		this.addAffordance(attack);
+
 	}
 	
 	/**
@@ -120,6 +131,52 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	public int getHitpoints() {
 		return hitpoints;
 	}
+	
+	
+	
+	/**
+	 * Returns whether the SWActor has the <code>Force</code>.
+	 * 
+	 * @return 	the boolean of force presence in an <code>SWActor</code> 
+	 * @see 	#force
+	 */
+	
+	public boolean hasForce() {
+		return (force != null);
+	}
+	
+	
+	/**
+	 * Returns the points of the <code>Force</code> in terms of strength
+	 * 
+	 * @return 	the boolean of force presence in an <code>SWActor</code> 
+	 * @see 	#force
+	 * @see 	#isDead()
+	 */
+	
+	public int getForceStrength() {
+		return (force != null)? force.getPower() : -1;
+	}
+	
+	
+	
+	
+	/**
+	 * Sets the <code>Force</code> of the <code>SWActor</code>.
+	 * <p>
+	 * Useful when the <code>SWActor</code>'s team needs to change dynamically during the simulation.
+	 * For example, a bite from an evil actor makes a good actor bad.
+	 *
+	 * @param 	force the force of this <code>SWActor</code>
+	 * @see 	#force
+	 */
+	public void setForce(Force force) {
+		this.force = force;
+	}
+	
+	
+	
+	
 
 	/**
 	 * Returns an ArrayList containing this Actor's available Actions, including the Affordances of items

@@ -6,6 +6,7 @@ import starwars.SWLegend;
 import starwars.SWWorld;
 import starwars.Team;
 import starwars.actions.Move;
+import starwars.entities.Force;
 import starwars.entities.LightSaber;
 import starwars.entities.actors.behaviors.AttackInformation;
 import starwars.entities.actors.behaviors.AttackNeighbours;
@@ -22,7 +23,7 @@ import starwars.entities.actors.behaviors.Patrol;
  * @author rober_000
  *
  */
-public class BenKenobi extends SWLegend {
+public class BenKenobi extends SWLegend  {
 
 	private static BenKenobi ben = null; // yes, it is OK to return the static instance!
 	private Patrol path;
@@ -33,6 +34,8 @@ public class BenKenobi extends SWLegend {
 		this.setLongDescription("Ben Kenobi, an old man who has perhaps seen too much");
 		LightSaber bensweapon = new LightSaber(m);
 		setItemCarried(bensweapon);
+		Force bensForce = new Force(m, 80);
+		setForce(bensForce);
 	}
 
 	public static BenKenobi getBenKenobi(MessageRenderer m, SWWorld world, Direction [] moves) {

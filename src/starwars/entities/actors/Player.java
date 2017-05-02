@@ -9,6 +9,7 @@ import starwars.SWEntityInterface;
 import starwars.SWLocation;
 import starwars.SWWorld;
 import starwars.Team;
+import starwars.entities.Force;
 import starwars.swinterfaces.SWGridController;
 
 /**
@@ -43,6 +44,9 @@ public class Player extends SWActor {
 	public Player(Team team, int hitpoints, MessageRenderer m, SWWorld world) {
 		super(team, hitpoints, m, world);
 		humanControlled = true; // this feels like a hack. Surely this should be dynamic
+		
+		Force bensForce = new Force(m, 5);
+		setForce(bensForce);
 	}
 	
 	/**

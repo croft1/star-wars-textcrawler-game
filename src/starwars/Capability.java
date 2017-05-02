@@ -15,4 +15,7 @@ public enum Capability {
 	            // has the Dip affordance.  Any FILLABLE Entity MUST implement the Fillable interface
 	DRINKABLE,//DRINKABLE capability allows an entity to be consumed by another entity 
 	
+	FORCE_CONTROL, //MIND_CONTROL capability allows an entity with the force to attempt to mind control those without it
+	FORCE_RESIST,	//FORCE_RESIST capability allows an entity with the force to resist attempted mind control from another entity
+	
 }
