@@ -32,9 +32,11 @@ public class Player extends SWActor {
 	 * 	<li>Initialize the world for this <code>Player</code></li>
 	 *  <li>Initialize the <code>Team</code> for this <code>Player</code></li>
 	 * 	<li>Initialize the hit points for this <code>Player</code></li>
+	 * 	<li>Initialize the <code>Force</code>points for this <code>Player</code></li>
 	 * 	<li>Set this <code>Player</code> as a human controlled <code>SWActor</code></li>
 	 * </ul>
 	 * 
+	 * @param force the <code>Force</code> to which the this <code>Player</code> has the gift to behold
 	 * @param team the <code>Team</code> to which the this <code>Player</code> belongs to
 	 * @param hitpoints the hit points of this <code>Player</code> to get started with
 	 * @param m <code>MessageRenderer</code> to display messages.
@@ -45,8 +47,8 @@ public class Player extends SWActor {
 		super(team, hitpoints, m, world);
 		humanControlled = true; // this feels like a hack. Surely this should be dynamic
 		
-		Force bensForce = new Force(m, 5);
-		setForce(bensForce);
+		Force f = new Force(m, 5);
+		setForce(f);
 	}
 	
 	/**

@@ -52,8 +52,8 @@ public class Force extends SWEntity {
 		
 		//TODO add training this.addAffordance(new Take(this, m));//add the Take affordance so that the blaster can be picked up
 		//TODO maybe -- add affordance to convert to the dark side of the force
-		this.capabilities.add(Capability.FORCE_CONTROL);   // and WEAPON so that it can be used to attack					
-		this.capabilities.add(Capability.FORCE_RESIST);   // and WEAPON so that it can be used to attack
+		this.capabilities.add(Capability.MIND_CONTROL);   // and WEAPON so that it can be used to attack					
+		
 		
 	}
 	
