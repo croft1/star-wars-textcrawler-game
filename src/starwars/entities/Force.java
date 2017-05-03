@@ -33,9 +33,8 @@ public class Force extends SWEntity {
 	 * 	<li>Set the long description of this <code>Force</code> to "A mysterious presence can be felt"</li>
 	 * 	<li>Set the strength point of the <code>Force</code> to 0</li> 
 	 * 	<li>Add a <code>Take</code> affordance to this <code>Blaster</code> so it can be taken</li> 
-	 *	<li>Add a <code>FORCE_CONTROL Capability</code> to this <code>FORCE</code> so it can be used to <code>MIND CONTROL</code></li>
-	 * 	<li>Add a <code>FORCE_RESIST Capability</code> to this <code>FORCE</code> so it can be used to <code>RESIST CONTROL</code> from other force entities</li>
-
+	 *	<li>Add a <code>MIND_CONTROL Capability</code> to this <code>FORCE</code> so it can be used to <code>MIND CONTROL</code></li>
+	 * 	
 	 * </ul>
 	 * 
 	 * @param m <code>MessageRenderer</code> to display messages.
@@ -43,12 +42,12 @@ public class Force extends SWEntity {
 	 * @see {@link starwars.actions.Take}
 	 * @see {@link starwars.Capability}
 	 */
-	public Force(MessageRenderer m, int strength) {
+	public Force(MessageRenderer m, int power) {
 		super(m);
 		
 		this.shortDescription = "The Force";
 		this.longDescription = "A mysterious presence can be felt";
-		this.power = 1; // hit points are the strength/level of the current force entity
+		this.power = power; // hit points are the strength/level of the current force entity
 		
 		//TODO add training this.addAffordance(new Take(this, m));//add the Take affordance so that the blaster can be picked up
 		//TODO maybe -- add affordance to convert to the dark side of the force
