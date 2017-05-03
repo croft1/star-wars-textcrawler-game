@@ -1,6 +1,7 @@
 package starwars;
 
 import edu.monash.fit2099.simulator.matter.EntityInterface;
+import starwars.actions.Move;
 
 /**
  * All <code>Entities</code> and <code>Actors</code> in the starwars client package should implement this interface.
@@ -55,6 +56,23 @@ public interface SWEntityInterface extends EntityInterface {
 	 * @return the amount of hitpoints
 	 */
 	public int getHitpoints();
+	
+	/**
+	 * Returns the power of the <code>Force</code> of this <code>SWEntity</code> or <code>SWActor</code>.
+	 * 
+	 * @return the amount of hitpoints
+	 */
+	public int getForcePower();
+	
+	/**
+	 * Method that moves the <code>SWActor</code> in a direction of another <code>SWActor</code>'s choosing.
+	 * .
+	 * 
+	 * @param direction the direction of <code>movement</code> to be reduced
+	 * 
+	 */
+	public void obeyMindControl(Move obeyDirectionToMove);
+	
 	
 	/**
 	 * Method that reduces the <code>hitpoints</code> to insist damage on of this 

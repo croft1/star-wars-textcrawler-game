@@ -153,11 +153,24 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	 * @see 	#force
 	 * @see 	#isDead()
 	 */
-	
-	public int getForceStrength() {
+	@Override
+	public int getForcePower() {
 		return (force != null)? force.getPower() : -1;
 	}
 	
+	
+	/**
+	 * Enforces the obey command from <code>MindControlNeighbours</code> acording to the <code>Force</code> affordance presence
+	 * 
+	 * > 
+	 * @see 	#force
+	 * 
+	 */
+	@Override
+	public void obeyMindControl(Move obeyDirectionToMove) {
+		// TODO compare force values / if has force and make Actor move by default.
+		
+	}
 	
 	
 	

@@ -9,6 +9,7 @@ import starwars.SWEntityInterface;
 import starwars.SWLocation;
 import starwars.SWWorld;
 import starwars.Team;
+import starwars.actions.Move;
 import starwars.entities.Force;
 import starwars.swinterfaces.SWGridController;
 
@@ -104,4 +105,14 @@ public class Player extends SWActor {
 			}
 		}
 	}
+
+	
+
+	@Override
+	public void obeyMindControl(Move obeyDirectionToMove) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

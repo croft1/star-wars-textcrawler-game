@@ -60,6 +60,7 @@ public class TuskenRaider extends SWActor {
 			ArrayList<Direction> possibledirections = new ArrayList<Direction>();
 
 			// build a list of available directions
+			
 			for (Grid.CompassBearing d : Grid.CompassBearing.values()) {
 				if (SWWorld.getEntitymanager().seesExit(this, d)) {
 					possibledirections.add(d);
@@ -89,4 +90,19 @@ public class TuskenRaider extends SWActor {
 		return this.getShortDescription() + " [" + this.getHitpoints() + "] is at " + location.getShortDescription();
 
 	}
+
+	@Override
+	public int getForcePower() {
+		//A tusken raider will never have force, so its always 0
+		return 0;
+	}
+
+	@Override
+	public void obeyMindControl(Move obeyDirectionToMove) {
+		scheduler.schedule(obeyDirectionToMove, this, 1);
+	}
+	
+	
+
+	
 }
