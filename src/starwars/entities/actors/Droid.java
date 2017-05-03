@@ -22,15 +22,15 @@ public class Droid extends SWActor {
 	 * so their attempts to attack other Droids won't be effectual.
 	 * 
 	 * @param hitpoints
-	 *            the number of hit points of this Tusken Raider. If this
-	 *            decreases to below zero, the Raider will die.
+	 *            the number of hit points of this Droid has. If this
+	 *            decreases to below zero, the Raider will become immobile
 	 * @param name
-	 *            this raider's name. Used in displaying descriptions.
+	 *            the Droids name. Used in displaying descriptions.
 	 * @param m
 	 *            <code>MessageRenderer</code> to display messages.
 	 * @param world
 	 *            the <code>SWWorld</code> world to which this
-	 *            <code>TuskenRaider</code> belongs to
+	 *            <code>Droid</code> belongs to
 	 * 
 	 */
 	public Droid(int hitpoints, String name, MessageRenderer m, SWWorld world) {
