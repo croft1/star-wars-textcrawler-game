@@ -185,9 +185,16 @@ public class SWWorld extends World {
 		// A Droid
 		Droid Droid_1 = new Droid(50, "Droid 1", iface, this);
 		
-		Droid_1.setSymbol("D");
+		Droid_1.setSymbol("D1");
 		loc = myGrid.getLocationByCoordinates(1, 2);
 		entityManager.setLocation(Droid_1, loc);
+		
+		// A Droid
+		Droid Droid_2 = new Droid(50, "Droid 1", iface, this);
+			
+		Droid_2.setSymbol("D2");
+		loc = myGrid.getLocationByCoordinates(6, 0);
+		entityManager.setLocation(Droid_2, loc);
 			
 	}
 

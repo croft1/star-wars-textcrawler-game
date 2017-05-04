@@ -275,6 +275,10 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		// TODO: This assumes that the only actions are the Move actions. This will clobber any others. Needs to be fixed.
 		/* Actually, that's not the case: all non-movement actions are transferred to newActions before the movements are transferred. --ram */
 	}
+	
+	public SWActor getOwner() {
+		return owner;
+	}
 
 
 	
