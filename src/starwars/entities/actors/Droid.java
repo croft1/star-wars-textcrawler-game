@@ -1,11 +1,13 @@
 package starwars.entities.actors;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.monash.fit2099.gridworld.Grid;
 import edu.monash.fit2099.simulator.space.Direction;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.SWActor;
+import starwars.SWEntityInterface;
 import starwars.SWLocation;
 import starwars.SWWorld;
 import starwars.Team;
@@ -45,7 +47,9 @@ public class Droid extends SWActor {
 			return;
 		}
 		say(describeLocation());
-
+		
+		nextToPlayer();
+		
 		AttackInformation attack = AttackNeighbours.attackLocals(this, this.world, false, false);
 		if (attack != null) {
 			say(getShortDescription() + " has attacked" + attack.entity.getShortDescription());
@@ -84,5 +88,21 @@ public class Droid extends SWActor {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		return this.getShortDescription() + " [" + this.getHitpoints() + "] is at " + location.getShortDescription();
 
+	}
+	
+	private void nextToPlayer() {
+		SWLocation location = this.world.getEntityManager().whereIs(this);
+		//get the contents of the location
+		List<SWEntityInterface> contents = this.world.getEntityManager().contents(location);
+				
+		//and describe the contents
+		if (contents.size() > 1) { // if it is equal to one, the only thing here is this Player, so there is nothing to report
+			for (SWEntityInterface entity : contents) {
+				String entity_symbol = "@";
+				if (entity.getSymbol() == entity_symbol) { // don't include self in scene description
+					say(this.getLongDescription() + " is next to " + entity.getShortDescription() + "!");
+					}
+				}
+			}
 	}
 }

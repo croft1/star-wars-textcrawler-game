@@ -189,7 +189,7 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(1, 2);
 		entityManager.setLocation(Droid_1, loc);
 		
-		// A Droid
+		// A second Droid
 		Droid Droid_2 = new Droid(50, "Droid 1", iface, this);
 			
 		Droid_2.setSymbol("D2");
