@@ -23,7 +23,7 @@ import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
  * @author Robert Merkel
  *
  */
-public abstract class SWLegend extends SWActor {
+public abstract class SWLegend extends SWActor implements SWForceActorInterface {
 
 	private boolean isActivated;
 

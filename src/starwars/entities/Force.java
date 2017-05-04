@@ -21,9 +21,8 @@ import starwars.actions.Take;
  *
  */
 public class Force extends SWEntity {
+		
 	
-	
-	private int power;
 	
 	/**
 	 * Constructor for the <code>Blaster</code> class. This constructor will,
@@ -47,7 +46,7 @@ public class Force extends SWEntity {
 		
 		this.shortDescription = "The Force";
 		this.longDescription = "A mysterious presence can be felt";
-		this.power = power; // hit points are the strength/level of the current force entity
+		setForcePower(0); // hit points are the strength/level of the current force entity
 		
 		//TODO add training this.addAffordance(new Take(this, m));//add the Take affordance so that the blaster can be picked up
 		//TODO maybe -- add affordance to convert to the dark side of the force
@@ -58,8 +57,10 @@ public class Force extends SWEntity {
 	
 	
 	public int getPower() {
-		return power;
+		return getForcePower();
 	}
+	
+	
 
 
 	
@@ -70,7 +71,9 @@ public class Force extends SWEntity {
 	 * @see 	{@link starwars.SWEntityInterface#getSymbol()}
 	 */
 	public void trainPower() {
-		this.power = power;
+		//TODO add in trainig functionality
+		setForcePower(getForcePower() + 1);
+		
 	}
 
 

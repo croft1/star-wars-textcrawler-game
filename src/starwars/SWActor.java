@@ -55,9 +55,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	/**A set of <code>Capabilities</code> of this <code>SWActor</code>*/
 	private HashSet<Capability> capabilities;
 	
-	/**The set actors entity of the <code>Force </code> of this <code>SWActor</code>*/
-	private Force force;
-	
+	protected Force force;
 	
 	
 	
@@ -96,6 +94,10 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		//SWActors are given the Attack affordance hence they can be attacked
 		SWAffordance attack = new Attack(this, m);
 		this.addAffordance(attack);
+		
+		//setting the default force value meaning that
+		force = new Force(m, -1);
+		
 
 	}
 	
@@ -135,29 +137,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	
 	
-	/**
-	 * Returns whether the SWActor has the <code>Force</code>.
-	 * 
-	 * @return 	the boolean of force presence in an <code>SWActor</code> 
-	 * @see 	#force
-	 */
 	
-	public boolean hasForce() {
-		return (force != null);
-	}
-	
-	
-	/**
-	 * Returns the points of the <code>Force</code> in terms of strength
-	 * 
-	 * @return 	the boolean of force presence in an <code>SWActor</code> 
-	 * @see 	#force
-	 * @see 	#isDead()
-	 */
-	
-	public int getForcePower() {
-		return (force != null)? force.getPower() : -1;
-	}
 	
 	
 	/**
@@ -175,27 +155,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	
 	
-	/**
-	 * Sets the <code>Force</code> of the <code>SWActor</code>.
-	 * <p>
-	 * Useful when the <code>SWActor</code>'s team needs to change dynamically during the simulation.
-	 * For example, a bite from an evil actor makes a good actor bad.
-	 *
-	 * @param 	force the force of this <code>SWActor</code>
-	 * @see 	#force
-	 */
-	public void setForce(Force force) {
-		this.force = force;
-	}
 	
-
-	/**
-	 * Attempts to mindcontrol with the <code>Force</code>
-	 * @see 	#force
-	 */
-	public void tryForce() {
-		//add in the attack code
-	}
 	
 	/**
 	 * Attempts to attack with the <code>Force</code>
@@ -355,6 +315,17 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		
 		// TODO: This assumes that the only actions are the Move actions. This will clobber any others. Needs to be fixed.
 		/* Actually, that's not the case: all non-movement actions are transferred to newActions before the movements are transferred. --ram */
+	}
+	
+	@Override
+	public int getForcePower() {
+		return getForcePower();
+	}
+
+
+	@Override
+	public void setForcePower(int power) {
+		setForcePower(power);
 	}
 
 

@@ -67,4 +67,31 @@ public class BenKenobi extends SWLegend  {
 		}
 	}
 
+	@Override
+	public boolean hasForce() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public int getForcePower() {
+		// TODO Auto-generated method stub
+		return force.getPower();
+	}
+
+	@Override
+	public void setForce(Force force) {
+		this.force = force;
+		
+	}
+
+	@Override
+	public void tryForce() {
+		// TODO just like the attack logic but done with regards to the force.
+		
+		
+		
+		
+	}
+
 }

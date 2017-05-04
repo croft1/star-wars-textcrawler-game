@@ -6,6 +6,7 @@ import java.util.List;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.SWActor;
 import starwars.SWEntityInterface;
+import starwars.SWForceActorInterface;
 import starwars.SWLocation;
 import starwars.SWWorld;
 import starwars.Team;
@@ -24,7 +25,7 @@ import starwars.swinterfaces.SWGridController;
  * 2017/02/22	Schedule actions in the act method instead of tick. 
  * 				A controller used to get user input rather than the UI directly (Asel)
  */
-public class Player extends SWActor {
+public class Player extends SWActor implements SWForceActorInterface {
 
 	/**
 	 * Constructor for the <code>Player</code> class. This constructor will,
@@ -104,6 +105,30 @@ public class Player extends SWActor {
 				}
 			}
 		}
+	}
+
+	@Override
+	public int getForcePower() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean hasForce() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setForce(Force force) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void tryForce() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

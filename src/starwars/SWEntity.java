@@ -26,6 +26,12 @@ public class SWEntity extends Entity implements SWEntityInterface {
 	
 	/**The amount of <code>hitpoints</code> of this <code>SWEntity</code>.*/
 	protected int hitpoints = 0; // Not all non-actor entities will make use of this
+	
+	
+	/** The amount of <code>Force</code> Power this <code>SWEntity</code> holds
+	 * 
+	 */
+	protected int forcePower = 0;
 
 	/**
 	 * Constructor for this <code>SWEntity</code>. Will initialize this <code>SWEntity</code>'s
@@ -94,8 +100,13 @@ public class SWEntity extends Entity implements SWEntityInterface {
 
 	@Override
 	public int getForcePower() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getForcePower();
+	}
+
+
+	@Override
+	public void setForcePower(int power) {
+		setForcePower(power);
 	}
 
 

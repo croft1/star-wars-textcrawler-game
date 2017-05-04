@@ -40,6 +40,18 @@ public interface SWEntityInterface extends EntityInterface {
 	 */
 	public abstract void setSymbol(String string);
 	
+	
+	/**
+	 * Sets the power of the forceembedded of this <code>SWEntity</code> or <code>SWActor</code> 
+	 * 
+	 * Although not a must the new symbol is preferably, 
+	 * 
+	 * 
+	 * @param int a int to represent this <code>SWEntity</code> or <code>SWActor</code>
+	 */
+	public abstract void setForcePower(int power);
+	
+	
 	/**
 	 * Returns true if this <code>SWEntity</code> or <code>SWActor</code> has the given 
 	 * capability <code>c</code>, false otherwise.
@@ -57,13 +69,6 @@ public interface SWEntityInterface extends EntityInterface {
 	 */
 	public int getHitpoints();
 	
-	/**
-	 * Returns the power of the <code>Force</code> of this <code>SWEntity</code> or <code>SWActor</code>.
-	 * 
-	 * @return the amount of hitpoints
-	 */
-	public int getForcePower();
-	
 	
 	
 	/**
@@ -75,4 +80,12 @@ public interface SWEntityInterface extends EntityInterface {
 	 */
 	public void takeDamage(int damage);
 
+	
+	/**
+	 * Returns the forcePower value of this <code>SWEntity</code> or <code>SWActor</code>.
+	 * 
+	 * @return the amount of forcePower
+	 */
+	public int getForcePower();
+	
 }
