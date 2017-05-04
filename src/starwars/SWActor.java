@@ -317,16 +317,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		/* Actually, that's not the case: all non-movement actions are transferred to newActions before the movements are transferred. --ram */
 	}
 	
-	@Override
-	public int getForcePower() {
-		return getForcePower();
-	}
-
-
-	@Override
-	public void setForcePower(int power) {
-		setForcePower(power);
-	}
+	
 
 
 	

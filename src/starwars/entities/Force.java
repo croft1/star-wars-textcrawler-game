@@ -6,6 +6,7 @@ import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.Capability;
 
 import starwars.SWEntity;
+import starwars.SWForceActorInterface;
 import starwars.actions.Take;
 
 /**
@@ -20,10 +21,10 @@ import starwars.actions.Take;
 /*
  *
  */
-public class Force extends SWEntity {
+public class Force extends SWEntity implements SWForceActorInterface {
 		
 	
-	
+	private int power;
 	/**
 	 * Constructor for the <code>Blaster</code> class. This constructor will,
 	 * <ul>
@@ -46,8 +47,7 @@ public class Force extends SWEntity {
 		
 		this.shortDescription = "The Force";
 		this.longDescription = "A mysterious presence can be felt";
-		setForcePower(0); // hit points are the strength/level of the current force entity
-		
+		power = 0;
 		//TODO add training this.addAffordance(new Take(this, m));//add the Take affordance so that the blaster can be picked up
 		//TODO maybe -- add affordance to convert to the dark side of the force
 		this.capabilities.add(Capability.MIND_CONTROL);   // and WEAPON so that it can be used to attack					
@@ -85,6 +85,41 @@ public class Force extends SWEntity {
 	 */
 	public String getSymbol() {
 		return "f"; 
+	}
+
+
+	@Override
+	public boolean hasForce() {
+		// TODO Auto-generated method stub
+		return (power > 0);
+	}
+
+
+	@Override
+	public int getForcePower() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public void setForce(Force force) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void tryForce() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void trainForce(int increase) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

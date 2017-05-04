@@ -47,6 +47,21 @@ public interface SWForceActorInterface {
 		this.force = force;
 	}
 	*/
+	
+	/**
+	 * Sets the <code>Force</code> of the <code>SWActor</code>.
+	 * <p>
+	 * Useful when the <code>SWActor</code>'s team needs to change dynamically during the simulation.
+	 * For example, a bite from an evil actor makes a good actor bad.
+	 *
+	 * @param 	force the force of this <code>SWActor</code>
+	 * @see 	#force
+	 */
+	public void trainForce(int increase);
+	/*{
+		this.force = force;
+	}
+	*/
 
 	/**
 	 * Attempts to mindcontrol with the <code>Force</code>
