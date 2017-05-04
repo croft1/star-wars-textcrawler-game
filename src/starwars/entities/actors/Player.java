@@ -108,11 +108,5 @@ public class Player extends SWActor {
 
 	
 
-	@Override
-	public void obeyMindControl(Move obeyDirectionToMove) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 }

@@ -27,6 +27,7 @@ import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.actions.Attack;
 import starwars.actions.Move;
 import starwars.entities.Force;
+import starwars.swinterfaces.SWGridController;
 
 public abstract class SWActor extends Actor<SWActionInterface> implements SWEntityInterface {
 	
@@ -153,7 +154,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	 * @see 	#force
 	 * @see 	#isDead()
 	 */
-	@Override
+	
 	public int getForcePower() {
 		return (force != null)? force.getPower() : -1;
 	}
@@ -161,15 +162,15 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	/**
 	 * Enforces the obey command from <code>MindControlNeighbours</code> acording to the <code>Force</code> affordance presence
-	 * 
+	 * when an actor gets this called, its next movement will be user controlled.
 	 * > 
 	 * @see 	#force
 	 * 
 	 */
-	@Override
-	public void obeyMindControl(Move obeyDirectionToMove) {
+
+	public void obeyMindControl() {
 		// TODO compare force values / if has force and make Actor move by default.
-		
+		scheduler.schedule(SWGridController.getUserDecision(this), this, 1);
 	}
 	
 	

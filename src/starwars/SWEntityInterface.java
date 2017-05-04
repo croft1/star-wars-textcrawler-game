@@ -64,14 +64,6 @@ public interface SWEntityInterface extends EntityInterface {
 	 */
 	public int getForcePower();
 	
-	/**
-	 * Method that moves the <code>SWActor</code> in a direction of another <code>SWActor</code>'s choosing.
-	 * .
-	 * 
-	 * @param direction the direction of <code>movement</code> to be reduced
-	 * 
-	 */
-	public void obeyMindControl(Move obeyDirectionToMove);
 	
 	
 	/**

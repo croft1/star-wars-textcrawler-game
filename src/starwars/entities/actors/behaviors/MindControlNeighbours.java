@@ -31,13 +31,15 @@ public class MindControlNeighbours {
 			if( e != actor && 
 					(e instanceof SWActor && 
 							(avoidFriendlies==false || ((SWActor)e).getTeam() != actor.getTeam()) 
-					|| (avoidNonActors == false && !(e instanceof SWActor)))) {
+					|| (avoidNonActors == false && !(e instanceof SWActor)
+					|| (e.getForcePower() > actor.getForcePower())	//cannot mind control 
+					))) {
 				for (Affordance a : e.getAffordances()) {
 					if (a instanceof MindControl) {
 
-						
-						//DO logic of friendly vs not
+						//add in possible entity to be controlled
 						controllables.add(new MindControlInformation(e, a));
+						
 						break;
 						
 						
@@ -46,12 +48,16 @@ public class MindControlNeighbours {
 			}
 		}
 
-		// if there's at least one thing we can attack, randomly choose
-		// something to attack
+		// if there's at least one thing we can control, randomly choose
+		// something to control
 		if (controllables.size() > 0) {
+			
+			//LOGIC HERE OF CHECKING IF POSSIBLE TO PERFORM CONTROL
+			
 			return controllables.get((int) (Math.floor(Math.random() * controllables.size())));
 		} else {
 			return null;
 		}
+		
 	}
 }

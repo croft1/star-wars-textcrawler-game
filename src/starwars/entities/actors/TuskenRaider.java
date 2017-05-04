@@ -97,10 +97,8 @@ public class TuskenRaider extends SWActor {
 		return 0;
 	}
 
-	@Override
-	public void obeyMindControl(Move obeyDirectionToMove) {
-		scheduler.schedule(obeyDirectionToMove, this, 1);
-	}
+	
+	//obeyMindControl will be called from the SWActor class, doesn't need to be customised within here
 	
 	
 

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import edu.monash.fit2099.simulator.matter.Entity;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 
+
 /**
  * Class that represents inanimate objects in the Star Wars world. Objects that cannot move for example trees.
  * 
@@ -89,5 +90,15 @@ public class SWEntity extends Entity implements SWEntityInterface {
 		assert (damage >= 0)	:"damage on SWEntity must not be negative";
 		this.hitpoints -= damage;
 	}
+
+
+	@Override
+	public int getForcePower() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	
 	
 }
