@@ -85,6 +85,8 @@ public class Player extends SWActor {
 					+ " is holding " + itemCarried.getShortDescription() + " [" + itemCarried.getHitpoints() + "]");
 		}
 		
+		//weild
+		
 		//get the contents of the location
 		List<SWEntityInterface> contents = this.world.getEntityManager().contents(location);
 		
