@@ -92,13 +92,4 @@ public class SWEntity extends Entity implements SWEntityInterface {
 	}
 
 
-	@Override
-	public int getForcePower() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	
-	
 }

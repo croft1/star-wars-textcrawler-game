@@ -57,12 +57,6 @@ public interface SWEntityInterface extends EntityInterface {
 	 */
 	public int getHitpoints();
 	
-	/**
-	 * Returns the power of the <code>Force</code> of this <code>SWEntity</code> or <code>SWActor</code>.
-	 * 
-	 * @return the amount of hitpoints
-	 */
-	public int getForcePower();
 	
 	
 	
