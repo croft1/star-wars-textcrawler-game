@@ -188,7 +188,21 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		this.force = force;
 	}
 	
+
+	/**
+	 * Attempts to mindcontrol with the <code>Force</code>
+	 * @see 	#force
+	 */
+	public void tryForce() {
+		//add in the attack code
+	}
 	
+	/**
+	 * Attempts to attack with the <code>Force</code>
+	 */
+	public void tryAttack() {
+		//add in attak code
+	}
 	
 	
 

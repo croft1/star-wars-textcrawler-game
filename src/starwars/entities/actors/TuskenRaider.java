@@ -55,6 +55,7 @@ public class TuskenRaider extends SWActor {
 			say(getShortDescription() + " has attacked" + attack.entity.getShortDescription());
 			scheduler.schedule(attack.affordance, this, 1);
 		}
+		
 		else if (Math.random() > 0.5){
 			
 			ArrayList<Direction> possibledirections = new ArrayList<Direction>();
