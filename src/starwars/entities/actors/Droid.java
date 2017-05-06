@@ -66,7 +66,6 @@ public class Droid extends SWActor {
 				this.world.getEntityManager().setLocation(this, ownerloc);
 				
 				//Take damage if moving to the Badlands
-				
 				if (locationSymbol == 'b') { //IF the Droid is at the Badlands
 					int NewHP = this.getHitpoints() - 2;	//Take 2 from the Droids' health
 					this.setHitpoints(NewHP);
@@ -95,6 +94,16 @@ public class Droid extends SWActor {
 				
 				
 			}
+			
+			//If a Roaming Droid is at the Badlands, they lose health
+			
+			if (locationSymbol == 'b') { //IF the Droid is at the Badlands
+				int NewHP = this.getHitpoints() - 2;	//Take 2 from the Droids' health
+				this.setHitpoints(NewHP);
+			
+				System.out.println(this.getShortDescription() + " has lost health by moving into the Badlands!");
+			}
+			
 		}
 		
 		
