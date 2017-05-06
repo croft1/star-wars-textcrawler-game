@@ -7,11 +7,14 @@ import edu.monash.fit2099.gridworld.Grid;
 import edu.monash.fit2099.simulator.space.Direction;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.SWActor;
+import starwars.SWAffordance;
 import starwars.SWEntityInterface;
 import starwars.SWLocation;
 import starwars.SWWorld;
 import starwars.Team;
+import starwars.actions.Attack;
 import starwars.actions.Move;
+import starwars.actions.HealDroid;
 
 public class Droid extends SWActor {
 
@@ -39,6 +42,11 @@ public class Droid extends SWActor {
 		// TODO Auto-generated constructor stub
 		this.name = name;
 		this.InitHP = hitpoints;
+		
+		//SWActors are given the Attack affordance hence they can be attacked
+		//SWAffordance healdroid = new HealDroid(this, m);
+		//this.addAffordance(healdroid);
+		
 	}
 
 	@Override

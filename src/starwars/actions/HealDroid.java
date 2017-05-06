@@ -17,13 +17,18 @@ public class HealDroid extends SWAffordance {
 
 	@Override
 	public boolean canDo(SWActor a) {
-		return false;
+		return true;
 	}
 
 	@Override
 	public void act(SWActor a) {
-		// TODO Auto-generated method stub
+		//Target is the Droid that is going to be healed.
+		SWActor target = (SWActor) this.getTarget();
+		
+		
 		System.out.println("Healing a Droid here");
+		
+		
 		
 	}
 
