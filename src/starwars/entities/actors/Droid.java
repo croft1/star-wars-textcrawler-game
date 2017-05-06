@@ -12,8 +12,6 @@ import starwars.SWLocation;
 import starwars.SWWorld;
 import starwars.Team;
 import starwars.actions.Move;
-import starwars.entities.actors.behaviors.AttackInformation;
-import starwars.entities.actors.behaviors.AttackNeighbours;
 
 public class Droid extends SWActor {
 
@@ -46,31 +44,25 @@ public class Droid extends SWActor {
 		if (isDead()) {
 			return;
 		}
+		
 		say(describeLocation());
+		say(nextToPlayer());
 		
-		nextToPlayer();
-		
-		AttackInformation attack = AttackNeighbours.attackLocals(this, this.world, false, false);
-		if (attack != null) {
-			say(getShortDescription() + " has attacked" + attack.entity.getShortDescription());
-			scheduler.schedule(attack.affordance, this, 1);
-		}
-		else if (Math.random() > 0.5){
+		if (Math.random() > 0.8){
+		ArrayList<Direction> possibledirections = new ArrayList<Direction>();
 			
-			ArrayList<Direction> possibledirections = new ArrayList<Direction>();
-
-			// build a list of available directions
-			for (Grid.CompassBearing d : Grid.CompassBearing.values()) {
-				if (SWWorld.getEntitymanager().seesExit(this, d)) {
-					possibledirections.add(d);
-				}
+		// build a list of available directions
+		for (Grid.CompassBearing d : Grid.CompassBearing.values()) {
+			if (SWWorld.getEntitymanager().seesExit(this, d)) {
+				possibledirections.add(d);
 			}
+		}
 
-			Direction heading = possibledirections.get((int) (Math.floor(Math.random() * possibledirections.size())));
-			say(getShortDescription() + " is heading " + heading + " next.");
-			Move myMove = new Move(heading, messageRenderer, world);
-
-			scheduler.schedule(myMove, this, 1);
+		Direction heading = possibledirections.get((int) (Math.floor(Math.random() * possibledirections.size())));
+		say(getShortDescription() + " is heading " + heading + " next.");
+		Move myMove = new Move(heading, messageRenderer, world);
+			
+		scheduler.schedule(myMove, this, 1);
 		}
 	}
 
@@ -90,7 +82,7 @@ public class Droid extends SWActor {
 
 	}
 	
-	private void nextToPlayer() {
+	private String nextToPlayer() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		//get the contents of the location
 		List<SWEntityInterface> contents = this.world.getEntityManager().contents(location);
@@ -99,10 +91,11 @@ public class Droid extends SWActor {
 		if (contents.size() > 1) { // if it is equal to one, the only thing here is this Player, so there is nothing to report
 			for (SWEntityInterface entity : contents) {
 				String entity_symbol = "@";
-				if (entity.getSymbol() == entity_symbol) { // don't include self in scene description
-					say(this.getLongDescription() + " is next to " + entity.getShortDescription() + "!");
+				if (entity.getSymbol() == entity_symbol) { // If the Droid is next to Luke (denoted by @)
+					return (this.getLongDescription() + " is next to " + entity.getShortDescription() + "!");
 					}
 				}
 			}
+		return ("Luke is not next to a Droid");
 	}
 }

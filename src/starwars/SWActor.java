@@ -84,7 +84,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		this.hitpoints = hitpoints;
 		this.world = world;
 		this.symbol = "@";
-		this.owner = this;
+		this.owner = null; //Initially, no one owns the Actor (more so for Droids)
 		
 		//SWActors are given the Attack affordance hence they can be attacked
 		SWAffordance attack = new Attack(this, m);
