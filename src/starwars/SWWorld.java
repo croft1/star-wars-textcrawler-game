@@ -7,6 +7,7 @@ import edu.monash.fit2099.simulator.space.Location;
 import edu.monash.fit2099.simulator.space.World;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.actions.Take;
+import starwars.actions.TakeOwnership;
 import starwars.entities.*;
 import starwars.entities.actors.*;
 
@@ -188,7 +189,9 @@ public class SWWorld extends World {
 		Droid_1.setSymbol("D1");
 		loc = myGrid.getLocationByCoordinates(1, 2);
 		entityManager.setLocation(Droid_1, loc);
-			
+		
+		//Addind a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
+		Droid_1.addAffordance(new TakeOwnership(Droid_1, iface)); 
 	}
 
 	/*
