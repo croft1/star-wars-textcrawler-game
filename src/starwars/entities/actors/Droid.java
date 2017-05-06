@@ -48,6 +48,13 @@ public class Droid extends SWActor {
 		say(describeLocation());
 		
 		if (this.humanControlled == true) {
+			System.out.println("Droid is HUMAN CONTROLLED - NEED to FOLLOW!!!");
+			
+			//SWLocation location = this.world.getEntityManager().whereIs(this);
+			SWLocation ownerloc = this.world.getEntityManager().whereIs(this.getOwner());
+			
+			this.world.getEntityManager().setLocation(this, ownerloc);
+			
 			
 		} else 
 		{
@@ -86,10 +93,6 @@ public class Droid extends SWActor {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		return this.getShortDescription() + " [" + this.getHitpoints() + "] is at " + location.getShortDescription();
 
-	}
-	
-	public void setOwner() {
-		System.out.println("Set owner here!");
 	}
 	
 	/*
