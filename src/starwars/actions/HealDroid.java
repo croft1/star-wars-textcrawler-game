@@ -26,9 +26,17 @@ public class HealDroid extends SWAffordance {
 		SWActor target = (SWActor) this.getTarget();
 		
 		SWEntityInterface itemCarried = a.getItemCarried();
-			if (itemCarried != null) {//if the actor is carrying an item 
-				
-			} else {
+			if (itemCarried != null) {//if an item is carried
+				if (itemCarried.getShortDescription() == "an oil can") {
+					System.out.println(a.getShortDescription() + "has " + 
+						itemCarried.getShortDescription() + ". Going to heal a Droid.");
+				}
+				else {
+					System.out.println("Cant get desc");
+				}
+			} 
+			
+			else {
 				System.out.println(a.getShortDescription() + " cannot heal " + target.getShortDescription() 
 				 + ", no Oil Can held! ");
 	
