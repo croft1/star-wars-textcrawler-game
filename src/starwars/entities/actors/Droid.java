@@ -81,6 +81,10 @@ public class Droid extends SWActor {
 
 	}
 	
+	public void setOwner() {
+		System.out.println("Set owner here!");
+	}
+	
 	/*
 	private String nextToPlayer() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);

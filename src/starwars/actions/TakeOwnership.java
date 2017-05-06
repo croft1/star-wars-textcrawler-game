@@ -95,8 +95,18 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public void act(SWActor a) {
-		SWEntityInterface target = this.getTarget();
+		SWActor target = (SWActor) this.getTarget();
 
-		System.out.println("Take ownership here!");
+		System.out.println(target.getShortDescription() + " is to be taken ownership by" + a.getShortDescription());
+		
+		System.out.println(target.getShortDescription() + " has owner: " + target.getOwner());
+		
+		//Setting ownership
+		target.setOwer(a);
+		System.out.println(target.getShortDescription() + " has owner: " + target.getOwner().getShortDescription());
+		
+		
+
+		
 	}
 }
