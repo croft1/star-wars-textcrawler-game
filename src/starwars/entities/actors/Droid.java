@@ -16,6 +16,7 @@ import starwars.actions.Move;
 public class Droid extends SWActor {
 
 	private String name;
+	private int InitHP;	//Initial HP integer
 
 	/**
 	 * Create a Droid At present coding, Droids are of team DROID,
@@ -37,6 +38,7 @@ public class Droid extends SWActor {
 		super(Team.NEUTRAL, 50, m, world);
 		// TODO Auto-generated constructor stub
 		this.name = name;
+		this.InitHP = hitpoints;
 	}
 
 	@Override
@@ -56,7 +58,7 @@ public class Droid extends SWActor {
 			//Following Owner - since humancontrolled.
 			
 			if (isDead()) {
-				
+				return;
 			} else
 			{
 				//Get owners' location
@@ -103,10 +105,7 @@ public class Droid extends SWActor {
 			
 				System.out.println(this.getShortDescription() + " has lost health by moving into the Badlands!");
 			}
-			
-		}
-		
-		
+		}	
 	}
 
 	@Override
