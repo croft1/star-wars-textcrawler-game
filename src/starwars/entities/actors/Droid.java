@@ -16,7 +16,7 @@ import starwars.actions.Move;
 public class Droid extends SWActor {
 
 	private String name;
-	private int InitHP;	//Initial HP integer (for self healing of Droids)
+	private int InitHP;	//Initial HP integer (for self healing of Droids) 
 
 	/**
 	 * Create a Droid At present coding, Droids are of team DROID,
