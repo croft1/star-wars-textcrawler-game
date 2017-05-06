@@ -97,14 +97,24 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 	public void act(SWActor a) {
 		SWActor target = (SWActor) this.getTarget();
 
-		System.out.println(target.getShortDescription() + " is to be taken ownership by" + a.getShortDescription());
-		
-		System.out.println(target.getShortDescription() + " has owner: " + target.getOwner());
-		
-		//Setting ownership
-		target.setOwer(a);
-		System.out.println(target.getShortDescription() + " has new owner: " + target.getOwner().getShortDescription());
-		
+		//If a Droid has no owner
+		if ( target.getOwner() == null) {
+			
+			//Printing out notification of imminent ownership
+			System.out.println(a.getShortDescription()  + " is to be taken ownership of " + target.getShortDescription());
+
+			//Setting ownership
+			target.setOwer(a);
+			
+			//Printing out ownership
+			System.out.println(target.getShortDescription() + " has new owner: " + target.getOwner().getShortDescription());
+		}
+		else if (target.getOwner() != null) {
+			
+			//Printing out notification of prior ownership
+			System.out.println(a.getShortDescription()  + " already owns " + target.getShortDescription() + "!");
+		}
+
 		
 
 		

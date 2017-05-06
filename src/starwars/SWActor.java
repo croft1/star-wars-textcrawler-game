@@ -282,6 +282,10 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	public void setOwer(SWActor newOwner) {
 		this.owner = newOwner;
+		this.humanControlled = true;
+		
+		System.out.println(newOwner.getTeam());
+	
 	}
 
 
