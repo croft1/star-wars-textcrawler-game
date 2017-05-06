@@ -53,6 +53,9 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	/**A set of <code>Capabilities</code> of this <code>SWActor</code>*/
 	private HashSet<Capability> capabilities;
 	
+	/**The owner of the actor. Utilised for Droids**/
+	private SWActor owner;
+	
 	/**
 	 * Constructor for the <code>SWActor</code>.
 	 * <p>
@@ -81,6 +84,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		this.hitpoints = hitpoints;
 		this.world = world;
 		this.symbol = "@";
+		this.owner = null; //Initially, no one owns the Actor (more so for Droids)
 		
 		//SWActors are given the Attack affordance hence they can be attacked
 		SWAffordance attack = new Attack(this, m);
@@ -270,6 +274,14 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		
 		// TODO: This assumes that the only actions are the Move actions. This will clobber any others. Needs to be fixed.
 		/* Actually, that's not the case: all non-movement actions are transferred to newActions before the movements are transferred. --ram */
+	}
+	
+	public SWActor getOwner() {
+		return owner;
+	}
+	
+	public void setOwer(SWActor newOwner) {
+		this.owner = newOwner;
 	}
 
 

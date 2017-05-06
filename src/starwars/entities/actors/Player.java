@@ -57,6 +57,7 @@ public class Player extends SWActor {
 	@Override
 	public void act() {	
 		describeScene();
+		say(nextToDroid());
 		scheduler.schedule(SWGridController.getUserDecision(this), this, 1);
 		
 	}
@@ -97,5 +98,22 @@ public class Player extends SWActor {
 				}
 			}
 		}
+	}
+	
+	private String nextToDroid() {
+		SWLocation location = this.world.getEntityManager().whereIs(this);
+		//get the contents of the location
+		List<SWEntityInterface> contents = this.world.getEntityManager().contents(location);
+				
+		//and describe the contents
+		if (contents.size() > 1) { // if it is equal to one, the only thing here is this Player, so there is nothing to report
+			for (SWEntityInterface entity : contents) {
+				String entity_symbol = "D1";
+				if (entity.getSymbol() == entity_symbol) { // If the Droid is next to Luke (denoted by @)
+					return (this.getLongDescription() + " is next to " + entity.getShortDescription() + "!");
+					}
+				}
+			}
+		return ("Luke is not next to a Droid");
 	}
 }
