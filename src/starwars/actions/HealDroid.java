@@ -25,8 +25,16 @@ public class HealDroid extends SWAffordance {
 		//Target is the Droid that is going to be healed.
 		SWActor target = (SWActor) this.getTarget();
 		
+		SWEntityInterface itemCarried = a.getItemCarried();
+			if (itemCarried != null) {//if the actor is carrying an item 
+				
+			} else {
+				System.out.println(a.getShortDescription() + " cannot heal " + target.getShortDescription() 
+				 + ", no Oil Can held! ");
+	
+			}
 		
-		System.out.println("Healing a Droid here");
+		
 		
 		
 		
@@ -34,7 +42,7 @@ public class HealDroid extends SWAffordance {
 
 	@Override
 	public String getDescription() {
-		return "heal party member " + target.getShortDescription();
+		return "heal  " + target.getShortDescription();
 	}
 
 }
