@@ -6,8 +6,7 @@ import edu.monash.fit2099.simulator.space.Direction;
 import edu.monash.fit2099.simulator.space.Location;
 import edu.monash.fit2099.simulator.space.World;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
-import starwars.actions.Take;
-import starwars.actions.TakeOwnership;
+import starwars.actions.*;
 import starwars.entities.*;
 import starwars.entities.actors.*;
 
@@ -190,8 +189,11 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(1, 2);
 		entityManager.setLocation(Droid_1, loc);
 		
-		//Addind a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
+		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
 		Droid_1.addAffordance(new TakeOwnership(Droid_1, iface)); 
+		
+		//Adding a HealDroid affordance - that SWACtors act upon
+		Droid_1.addAffordance(new HealDroid(Droid_1, iface));
 		
 		// A Droid
 		Droid Droid_2 = new Droid(50, "Droid 2", iface, this);
@@ -200,9 +202,11 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(1, 4);
 		entityManager.setLocation(Droid_2, loc);
 			
-		//Addind a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
+		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
 		Droid_2.addAffordance(new TakeOwnership(Droid_2, iface)); 
 		
+		//Adding a HealDroid affordance - that SWACtors act upon
+		Droid_2.addAffordance(new HealDroid(Droid_2, iface));
 	}
 
 	/*
