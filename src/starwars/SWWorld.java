@@ -192,6 +192,17 @@ public class SWWorld extends World {
 		
 		//Addind a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
 		Droid_1.addAffordance(new TakeOwnership(Droid_1, iface)); 
+		
+		// A Droid
+		Droid Droid_2 = new Droid(50, "Droid 2", iface, this);
+				
+		Droid_2.setSymbol("D2");
+		loc = myGrid.getLocationByCoordinates(1, 4);
+		entityManager.setLocation(Droid_2, loc);
+			
+		//Addind a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
+		Droid_2.addAffordance(new TakeOwnership(Droid_2, iface)); 
+		
 	}
 
 	/*
