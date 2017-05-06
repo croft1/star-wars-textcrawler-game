@@ -112,6 +112,10 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 			
 			//Printing team affiliation
 			System.out.println(target.getShortDescription() + " affiliation has changed to: " +  target.getTeam() );
+			
+			//Removing the take ownership affordance of the Droid (since you cant try to own
+			// a Droid that you already own!
+			target.removeAffordance(this);
 
 		}
 		else if (target.getOwner() != null) {
