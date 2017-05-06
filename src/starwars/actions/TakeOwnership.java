@@ -103,7 +103,7 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 		
 		//Setting ownership
 		target.setOwer(a);
-		System.out.println(target.getShortDescription() + " has owner: " + target.getOwner().getShortDescription());
+		System.out.println(target.getShortDescription() + " has new owner: " + target.getOwner().getShortDescription());
 		
 		
 
