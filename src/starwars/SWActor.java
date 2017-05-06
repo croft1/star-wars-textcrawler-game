@@ -287,6 +287,10 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		System.out.println(newOwner.getTeam());
 	
 	}
+	
+	public void setHitpoints(int newHP) {
+		this.hitpoints = newHP;
+	}
 
 
 	

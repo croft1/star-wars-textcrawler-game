@@ -41,6 +41,10 @@ public class Droid extends SWActor {
 
 	@Override
 	public void act() {
+
+		//Location symbol of a Droid
+		char locationSymbol = this.world.getEntityManager().whereIs(this).getSymbol();
+		
 		if (isDead()) {
 			return;
 		}
@@ -48,13 +52,26 @@ public class Droid extends SWActor {
 		say(describeLocation());
 		
 		if (this.humanControlled == true) {
-			System.out.println("Droid is HUMAN CONTROLLED - NEED to FOLLOW!!!");
 			
-			//SWLocation location = this.world.getEntityManager().whereIs(this);
-			SWLocation ownerloc = this.world.getEntityManager().whereIs(this.getOwner());
+			//Following Owner - since humancontrolled.
 			
-			this.world.getEntityManager().setLocation(this, ownerloc);
-			
+			if (isDead()) {
+				
+			} else
+			{
+				//Get owners' location
+				SWLocation ownerloc = this.world.getEntityManager().whereIs(this.getOwner());
+				
+				//Set Droids' position to owners' location (follow)
+				this.world.getEntityManager().setLocation(this, ownerloc);
+				
+				//Take damage if moving to the Badlands
+				
+				if (locationSymbol == 'b') { //IF the Droid is at the Badlands
+					this.getHitpoints() =- 2;
+				
+				}
+			}
 			
 		} else 
 		{
@@ -73,6 +90,8 @@ public class Droid extends SWActor {
 				Move myMove = new Move(heading, messageRenderer, world);
 					
 				scheduler.schedule(myMove, this, 1);
+				
+				
 			}
 		}
 		
