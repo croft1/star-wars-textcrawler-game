@@ -46,9 +46,8 @@ public class Droid extends SWActor {
 		}
 		
 		say(describeLocation());
-		say(nextToPlayer());
 		
-		if (Math.random() > 0.8){
+		if (Math.random() > 2){
 		ArrayList<Direction> possibledirections = new ArrayList<Direction>();
 			
 		// build a list of available directions
@@ -82,6 +81,7 @@ public class Droid extends SWActor {
 
 	}
 	
+	/*
 	private String nextToPlayer() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		//get the contents of the location
@@ -98,4 +98,5 @@ public class Droid extends SWActor {
 			}
 		return ("Luke is not next to a Droid");
 	}
+	*/
 }
