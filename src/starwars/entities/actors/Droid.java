@@ -68,8 +68,10 @@ public class Droid extends SWActor {
 				//Take damage if moving to the Badlands
 				
 				if (locationSymbol == 'b') { //IF the Droid is at the Badlands
-					this.getHitpoints() =- 2;
+					int NewHP = this.getHitpoints() - 2;	//Take 2 from the Droids' health
+					this.setHitpoints(NewHP);
 				
+					System.out.println(this.getShortDescription() + " has lost health by moving into the Badlands!");
 				}
 			}
 			

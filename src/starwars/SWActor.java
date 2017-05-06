@@ -277,18 +277,21 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	}
 	
 	public SWActor getOwner() {
+		//Return the SWActor owner of this Actor (initially nothing, can change!)
 		return owner;
 	}
 	
 	public void setOwer(SWActor newOwner) {
+		//Set this SWActors' owner to newOwner
 		this.owner = newOwner;
-		this.humanControlled = true;
 		
-		System.out.println(newOwner.getTeam());
-	
+		//Set humancontrolled boolean to true
+		this.humanControlled = true;
 	}
 	
 	public void setHitpoints(int newHP) {
+		
+		//Set this Actors' HP to the integer newHP
 		this.hitpoints = newHP;
 	}
 
