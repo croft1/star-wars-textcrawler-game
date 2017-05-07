@@ -45,7 +45,8 @@ public class LightSaber extends SWForceEntity implements SWForceEntityInterface 
 		
 		this.shortDescription = "A Lightsaber";
 		this.longDescription = "A lightsaber.  Bzzz-whoosh!";
-		this.hitpoints = 100000; 
+		this.hitpoints = 100; // start with a nice powerful, sharp axe
+		
 		this.addAffordance(new Take(this, m));//add the take affordance so that the LightSaber can be taken by SWActors
 		this.capabilities.add(Capability.WEAPON);// it's a weapon.  
 		
