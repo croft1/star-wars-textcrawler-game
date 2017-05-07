@@ -27,6 +27,7 @@ import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.actions.Attack;
 import starwars.actions.Move;
 import starwars.entities.Force;
+import starwars.entities.LightSaber;
 import starwars.swinterfaces.SWGridController;
 
 public abstract class SWActor extends Actor<SWActionInterface> implements SWEntityInterface {
@@ -48,6 +49,9 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	/**The item carried by this <code>SWActor</code>. <code>itemCarried</code> is null if this <code>SWActor</code> is not carrying an item*/
 	private SWEntityInterface itemCarried;
+	
+	/**The item carried by this <code>SWActor</code> may also be wielded. <code>isWielded</code> is false if this <code>SWActor</code> is not wielding the carried item, or cannot*/
+	private boolean isWielding;
 	
 	/**If or not this <code>SWActor</code> is human controlled. <code>SWActor</code>s are not human controlled by default*/
 	protected boolean humanControlled = false;
@@ -76,7 +80,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	 * <p>
 	 * By default,
 	 * <ul>
-	 * 	<li>All <code>SWActor</code>s can be attacked.</li>
+	 * 	<li>All <code>SWActor</code>s can be attacked.</li> 
 	 * 	<li>Have their symbol set to '@'</li>
 	 * </ul>
 	 * 
@@ -98,7 +102,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		this.initHP = hitpoints;
 		this.world = world;
 		this.symbol = "@";
-		this.owner = null; //Initially, no one owns the Actor (more so for Droids)
+		this.owner = null; //ally, no one owns the Actor (more so for Droids) --so, slaves are allowed? xD mc
 		
 		//SWActors are given the Attack affordance hence they can be attacked
 		SWAffordance attack = new Attack(this, m);
@@ -201,6 +205,24 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	public SWEntityInterface getItemCarried() {
 		return itemCarried;
 	}
+	
+	
+	/**
+	 * Returns the status of wield by this <code>SWActor</code>. 
+	 * <p>
+	 * 
+	 * If this <code>SWActor</code> is unable to wield the item (lightsaber) itll be false
+	 * 
+	 * @return 	the item carried by this <code>SWActor</code> or null if no item is held by this <code>SWActor</code>
+	 * @see 	#itemCarried
+	 */
+	public boolean isWielding() {
+		
+		//TODO get wielded item
+		return isWielding;
+	}
+	
+	
 
 	/**
 	 * Sets the team of this <code>SWActor</code> to a new team <code>team</code>.
@@ -242,6 +264,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	public void setItemCarried(SWEntityInterface target) {
 		this.itemCarried = target;
 	}
+	
 	
 	
 	/**
@@ -320,12 +343,12 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		/* Actually, that's not the case: all non-movement actions are transferred to newActions before the movements are transferred. --ram */
 	}
 	
-	public SWActor getOwner() {
+	public SWActor getOwner() { 
 		//Return the SWActor owner of this Actor (initially nothing, can change!)
 		return owner;
 	}
 	
-	public void setOwer(SWActor newOwner) {
+	public void setOwner(SWActor newOwner) {
 		//Set this SWActors' owner to newOwner
 		this.owner = newOwner;
 		
@@ -343,23 +366,36 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		return initHP;
 	}
 	
-	public void setisImmobile(boolean newisImmobile) {
+	public void setIsImmobile(boolean newisImmobile) {
 		this.isImmobile = newisImmobile;
 	}
 	
-	public boolean getisImmobile() {
+	public boolean getIsImmobile() {
 		return isImmobile;
 	}
 
 	//isDisassembled setter & getter
 	
-	public void setisDisassembled(boolean newIsDis) {
+	public void setIsDisassembled(boolean newIsDis) {
 		this.isDisassembled = newIsDis;
 	}
 	
-	public boolean getisDisassembled() {
+	public boolean getIsDisassembled() {
 		return isDisassembled;
 	}
+
+	public void setWielding(boolean isWielding) {
+		this.isWielding = isWielding;
+	}
+	
+	public String getCarryDescription(){
+		String wieldDesc = (isWielding()) ?  " is wielding " :  " is holding ";
+		
+		return this.getShortDescription() 
+		+ wieldDesc + itemCarried.getShortDescription() + " [" + itemCarried.getHitpoints() + "]";
+	}
+	
+	
 	
 	
 	

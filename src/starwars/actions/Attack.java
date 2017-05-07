@@ -59,6 +59,7 @@ public class Attack extends SWAffordance implements SWActionInterface {
 
 	/**
 	 * Determine whether a particular <code>SWActor a</code> can attack the target.
+	 * Must be wielding a weapon to allow
 	 * 
 	 * @author 	dsquire
 	 * @param 	a the <code>SWActor</code> being queried
@@ -67,7 +68,8 @@ public class Attack extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public boolean canDo(SWActor a) {
-		return true;
+		
+		return a.isWielding();
 	}
 
 	
@@ -161,7 +163,7 @@ public class Attack extends SWAffordance implements SWActionInterface {
 					targetActor.removeAffordance(this);
 				
 					//Set to immobile
-					targetActor.setisImmobile(true);
+					targetActor.setIsImmobile(true);
 				}
 				else {
 					

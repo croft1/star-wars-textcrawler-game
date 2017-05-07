@@ -2,6 +2,7 @@ package starwars;
 
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.entities.Force;
+import starwars.entities.LightSaber;
 
 /**
  * This class represents "legends" - major characters - in the Star Wars universe.  
@@ -33,7 +34,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	/**The set actors entity of the <code>Force </code> of this <code>SWActor</code>*/
 	private Force force = null;
 	
-	private String[] titles = {" the Lost"," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
+	private String[] titles = {" the Lost "," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
 	
 	/** 
 	 * Protected constructor to prevent random other code from creating 
@@ -81,6 +82,11 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 		
 		return super.getShortDescription() + this.getTitle() ;
 	}
+
+
+
+
+	
 
 
 

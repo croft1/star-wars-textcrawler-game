@@ -61,7 +61,7 @@ public class Droid extends SWActor {
 		say(describeLocation());
 		
 		//If a Droid is immobile (Dead)
-		if (this.getisImmobile() == true) {
+		if (this.getIsImmobile() == true) {
 			System.out.println(this.getShortDescription() + " is immobile. ");
 			return;
 		}

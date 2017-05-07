@@ -89,9 +89,8 @@ public class Player extends SWForceActor {
 		SWEntityInterface itemCarried = this.getItemCarried();
 		if (itemCarried != null) {
 			//and describe the item carried if the player is actually carrying an item
-			say(this.getShortDescription() 
-					+ " is holding " + itemCarried.getShortDescription() + " [" + itemCarried.getHitpoints() + "]");
-		
+			say(getCarryDescription());
+
 		}
 		
 		//weild
@@ -109,6 +108,7 @@ public class Player extends SWForceActor {
 			}
 		}
 	}
+	
 
 	private String nextToDroid() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
