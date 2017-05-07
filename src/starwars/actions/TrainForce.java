@@ -7,6 +7,7 @@ import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
 import starwars.SWForceActor;
+import starwars.entities.actors.BenKenobi;
 import starwars.entities.actors.Player;
 
 /**
@@ -101,9 +102,12 @@ public class TrainForce extends SWAffordance implements SWActionInterface {
 	public void act(SWActor a) {
 
 		//Currently only players can be trained. We can change this over time.
-		if (a instanceof Player){
+		if (a instanceof Player && target instanceof BenKenobi){
+			target.say(a.getShortDescription() + ", prepare your mind.\nTraining Commences...");
+			((BenKenobi) target).setTrainingPupil(true);
 			((SWForceActor)a).trainForce();
-			a.say("Thanks Ben, I feel closer to the ways of the force than ever");
+			a.say("Thanks " + target.getShortDescription() + ", I feel closer to the ways of the force than ever!");
+			
 		}
 		
 	}

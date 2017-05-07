@@ -30,6 +30,8 @@ public class BenKenobi extends SWLegend  {
 
 	private static BenKenobi ben = null; // yes, it is OK to return the static instance!
 	private Patrol path;
+	private boolean trainingPupil = false;
+	
 	private BenKenobi(MessageRenderer m, SWWorld world, Direction [] moves) {
 		super(Team.GOOD, 1000, m, world);
 		path = new Patrol(moves);
@@ -65,12 +67,26 @@ public class BenKenobi extends SWLegend  {
 			scheduler.schedule(attack.affordance, ben, 1);
 		}
 		else {
+			if(trainingPupil){
+				trainingPupil = false;
+			} else{
+				
+			
 			Direction newdirection = path.getNext();
 			say(getShortDescription() + " moves " + newdirection);
 			Move myMove = new Move(newdirection, messageRenderer, world);
 
 			scheduler.schedule(myMove, this, 1);
+			}
 		}
+	}
+	
+	public boolean isTrainingPupil(){
+		return trainingPupil;
+	}
+	
+	public void setTrainingPupil(boolean t){
+		trainingPupil = t;
 	}
 
 
