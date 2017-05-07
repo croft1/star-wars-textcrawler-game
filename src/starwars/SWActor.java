@@ -58,7 +58,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	/**A set of <code>Capabilities</code> of this <code>SWActor</code>*/
 	private HashSet<Capability> capabilities;
 	
-<<<<<<< HEAD
+
 	/**The set actors entity of the <code>Force </code> of this <code>SWActor</code>*/
 	private Force force;
 	
@@ -66,7 +66,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	
 	
-=======
+
 	/**The owner of the actor. Utilised for Droids**/
 	private SWActor owner;
 	
@@ -75,7 +75,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	/**isDisassembled boolean. Used for the disassembly and repair of Droids**/
 	private boolean isDisassembled;
->>>>>>> 690b529b72d865edf9df4d297e833f02f9c507c6
+
 	
 	
 	/**

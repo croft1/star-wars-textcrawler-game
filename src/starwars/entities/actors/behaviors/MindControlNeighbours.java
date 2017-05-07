@@ -9,7 +9,6 @@ import starwars.SWActor;
 import starwars.SWEntityInterface;
 import starwars.SWLocation;
 import starwars.SWWorld;
-import starwars.actions.Attack;
 import starwars.actions.MindControl;
 import starwars.entities.actors.behaviors.MindControlInformation;
 
@@ -32,7 +31,7 @@ public class MindControlNeighbours {
 					(e instanceof SWActor && 
 							(avoidFriendlies==false || ((SWActor)e).getTeam() != actor.getTeam()) 
 					|| (avoidNonActors == false && !(e instanceof SWActor)
-					|| (e.getForcePower() > actor.getForcePower())	//cannot mind control 
+					|| (((SWActor)e).getForcePower() > actor.getForcePower())	//cannot mind control 
 					))) {
 				for (Affordance a : e.getAffordances()) {
 					if (a instanceof MindControl) {

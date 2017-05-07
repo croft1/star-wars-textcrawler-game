@@ -1,7 +1,7 @@
 package starwars;
 
 import edu.monash.fit2099.simulator.matter.EntityInterface;
-import starwars.actions.Move;
+
 
 /**
  * All <code>Entities</code> and <code>Actors</code> in the starwars client package should implement this interface.

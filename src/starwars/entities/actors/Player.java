@@ -108,13 +108,7 @@ public class Player extends SWActor {
 			}
 		}
 	}
-<<<<<<< HEAD
 
-	
-
-	
-=======
-	
 	private String nextToDroid() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		//get the contents of the location
@@ -131,5 +125,5 @@ public class Player extends SWActor {
 			}
 		return ("Luke is not next to a Droid");
 	}
->>>>>>> 690b529b72d865edf9df4d297e833f02f9c507c6
+
 }
