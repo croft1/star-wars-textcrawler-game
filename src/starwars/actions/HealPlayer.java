@@ -22,15 +22,19 @@ public class HealPlayer extends SWAffordance {
 
 	@Override
 	public void act(SWActor a) {
-		//Target is the Droid that is going to be healed.
+		
+		//If the player has the water canteen
+		
+		if (a.getItemCarried().getSymbol() == "o") {
+			System.out.println("The player wants to heal using the canteen!");
+		}
 		
 		
 		
-		
-
+	}
 	@Override
 	public String getDescription() {
-		return "heal " + target.getShortDescription();
+		return "heal player: " + target.getShortDescription(); 
 	}
 
 }
