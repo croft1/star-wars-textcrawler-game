@@ -306,11 +306,11 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		return initHP;
 	}
 	
-	public void setImmobile(boolean newisImmobile) {
+	public void setisImmobile(boolean newisImmobile) {
 		this.isImmobile = newisImmobile;
 	}
 	
-	public boolean getImmobile() {
+	public boolean getisImmobile() {
 		return isImmobile;
 	}
 

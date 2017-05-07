@@ -189,6 +189,9 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(1, 2);
 		entityManager.setLocation(Droid_1, loc);
 		
+		//Setting mobility of Droid 1
+		Droid_1.setisImmobile(false);
+		
 		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
 		Droid_1.addAffordance(new TakeOwnership(Droid_1, iface)); 
 		
@@ -202,6 +205,9 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(1, 4);
 		entityManager.setLocation(Droid_2, loc);
 			
+		//Setting mobility of Droid 1
+		Droid_2.setisImmobile(false);
+		
 		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
 		Droid_2.addAffordance(new TakeOwnership(Droid_2, iface)); 
 		
@@ -221,14 +227,18 @@ public class SWWorld extends World {
 		entityManager.setLocation(Droid_4, loc);
 		
 		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
-		Droid_3.addAffordance(new TakeOwnership(Droid_3, iface)); 
+		Droid_3.addAffordance(new HealDroid(Droid_3, iface)); 
 		Droid_4.addAffordance(new TakeOwnership(Droid_4, iface)); 
 		
 		//Adding a HealDroid affordance - that SWACtors act upon
 		Droid_3.addAffordance(new HealDroid(Droid_3, iface));
 		Droid_4.addAffordance(new TakeOwnership(Droid_4, iface)); 
 		
+		Droid_3.setHitpoints(0);
 		Droid_4.setHitpoints(0);
+		
+		Droid_3.setisImmobile(true);
+		Droid_4.setisImmobile(true);
 	}
 	
 
