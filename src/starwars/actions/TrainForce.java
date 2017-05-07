@@ -105,7 +105,10 @@ public class TrainForce extends SWAffordance implements SWActionInterface {
 		if (a instanceof Player && target instanceof BenKenobi){
 			target.say(a.getShortDescription() + ", prepare your mind.\nTraining Commences...");
 			((BenKenobi) target).setTrainingPupil(true);
-			((SWForceActor)a).trainForce();
+			for (int i = 0; i < Math.floor(Math.random() * 6); i++){	///random training value
+				((SWForceActor)a).trainForce();
+			}
+			
 			a.say("Thanks " + target.getShortDescription() + ", I feel closer to the ways of the force than ever!");
 			
 		}

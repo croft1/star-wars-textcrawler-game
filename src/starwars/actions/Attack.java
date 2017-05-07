@@ -6,6 +6,8 @@ import starwars.SWActionInterface;
 import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
+import starwars.SWForceActor;
+import starwars.SWForceEntityInterface;
 
 /**
  * Command to attack entities.
@@ -116,11 +118,15 @@ public class Attack extends SWAffordance implements SWActionInterface {
 			a.say(a.getShortDescription() + " is attacking " + target.getShortDescription() + "!");
 			
 			SWEntityInterface itemCarried = a.getItemCarried();
-			if (itemCarried != null) {//if the actor is carrying an item 
+			if (itemCarried != null && a.isWielding()) {//if the actor is has an item and is wielding it
 				if (itemCarried.hasCapability(Capability.WEAPON)) {
 					target.takeDamage(itemCarried.getHitpoints() + 1); // blunt weapon won't do much, but it will still do some damage
 					itemCarried.takeDamage(1); // weapon gets blunt
 					a.takeDamage(energyForAttackWithWeapon); // actor uses energy to attack
+					if(itemCarried instanceof SWForceEntityInterface &&
+							a instanceof SWForceActor){
+						((SWForceActor)a).trainForce();//if you use a force weapon, you may get xp with force
+					}
 				} else {//an attack with a none weapon
 					if (targetIsActor) {
 						targetActor.say("\t" + targetActor.getShortDescription()

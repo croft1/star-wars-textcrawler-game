@@ -16,5 +16,5 @@ public enum Capability {
 	DRINKABLE,//DRINKABLE capability allows an entity to be consumed by another entity 
 	
 	MIND_CONTROL, //MIND_CONTROL capability allows an entity with the force to attempt to mind control those without it
-
+	HOME,
 }

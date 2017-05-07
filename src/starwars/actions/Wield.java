@@ -56,19 +56,6 @@ public class Wield extends SWAffordance {
 	@Override
 	public boolean canDo(SWActor a) {
 		
-		if(a.getItemCarried() instanceof SWForceEntityInterface 
-				&& a instanceof SWForceActor ){
-			if( ((SWForceActor) a).getForcePower() > SWForceEntityInterface.WIELD_FORCE_PWR_REQ){
-				//a force weapon and can wield
-				return true;
-			}
-			//a force weapon but not wieldable
-			a.say(a.getItemCarried().getShortDescription() + " is so majestic to the touch -- but you require more training with the ways of The Force to use it."
-					+ "\n" + a.getShortDescription() + " put " + a.getItemCarried().getShortDescription() + " away for use at a more opportune moment");
-			
-			return false;	
-			
-		}
 		return true;
 		
 	}
@@ -91,11 +78,26 @@ public class Wield extends SWAffordance {
 			SWEntityInterface theItem = (SWEntityInterface) target;
 			a.setWielding(true);
 			
-			//remove the wield affordance
-			target.removeAffordance(this);
+			if(a.getItemCarried() instanceof SWForceEntityInterface 
+					&& a instanceof SWForceActor ){
+				if( ((SWForceActor) a).getForcePower() > SWForceEntityInterface.WIELD_FORCE_PWR_REQ){
+					//a force weapon and can wield
+					//remove the wield affordance
+					target.removeAffordance(this);
+					
+					// add a leave affordance - no need to just "hold" it again
+					target.addAffordance(new Leave(theItem, messageRenderer));
+					
+				}
+				//a force weapon but not wieldable
+				a.say(a.getItemCarried().getShortDescription() + " is so majestic to the touch -- you try to use it but you require more training with the ways of The Force."
+						+ "\n" + a.getShortDescription() + " put " + a.getItemCarried().getShortDescription() + " away to try again later");
+				
+					
+				
+			}
 			
-			// add a leave affordance - no need to just "hold" it again
-			target.addAffordance(new Leave(theItem, messageRenderer));
+			
 			
 			
 			//POSSIBLY ADD A TURN ON/OFF affordance

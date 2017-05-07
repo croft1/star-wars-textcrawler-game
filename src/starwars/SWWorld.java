@@ -119,6 +119,19 @@ public class SWWorld extends World {
 		entityManager.setLocation(luke, loc);
 		luke.resetMoveCommands(loc);
 		
+		// OWEN AND BERU
+		Humanoid owen = new Humanoid(Team.GOOD, 200, iface, this);
+		owen.setShortDescription("Uncle Owen");
+		loc = myGrid.getLocationByCoordinates(3,8);
+		entityManager.setLocation(owen, loc);
+		owen.setSymbol("H");
+		Humanoid beru = new Humanoid(Team.GOOD, 200, iface, this);
+		beru.setShortDescription("Aunty Beru");
+		loc = myGrid.getLocationByCoordinates(5,8);
+		entityManager.setLocation(beru, loc);
+		beru.setSymbol("H");
+		
+		
 		
 		// Beggar's Canyon 
 		for (int col = 3; col < 8; col++) {
@@ -195,6 +208,8 @@ public class SWWorld extends World {
 		dale.setSymbol("T");
 		loc = myGrid.getLocationByCoordinates(4,7);
 		entityManager.setLocation(dale, loc);
+		
+		
 		
 		
 		// A Droid

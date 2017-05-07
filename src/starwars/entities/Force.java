@@ -72,7 +72,7 @@ public class Force extends SWEntity {
 	 * @see 	{@link starwars.SWEntityInterface#getSymbol()}
 	 */
 	public void trainPower() {
-		this.power += 5;
+		this.power += 1;
 	}
 
 
