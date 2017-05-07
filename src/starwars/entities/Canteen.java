@@ -47,4 +47,12 @@ public class Canteen extends SWEntity implements Fillable {
 	public String getLongDescription () {
 		return longDescription + " [" + level + "/" + capacity + "]";
 	}
+	
+	public int getLevel() {
+		return this.level;
+	}
+	
+	public void setLevel(int newLevel) {
+		this.level = newLevel;
+	}
 }

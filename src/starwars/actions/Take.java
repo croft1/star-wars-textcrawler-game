@@ -76,6 +76,14 @@ public class Take extends SWAffordance {
 			
 			// add a leave affordance
 			target.addAffordance(new Leave(theItem, messageRenderer));
+			
+			//If the item picked up is the water canteen
+			if (((SWEntityInterface) target).getSymbol() == "o") {
+			
+				//Add an affordance to heal
+				target.addAffordance(new HealPlayer(a, this.messageRenderer));
+
+			}
 		}
 	}
 
