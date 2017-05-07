@@ -57,7 +57,7 @@ public class Player extends SWActor {
 	@Override
 	public void act() {	
 		describeScene();
-		say(nextToDroid());
+		//say(nextToDroid()); (used to see if a player is next to a Droid 
 		scheduler.schedule(SWGridController.getUserDecision(this), this, 1);
 		
 	}
