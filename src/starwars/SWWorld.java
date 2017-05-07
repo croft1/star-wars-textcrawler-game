@@ -207,7 +207,30 @@ public class SWWorld extends World {
 		
 		//Adding a HealDroid affordance - that SWACtors act upon
 		Droid_2.addAffordance(new HealDroid(Droid_2, iface));
+		
+		// Added Two Immobile Droids (for Rapair and Disassesmble Actions)
+		Droid Droid_3 = new Droid(50, "Droid 3", iface, this);
+		Droid Droid_4 = new Droid(50, "Droid 4", iface, this);
+		
+		Droid_3.setSymbol("D3");
+		Droid_4.setSymbol("D4");
+		
+		loc = myGrid.getLocationByCoordinates(0, 7);
+		entityManager.setLocation(Droid_3, loc);
+		loc = myGrid.getLocationByCoordinates(0, 8);
+		entityManager.setLocation(Droid_4, loc);
+		
+		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
+		Droid_3.addAffordance(new TakeOwnership(Droid_3, iface)); 
+		Droid_4.addAffordance(new TakeOwnership(Droid_4, iface)); 
+		
+		//Adding a HealDroid affordance - that SWACtors act upon
+		Droid_3.addAffordance(new HealDroid(Droid_3, iface));
+		Droid_4.addAffordance(new TakeOwnership(Droid_4, iface)); 
+		
+		Droid_4.setHitpoints(0);
 	}
+	
 
 	/*
 	 * Render method was removed from here
