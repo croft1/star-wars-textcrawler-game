@@ -5,6 +5,7 @@ import starwars.Capability;
 import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
+import starwars.entities.Canteen;
 import starwars.entities.Fillable;
 
 public class HealPlayer extends SWAffordance {
@@ -23,10 +24,67 @@ public class HealPlayer extends SWAffordance {
 	@Override
 	public void act(SWActor a) {
 		
-		//If the player has the water canteen
+		//If the actor has the water canteen
 		if (a.getItemCarried().getSymbol() == "o") {
 			
-			System.out.println("canteen HP " + a.getItemCarried().getHitpoints());
+			//Set the canteen to carriedCanteen
+			Canteen carriedCanteen = (Canteen) a.getItemCarried();
+			
+			//If the canteens' level is ABOVE 0 (i.e has water in it
+			if (carriedCanteen.getLevel() > 0) {
+				
+				//If the Actor is at full health
+				if (a.getInitialHP() == a.getHitpoints()) {
+					//Printout
+					System.out.println("Cannot heal. " + a.getShortDescription() +
+							"is already at full HP!.");
+				}	
+				
+				//Else heal the actor
+				else {
+					//Printout
+					System.out.println("Healing " + a.getShortDescription() + "...");
+					
+					//Get actors' distance to max HP
+					int disttoFullHP = a.getInitialHP() - a.getHitpoints();
+					
+					//If the actors' distance to full HP is less than 10, restore all health
+					if (disttoFullHP < 10) {
+						
+						//Set HP to full, since water canteen can fully heal
+						a.setHitpoints(a.getInitialHP());
+						
+						//Decrement level of canteen by 1 (1 use)
+						carriedCanteen.setLevel(carriedCanteen.getLevel() - 1);
+						
+						//Print message
+						System.out.println(a.getShortDescription() + " used the canteen."
+								+ "\n" + a.getShortDescription() + " HP: " + a.getHitpoints() + 
+								"\nThe canteen has " + carriedCanteen.getLevel() + " use(s) remaining.");
+					}
+					
+					//Otherwise, heal 10 HP
+					else {
+						
+						//Heal 10HP of actor
+						a.setHitpoints(a.getHitpoints() + 10);
+						
+						//Decrement level of canteen by 1 (1 use)
+						carriedCanteen.setLevel(carriedCanteen.getLevel() - 1);
+						
+						//Print message
+						System.out.println(a.getShortDescription() + " used the canteen."
+								+ "\n" + a.getShortDescription() + " HP: " + a.getHitpoints() + 
+								"\nThe canteen has " + carriedCanteen.getLevel() + " use(s) remaining.");
+					}
+				}	
+			} 
+			
+			//Otherwise the canteen is empty
+			else {
+				System.out.println("Cannot heal. " + a.getShortDescription() + " is "
+						+ "trying to heal \nwith a empty water canteen. Refill first.");
+			}
 			
 			
 		}

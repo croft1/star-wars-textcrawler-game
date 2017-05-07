@@ -13,6 +13,8 @@ import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
 import starwars.SWLocation;
+import starwars.actions.HealPlayer;
+import edu.monash.fit2099.simulator.matter.Affordance;
 import edu.monash.fit2099.simulator.matter.EntityManager;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 
@@ -57,8 +59,23 @@ public class Leave extends SWAffordance {
 				a.setItemCarried(null);
 				target.removeAffordance(this);
 				target.addAffordance(new Take((SWEntityInterface)target, this.messageRenderer)); // add a Take affordance
+				
+				//If the water canteen was dropped
+				if (((SWEntityInterface) target).getSymbol() == "o") {
+					
+					//For each Affordance this entity has
+					for (Affordance affEntity : target.getAffordances()) {
+						if (affEntity.getDescription().contains("heal player")) {
+							System.out.println("THE CANTEEN WAS DROPPED! Remove the heal affordance");
+							
+							target.removeAffordance(affEntity);
+						}
+					}
+				}
 			}
 		}
+		
+		
 	}
 
 
