@@ -24,9 +24,11 @@ public class HealPlayer extends SWAffordance {
 	public void act(SWActor a) {
 		
 		//If the player has the water canteen
-		
 		if (a.getItemCarried().getSymbol() == "o") {
-			System.out.println("The player wants to heal using the canteen!");
+			
+			System.out.println("canteen HP " + a.getItemCarried().getHitpoints());
+			
+			
 		}
 		
 		
@@ -34,7 +36,7 @@ public class HealPlayer extends SWAffordance {
 	}
 	@Override
 	public String getDescription() {
-		return "heal player: " + target.getShortDescription(); 
+		return "heal player: " + target.getShortDescription();
 	}
 
 }
