@@ -64,9 +64,7 @@ public class Disassemble extends SWAffordance {
 					
 					//Set the immoble Droid to disassembled
 					target.setisDisassembled(true);
-					
-					//Remove the affordance of disassembly
-					target.removeAffordance(this);
+	
 				}
 			}			
 		}

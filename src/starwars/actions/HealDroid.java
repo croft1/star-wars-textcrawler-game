@@ -28,10 +28,7 @@ public class HealDroid extends SWAffordance {
 		if (target.getisImmobile() == true) {
 			//Print out notification - cant heal an immobile Droid.
 			System.out.println("Cant heal " + target.getShortDescription() + ", who is \nimmobile. Need to"
-					+ " Repair first.");
-		
-			//Remove heal affordance from immobile Droid
-			target.removeAffordance(this);
+					+ " Disassemble or Repair first.");
 		}
 		
 		else {

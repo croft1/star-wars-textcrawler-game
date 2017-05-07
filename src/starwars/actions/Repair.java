@@ -49,14 +49,38 @@ public class Repair extends SWAffordance {
 				
 				//Otherwise, Droid Parts are held. Repair the immobile & disassembled Droid
 				else {
-					System.out.println("Due to heal Droid!");
+							
+					//Remove the Droid Parts from the Actors' inventory
+					a.setItemCarried(null);
+					
+					//Make Droids' health back to max HP
+					target.setHitpoints(target.getInitialHP());
+					
+					//Printout of repair 
+					System.out.println(target.getShortDescription() + " was repaired by " + a.getShortDescription()
+					+ ".\n" + target.getShortDescription() + " now has " + target.getHitpoints() + " HP.");
+					
+					//Set isImmobile to false
+					target.setisImmobile(false);
+					
+					//Set isDisassembled to false
+					target.setisDisassembled(false);
+					
+					//Set allegience to repairing character
+					target.setOwer(a);
+					target.setTeam(a.getTeam());
+					
+					//Printing out ownership
+					System.out.println(target.getShortDescription() + " has new owner: " + target.getOwner().getShortDescription());
+					
+					//Printing team affiliation
+					System.out.println(target.getShortDescription() + " affiliation has changed to: " +  target.getTeam() );
+
+					//Add an attack affordance to the repaired Droid, so it can be attacked again
+					target.addAffordance(new Attack(target, this.messageRenderer));
 				}
-				
 			}
-			
-			
 		}
-	
 	}
 
 	@Override
