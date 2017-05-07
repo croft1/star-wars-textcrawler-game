@@ -38,7 +38,7 @@ public class Disassemble extends SWAffordance {
 		target.getShortDescription() + " ,\nwho is at " + target.getHitpoints() + " HP.");
 	
 			//If5 a Droid is still mobile
-			if (target.getisImmobile() == false) {
+			if (target.getIsImmobile() == false) {
 				System.out.println("Cant disassemble a mobile Droid!");
 			}
 			
@@ -46,7 +46,7 @@ public class Disassemble extends SWAffordance {
 			else {
 				
 				//If the Droid has already been disassembled
-				if (target.getisDisassembled() == true) {
+				if (target.getIsDisassembled() == true) {
 					System.out.println(target.getShortDescription() + " has already been \ndisassembled into Droid Parts.");
 				} 
 				
@@ -63,7 +63,7 @@ public class Disassemble extends SWAffordance {
 					entityManager.setLocation(droidPImm, entityManager.whereIs(target));
 					
 					//Set the immoble Droid to disassembled
-					target.setisDisassembled(true);
+					target.setIsDisassembled(true);
 	
 				}
 			}			

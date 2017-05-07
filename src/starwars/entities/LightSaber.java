@@ -3,6 +3,8 @@ package starwars.entities;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.Capability;
 import starwars.SWEntity;
+import starwars.SWForceEntity;
+import starwars.SWForceEntityInterface;
 import starwars.actions.Take;
 
 /**
@@ -18,7 +20,7 @@ import starwars.actions.Take;
  *  @see {@link starwars.actions.Attack}
  */
 
-public class LightSaber extends SWEntity {
+public class LightSaber extends SWForceEntity implements SWForceEntityInterface {
 
 	/**
 	 * Constructor for the <code>LightSaber</code> class. This constructor will,
@@ -36,18 +38,17 @@ public class LightSaber extends SWEntity {
 	 * @see {@link starwars.actions.Chop} 1
 	 */
 	
-	public static final int WIELD_FORCEPWR_REQ = 20;
+	
 	
 	public LightSaber(MessageRenderer m) {
 		super(m);
 		
 		this.shortDescription = "A Lightsaber";
 		this.longDescription = "A lightsaber.  Bzzz-whoosh!";
-		this.hitpoints = 10000; //TODO set str accoding to forcepwoer start with a nice powerful, buzzing lightsaber
-		
+		this.hitpoints = 100000; 
 		this.addAffordance(new Take(this, m));//add the take affordance so that the LightSaber can be taken by SWActors
 		this.capabilities.add(Capability.WEAPON);// it's a weapon.  
-		//20 force points can wield
+		
 	}
 	
 	

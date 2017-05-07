@@ -190,7 +190,7 @@ public class SWWorld extends World {
 		entityManager.setLocation(Droid_1, loc);
 		
 		//Setting mobility of Droid 1
-		Droid_1.setisImmobile(false);
+		Droid_1.setIsImmobile(false);
 		
 		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
 		Droid_1.addAffordance(new TakeOwnership(Droid_1, iface)); 
@@ -212,7 +212,7 @@ public class SWWorld extends World {
 		entityManager.setLocation(Droid_2, loc);
 			
 		//Setting mobility of Droid 1
-		Droid_2.setisImmobile(false);
+		Droid_2.setIsImmobile(false);
 		
 		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
 		Droid_2.addAffordance(new TakeOwnership(Droid_2, iface)); 

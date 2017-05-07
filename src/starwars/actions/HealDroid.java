@@ -25,7 +25,7 @@ public class HealDroid extends SWAffordance {
 		//Target is the Droid that is going to be healed.
 		SWActor target = (SWActor) this.getTarget();
 		
-		if (target.getisImmobile() == true) {
+		if (target.getIsImmobile() == true) {
 			//Print out notification - cant heal an immobile Droid.
 			System.out.println("Cant heal " + target.getShortDescription() + ", who is \nimmobile. Need to"
 					+ " Disassemble or Repair first.");

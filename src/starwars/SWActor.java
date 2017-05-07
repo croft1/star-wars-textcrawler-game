@@ -102,7 +102,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		this.initHP = hitpoints;
 		this.world = world;
 		this.symbol = "@";
-		this.owner = null; //Initially, no one owns the Actor (more so for Droids)
+		this.owner = null; //Initially, no one owns the Actor (more so for Droids) --so, slaves are allowed? haha
 		
 		//SWActors are given the Attack affordance hence they can be attacked
 		SWAffordance attack = new Attack(this, m);
@@ -219,7 +219,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	public boolean isWieldingItem() {
 		
 		//TODO get wielded item
-		return isWielding;
+		return isWielding();
 	}
 	
 	
@@ -269,17 +269,16 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	 * Assigns this <code>SWActor</code>'s <code>isWielding</code> to true
 	 * <p>
 	 * 
-	 * @param 	target the new item to be set as item carried
+	 * @param 	target the carried item to be wielded
 	 * @see 	#itemCarried
 	 */
-	public void wieldItemCarried() {
-		//put this in wield logic
+	public boolean attemptWield() {
+		
 		if(getItemCarried() instanceof LightSaber){
-			
-		}else{
-			
+			setWielding(false);		//by default "just an actor" cant wield a lightsaber
 		}
-		isWielding = true;
+		
+		return isWielding();
 		
 	}
 	
@@ -365,7 +364,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		return owner;
 	}
 	
-	public void setOwer(SWActor newOwner) {
+	public void setOwner(SWActor newOwner) {
 		//Set this SWActors' owner to newOwner
 		this.owner = newOwner;
 		
@@ -383,22 +382,30 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		return initHP;
 	}
 	
-	public void setisImmobile(boolean newisImmobile) {
+	public void setIsImmobile(boolean newisImmobile) {
 		this.isImmobile = newisImmobile;
 	}
 	
-	public boolean getisImmobile() {
+	public boolean getIsImmobile() {
 		return isImmobile;
 	}
 
 	//isDisassembled setter & getter
 	
-	public void setisDisassembled(boolean newIsDis) {
+	public void setIsDisassembled(boolean newIsDis) {
 		this.isDisassembled = newIsDis;
 	}
 	
-	public boolean getisDisassembled() {
+	public boolean getIsDisassembled() {
 		return isDisassembled;
+	}
+
+	public boolean isWielding() {
+		return isWielding;
+	}
+
+	public void setWielding(boolean isWielding) {
+		this.isWielding = isWielding;
 	}
 	
 	

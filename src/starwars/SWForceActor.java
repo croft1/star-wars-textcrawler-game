@@ -2,6 +2,7 @@ package starwars;
 
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.entities.Force;
+import starwars.entities.LightSaber;
 
 /**
  * This class represents "legends" - major characters - in the Star Wars universe.  
@@ -80,6 +81,19 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	public String getShortDescription() {
 		
 		return super.getShortDescription() + this.getTitle() ;
+	}
+
+
+
+
+	@Override
+	public boolean attemptWield() {
+		setWielding(false);
+		if(getItemCarried() instanceof SWForceEntityInterface &&
+				this.getForcePower() > WIELD_FORCE_PWR_REQ){
+			setWielding(true);		//by default "just an actor" cant wield a lightsaber
+		}
+		return super.attemptWield();
 	}
 
 

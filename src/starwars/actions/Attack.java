@@ -161,7 +161,7 @@ public class Attack extends SWAffordance implements SWActionInterface {
 					targetActor.removeAffordance(this);
 				
 					//Set to immobile
-					targetActor.setisImmobile(true);
+					targetActor.setIsImmobile(true);
 				}
 				else {
 					
