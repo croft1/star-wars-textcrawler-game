@@ -92,11 +92,7 @@ public class TuskenRaider extends SWActor {
 
 	}
 
-	@Override
-	public int getForcePower() {
-		//A tusken raider will never have force, so its always 0
-		return 0;
-	}
+	
 
 	
 	//obeyMindControl will be called from the SWActor class, doesn't need to be customised within here

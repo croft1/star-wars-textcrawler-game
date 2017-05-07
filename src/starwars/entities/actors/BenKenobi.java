@@ -2,6 +2,7 @@ package starwars.entities.actors;
 
 import edu.monash.fit2099.simulator.space.Direction;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
+import starwars.SWForceActor;
 import starwars.SWLegend;
 import starwars.SWWorld;
 import starwars.Team;
@@ -65,6 +66,18 @@ public class BenKenobi extends SWLegend  {
 
 			scheduler.schedule(myMove, this, 1);
 		}
+	}
+
+	@Override
+	protected void forceAct() {
+		// TODO MIND CONTROL
+		
+	}
+
+	@Override
+	protected void trainForce(SWForceActor target) {
+		
+		
 	}
 
 }

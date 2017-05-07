@@ -25,15 +25,21 @@ public class MindControlNeighbours {
 		// select the attackable things that are here
 
 		ArrayList<MindControlInformation> controllables = new ArrayList<MindControlInformation>();
+		//Call can only come from a SWForceActor
+		//Entity is a possible enemy
 		for (SWEntityInterface e : entities) {
 			// Figure out if we should be attacking this entity
 			if( e != actor && 
 					(e instanceof SWActor && 
 							(avoidFriendlies==false || ((SWActor)e).getTeam() != actor.getTeam()) 
 					|| (avoidNonActors == false && !(e instanceof SWActor)
-					|| (((SWActor)e).getForcePower() > actor.getForcePower())	//cannot mind control 
-					))) {
+						
+					)))	 {
 				for (Affordance a : e.getAffordances()) {
+					
+					
+					//(((SWActor)e).getForcePower() > actor.getForcePower())
+					
 					if (a instanceof MindControl) {
 
 						//add in possible entity to be controlled
