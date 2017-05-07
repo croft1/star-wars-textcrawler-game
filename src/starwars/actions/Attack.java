@@ -157,9 +157,9 @@ public class Attack extends SWAffordance implements SWActionInterface {
 					//Set the description of the now 'immobile' Droid
 					target.setLongDescription(target.getLongDescription() + ", that was made immobile in a fight");
 					
-					//remove the attack affordance of the dead actor so it can no longer be attacked
+					//remove the attack and heal affordance of the dead actor so it can no longer be attacked
 					targetActor.removeAffordance(this);
-					
+				
 					//Set to immobile
 					targetActor.setisImmobile(true);
 				}

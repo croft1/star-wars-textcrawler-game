@@ -25,7 +25,17 @@ public class HealDroid extends SWAffordance {
 		//Target is the Droid that is going to be healed.
 		SWActor target = (SWActor) this.getTarget();
 		
-		SWEntityInterface itemCarried = a.getItemCarried();
+		if (target.getisImmobile() == true) {
+			//Print out notification - cant heal an immobile Droid.
+			System.out.println("Cant heal " + target.getShortDescription() + ", who is \nimmobile. Need to"
+					+ " Repair first.");
+		
+			//Remove heal affordance from immobile Droid
+			target.removeAffordance(this);
+		}
+		
+		else {
+			SWEntityInterface itemCarried = a.getItemCarried();
 			if (itemCarried != null) {//if an item is carried
 				if (itemCarried.getShortDescription() == "an oil can") {
 					//Healing process
@@ -106,10 +116,13 @@ public class HealDroid extends SWAffordance {
 			else {
 				System.out.println(a.getShortDescription() + " cannot heal " + target.getShortDescription() 
 				 + ", no Oil Can held! ");
-				
-	
 			}
+			
+			
 	}
+		}
+		
+		
 
 	@Override
 	public String getDescription() {

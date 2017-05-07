@@ -217,7 +217,7 @@ public class Droid extends SWActor {
 					
 				}
 				else {
-					System.out.println("Im in good health.");
+					return;
 				}
 			}
 		}
