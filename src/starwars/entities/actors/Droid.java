@@ -6,6 +6,7 @@ import java.util.List;
 import edu.monash.fit2099.gridworld.Grid;
 import edu.monash.fit2099.simulator.space.Direction;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
+import starwars.SWAction;
 import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
@@ -14,7 +15,9 @@ import starwars.SWWorld;
 import starwars.Team;
 import starwars.actions.Attack;
 import starwars.actions.Move;
+import starwars.actions.Take;
 import starwars.actions.HealDroid;
+import starwars.actions.Leave;
 
 public class Droid extends SWActor {
 
@@ -59,7 +62,7 @@ public class Droid extends SWActor {
 		}
 		
 		say(describeLocation());
-		
+		System.out.println( this.getShortDescription() + "holds" + this.getItemCarried());
 		if (this.humanControlled == true) {
 			
 			//Following Owner - since humancontrolled.
@@ -85,6 +88,36 @@ public class Droid extends SWActor {
 			
 		} else 
 		{
+			//Picking up items
+			
+			//Get contents of the current location
+			List<SWEntityInterface> contents = this.world.getEntityManager().contents(this.world.getEntityManager().whereIs(this));
+			
+			//and describe the contents
+			if (contents.size() > 1) { // if it is equal to one, the only thing here is this Player, so there is nothing to report
+				for (SWEntityInterface entity : contents) {
+					if (entity != this) { // don't include self in scene description
+						if (entity.getSymbol() == "x") {
+							
+							//The Droid is standing over a oil can. Does it pick it up?
+							if (Math.random() > 0.5){
+								System.out.println(this.getShortDescription() + " decided to pick up " + entity.getShortDescription());
+								//Move myMove = new Move(heading, messageRenderer, world);
+								//scheduler.schedule(myMove, this, 1);
+								
+								Take droidTakes = new Take(entity, messageRenderer);
+								scheduler.schedule(droidTakes, this, 1);
+							}
+							else {
+								System.out.println(this.getShortDescription() + " decided not to pick up" + entity.getShortDescription());
+							}
+							
+						}
+					}
+				}
+			}
+			
+			
 			if (Math.random() > 0.8){
 				ArrayList<Direction> possibledirections = new ArrayList<Direction>();
 					
@@ -100,8 +133,6 @@ public class Droid extends SWActor {
 				Move myMove = new Move(heading, messageRenderer, world);
 					
 				scheduler.schedule(myMove, this, 1);
-				
-				
 			}
 			
 			//If a Roaming Droid is at the Badlands, they lose health
@@ -112,6 +143,8 @@ public class Droid extends SWActor {
 			
 				System.out.println(this.getShortDescription() + " has lost health by moving into the Badlands!");
 			}
+			
+			
 		}	
 	}
 
