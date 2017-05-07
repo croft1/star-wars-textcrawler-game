@@ -30,27 +30,32 @@ public class HealDroid extends SWAffordance {
 				if (itemCarried.getShortDescription() == "an oil can") {
 					System.out.println(a.getShortDescription() + "has " + 
 						itemCarried.getShortDescription() + ". Going to heal a Droid.");
+					
+					//Healing the target Droid
+					System.out.println(target.getShortDescription());
+					System.out.println(target.getShortDescription() + " current HP is: " + target.getHitpoints());
+					System.out.println(target.getShortDescription() + " initial HP is: " + target.getInitialHP());
+					
+					
+					
 				}
 				else {
-					System.out.println("Cant get desc");
+					System.out.println(a.getShortDescription() + " is carrying " + a.getItemCarried().getShortDescription() 
+							+ ". An oil can is required.");
 				}
 			} 
 			
 			else {
 				System.out.println(a.getShortDescription() + " cannot heal " + target.getShortDescription() 
 				 + ", no Oil Can held! ");
+				
 	
 			}
-		
-		
-		
-		
-		
 	}
 
 	@Override
 	public String getDescription() {
-		return "heal  " + target.getShortDescription();
+		return "heal " + target.getShortDescription();
 	}
 
 }

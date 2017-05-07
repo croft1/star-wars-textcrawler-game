@@ -41,7 +41,6 @@ public class Droid extends SWActor {
 		super(Team.NEUTRAL, 50, m, world);
 		// TODO Auto-generated constructor stub
 		this.name = name;
-		this.InitHP = hitpoints;
 		
 		//SWActors are given the Attack affordance hence they can be attacked
 		//SWAffordance healdroid = new HealDroid(this, m);

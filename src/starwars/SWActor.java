@@ -35,6 +35,9 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	/**The amount of <code>hitpoints</code> of this actor. If the hitpoints are zero or less this <code>Actor</code> is dead*/
 	private int hitpoints;
 	
+	/*The initial hitpoints of the Actor. Set in constructor - does not change (used for healing) */
+	private int initHP;
+	
 	/**The world this <code>SWActor</code> belongs to.*/
 	protected SWWorld world;
 	
@@ -82,6 +85,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		actions = new HashSet<SWActionInterface>();
 		this.team = team;
 		this.hitpoints = hitpoints;
+		this.initHP = hitpoints;
 		this.world = world;
 		this.symbol = "@";
 		this.owner = null; //Initially, no one owns the Actor (more so for Droids)
@@ -293,6 +297,10 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		
 		//Set this Actors' HP to the integer newHP
 		this.hitpoints = newHP;
+	}
+	
+	public int getInitialHP() {
+		return initHP;
 	}
 
 
