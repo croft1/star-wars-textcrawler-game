@@ -202,6 +202,13 @@ public class Droid extends SWActor {
 				//If the Droids health is LOWER than half...
 				if((this.getInitialHP()/2) > this.getHitpoints()) {
 					System.out.println("Im on half health. healing myself");
+					
+					//Implementing a new HealDroid method (Droid heals on itself)
+					//public HealDroid(SWEntityInterface theTarget, MessageRenderer m) {
+					HealDroid droidHeal = new HealDroid(this, messageRenderer);
+					
+					scheduler.schedule(droidHeal, this, 1);
+					
 				}
 				else {
 					System.out.println("Im in good health.");
