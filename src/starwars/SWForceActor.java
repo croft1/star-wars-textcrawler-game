@@ -1,5 +1,6 @@
 package starwars;
 
+import edu.monash.fit2099.simulator.matter.Affordance;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.entities.Force;
 import starwars.entities.LightSaber;
@@ -34,7 +35,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	/**The set actors entity of the <code>Force </code> of this <code>SWActor</code>*/
 	private Force force = null;
 	
-	private String[] titles = {" the Lost "," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
+	private String[] titles = {" the Wanderer"," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
 	
 	/** 
 	 * Protected constructor to prevent random other code from creating 
@@ -49,6 +50,12 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 		super(team, hitpoints, m, world);
 		Force defaultForce = new Force(m, 5);
 		setForce(defaultForce);
+		for (Affordance affEntity : this.getAffordances()) {
+			if (affEntity.getDescription().contains("obey")) {
+				this.removeAffordance(affEntity);		//removes the obey affordance from actor
+			}
+		}
+		
 	}
 
 	
@@ -82,10 +89,6 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 		
 		return super.getShortDescription() + this.getTitle() ;
 	}
-
-
-
-
 	
 
 
@@ -113,31 +116,24 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	 * @param 	force the force of this <code>SWActor</code>
 	 * @see 	#force
 	 */
-	public void setForce(Force force) {
+	protected void setForce(Force force) {
 		this.force = force;
 	}
 	
-
+                                                                                                              
 	/**
 	 * Attempts to mindcontrol with the <code>Force</code>
 	 * @see 	#force
 	 */
 	public void tryForce() {
-		//add in the attack code
+		//add in the code to attack with force?
 	}
 
-	protected void forceAct(){
-		
-	}
 	
 	protected void trainForce(SWForceActor target){	
-			target.trainForce(target);
-			
+			force.trainPower();	
 	}
 	
-	protected void useLightsaber(){
-		
-	}
 	
 	protected void setTitle(int forcePower){
 		

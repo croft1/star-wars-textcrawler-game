@@ -6,6 +6,7 @@ import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.Capability;
 
 import starwars.SWEntity;
+import starwars.actions.MindControl;
 import starwars.actions.Take;
 
 /**
@@ -53,6 +54,7 @@ public class Force extends SWEntity {
 		//TODO maybe -- add affordance to convert to the dark side of the force
 		this.capabilities.add(Capability.MIND_CONTROL);   // and WEAPON so that it can be used to attack					
 		
+		this.addAffordance(new MindControl(this, m));	//allow those with the force to perform mindcontrol
 		
 	}
 	
@@ -70,7 +72,7 @@ public class Force extends SWEntity {
 	 * @see 	{@link starwars.SWEntityInterface#getSymbol()}
 	 */
 	public void trainPower() {
-		this.power++;
+		this.power += 5;
 	}
 
 

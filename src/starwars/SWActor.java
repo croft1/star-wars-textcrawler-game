@@ -107,6 +107,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		//SWActors are given the Attack affordance hence they can be attacked
 		SWAffordance attack = new Attack(this, m);
 		this.addAffordance(attack);
+		
 
 	}
 	
@@ -155,9 +156,26 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	 * 
 	 */
 
-	public void obeyMindControl() {
+	public void obey() {
 		// TODO compare force values / if has force and make Actor move by default.
 		scheduler.schedule(SWGridController.getUserDecision(this), this, 1);
+	}
+	
+	/**
+	 * Determined whether the actor is able to obey - is weak minded 
+	 * True for all SWActors, needs <code>@override</code> within forceActor
+	 * @see 	#force
+	 * 
+	 */
+
+	public boolean canObey() {
+		for (Affordance affEntity : this.getAffordances()) {
+			if (affEntity.getDescription().contains("obey")) {
+				return true;
+			}
+		}
+		return false;
+		
 	}
 	
 	

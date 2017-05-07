@@ -127,11 +127,7 @@ public class Player extends SWForceActor {
 		return ("Luke is not next to a Droid");
 	}
 
-	@Override
-	protected void forceAct() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	protected void trainForce(SWForceActor target) {

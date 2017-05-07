@@ -6,7 +6,9 @@ import starwars.SWForceActor;
 import starwars.SWLegend;
 import starwars.SWWorld;
 import starwars.Team;
+import starwars.actions.MindControl;
 import starwars.actions.Move;
+import starwars.actions.TrainForce;
 import starwars.entities.Force;
 import starwars.entities.LightSaber;
 import starwars.entities.actors.behaviors.AttackInformation;
@@ -37,6 +39,9 @@ public class BenKenobi extends SWLegend  {
 		setItemCarried(bensweapon);
 		Force bensForce = new Force(m, 79);	//80+ means hes the chosen one
 		setForce(bensForce);
+		
+		this.addAffordance(new TrainForce(this, m));	//allow those with the force to perform mindcontrol
+		
 	}
 
 	public static BenKenobi getBenKenobi(MessageRenderer m, SWWorld world, Direction [] moves) {
@@ -68,11 +73,6 @@ public class BenKenobi extends SWLegend  {
 		}
 	}
 
-	@Override
-	protected void forceAct() {
-		// TODO MIND CONTROL
-		
-	}
 
 	@Override
 	protected void trainForce(SWForceActor target) {
