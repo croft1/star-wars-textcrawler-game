@@ -59,6 +59,9 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	/**The owner of the actor. Utilised for Droids**/
 	private SWActor owner;
 	
+	/**isImmobile boolean. Used for Droid SWActors*/
+	private boolean isImmobile;
+	
 	/**
 	 * Constructor for the <code>SWActor</code>.
 	 * <p>
@@ -301,6 +304,14 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	public int getInitialHP() {
 		return initHP;
+	}
+	
+	public void setImmobile(boolean newisImmobile) {
+		this.isImmobile = newisImmobile;
+	}
+	
+	public boolean getImmobile() {
+		return isImmobile;
 	}
 
 

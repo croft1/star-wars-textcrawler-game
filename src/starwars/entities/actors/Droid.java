@@ -22,7 +22,6 @@ import starwars.actions.Leave;
 public class Droid extends SWActor {
 
 	private String name;
-	private int InitHP;	//Initial HP integer (for self healing of Droids) 
 
 	/**
 	 * Create a Droid At present coding, Droids are of team DROID,
@@ -57,13 +56,18 @@ public class Droid extends SWActor {
 		//Location symbol of a Droid
 		char locationSymbol = this.world.getEntityManager().whereIs(this).getSymbol();
 		
+		//Begin act
+		
+		say(describeLocation());
+		
+		//If a Droid is immobile (Dead)
 		if (isDead()) {
+			System.out.println(this.getShortDescription() + " is immobile. ");
 			return;
 		}
 		
-		say(describeLocation());
-		System.out.println( this.getShortDescription() + "holds" + this.getItemCarried());
-		if (this.humanControlled == true) {
+		//If a Droid is mobile and human controlled
+		else if (this.humanControlled == true) {
 			
 			//Following Owner - since humancontrolled.
 			
@@ -88,11 +92,12 @@ public class Droid extends SWActor {
 				}
 				
 				selfHeal();
-			}
+			}	
+		} 
+		
+		//If a Droid is not immobile, and not human controlled (roaming)
+		else {	
 			
-			
-		} else 
-		{
 			//Picking up an oil can
 			//Get contents of the current location
 			List<SWEntityInterface> contents = this.world.getEntityManager().contents(this.world.getEntityManager().whereIs(this));
@@ -201,7 +206,8 @@ public class Droid extends SWActor {
 			
 				//If the Droids health is LOWER than half...
 				if((this.getInitialHP()/2) > this.getHitpoints()) {
-					System.out.println("Im on half health. healing myself");
+					System.out.println(this.getShortDescription() + " is at or below half HP. "
+							+ " Healing itself...");
 					
 					//Implementing a new HealDroid method (Droid heals on itself)
 					//public HealDroid(SWEntityInterface theTarget, MessageRenderer m) {
