@@ -154,8 +154,8 @@ public class Attack extends SWAffordance implements SWActionInterface {
 				//If a Droid was 'killed'
 				if (this.getTarget().getShortDescription().contains("the Droid")) {
 					
-
-					target.setLongDescription(target.getLongDescription() + ", that was killed in a fight");
+					//Set the description of the now 'immobile' Droid
+					target.setLongDescription(target.getLongDescription() + ", that was made immobile in a fight");
 					
 					//remove the attack affordance of the dead actor so it can no longer be attacked
 					targetActor.removeAffordance(this);
@@ -165,6 +165,7 @@ public class Attack extends SWAffordance implements SWActionInterface {
 				}
 				else {
 					
+					//Set the description of the target
 					target.setLongDescription(target.getLongDescription() + ", that was killed in a fight");
 								
 					//remove the attack affordance of the dead actor so it can no longer be attacked
