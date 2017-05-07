@@ -36,17 +36,9 @@ public class Disassemble extends SWAffordance {
 		if (a.getSymbol() == "@") {
 			System.out.println(a.getShortDescription() + " is trying to disassemble " + 
 		target.getShortDescription() + " ,\nwho is at " + target.getHitpoints() + " HP.");
-			
-			//if an item is carried
-			if (itemCarried != null) {
-				System.out.println(a.getShortDescription() + " already is carrying  " + 
-						a.getItemCarried().getShortDescription() + ".\nLeave this item before disassembling. ");
-			
-			
-			} 
-			
-			//IF a Droid is still mobile
-			else if (target.getisImmobile() == false) {
+	
+			//If5 a Droid is still mobile
+			if (target.getisImmobile() == false) {
 				System.out.println("Cant disassemble a mobile Droid!");
 			}
 			

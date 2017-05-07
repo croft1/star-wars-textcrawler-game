@@ -24,8 +24,38 @@ public class Repair extends SWAffordance {
 	public void act(SWActor a) {
 		//Target is the Droid that is going to be healed.
 		SWActor target = (SWActor) this.getTarget();
+	
+		//If the Droid is still mobile
+
+		if (target.getisImmobile() == false) {
+			System.out.println("Cant repair a mobile Droid!");
+		}
 		
-		SWEntityInterface itemCarried = a.getItemCarried();
+		//Otherwise, attempt to repair a Droid
+		else {
+			
+			//If the player has no items
+			if (a.getItemCarried() == null) {
+				System.out.println(a.getShortDescription() + " has no items held." + 
+					("\nObtain Droid Parts to repair this Droid."));
+			}
+			
+			else {
+				//If the item is not Droid Parts
+				if(a.getItemCarried().getSymbol() != "dp") {
+					System.out.println(a.getShortDescription() + " is holding " + 
+							a.getItemCarried().getShortDescription() + "\nObtain Droid Parts to repair this Droid.");
+				}
+				
+				//Otherwise, Droid Parts are held. Repair the immobile & disassembled Droid
+				else {
+					System.out.println("Due to heal Droid!");
+				}
+				
+			}
+			
+			
+		}
 	
 	}
 
