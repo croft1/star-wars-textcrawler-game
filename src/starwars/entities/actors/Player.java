@@ -49,8 +49,7 @@ public class Player extends SWForceActor {
 		super(team, hitpoints, m, world);
 		humanControlled = true; // this feels like a hack. Surely this should('nt?) be dynamic. Thats starwars
 		
-		Force f = new Force(m, 5);
-		setForce(f);
+		//use default force
 	}
 	
 	/**
@@ -84,7 +83,7 @@ public class Player extends SWForceActor {
 	public void describeScene() {
 		//get the location of the player and describe it
 		SWLocation location = this.world.getEntityManager().whereIs(this);
-		say(this.getShortDescription() + " [" + this.getHitpoints() + "] is at " + location.getShortDescription());
+		say(this.getShortDescription() + " [HP: " + this.getHitpoints() + " F: " + this.getForcePower() + "] is at " + location.getShortDescription());
 		
 		//get the items carried for the player
 		SWEntityInterface itemCarried = this.getItemCarried();
@@ -92,6 +91,7 @@ public class Player extends SWForceActor {
 			//and describe the item carried if the player is actually carrying an item
 			say(this.getShortDescription() 
 					+ " is holding " + itemCarried.getShortDescription() + " [" + itemCarried.getHitpoints() + "]");
+		
 		}
 		
 		//weild

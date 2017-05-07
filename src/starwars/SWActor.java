@@ -58,8 +58,6 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	/**A set of <code>Capabilities</code> of this <code>SWActor</code>*/
 	private HashSet<Capability> capabilities;
 
-	
-
 	/**The owner of the actor. Utilised for Droids**/
 	private SWActor owner;
 	

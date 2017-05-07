@@ -21,19 +21,19 @@ import starwars.entities.Force;
  * Rather than implement act() like regular SWActors, Legends should implement
  * legendAct().  
  * 
- * TODO fix implementation
+ * TODO fix writeup here
  * 
  * @author Michael Carter
  *
  */
-public abstract class SWForceActor extends SWActor {
+public abstract class SWForceActor extends SWActor implements SWForceEntityInterface {
 
 	
 	
 	/**The set actors entity of the <code>Force </code> of this <code>SWActor</code>*/
 	private Force force = null;
 	
-
+	private String[] titles = {" the Lost"," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
 	
 	/** 
 	 * Protected constructor to prevent random other code from creating 
@@ -46,7 +46,8 @@ public abstract class SWForceActor extends SWActor {
 	
 	protected SWForceActor(Team team, int hitpoints, MessageRenderer m, SWWorld world) {
 		super(team, hitpoints, m, world);
-		
+		Force defaultForce = new Force(m, 5);
+		setForce(defaultForce);
 	}
 
 	
@@ -64,6 +65,26 @@ public abstract class SWForceActor extends SWActor {
 	}
 	
 	
+	
+	
+	@Override
+	public void act() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	@Override
+	public String getShortDescription() {
+		
+		return super.getShortDescription() + this.getTitle() ;
+	}
+
+
+
+
 	/**
 	 * Returns the points of the <code>Force</code> in terms of strength
 	 * 
@@ -103,7 +124,20 @@ public abstract class SWForceActor extends SWActor {
 		
 	}
 	
-	protected void trainForce(SWForceActor target){
+	protected void trainForce(SWForceActor target){	
+			target.trainForce(target);
+			
+	}
+	
+	protected void useLightsaber(){
 		
+	}
+	
+	protected void setTitle(int forcePower){
+		
+	}
+	
+	protected String getTitle(){
+		return titles[getForcePower() / 20];
 	}
 }

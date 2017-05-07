@@ -61,7 +61,7 @@ public class Force extends SWEntity {
 		return power;
 	}
 
-
+	
 	
 	/**
 	 * 
