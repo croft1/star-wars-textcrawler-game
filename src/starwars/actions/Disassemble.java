@@ -42,8 +42,16 @@ public class Disassemble extends SWAffordance {
 				System.out.println(a.getShortDescription() + " already is carrying  " + 
 						a.getItemCarried().getShortDescription() + ".\nLeave this item before disassembling. ");
 			
+			
+			} 
+			
+			//IF a Droid is still mobile
+			else if (target.getisImmobile() == false) {
+				System.out.println("Cant disassemble a mobile Droid!");
+			}
+			
 			//Otherwise, disassemble into Droid Parts
-			} else {
+			else {
 				
 				//If the Droid has already been disassembled
 				if (target.getisDisassembled() == true) {
@@ -64,6 +72,9 @@ public class Disassemble extends SWAffordance {
 					
 					//Set the immoble Droid to disassembled
 					target.setisDisassembled(true);
+					
+					//Remove the affordance of disassembly
+					target.removeAffordance(this);
 				}
 			}			
 		}
