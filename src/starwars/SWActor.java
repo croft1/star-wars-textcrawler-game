@@ -35,6 +35,9 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	/**The amount of <code>hitpoints</code> of this actor. If the hitpoints are zero or less this <code>Actor</code> is dead*/
 	private int hitpoints;
 	
+	/*The initial hitpoints of the Actor. Set in constructor - does not change (used for healing) */
+	private int initHP;
+	
 	/**The world this <code>SWActor</code> belongs to.*/
 	protected SWWorld world;
 	
@@ -52,6 +55,16 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	/**A set of <code>Capabilities</code> of this <code>SWActor</code>*/
 	private HashSet<Capability> capabilities;
+	
+	/**The owner of the actor. Utilised for Droids**/
+	private SWActor owner;
+	
+	/**isImmobile boolean. Used for Droid SWActors in most actions*/
+	private boolean isImmobile;
+	
+	/**isDisassembled boolean. Used for the disassembly and repair of Droids**/
+	private boolean isDisassembled;
+	
 	
 	/**
 	 * Constructor for the <code>SWActor</code>.
@@ -79,8 +92,10 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		actions = new HashSet<SWActionInterface>();
 		this.team = team;
 		this.hitpoints = hitpoints;
+		this.initHP = hitpoints;
 		this.world = world;
 		this.symbol = "@";
+		this.owner = null; //Initially, no one owns the Actor (more so for Droids)
 		
 		//SWActors are given the Attack affordance hence they can be attacked
 		SWAffordance attack = new Attack(this, m);
@@ -271,8 +286,47 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		// TODO: This assumes that the only actions are the Move actions. This will clobber any others. Needs to be fixed.
 		/* Actually, that's not the case: all non-movement actions are transferred to newActions before the movements are transferred. --ram */
 	}
+	
+	public SWActor getOwner() {
+		//Return the SWActor owner of this Actor (initially nothing, can change!)
+		return owner;
+	}
+	
+	public void setOwer(SWActor newOwner) {
+		//Set this SWActors' owner to newOwner
+		this.owner = newOwner;
+		
+		//Set humancontrolled boolean to true
+		this.humanControlled = true;
+	}
+	
+	public void setHitpoints(int newHP) {
+		
+		//Set this Actors' HP to the integer newHP
+		this.hitpoints = newHP;
+	}
+	
+	public int getInitialHP() {
+		return initHP;
+	}
+	
+	public void setisImmobile(boolean newisImmobile) {
+		this.isImmobile = newisImmobile;
+	}
+	
+	public boolean getisImmobile() {
+		return isImmobile;
+	}
 
-
+	//isDisassembled setter & getter
+	
+	public void setisDisassembled(boolean newIsDis) {
+		this.isDisassembled = newIsDis;
+	}
+	
+	public boolean getisDisassembled() {
+		return isDisassembled;
+	}
 	
 	
 	

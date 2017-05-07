@@ -147,12 +147,31 @@ public class Attack extends SWAffordance implements SWActionInterface {
 				
 				
 			}
+			
+			// If a actor was killed / immobilised (logic check)...
 			if (this.getTarget().getHitpoints() <= 0) {  // can't use isDead(), as we don't know that the target is an actor
-				target.setLongDescription(target.getLongDescription() + ", that was killed in a fight");
-							
-				//remove the attack affordance of the dead actor so it can no longer be attacked
-				targetActor.removeAffordance(this);
+				
+				//If a Droid was 'killed'
+				if (this.getTarget().getShortDescription().contains("the Droid")) {
+					
+					//Set the description of the now 'immobile' Droid
+					target.setLongDescription(target.getLongDescription() + ", that was made immobile in a fight");
+					
+					//remove the attack and heal affordance of the dead actor so it can no longer be attacked
+					targetActor.removeAffordance(this);
+				
+					//Set to immobile
+					targetActor.setisImmobile(true);
+				}
+				else {
+					
+					//Set the description of the target
+					target.setLongDescription(target.getLongDescription() + ", that was killed in a fight");
+								
+					//remove the attack affordance of the dead actor so it can no longer be attacked
+					targetActor.removeAffordance(this);
 
+				}
 				
 			}
 		} // not game player and different teams
