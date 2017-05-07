@@ -257,10 +257,9 @@ public class SWWorld extends World {
 		
 		
 		Droid_3.setHitpoints(0);
-		Droid_4.setHitpoints(0);
+		Droid_4.setHitpoints(1);
 		
 		Droid_3.setisImmobile(true);
-		Droid_4.setisImmobile(true);
 	}
 	
 

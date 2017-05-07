@@ -99,7 +99,7 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 
 		if (target.getisImmobile() == true) {
 			//Removing the take ownership affordance of an immobile Droid. Whoever repairs the
-			//Droid will gain its allegience!
+			//Droid will gain its allegience1!
 			target.removeAffordance(this);
 		}
 		
