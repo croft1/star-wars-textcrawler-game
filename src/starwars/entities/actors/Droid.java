@@ -69,7 +69,9 @@ public class Droid extends SWActor {
 			
 			if (isDead()) {
 				return;
-			} else
+			} 
+			
+			else
 			{
 				//Get owners' location
 				SWLocation ownerloc = this.world.getEntityManager().whereIs(this.getOwner());
@@ -84,12 +86,14 @@ public class Droid extends SWActor {
 				
 					System.out.println(this.getShortDescription() + " has lost health by moving into the Badlands!");
 				}
+				
+				selfHeal();
 			}
+			
 			
 		} else 
 		{
-			//Picking up items
-			
+			//Picking up an oil can
 			//Get contents of the current location
 			List<SWEntityInterface> contents = this.world.getEntityManager().contents(this.world.getEntityManager().whereIs(this));
 			
@@ -100,18 +104,16 @@ public class Droid extends SWActor {
 						if (entity.getSymbol() == "x") {
 							
 							//The Droid is standing over a oil can. Does it pick it up?
-							if (Math.random() > 0.5){
+							if (Math.random() > 0.5){ //Half a chance...
 								System.out.println(this.getShortDescription() + " decided to pick up " + entity.getShortDescription());
-								//Move myMove = new Move(heading, messageRenderer, world);
-								//scheduler.schedule(myMove, this, 1);
-								
+	
+								//Droid takes the oil can. Scheduler implements the Take.
 								Take droidTakes = new Take(entity, messageRenderer);
 								scheduler.schedule(droidTakes, this, 1);
 							}
-							else {
+							else { //The Droid passes over the oil can.
 								System.out.println(this.getShortDescription() + " decided not to pick up" + entity.getShortDescription());
-							}
-							
+							}						
 						}
 					}
 				}
@@ -143,6 +145,12 @@ public class Droid extends SWActor {
 			
 				System.out.println(this.getShortDescription() + " has lost health by moving into the Badlands!");
 			}
+			
+			/*Self healing
+			Implementation that if a Droids' health gets below half, they will attempt to heal themselves IF they 
+			are carrying an oil can
+			*/
+			selfHeal();
 			
 			
 		}	
@@ -182,4 +190,26 @@ public class Droid extends SWActor {
 		return ("Luke is not next to a Droid");
 	}
 	*/
+	
+	private void selfHeal() {
+
+		//IF the Droid is carrying an item...
+		if (this.getItemCarried() != null){
+			
+			//If the item is an oil can...
+			if (this.getItemCarried().getShortDescription() == "an oil can" ) {
+			
+				//If the Droids health is LOWER than half...
+				if((this.getInitialHP()/2) > this.getHitpoints()) {
+					System.out.println("Im on half health. healing myself");
+				}
+				else {
+					System.out.println("Im in good health.");
+				}
+			}
+		}
+			
+		
+		
+	}
 }
