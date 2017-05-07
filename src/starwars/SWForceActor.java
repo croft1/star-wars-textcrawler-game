@@ -130,7 +130,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	}
 
 	
-	protected void trainForce(SWForceActor target){	
+	public void trainForce(){	
 			force.trainPower();	
 	}
 	

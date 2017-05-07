@@ -74,10 +74,6 @@ public class BenKenobi extends SWLegend  {
 	}
 
 
-	@Override
-	protected void trainForce(SWForceActor target) {
-		
-		
-	}
+
 
 }

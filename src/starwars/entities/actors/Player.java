@@ -129,10 +129,6 @@ public class Player extends SWForceActor {
 
 
 
-	@Override
-	protected void trainForce(SWForceActor target) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }
