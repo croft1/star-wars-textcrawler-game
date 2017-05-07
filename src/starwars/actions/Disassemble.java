@@ -8,6 +8,8 @@ import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
 import starwars.SWLocation;
+import starwars.entities.Blaster;
+import starwars.entities.DroidParts;
 import starwars.entities.Fillable;
 
 public class Disassemble extends SWAffordance {
@@ -42,37 +44,29 @@ public class Disassemble extends SWAffordance {
 			
 			//Otherwise, disassemble into Droid Parts
 			} else {
-				entityManager.setLocation((SWEntityInterface)target, entityManager.whereIs(a));
 				
+				//If the Droid has already been disassembled
+				if (target.getisDisassembled() == true) {
+					System.out.println(target.getShortDescription() + " has already been \ndisassembled into Droid Parts.");
+				} 
 				
-				/*
-				 	public void act(SWActor a) {
-						if (a.getItemCarried() == null) { // the actor is not holding something
-															// This should really throw an exception, but let's just use a message for now.
-							a.say("Leave affordance called by actor that is not holding anything. This should never happen");
+				//Otherwise, create Droid Parts
+				else {
+					
+					//Call in Entity Manager (for handling SWEntities)
+					EntityManager<SWEntityInterface, SWLocation> entityManager = SWAction.getEntitymanager();
+					
+					//Create new Droid Parts
+					DroidParts droidPImm = new DroidParts(this.messageRenderer);
+					
+					//Place created Droid Parts in the world
+					entityManager.setLocation(droidPImm, entityManager.whereIs(target));
+					
+					//Set the immoble Droid to disassembled
+					target.setisDisassembled(true);
+				}
+			}			
 		}
-						else {
-							// put the item in the actor's location
-							if (target instanceof SWEntityInterface) {
-								EntityManager<SWEntityInterface, SWLocation> entityManager = SWAction.getEntitymanager();
-								entityManager.setLocation((SWEntityInterface)target, entityManager.whereIs(a));
-								a.setItemCarried(null);
-								target.removeAffordance(this);
-								target.addAffordance(new Take((SWEntityInterface)target, this.messageRenderer)); // add a Take affordance
-							}
-						}
-					} 
-				  
-				  
-				  */				
-				
-			}
-			
-			
-		}
-		
-		
-		
 	}
 
 	@Override

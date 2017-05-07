@@ -260,6 +260,14 @@ public class SWWorld extends World {
 		Droid_4.setHitpoints(1);
 		
 		Droid_3.setisImmobile(true);
+		
+		
+		//Adding DroidParts to Droids
+		DroidParts dparts1 = new DroidParts(iface);
+		DroidParts dparts2 = new DroidParts(iface);
+		DroidParts dparts3 = new DroidParts(iface);
+		DroidParts dparts4 = new DroidParts(iface);
+		
 	}
 	
 
