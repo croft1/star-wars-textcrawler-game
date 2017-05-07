@@ -87,5 +87,4 @@ public class Repair extends SWAffordance {
 	public String getDescription() {
 		return "repair " + target.getShortDescription();
 	}
-
 }
