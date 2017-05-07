@@ -48,6 +48,7 @@ public class Wield extends SWAffordance {
 	 *  
 	 * @author 	ram
 	 * @author 	Asel (26/01/2017)
+	 * @author 	croft1 (8/05/2017)
 	 * @param 	a the <code>SWActor</code> being queried
 	 * @return 	true if the <code>SWActor</code> is can take this item, false otherwise
 	 * @see		{@link starwars.SWActor#getItemCarried()}
@@ -58,13 +59,17 @@ public class Wield extends SWAffordance {
 		if(a.getItemCarried() instanceof SWForceEntityInterface 
 				&& a instanceof SWForceActor ){
 			if( ((SWForceActor) a).getForcePower() > SWForceEntityInterface.WIELD_FORCE_PWR_REQ){
+				//a force weapon and can wield
 				return true;
 			}
-					
+			//a force weapon but not wieldable
+			a.say(a.getItemCarried().getShortDescription() + " is so majestic to the touch -- but you require more training with the ways of The Force to use it."
+					+ "\n" + a.getShortDescription() + " put " + a.getItemCarried().getShortDescription() + " away for use at a more opportune moment");
+			
+			return false;	
+			
 		}
-		a.say(a.getItemCarried().getShortDescription() + " is so majestic to the touch -- but you require more training with the ways of The Force to use it."
-				+ "\n" + a.getShortDescription() + " put " + a.getItemCarried().getShortDescription() + " away for use at a more opportune moment");
-		return false;
+		return true;
 		
 	}
 
@@ -91,6 +96,7 @@ public class Wield extends SWAffordance {
 			
 			// add a leave affordance - no need to just "hold" it again
 			target.addAffordance(new Leave(theItem, messageRenderer));
+			
 			
 			//POSSIBLY ADD A TURN ON/OFF affordance
 			
