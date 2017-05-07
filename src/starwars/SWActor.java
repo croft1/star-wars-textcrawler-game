@@ -80,7 +80,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	 * <p>
 	 * By default,
 	 * <ul>
-	 * 	<li>All <code>SWActor</code>s can be attacked.</li>
+	 * 	<li>All <code>SWActor</code>s can be attacked.</li> 
 	 * 	<li>Have their symbol set to '@'</li>
 	 * </ul>
 	 * 
@@ -102,7 +102,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		this.initHP = hitpoints;
 		this.world = world;
 		this.symbol = "@";
-		this.owner = null; //Initially, no one owns the Actor (more so for Droids) --so, slaves are allowed? haha
+		this.owner = null; //ally, no one owns the Actor (more so for Droids) --so, slaves are allowed? xD mc
 		
 		//SWActors are given the Attack affordance hence they can be attacked
 		SWAffordance attack = new Attack(this, m);
@@ -216,10 +216,10 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	 * @return 	the item carried by this <code>SWActor</code> or null if no item is held by this <code>SWActor</code>
 	 * @see 	#itemCarried
 	 */
-	public boolean isWieldingItem() {
+	public boolean isWielding() {
 		
 		//TODO get wielded item
-		return isWielding();
+		return isWielding;
 	}
 	
 	
@@ -265,22 +265,6 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		this.itemCarried = target;
 	}
 	
-	/**
-	 * Assigns this <code>SWActor</code>'s <code>isWielding</code> to true
-	 * <p>
-	 * 
-	 * @param 	target the carried item to be wielded
-	 * @see 	#itemCarried
-	 */
-	public boolean attemptWield() {
-		
-		if(getItemCarried() instanceof LightSaber){
-			setWielding(false);		//by default "just an actor" cant wield a lightsaber
-		}
-		
-		return isWielding();
-		
-	}
 	
 	
 	/**
@@ -359,7 +343,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		/* Actually, that's not the case: all non-movement actions are transferred to newActions before the movements are transferred. --ram */
 	}
 	
-	public SWActor getOwner() {
+	public SWActor getOwner() { 
 		//Return the SWActor owner of this Actor (initially nothing, can change!)
 		return owner;
 	}
@@ -400,13 +384,18 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		return isDisassembled;
 	}
 
-	public boolean isWielding() {
-		return isWielding;
-	}
-
 	public void setWielding(boolean isWielding) {
 		this.isWielding = isWielding;
 	}
+	
+	public String getCarryDescription(){
+		String wieldDesc = (isWielding()) ?  " is wielding " :  " is holding ";
+		
+		return this.getShortDescription() 
+		+ wieldDesc + itemCarried.getShortDescription() + " [" + itemCarried.getHitpoints() + "]";
+	}
+	
+	
 	
 	
 	

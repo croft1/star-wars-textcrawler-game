@@ -89,12 +89,8 @@ public class Player extends SWForceActor {
 		SWEntityInterface itemCarried = this.getItemCarried();
 		if (itemCarried != null) {
 			//and describe the item carried if the player is actually carrying an item
-			
-			String wieldDesc = (isWieldingItem()) ?  " is wielding " :  " is holding ";
-			
-			say(this.getShortDescription() 
-					+ wieldDesc + itemCarried.getShortDescription() + " [" + itemCarried.getHitpoints() + "]");
-		
+			say(getCarryDescription());
+
 		}
 		
 		//weild

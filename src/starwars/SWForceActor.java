@@ -86,15 +86,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 
 
 
-	@Override
-	public boolean attemptWield() {
-		setWielding(false);
-		if(getItemCarried() instanceof SWForceEntityInterface &&
-				this.getForcePower() > WIELD_FORCE_PWR_REQ){
-			setWielding(true);		//by default "just an actor" cant wield a lightsaber
-		}
-		return super.attemptWield();
-	}
+	
 
 
 

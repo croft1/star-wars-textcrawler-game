@@ -1,11 +1,13 @@
 package starwars.actions;
 
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
-import starwars.Capability;
 import starwars.SWAction;
 import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
+import starwars.SWForceActor;
+import starwars.SWForceEntityInterface;
+import starwars.entities.LightSaber;
 
 /**
  * <code>SWAction</code> that lets a <code>SWActor</code> pick up an object.
@@ -22,7 +24,7 @@ import starwars.SWEntityInterface;
  * 				  but I've failed to document it here)
  * 				- canDo method changed to return true only if the actor is not carrying an item (asel)
  */
-public class Take extends SWAffordance {
+public class Wield extends SWAffordance {
 
 	/**
 	 * Constructor for the <code>Take</code> Class. Will initialize the message renderer, the target and 
@@ -31,16 +33,17 @@ public class Take extends SWAffordance {
 	 * @param theTarget a <code>SWEntity</code> that is being taken
 	 * @param m the message renderer to display messages
 	 */
-	public Take(SWEntityInterface theTarget, MessageRenderer m) {
+	public Wield(SWEntityInterface theTarget, MessageRenderer m) {
 		super(theTarget, m);
-		priority = 1;
+		priority = 2;
 	}
 
 
 	/**
-	 * Returns if or not this <code>Take</code> can be performed by the <code>SWActor a</code>.
+	 * Returns if or not this <code>Wield</code> can be performed by the <code>SWActor a</code>.
 	 * <p>
-	 * This method returns true if and only if <code>a</code> is not carrying any item already.
+	 * This method returns true if and only if <code>a</code> is able to wield the
+	 *  item (force items usually disallow) according to actor type and force strength
 	 *  
 	 * @author 	ram
 	 * @author 	Asel (26/01/2017)
@@ -50,7 +53,15 @@ public class Take extends SWAffordance {
 	 */
 	@Override
 	public boolean canDo(SWActor a) {
-		return a.getItemCarried()==null;
+		if(a.getItemCarried() instanceof SWForceEntityInterface 
+				&& a instanceof SWForceActor ){
+			if( ((SWForceActor) a).getForcePower() > SWForceEntityInterface.WIELD_FORCE_PWR_REQ){
+				return true;
+			}
+					
+		}
+		return false;
+		
 	}
 
 	/**
@@ -69,30 +80,15 @@ public class Take extends SWAffordance {
 	public void act(SWActor a) {
 		if (target instanceof SWEntityInterface) {
 			SWEntityInterface theItem = (SWEntityInterface) target;
-			a.setItemCarried(theItem);
-			SWAction.getEntitymanager().remove(target);//remove the target from the entity manager since it's now held by the SWActor
+			a.setWielding(true);
 			
-			//remove the take affordance
+			//remove the wield affordance
 			target.removeAffordance(this);
 			
-			// add a leave affordance
-			//target.addAffordance(new Leave(theItem, messageRenderer));
+			// add a leave affordance - no need to just "hold" it again
+			target.addAffordance(new Leave(theItem, messageRenderer));
 			
-			//If the item picked up is the water canteen
-			if (((SWEntityInterface) target).getSymbol() == "o") {	
-				//Add an affordance to heal
-				target.addAffordance(new HealPlayer(a, this.messageRenderer));
-			}
-			//If the item picked up is a WEAPON
-			
-			
-			if (((SWEntityInterface) target).hasCapability(Capability.WEAPON)) {			
-				//Add an affordance to heal
-				target.addAffordance(new Wield(a, this.messageRenderer));
-
-			}
-			
-			
+			//POSSIBLY ADD A TURN ON/OFF affordance
 			
 		}
 	}
@@ -105,7 +101,7 @@ public class Take extends SWAffordance {
 	 */
 	@Override
 	public String getDescription() {
-		return "take " + target.getShortDescription();
+		return "wield " + target.getShortDescription();
 	}
 
 }
