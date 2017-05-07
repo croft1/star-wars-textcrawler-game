@@ -24,8 +24,8 @@ public class Droid extends SWActor {
 	private String name;
 
 	/**
-	 * Create a Droid At present coding, Droids are of team DROID,
-	 * so their attempts to attack other Droids won't be effectual.
+	 * Creates a Droid. Droids are initially of NEUTRAL affiliation. Taking 
+	 * ownership of a Droid changes their allegience.
 	 * 
 	 * @param hitpoints
 	 *            the number of hit points of this Droid has. If this

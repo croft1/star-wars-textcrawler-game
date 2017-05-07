@@ -97,6 +97,12 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 	public void act(SWActor a) {
 		SWActor target = (SWActor) this.getTarget();
 
+		if (target.getisImmobile() == true) {
+			//Removing the take ownership affordance of an immobile Droid. Whoever repairs the
+			//Droid will gain its allegience!
+			target.removeAffordance(this);
+		}
+		
 		//If a Droid has no owner
 		if ( target.getOwner() == null) {
 			
