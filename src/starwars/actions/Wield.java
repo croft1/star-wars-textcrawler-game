@@ -43,7 +43,8 @@ public class Wield extends SWAffordance {
 	 * Returns if or not this <code>Wield</code> can be performed by the <code>SWActor a</code>.
 	 * <p>
 	 * This method returns true if and only if <code>a</code> is able to wield the
-	 *  item (force items usually disallow) according to actor type and force strength
+	 *  item (force items usually disallow) according to actor type and force strength. 
+	 *  Returning true means the affordance set in act() will show up on the player input dialog
 	 *  
 	 * @author 	ram
 	 * @author 	Asel (26/01/2017)
@@ -53,6 +54,7 @@ public class Wield extends SWAffordance {
 	 */
 	@Override
 	public boolean canDo(SWActor a) {
+		
 		if(a.getItemCarried() instanceof SWForceEntityInterface 
 				&& a instanceof SWForceActor ){
 			if( ((SWForceActor) a).getForcePower() > SWForceEntityInterface.WIELD_FORCE_PWR_REQ){
@@ -60,6 +62,8 @@ public class Wield extends SWAffordance {
 			}
 					
 		}
+		a.say(a.getItemCarried().getShortDescription() + " is so majestic to the touch -- but you require more training with the ways of The Force to use it."
+				+ "\n" + a.getShortDescription() + " put " + a.getItemCarried().getShortDescription() + " away for use at a more opportune moment");
 		return false;
 		
 	}

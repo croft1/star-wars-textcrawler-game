@@ -88,7 +88,7 @@ public class Take extends SWAffordance {
 			
 			if (((SWEntityInterface) target).hasCapability(Capability.WEAPON)) {			
 				//Add an affordance to heal
-				target.addAffordance(new Wield(a, this.messageRenderer));
+				target.addAffordance(new Wield(theItem, this.messageRenderer));
 
 			}
 			
