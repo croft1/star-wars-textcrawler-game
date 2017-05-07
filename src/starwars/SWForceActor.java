@@ -33,7 +33,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	/**The set actors entity of the <code>Force </code> of this <code>SWActor</code>*/
 	private Force force = null;
 	
-	private String[] titles = {" the Lost"," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
+	private String[] titles = {" the Lost "," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
 	
 	/** 
 	 * Protected constructor to prevent random other code from creating 

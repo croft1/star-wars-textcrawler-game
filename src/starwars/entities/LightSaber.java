@@ -35,16 +35,19 @@ public class LightSaber extends SWEntity {
 	 * @see {@link starwars.Capability}
 	 * @see {@link starwars.actions.Chop} 1
 	 */
+	
+	public static final int WIELD_FORCEPWR_REQ = 20;
+	
 	public LightSaber(MessageRenderer m) {
 		super(m);
 		
 		this.shortDescription = "A Lightsaber";
 		this.longDescription = "A lightsaber.  Bzzz-whoosh!";
-		this.hitpoints = 100000; // start with a nice powerful, sharp axe
+		this.hitpoints = 10000; //TODO set str accoding to forcepwoer start with a nice powerful, buzzing lightsaber
 		
 		this.addAffordance(new Take(this, m));//add the take affordance so that the LightSaber can be taken by SWActors
 		this.capabilities.add(Capability.WEAPON);// it's a weapon.  
-	
+		//20 force points can wield
 	}
 	
 	

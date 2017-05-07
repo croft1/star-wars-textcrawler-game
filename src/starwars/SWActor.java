@@ -27,6 +27,7 @@ import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.actions.Attack;
 import starwars.actions.Move;
 import starwars.entities.Force;
+import starwars.entities.LightSaber;
 import starwars.swinterfaces.SWGridController;
 
 public abstract class SWActor extends Actor<SWActionInterface> implements SWEntityInterface {
@@ -48,6 +49,9 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	/**The item carried by this <code>SWActor</code>. <code>itemCarried</code> is null if this <code>SWActor</code> is not carrying an item*/
 	private SWEntityInterface itemCarried;
+	
+	/**The item carried by this <code>SWActor</code> may also be wielded. <code>isWielded</code> is false if this <code>SWActor</code> is not wielding the carried item, or cannot*/
+	private boolean isWielding;
 	
 	/**If or not this <code>SWActor</code> is human controlled. <code>SWActor</code>s are not human controlled by default*/
 	protected boolean humanControlled = false;
@@ -201,6 +205,24 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	public SWEntityInterface getItemCarried() {
 		return itemCarried;
 	}
+	
+	
+	/**
+	 * Returns the status of wield by this <code>SWActor</code>. 
+	 * <p>
+	 * 
+	 * If this <code>SWActor</code> is unable to wield the item (lightsaber) itll be false
+	 * 
+	 * @return 	the item carried by this <code>SWActor</code> or null if no item is held by this <code>SWActor</code>
+	 * @see 	#itemCarried
+	 */
+	public boolean isWieldingItem() {
+		
+		//TODO get wielded item
+		return isWielding;
+	}
+	
+	
 
 	/**
 	 * Sets the team of this <code>SWActor</code> to a new team <code>team</code>.
@@ -241,6 +263,24 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	 */
 	public void setItemCarried(SWEntityInterface target) {
 		this.itemCarried = target;
+	}
+	
+	/**
+	 * Assigns this <code>SWActor</code>'s <code>isWielding</code> to true
+	 * <p>
+	 * 
+	 * @param 	target the new item to be set as item carried
+	 * @see 	#itemCarried
+	 */
+	public void wieldItemCarried() {
+		//put this in wield logic
+		if(getItemCarried() instanceof LightSaber){
+			
+		}else{
+			
+		}
+		isWielding = true;
+		
 	}
 	
 	

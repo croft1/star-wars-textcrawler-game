@@ -114,7 +114,7 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 			System.out.println(a.getShortDescription()  + " is to take ownership of " + target.getShortDescription());
 
 			//Setting ownership & team affiliation
-			target.setOwer(a);
+			target.setOwner(a);
 			target.setTeam(a.getTeam());
 			
 			//Printing out ownership

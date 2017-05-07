@@ -67,7 +67,7 @@ public class Repair extends SWAffordance {
 					target.setisDisassembled(false);
 					
 					//Set allegience to repairing character
-					target.setOwer(a);
+					target.setOwner(a);
 					target.setTeam(a.getTeam());
 					
 					//Printing out ownership
