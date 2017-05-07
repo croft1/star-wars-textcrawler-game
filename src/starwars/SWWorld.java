@@ -350,3 +350,9 @@ public class SWWorld extends World {
 		return entityManager;
 	}
 }
+
+/*
+ References
+ 
+ http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case 7th
+*/
