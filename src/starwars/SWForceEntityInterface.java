@@ -15,7 +15,8 @@ import edu.monash.fit2099.simulator.matter.EntityInterface;
 public interface SWForceEntityInterface extends EntityInterface {
 
 	
-	public static final int WIELD_FORCE_PWR_REQ = 20;
+	public static final int WIELD_FORCE_PWR_REQ = 25;
+	public static final int MINDCONTROL_FORCE_PWR_REQ = 10;
 	
 	
 }

@@ -1,6 +1,7 @@
 package starwars;
 
 import edu.monash.fit2099.simulator.matter.Affordance;
+import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.entities.Force;
 import starwars.entities.LightSaber;
@@ -48,7 +49,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	
 	protected SWForceActor(Team team, int hitpoints, MessageRenderer m, SWWorld world) {
 		super(team, hitpoints, m, world);
-		Force defaultForce = new Force(m, 5);
+		Force defaultForce = new Force(m, 10);
 		setForce(defaultForce);
 		for (Affordance affEntity : this.getAffordances()) {
 			if (affEntity.getDescription().contains("obey")) {
@@ -141,5 +142,10 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	
 	protected String getTitle(){
 		return titles[getForcePower() / 20];
+	}
+	
+	//needed for moving other players on mind control
+	public Scheduler getScheduler(){
+		return scheduler;
 	}
 }

@@ -6,6 +6,9 @@ import starwars.SWActionInterface;
 import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
+import starwars.SWForceActor;
+import starwars.SWForceEntityInterface;
+import starwars.swinterfaces.SWGridController;
 
 /**
  * Command to attack entities.
@@ -67,7 +70,13 @@ public class Obey extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public boolean canDo(SWActor a) {
-		return true;
+		if(a instanceof SWForceActor){
+			if ( ((SWForceActor)a).getForcePower() == SWForceEntityInterface.MINDCONTROL_FORCE_PWR_REQ ){
+				return true;
+			}
+			a.say("The Force isn't strong enough for that right now");
+		}
+		return false;
 	}
 
 	
@@ -95,44 +104,14 @@ public class Obey extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public void act(SWActor a) {
-		SWActor target = (SWActor) this.getTarget();
-
-		if (target.getIsImmobile() == true) {
-			//Removing the take ownership affordance of an immobile Droid. Whoever repairs the
-			//Droid will gain its allegience!
-			
-		
-			//Print out notification - cant take ownership of an immobile Droid
-			System.out.println("Cant take ownership of " + target.getShortDescription() + ", who is \nimmobile. Need to"
-					+ " Disassemble or Repair first.");
+		Obey temp = this;
+		target.removeAffordance(this);
+		a.say("#  You have taken control of " + target.getLongDescription() + ".\nChoose Movement:");
+		if(target instanceof SWActor){
+			((SWForceActor)a).getScheduler().schedule(SWGridController.getUserDecision(a), (SWActor) target, 1);
+		target.addAffordance(temp);
 		}
 		
-		//If a Droid has no owner
-		else if ( target.getOwner() == null) {
-			
-			//Printing out notification of imminent ownership
-			System.out.println(a.getShortDescription()  + " is to take ownership of " + target.getShortDescription());
-
-			//Setting ownership & team affiliation
-			target.setOwner(a);
-			target.setTeam(a.getTeam());
-			
-			//Printing out ownership
-			System.out.println(target.getShortDescription() + " has new owner: " + target.getOwner().getShortDescription());
-			
-			//Printing team affiliation
-			System.out.println(target.getShortDescription() + " affiliation has changed to: " +  target.getTeam() );
-			
-			//Removing the take ownership affordance of the Droid (since you cant try to own
-			// a Droid that you already own!
-			target.removeAffordance(this);
-
-		}
-		else if (target.getOwner() != null) {
-			
-			//Printing out notification of prior ownership
-			System.out.println(a.getShortDescription()  + " already owns " + target.getShortDescription() + "!");
-		}
 
 		
 
