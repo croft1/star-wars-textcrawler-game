@@ -62,7 +62,7 @@ public class Droid extends SWActor {
 		
 		//If a Droid is immobile (Dead)
 		if (this.getisImmobile() == true) {
-			System.out.println(this.getShortDescription() + " is immobile. ");
+			say(this.getShortDescription() + " is immobile. ");
 			return;
 		}
 		
@@ -88,7 +88,7 @@ public class Droid extends SWActor {
 					int NewHP = this.getHitpoints() - 2;	//Take 2 from the Droids' health
 					this.setHitpoints(NewHP);
 				
-					System.out.println(this.getShortDescription() + " has lost health by moving into the Badlands!");
+					say(this.getShortDescription() + " has lost health by moving into the Badlands!");
 				}
 				
 				selfHeal();
@@ -110,14 +110,14 @@ public class Droid extends SWActor {
 							
 							//The Droid is standing over a oil can. Does it pick it up?
 							if (Math.random() > 0.5){ //Half a chance...
-								System.out.println(this.getShortDescription() + " decided to pick up " + entity.getShortDescription());
+								say(this.getShortDescription() + " decided to pick up " + entity.getShortDescription());
 	
 								//Droid takes the oil can. Scheduler implements the Take.
 								Take droidTakes = new Take(entity, messageRenderer);
 								scheduler.schedule(droidTakes, this, 1);
 							}
 							else { //The Droid passes over the oil can.
-								System.out.println(this.getShortDescription() + " decided not to pick up" + entity.getShortDescription());
+								say(this.getShortDescription() + " decided not to pick up" + entity.getShortDescription());
 							}						
 						}
 					}
@@ -148,7 +148,7 @@ public class Droid extends SWActor {
 				int NewHP = this.getHitpoints() - 2;	//Take 2 from the Droids' health
 				this.setHitpoints(NewHP);
 			
-				System.out.println(this.getShortDescription() + " has lost health by moving into the Badlands!");
+				say(this.getShortDescription() + " has lost health by moving into the Badlands!");
 			}
 			
 			/*Self healing
@@ -206,7 +206,7 @@ public class Droid extends SWActor {
 			
 				//If the Droids health is LOWER than half...
 				if((this.getInitialHP()/2) > this.getHitpoints()) {
-					System.out.println(this.getShortDescription() + " is at or below half HP. "
+					say(this.getShortDescription() + " is at or below half HP. "
 							+ " Healing itself...");
 					
 					//Implementing a new HealDroid method (Droid heals on itself)
