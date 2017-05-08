@@ -34,12 +34,12 @@ public class Disassemble extends SWAffordance {
 		
 		//If the entity trying to disassemble is Luke 
 		if (a.getSymbol() == "@") {
-			System.out.println(a.getShortDescription() + " is trying to disassemble " + 
+			a.say(a.getShortDescription() + " is trying to disassemble " + 
 		target.getShortDescription() + " ,\nwho is at " + target.getHitpoints() + " HP.");
 	
 			//If5 a Droid is still mobile
 			if (target.getisImmobile() == false) {
-				System.out.println("Cant disassemble a mobile Droid!");
+				a.say("Cant disassemble a mobile Droid!");
 			}
 			
 			//Otherwise, disassemble into Droid Parts
@@ -47,7 +47,7 @@ public class Disassemble extends SWAffordance {
 				
 				//If the Droid has already been disassembled
 				if (target.getisDisassembled() == true) {
-					System.out.println(target.getShortDescription() + " has already been \ndisassembled into Droid Parts.");
+					a.say(target.getShortDescription() + " has already been \ndisassembled into Droid Parts.");
 				} 
 				
 				//Otherwise, create Droid Parts
