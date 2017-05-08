@@ -49,7 +49,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	
 	protected SWForceActor(Team team, int hitpoints, MessageRenderer m, SWWorld world) {
 		super(team, hitpoints, m, world);
-		Force defaultForce = new Force(m, 10);
+		Force defaultForce = new Force(m, 5);
 		setForce(defaultForce);
 		for (Affordance affEntity : this.getAffordances()) {
 			if (affEntity.getDescription().contains("obey")) {

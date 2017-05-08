@@ -71,10 +71,12 @@ public class Obey extends SWAffordance implements SWActionInterface {
 	@Override
 	public boolean canDo(SWActor a) {
 		if(a instanceof SWForceActor){
-			if ( ((SWForceActor)a).getForcePower() == SWForceEntityInterface.MINDCONTROL_FORCE_PWR_REQ ){
+			if ( ((SWForceActor)a).getForcePower() > SWForceEntityInterface.MINDCONTROL_FORCE_PWR_REQ ){
 				return true;
 			}
-			a.say("The Force isn't strong enough for that right now");
+			a.say(target.getShortDescription() + " seems weak minded.\n"
+					+ "My power with The Force isn't strong enough for mind control right now" + 
+					"[" + ((SWForceActor)a).getForcePower() + "/" + SWForceEntityInterface.MINDCONTROL_FORCE_PWR_REQ + "]");
 		}
 		return false;
 	}
@@ -106,7 +108,7 @@ public class Obey extends SWAffordance implements SWActionInterface {
 	public void act(SWActor a) {
 		Obey temp = this;
 		target.removeAffordance(this);
-		a.say("#  You have taken control of " + target.getLongDescription() + ".\nChoose Movement:");
+		a.say("#  Your force strenght allows you to MIND CONTROL " + target.getLongDescription() + ".\nChoose Movement:");
 		if(target instanceof SWActor){
 			((SWForceActor)a).getScheduler().schedule(SWGridController.getUserDecision(a), (SWActor) target, 1);
 		target.addAffordance(temp);
