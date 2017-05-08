@@ -36,14 +36,14 @@ public class HealPlayer extends SWAffordance {
 				//If the Actor is at full health
 				if (a.getInitialHP() == a.getHitpoints()) {
 					//Printout
-					System.out.println("Cannot heal. " + a.getShortDescription() +
+					a.say("Cannot heal. " + a.getShortDescription() +
 							"is already at full HP!.");
 				}	
 				
 				//Else heal the actor
 				else {
 					//Printout
-					System.out.println("Healing " + a.getShortDescription() + "...");
+					a.say("Healing " + a.getShortDescription() + "...");
 					
 					//Get actors' distance to max HP
 					int disttoFullHP = a.getInitialHP() - a.getHitpoints();
@@ -58,7 +58,7 @@ public class HealPlayer extends SWAffordance {
 						carriedCanteen.setLevel(carriedCanteen.getLevel() - 1);
 						
 						//Print message
-						System.out.println(a.getShortDescription() + " used the canteen."
+						a.say(a.getShortDescription() + " used the canteen."
 								+ "\n" + a.getShortDescription() + " HP: " + a.getHitpoints() + 
 								"\nThe canteen has " + carriedCanteen.getLevel() + " use(s) remaining.");
 					}
@@ -73,7 +73,7 @@ public class HealPlayer extends SWAffordance {
 						carriedCanteen.setLevel(carriedCanteen.getLevel() - 1);
 						
 						//Print message
-						System.out.println(a.getShortDescription() + " used the canteen."
+						a.say(a.getShortDescription() + " used the canteen."
 								+ "\n" + a.getShortDescription() + " HP: " + a.getHitpoints() + 
 								"\nThe canteen has " + carriedCanteen.getLevel() + " use(s) remaining.");
 					}
@@ -82,7 +82,7 @@ public class HealPlayer extends SWAffordance {
 			
 			//Otherwise the canteen is empty
 			else {
-				System.out.println("Cannot heal. " + a.getShortDescription() + " is "
+				a.say("Cannot heal. " + a.getShortDescription() + " is "
 						+ "trying to heal \nwith a empty water canteen. Refill first.");
 			}
 			
