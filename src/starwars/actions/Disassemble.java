@@ -11,6 +11,7 @@ import starwars.SWLocation;
 import starwars.entities.Blaster;
 import starwars.entities.DroidParts;
 import starwars.entities.Fillable;
+import starwars.entities.actors.Droid;
 
 public class Disassemble extends SWAffordance {
 
@@ -28,7 +29,7 @@ public class Disassemble extends SWAffordance {
 	@Override
 	public void act(SWActor a) {
 		//Target is the Droid that is going to be healed.
-		SWActor target = (SWActor) this.getTarget();
+		Droid target = (Droid) this.getTarget();
 		
 		//SWEntityInterface itemCarried = a.getItemCarried();
 		
