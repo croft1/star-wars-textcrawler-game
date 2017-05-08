@@ -189,24 +189,37 @@ public class Droid extends SWActor {
 
 	}
 	
-	/*
-	private String nextToPlayer() {
-		SWLocation location = this.world.getEntityManager().whereIs(this);
-		//get the contents of the location
-		List<SWEntityInterface> contents = this.world.getEntityManager().contents(location);
-				
-		//and describe the contents
-		if (contents.size() > 1) { // if it is equal to one, the only thing here is this Player, so there is nothing to report
-			for (SWEntityInterface entity : contents) {
-				String entity_symbol = "@";
-				if (entity.getSymbol() == entity_symbol) { // If the Droid is next to Luke (denoted by @)
-					return (this.getLongDescription() + " is next to " + entity.getShortDescription() + "!");
-					}
-				}
-			}
-		return ("Luke is not next to a Droid");
+	public SWActor getOwner() {
+		//Return the SWActor owner of this Actor (initially nothing, can change!)
+		return owner;
 	}
-	*/
+	
+	public void setOwer(SWActor newOwner) {
+		//Set this SWActors' owner to newOwner
+		this.owner = newOwner;
+		
+		//Set humancontrolled boolean to true
+		this.humanControlled = true;
+	}
+	
+	public void setisImmobile(boolean newisImmobile) {
+		this.isImmobile = newisImmobile;
+	}
+	
+	public boolean getisImmobile() {
+		return isImmobile;
+	}
+
+	//isDisassembled setter & getter
+	
+	public void setisDisassembled(boolean newIsDis) {
+		this.isDisassembled = newIsDis;
+	}
+	
+	public boolean getisDisassembled() {
+		return isDisassembled;
+	}
+	
 	
 	private void selfHeal() {
 
@@ -232,9 +245,6 @@ public class Droid extends SWActor {
 					return;
 				}
 			}
-		}
-			
-		
-		
+		}		
 	}
 }

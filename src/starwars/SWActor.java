@@ -57,8 +57,6 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	private HashSet<Capability> capabilities;
 	
 	
-	
-	
 	/**
 	 * Constructor for the <code>SWActor</code>.
 	 * <p>
@@ -280,18 +278,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		/* Actually, that's not the case: all non-movement actions are transferred to newActions before the movements are transferred. --ram */
 	}
 	
-	public SWActor getOwner() {
-		//Return the SWActor owner of this Actor (initially nothing, can change!)
-		return owner;
-	}
-	
-	public void setOwer(SWActor newOwner) {
-		//Set this SWActors' owner to newOwner
-		this.owner = newOwner;
-		
-		//Set humancontrolled boolean to true
-		this.humanControlled = true;
-	}
+
 	
 	public void setHitpoints(int newHP) {
 		
@@ -301,26 +288,5 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	public int getInitialHP() {
 		return initHP;
-	}
-	
-	public void setisImmobile(boolean newisImmobile) {
-		this.isImmobile = newisImmobile;
-	}
-	
-	public boolean getisImmobile() {
-		return isImmobile;
-	}
-
-	//isDisassembled setter & getter
-	
-	public void setisDisassembled(boolean newIsDis) {
-		this.isDisassembled = newIsDis;
-	}
-	
-	public boolean getisDisassembled() {
-		return isDisassembled;
-	}
-	
-	
-	
+	}	
 }
