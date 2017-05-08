@@ -28,7 +28,7 @@ public class Repair extends SWAffordance {
 		//If the Droid is still mobile
 
 		if (target.getisImmobile() == false) {
-			System.out.println("Cant repair a mobile Droid!");
+			a.say("Cant repair a mobile Droid!");
 		}
 		
 		//Otherwise, attempt to repair a Droid
@@ -36,14 +36,14 @@ public class Repair extends SWAffordance {
 			
 			//If the player has no items
 			if (a.getItemCarried() == null) {
-				System.out.println(a.getShortDescription() + " has no items held." + 
+				a.say(a.getShortDescription() + " has no items held." + 
 					("\nObtain Droid Parts to repair this Droid."));
 			}
 			
 			else {
 				//If the item is not Droid Parts
 				if(a.getItemCarried().getSymbol() != "dp") {
-					System.out.println(a.getShortDescription() + " is holding " + 
+					a.say(a.getShortDescription() + " is holding " + 
 							a.getItemCarried().getShortDescription() + "\nObtain Droid Parts to repair this Droid.");
 				}
 				
@@ -57,7 +57,7 @@ public class Repair extends SWAffordance {
 					target.setHitpoints(target.getInitialHP());
 					
 					//Printout of repair 
-					System.out.println(target.getShortDescription() + " was repaired by " + a.getShortDescription()
+					a.say(target.getShortDescription() + " was repaired by " + a.getShortDescription()
 					+ ".\n" + target.getShortDescription() + " now has " + target.getHitpoints() + " HP.");
 					
 					//Set isImmobile to false
@@ -71,10 +71,10 @@ public class Repair extends SWAffordance {
 					target.setTeam(a.getTeam());
 					
 					//Printing out ownership
-					System.out.println(target.getShortDescription() + " has new owner: " + target.getOwner().getShortDescription());
+					a.say(target.getShortDescription() + " has new owner: " + target.getOwner().getShortDescription());
 					
 					//Printing team affiliation
-					System.out.println(target.getShortDescription() + " affiliation has changed to: " +  target.getTeam() );
+					a.say(target.getShortDescription() + " affiliation has changed to: " +  target.getTeam() );
 
 					//Add an attack affordance to the repaired Droid, so it can be attacked again
 					target.addAffordance(new Attack(target, this.messageRenderer));
