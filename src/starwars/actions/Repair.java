@@ -6,6 +6,7 @@ import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
 import starwars.entities.Fillable;
+import starwars.entities.actors.Droid;
 
 public class Repair extends SWAffordance {
 
@@ -23,7 +24,7 @@ public class Repair extends SWAffordance {
 	@Override
 	public void act(SWActor a) {
 		//Target is the Droid that is going to be healed.
-		SWActor target = (SWActor) this.getTarget();
+		Droid target = (Droid) this.getTarget();
 	
 		//If the Droid is still mobile
 
