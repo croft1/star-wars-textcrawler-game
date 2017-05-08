@@ -3,6 +3,7 @@ package starwars.actions;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.Capability;
 import starwars.SWActor;
+import starwars.entities.actors.Droid;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
 import starwars.entities.Fillable;
@@ -24,7 +25,7 @@ public class HealDroid extends SWAffordance {
 	public void act(SWActor a) {
 		//Target is the Droid that is going to be healed.
 		SWActor target = (SWActor) this.getTarget();
-		
+
 		if (target.getisImmobile() == true) {
 			//Print out notification - cant heal an immobile Droid.
 			a.say("Cant heal " + target.getShortDescription() + ", who is \nimmobile. Need to"

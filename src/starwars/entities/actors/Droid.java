@@ -23,6 +23,15 @@ public class Droid extends SWActor {
 
 	private String name;
 
+	/**The owner of the actor. Utilised for Droids**/
+	private SWActor owner;
+	
+	/**isImmobile boolean. Used for Droid SWActors in most actions*/
+	private boolean isImmobile;
+	
+	/**isDisassembled boolean. Used for the disassembly and repair of Droids**/
+	private boolean isDisassembled;
+	
 	/**
 	 * Creates a Droid. Droids are initially of NEUTRAL affiliation. Taking 
 	 * ownership of a Droid changes their allegience.
@@ -43,6 +52,9 @@ public class Droid extends SWActor {
 		super(Team.NEUTRAL, 50, m, world);
 		// TODO Auto-generated constructor stub
 		this.name = name;
+		this.owner = null;	//Initial owner - not null
+		this.isImmobile = false; //Initially not immobile
+		this.isDisassembled = false; //Initially not disassembled
 		
 		//SWActors are given the Attack affordance hence they can be attacked
 		//SWAffordance healdroid = new HealDroid(this, m);

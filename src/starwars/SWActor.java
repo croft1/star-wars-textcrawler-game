@@ -56,14 +56,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	/**A set of <code>Capabilities</code> of this <code>SWActor</code>*/
 	private HashSet<Capability> capabilities;
 	
-	/**The owner of the actor. Utilised for Droids**/
-	private SWActor owner;
 	
-	/**isImmobile boolean. Used for Droid SWActors in most actions*/
-	private boolean isImmobile;
-	
-	/**isDisassembled boolean. Used for the disassembly and repair of Droids**/
-	private boolean isDisassembled;
 	
 	
 	/**
