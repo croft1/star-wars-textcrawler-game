@@ -30,7 +30,7 @@ public class Disassemble extends SWAffordance {
 		//Target is the Droid that is going to be healed.
 		SWActor target = (SWActor) this.getTarget();
 		
-		SWEntityInterface itemCarried = a.getItemCarried();
+		//SWEntityInterface itemCarried = a.getItemCarried();
 		
 		//If the entity trying to disassemble is Luke 
 		if (a.getSymbol() == "@") {
