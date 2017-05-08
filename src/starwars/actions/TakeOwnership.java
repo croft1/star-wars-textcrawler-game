@@ -6,6 +6,7 @@ import starwars.SWActionInterface;
 import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
+import starwars.entities.actors.Droid;
 
 /**
  * Command to attack entities.
@@ -95,7 +96,7 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public void act(SWActor a) {
-		SWActor target = (SWActor) this.getTarget();
+		Droid target = (Droid) this.getTarget();
 
 		if (target.getisImmobile() == true) {
 			//Removing the take ownership affordance of an immobile Droid. Whoever repairs the
