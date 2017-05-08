@@ -6,6 +6,7 @@ import starwars.SWActionInterface;
 import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
+import starwars.entities.actors.Droid;
 
 /**
  * Command to attack entities.
@@ -154,14 +155,17 @@ public class Attack extends SWAffordance implements SWActionInterface {
 				//If a Droid was 'killed'
 				if (this.getTarget().getShortDescription().contains("the Droid")) {
 					
+					//New target implementation
+					Droid targetDroid = (Droid) this.getTarget();
+					
 					//Set the description of the now 'immobile' Droid
-					target.setLongDescription(target.getLongDescription() + ", that was made immobile in a fight");
+					targetDroid.setLongDescription(targetDroid.getLongDescription() + ", that was made immobile in a fight");
 					
 					//remove the attack and heal affordance of the dead actor so it can no longer be attacked
-					targetActor.removeAffordance(this);
-				
+					targetDroid.removeAffordance(this);
+					
 					//Set to immobile
-					targetActor.setisImmobile(true);
+					targetDroid.setisImmobile(true);
 				}
 				else {
 					
