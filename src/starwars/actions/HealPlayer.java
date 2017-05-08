@@ -58,7 +58,7 @@ public class HealPlayer extends SWAffordance {
 						carriedCanteen.setLevel(carriedCanteen.getLevel() - 1);
 						
 						//Print message
-						a.say(a.getShortDescription() + " used the canteen."
+						a.say(a.getShortDescription() + " used the canteen (+10HP)."
 								+ "\n" + a.getShortDescription() + " HP: " + a.getHitpoints() + 
 								"\nThe canteen has " + carriedCanteen.getLevel() + " use(s) remaining.");
 					}
