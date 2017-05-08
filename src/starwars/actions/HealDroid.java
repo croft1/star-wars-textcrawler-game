@@ -24,7 +24,7 @@ public class HealDroid extends SWAffordance {
 	@Override
 	public void act(SWActor a) {
 		//Target is the Droid that is going to be healed.
-		SWActor target = (SWActor) this.getTarget();
+		Droid target = (Droid) this.getTarget();
 
 		if (target.getisImmobile() == true) {
 			//Print out notification - cant heal an immobile Droid.
