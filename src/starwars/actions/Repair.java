@@ -27,7 +27,7 @@ public class Repair extends SWAffordance {
 	
 		//If the Droid is still mobile
 
-		if (target.getisImmobile() == false) {
+		if (target.getIsImmobile() == false) {
 			System.out.println("Cant repair a mobile Droid!");
 		}
 		
@@ -61,13 +61,13 @@ public class Repair extends SWAffordance {
 					+ ".\n" + target.getShortDescription() + " now has " + target.getHitpoints() + " HP.");
 					
 					//Set isImmobile to false
-					target.setisImmobile(false);
+					target.setIsImmobile(false);
 					
 					//Set isDisassembled to false
-					target.setisDisassembled(false);
+					target.setIsDisassembled(false);
 					
 					//Set allegience to repairing character
-					target.setOwer(a);
+					target.setOwner(a);
 					target.setTeam(a.getTeam());
 					
 					//Printing out ownership
@@ -87,5 +87,4 @@ public class Repair extends SWAffordance {
 	public String getDescription() {
 		return "repair " + target.getShortDescription();
 	}
-
 }

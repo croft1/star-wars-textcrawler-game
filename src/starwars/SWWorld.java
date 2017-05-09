@@ -119,6 +119,19 @@ public class SWWorld extends World {
 		entityManager.setLocation(luke, loc);
 		luke.resetMoveCommands(loc);
 		
+		// OWEN AND BERU
+		Humanoid owen = new Humanoid(Team.GOOD, 200, iface, this);
+		owen.setShortDescription("Uncle Owen");
+		loc = myGrid.getLocationByCoordinates(3,8);
+		entityManager.setLocation(owen, loc);
+		owen.setSymbol("H");
+		Humanoid beru = new Humanoid(Team.GOOD, 200, iface, this);
+		beru.setShortDescription("Aunty Beru");
+		loc = myGrid.getLocationByCoordinates(5,8);
+		entityManager.setLocation(beru, loc);
+		beru.setSymbol("H");
+		
+		
 		
 		// Beggar's Canyon 
 		for (int col = 3; col < 8; col++) {
@@ -197,6 +210,8 @@ public class SWWorld extends World {
 		entityManager.setLocation(dale, loc);
 		
 		
+		
+		
 		// A Droid
 		Droid Droid_1 = new Droid(50, "Droid 1", iface, this);
 		Droid_1.setSymbol("D1");
@@ -204,7 +219,7 @@ public class SWWorld extends World {
 		entityManager.setLocation(Droid_1, loc);
 		
 		//Setting mobility of Droid 1
-		Droid_1.setisImmobile(false);
+		Droid_1.setIsImmobile(false);
 		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
 		Droid_1.addAffordance(new TakeOwnership(Droid_1, iface)); 
 		//Adding a HealDroid affordance - that SWACtors act upon
@@ -222,7 +237,7 @@ public class SWWorld extends World {
 		entityManager.setLocation(Droid_2, loc);
 			
 		//Setting mobility of Droid 1
-		Droid_2.setisImmobile(false);		
+		Droid_2.setIsImmobile(false);		
 		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
 		Droid_2.addAffordance(new TakeOwnership(Droid_2, iface)); 		
 		//Adding a HealDroid affordance - that SWACtors act upon

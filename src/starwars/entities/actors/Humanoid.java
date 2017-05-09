@@ -10,11 +10,13 @@ import starwars.SWLocation;
 import starwars.SWWorld;
 import starwars.Team;
 import starwars.actions.Move;
+import starwars.actions.Obey;
 import starwars.entities.Mace;
+import starwars.entities.Rake;
 import starwars.entities.actors.behaviors.AttackInformation;
 import starwars.entities.actors.behaviors.AttackNeighbours;
 
-public class TuskenRaider extends SWActor {
+public class Humanoid extends SWActor {
 
 	private String name;
 
@@ -38,11 +40,13 @@ public class TuskenRaider extends SWActor {
 	 *            <code>TuskenRaider</code> belongs to
 	 * 
 	 */
-	public TuskenRaider(int hitpoints, String name, MessageRenderer m, SWWorld world) {
-		super(Team.TUSKEN, 200, m, world);
+	public Humanoid(Team team, int hitpoints, MessageRenderer m, SWWorld world) {
+		super(Team.GOOD, 200, m, world);
 		// TODO Auto-generated constructor stub
-		this.name = name;
-		setItemCarried(new Mace(m));
+		
+		setItemCarried(new Rake(m));
+		this.addAffordance(new Obey(this, m));	//allow any humanoid to obey those with force
+		
 	}
 
 	@Override
@@ -50,49 +54,21 @@ public class TuskenRaider extends SWActor {
 		if (isDead()) {
 			return;
 		}
-		say(describeLocation());
-
-		AttackInformation attack = AttackNeighbours.attackLocals(this, this.world, false, false);
-		if (attack != null) {
-			say(getShortDescription() + " has attacked " + attack.entity.getShortDescription());
-			scheduler.schedule(attack.affordance, this, 1);
-		}
 		
-		else if (Math.random() > 0.5){
-			
-			ArrayList<Direction> possibledirections = new ArrayList<Direction>();
-
-			// build a list of available directions
-			
-			for (Grid.CompassBearing d : Grid.CompassBearing.values()) {
-				if (SWWorld.getEntitymanager().seesExit(this, d)) {
-					possibledirections.add(d);
-				}
-			}
-
-			Direction heading = possibledirections.get((int) (Math.floor(Math.random() * possibledirections.size())));
-			say(getShortDescription() + " is heading " + heading + " next.");
-			Move myMove = new Move(heading, messageRenderer, world);
-
-			scheduler.schedule(myMove, this, 1);
-		}
+		
 	}
 
 	@Override
 	public String getShortDescription() {
-		return name + " the Tusken Raider";
+		return shortDescription ;
 	}
 
 	@Override
 	public String getLongDescription() {
-		return this.getShortDescription();
+		return this.getShortDescription() + " the regular Humanoid";
 	}
 
-	private String describeLocation() {
-		SWLocation location = this.world.getEntityManager().whereIs(this);
-		return this.getShortDescription() + " [" + this.getHitpoints() + "] is at " + location.getShortDescription();
-
-	}
+	
 
 	
 

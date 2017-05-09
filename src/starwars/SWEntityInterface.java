@@ -2,6 +2,7 @@ package starwars;
 
 import edu.monash.fit2099.simulator.matter.EntityInterface;
 
+
 /**
  * All <code>Entities</code> and <code>Actors</code> in the starwars client package should implement this interface.
  * 
@@ -55,6 +56,9 @@ public interface SWEntityInterface extends EntityInterface {
 	 * @return the amount of hitpoints
 	 */
 	public int getHitpoints();
+	
+	
+	
 	
 	/**
 	 * Method that reduces the <code>hitpoints</code> to insist damage on of this 

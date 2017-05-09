@@ -43,11 +43,9 @@ public class Mace extends SWEntity {
 		
 		this.shortDescription = "a Raider Mace";
 		this.longDescription = "A dirty Raider Mace";
-		this.hitpoints = 6; // start with a fully charged pistol
+		this.hitpoints = 55; // start with a fully charged pistol
 		
-		this.addAffordance(new Take(this, m));//add the Take affordance so that the blaster can be picked up
-		
-													//the blaster has capabilities 
+		this.addAffordance(new Take(this, m));//add the Take affordance so that the blaster can be picked up										//the blaster has capabilities 
 		this.capabilities.add(Capability.WEAPON);   // and WEAPON so that it can be used to attack
 	}
 	

@@ -67,6 +67,8 @@ public class Dip extends SWAffordance implements SWActionInterface {
 			}
 		}
 		a.say(item.getShortDescription() + "has been refilled to capacity");
+		
+		
 	}
 	
 	@Override
