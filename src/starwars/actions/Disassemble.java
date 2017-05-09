@@ -40,7 +40,7 @@ public class Disassemble extends SWAffordance {
 	
 			//If5 a Droid is still mobile
 
-			if (target.getisImmobile() == false) {
+			if (target.getIsImmobile() == false) {
 				a.say("Cant disassemble a mobile Droid!");
 
 			}
@@ -50,7 +50,7 @@ public class Disassemble extends SWAffordance {
 				
 				//If the Droid has already been disassembled
 
-				if (target.getisDisassembled() == true) {
+				if (target.getIsDisassembled() == true) {
 					a.say(target.getShortDescription() + " has already been \ndisassembled into Droid Parts.");
 
 				} 

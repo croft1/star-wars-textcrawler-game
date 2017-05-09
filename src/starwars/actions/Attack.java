@@ -6,7 +6,8 @@ import starwars.SWActionInterface;
 import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
-
+import starwars.SWForceActor;
+import starwars.SWForceEntityInterface;
 import starwars.entities.actors.Droid;
 
 
@@ -173,7 +174,7 @@ public class Attack extends SWAffordance implements SWActionInterface {
 					
 					//Set to immobile
 
-					targetDroid.setisImmobile(true);
+					targetDroid.setIsImmobile(true);
 
 				}
 				else {

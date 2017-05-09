@@ -111,6 +111,8 @@ public class Player extends SWForceActor {
 	}
 	
 
+	
+
 	private String nextToDroid() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		//get the contents of the location

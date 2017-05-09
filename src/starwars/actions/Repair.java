@@ -29,7 +29,7 @@ public class Repair extends SWAffordance {
 		//If the Droid is still mobile
 
 
-		if (target.getisImmobile() == false) {
+		if (target.getIsImmobile() == false) {
 			a.say("Cant repair a mobile Droid!");
 
 		}

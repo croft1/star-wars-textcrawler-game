@@ -74,7 +74,7 @@ public class Droid extends SWActor {
 		
 		//If a Droid is immobile (Dead)
 
-		if (this.getisImmobile() == true) {
+		if (this.getIsImmobile() == true) {
 			say(this.getShortDescription() + " is immobile. ");
 
 			return;
@@ -196,7 +196,7 @@ public class Droid extends SWActor {
 		return owner;
 	}
 	
-	public void setOwer(SWActor newOwner) {
+	public void setOwner(SWActor newOwner) {
 		//Set this SWActors' owner to newOwner
 		this.owner = newOwner;
 		
@@ -204,21 +204,21 @@ public class Droid extends SWActor {
 		this.humanControlled = true;
 	}
 	
-	public void setisImmobile(boolean newisImmobile) {
+	public void setIsImmobile(boolean newisImmobile) {
 		this.isImmobile = newisImmobile;
 	}
 	
-	public boolean getisImmobile() {
+	public boolean getIsImmobile() {
 		return isImmobile;
 	}
 
 	//isDisassembled setter & getter
 	
-	public void setisDisassembled(boolean newIsDis) {
+	public void setIsDisassembled(boolean newIsDis) {
 		this.isDisassembled = newIsDis;
 	}
 	
-	public boolean getisDisassembled() {
+	public boolean getIsDisassembled() {
 		return isDisassembled;
 	}
 	

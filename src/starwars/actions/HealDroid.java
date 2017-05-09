@@ -27,7 +27,7 @@ public class HealDroid extends SWAffordance {
 
 		Droid target = (Droid) this.getTarget();
 
-		if (target.getisImmobile() == true) {
+		if (target.getIsImmobile() == true) {
 
 			//Print out notification - cant heal an immobile Droid.
 			a.say("Cant heal " + target.getShortDescription() + ", who is \nimmobile. Need to"
