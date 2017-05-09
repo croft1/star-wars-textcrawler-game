@@ -3,12 +3,16 @@ package starwars.entities.actors;
 
 import java.util.List;
 
+import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.SWActor;
 import starwars.SWEntityInterface;
+import starwars.SWForceActor;
 import starwars.SWLocation;
 import starwars.SWWorld;
 import starwars.Team;
+import starwars.actions.Move;
+import starwars.entities.Force;
 import starwars.swinterfaces.SWGridController;
 
 /**
@@ -22,7 +26,7 @@ import starwars.swinterfaces.SWGridController;
  * 2017/02/22	Schedule actions in the act method instead of tick. 
  * 				A controller used to get user input rather than the UI directly (Asel)
  */
-public class Player extends SWActor {
+public class Player extends SWForceActor {
 
 	/**
 	 * Constructor for the <code>Player</code> class. This constructor will,
@@ -31,9 +35,11 @@ public class Player extends SWActor {
 	 * 	<li>Initialize the world for this <code>Player</code></li>
 	 *  <li>Initialize the <code>Team</code> for this <code>Player</code></li>
 	 * 	<li>Initialize the hit points for this <code>Player</code></li>
+	 * 	<li>Initialize the <code>Force</code>points for this <code>Player</code></li>
 	 * 	<li>Set this <code>Player</code> as a human controlled <code>SWActor</code></li>
 	 * </ul>
 	 * 
+	 * @param force the <code>Force</code> to which the this <code>Player</code> has the gift to behold
 	 * @param team the <code>Team</code> to which the this <code>Player</code> belongs to
 	 * @param hitpoints the hit points of this <code>Player</code> to get started with
 	 * @param m <code>MessageRenderer</code> to display messages.
@@ -42,7 +48,9 @@ public class Player extends SWActor {
 	 */
 	public Player(Team team, int hitpoints, MessageRenderer m, SWWorld world) {
 		super(team, hitpoints, m, world);
-		humanControlled = true; // this feels like a hack. Surely this should be dynamic
+		humanControlled = true; // this feels like a hack. Surely this should('nt?) be dynamic. Thats starwars
+		
+		//use default force
 	}
 	
 	/**
@@ -76,15 +84,17 @@ public class Player extends SWActor {
 	public void describeScene() {
 		//get the location of the player and describe it
 		SWLocation location = this.world.getEntityManager().whereIs(this);
-		say(this.getShortDescription() + " [" + this.getHitpoints() + "] is at " + location.getShortDescription());
+		say(this.getShortDescription() + " [HP: " + this.getHitpoints() + " F: " + this.getForcePower() + "] is at " + location.getShortDescription());
 		
 		//get the items carried for the player
 		SWEntityInterface itemCarried = this.getItemCarried();
 		if (itemCarried != null) {
 			//and describe the item carried if the player is actually carrying an item
-			say(this.getShortDescription() 
-					+ " is holding " + itemCarried.getShortDescription() + " [" + itemCarried.getHitpoints() + "]");
+			say(getCarryDescription());
+
 		}
+		
+		//weild
 		
 		//get the contents of the location
 		List<SWEntityInterface> contents = this.world.getEntityManager().contents(location);
@@ -100,6 +110,7 @@ public class Player extends SWActor {
 		}
 	}
 	
+
 	private String nextToDroid() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		//get the contents of the location
@@ -116,4 +127,11 @@ public class Player extends SWActor {
 			}
 		return ("Luke is not next to a Droid");
 	}
+	
+	
+
+
+
+	
+
 }

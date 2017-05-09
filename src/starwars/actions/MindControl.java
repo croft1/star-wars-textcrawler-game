@@ -7,32 +7,27 @@ import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
 
-import starwars.entities.actors.Droid;
-
-
 /**
- * Command to attack entities.
+ * Command to mind control entities.
  * 
  * This affordance is attached to all attackable entities
  * 
- * @author David.Squire@monash.edu (dsquire)
+ * 
  */
 /*
- * Change log
- * 2017/02/03	Fixed the bug where the an actor could attack another actor in the same team (asel)
- * 2017/02/08	Attack given a priority of 1 in constructor (asel)
+ * 
  */
-public class Attack extends SWAffordance implements SWActionInterface {
+public class MindControl extends SWAffordance implements SWActionInterface {
 
 	
 	/**
-	 * Constructor for the <code>Attack</code> class. Will initialize the <code>messageRenderer</code> and
-	 * give <code>Attack</code> a priority of 1 (lowest priority is 0).
+	 * Constructor for the <code>Mind Control</code> class. Will initialize the <code>messageRenderer</code> and
+	 * give <code>MindControl</code> a priority of 1 (lowest priority is 0).
 	 * 
 	 * @param theTarget the target being attacked
 	 * @param m message renderer to display messages
 	 */
-	public Attack(SWEntityInterface theTarget, MessageRenderer m) {
+	public MindControl(SWEntityInterface theTarget, MessageRenderer m) {
 		super(theTarget, m);	
 		priority = 1;
 	}
@@ -56,13 +51,12 @@ public class Attack extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public String getDescription() {
-		return "attack " + this.target.getShortDescription();
+		return "mind control " + this.target.getShortDescription();
 	}
 
 
 	/**
 	 * Determine whether a particular <code>SWActor a</code> can attack the target.
-	 * Must be wielding a weapon to allow
 	 * 
 	 * @author 	dsquire
 	 * @param 	a the <code>SWActor</code> being queried
@@ -71,13 +65,12 @@ public class Attack extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public boolean canDo(SWActor a) {
-		
-		return a.isWielding();
+		return true;
 	}
 
 	
 	/**
-	 * Perform the <code>Attack</code> command on an entity.
+	 * Perform the <code>Mind Control</code> command on an entity.
 	 * <p>
 	 * This method does not perform any damage (an attack) if,
 	 * <ul>
@@ -86,7 +79,7 @@ public class Attack extends SWAffordance implements SWActionInterface {
 	 * </ul>
 	 * <p>
 	 * else it would damage the entity attacked, tires the attacker, and blunts any weapon used for the attack.
-	 * 2
+	 * 
 	 * TODO : check if the weapon has enough hitpoints and the attacker has enough energy before an attack.
 	 * 
 	 * @author 	dsquire -  adapted from the equivalent class in the old Eiffel version
@@ -100,6 +93,9 @@ public class Attack extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public void act(SWActor a) {
+		
+		//TODO Implement sequence diagram for the force
+		
 		SWEntityInterface target = this.getTarget();
 		boolean targetIsActor = target instanceof SWActor;
 		SWActor targetActor = null;
@@ -119,16 +115,13 @@ public class Attack extends SWAffordance implements SWActionInterface {
 			a.say(a.getShortDescription() + " is attacking " + target.getShortDescription() + "!");
 			
 			SWEntityInterface itemCarried = a.getItemCarried();
-			if (itemCarried != null && a.isWielding()) {//if the actor is has an item and is wielding it
+			if (itemCarried != null) {//if the actor is carrying an item 
 				if (itemCarried.hasCapability(Capability.WEAPON)) {
 					target.takeDamage(itemCarried.getHitpoints() + 1); // blunt weapon won't do much, but it will still do some damage
 					itemCarried.takeDamage(1); // weapon gets blunt
 					a.takeDamage(energyForAttackWithWeapon); // actor uses energy to attack
-					if(itemCarried instanceof SWForceEntityInterface &&
-							a instanceof SWForceActor){
-						((SWForceActor)a).trainForce();//if you use a force weapon, you may get xp with force
-					}
-				} else {//an attack with a none weapon
+				}
+				else {//an attack with a none weapon
 					if (targetIsActor) {
 						targetActor.say("\t" + targetActor.getShortDescription()
 								+ " is amused by " + a.getShortDescription()
@@ -155,36 +148,12 @@ public class Attack extends SWAffordance implements SWActionInterface {
 				
 				
 			}
-			
-			// If a actor was killed / immobilised (logic check)...
 			if (this.getTarget().getHitpoints() <= 0) {  // can't use isDead(), as we don't know that the target is an actor
-				
-				//If a Droid was 'killed'
-				if (this.getTarget().getShortDescription().contains("the Droid")) {
-					
-					//New target implementation
-					Droid targetDroid = (Droid) this.getTarget();
-					
-					//Set the description of the now 'immobile' Droid
-					targetDroid.setLongDescription(targetDroid.getLongDescription() + ", that was made immobile in a fight");
-					
-					//remove the attack and heal affordance of the dead actor so it can no longer be attacked
-					targetDroid.removeAffordance(this);
-					
-					//Set to immobile
+				target.setLongDescription(target.getLongDescription() + ", that was killed in a fight");
+							
+				//remove the attack affordance of the dead actor so it can no longer be attacked
+				targetActor.removeAffordance(this);
 
-					targetDroid.setisImmobile(true);
-
-				}
-				else {
-					
-					//Set the description of the target
-					target.setLongDescription(target.getLongDescription() + ", that was killed in a fight");
-								
-					//remove the attack affordance of the dead actor so it can no longer be attacked
-					targetActor.removeAffordance(this);
-
-				}
 				
 			}
 		} // not game player and different teams

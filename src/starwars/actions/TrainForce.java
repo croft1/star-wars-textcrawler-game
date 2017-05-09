@@ -6,31 +6,31 @@ import starwars.SWActionInterface;
 import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
-import starwars.entities.actors.Droid;
+import starwars.SWForceActor;
+import starwars.entities.actors.BenKenobi;
+import starwars.entities.actors.Player;
 
 /**
- * Command to attack entities.
+ * Command to mind control entities.
  * 
  * This affordance is attached to all attackable entities
  * 
- * @author David.Squire@monash.edu (dsquire)
+ * 
  */
 /*
- * Change log
- * 2017/02/03	Fixed the bug where the an actor could attack another actor in the same team (asel)
- * 2017/02/08	Attack given a priority of 1 in constructor (asel)
+ * 
  */
-public class TakeOwnership extends SWAffordance implements SWActionInterface {
+public class TrainForce extends SWAffordance implements SWActionInterface {
 
 	
 	/**
-	 * Constructor for the <code>Attack</code> class. Will initialize the <code>messageRenderer</code> and
-	 * give <code>Attack</code> a priority of 1 (lowest priority is 0).
+	 * Constructor for the <code>Mind Control</code> class. Will initialize the <code>messageRenderer</code> and
+	 * give <code>MindControl</code> a priority of 1 (lowest priority is 0).
 	 * 
 	 * @param theTarget the target being attacked
 	 * @param m message renderer to display messages
 	 */
-	public TakeOwnership(SWEntityInterface theTarget, MessageRenderer m) {
+	public TrainForce(SWEntityInterface theTarget, MessageRenderer m) {
 		super(theTarget, m);	
 		priority = 1;
 	}
@@ -54,7 +54,7 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public String getDescription() {
-		return "take ownership of " + this.target.getShortDescription();
+		return "Get training for the ways of the force from " + this.target.getShortDescription();
 	}
 
 
@@ -68,12 +68,16 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public boolean canDo(SWActor a) {
-		return true;
+		if(a instanceof SWForceActor){
+			return true;
+		}
+		return false;
+		
 	}
 
 	
 	/**
-	 * Perform the <code>Attack</code> command on an entity.
+	 * Perform the <code>Mind Control</code> command on an entity.
 	 * <p>
 	 * This method does not perform any damage (an attack) if,
 	 * <ul>
@@ -96,47 +100,18 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public void act(SWActor a) {
-		Droid target = (Droid) this.getTarget();
 
-		if (target.getIsImmobile() == true) {
-			//Removing the take ownership affordance of an immobile Droid. Whoever repairs the
-			//Droid will gain its allegience!
+		//Currently only players can be trained. We can change this over time.
+		if (a instanceof Player && target instanceof BenKenobi){
+			target.say(a.getShortDescription() + ", prepare your mind.\nTraining Commences...");
+			((BenKenobi) target).setTrainingPupil(true);
+			for (int i = 0; i < Math.floor(Math.random() * 6); i++){	///random training value
+				((SWForceActor)a).trainForce();
+			}
 			
-		
-			//Print out notification - cant take ownership of an immobile Droid
-			a.say("Cant take ownership of " + target.getShortDescription() + ", who is \nimmobile. Need to"
-					+ " Disassemble or Repair first.");
+			a.say("Thanks " + target.getShortDescription() + ", I feel closer to the ways of the force than ever!");
+			
 		}
-		
-		//If a Droid has no owner
-		else if ( target.getOwner() == null) {
-			
-			//Printing out notification of imminent ownership
-			a.say(a.getShortDescription()  + " is to take ownership of " + target.getShortDescription());
-
-			//Setting ownership & team affiliation
-			target.setOwner(a);
-			target.setTeam(a.getTeam());
-			
-			//Printing out ownership
-			a.say(target.getShortDescription() + " has new owner: " + target.getOwner().getShortDescription());
-			
-			//Printing team affiliation
-			a.say(target.getShortDescription() + " affiliation has changed to: " +  target.getTeam() );
-			
-			//Removing the take ownership affordance of the Droid (since you cant try to own
-			// a Droid that you already own!
-			target.removeAffordance(this);
-
-		}
-		else if (target.getOwner() != null) {
-			
-			//Printing out notification of prior ownership
-			a.say(a.getShortDescription()  + " already owns " + target.getShortDescription() + "!");
-		}
-
-		
-
 		
 	}
 }

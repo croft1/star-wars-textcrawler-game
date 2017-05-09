@@ -5,6 +5,7 @@ import java.util.HashSet;
 import edu.monash.fit2099.simulator.matter.Entity;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 
+
 /**
  * Class that represents inanimate objects in the Star Wars world. Objects that cannot move for example trees.
  * 
@@ -21,6 +22,8 @@ public class SWEntity extends Entity implements SWEntityInterface {
 	/**A set of <code>Capabilities</code> of this <code>SWEntity</code>*/
 	protected HashSet<Capability> capabilities;
 	
+	
+	
 	/**The amount of <code>hitpoints</code> of this <code>SWEntity</code>.*/
 	protected int hitpoints = 0; // Not all non-actor entities will make use of this
 
@@ -33,6 +36,7 @@ public class SWEntity extends Entity implements SWEntityInterface {
 	protected SWEntity(MessageRenderer m) {
 		super(m);
 		capabilities = new HashSet<Capability>();
+		
 	}
 
 
@@ -62,6 +66,8 @@ public class SWEntity extends Entity implements SWEntityInterface {
 	public boolean hasCapability(Capability c) {
 		return capabilities.contains(c);
 	}
+	
+	
 
 	@Override
 	public int getHitpoints() {
@@ -84,5 +90,6 @@ public class SWEntity extends Entity implements SWEntityInterface {
 		assert (damage >= 0)	:"damage on SWEntity must not be negative";
 		this.hitpoints -= damage;
 	}
-	
+
+
 }

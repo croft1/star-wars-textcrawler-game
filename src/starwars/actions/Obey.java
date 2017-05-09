@@ -6,7 +6,9 @@ import starwars.SWActionInterface;
 import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
-import starwars.entities.actors.Droid;
+import starwars.SWForceActor;
+import starwars.SWForceEntityInterface;
+import starwars.swinterfaces.SWGridController;
 
 /**
  * Command to attack entities.
@@ -20,7 +22,7 @@ import starwars.entities.actors.Droid;
  * 2017/02/03	Fixed the bug where the an actor could attack another actor in the same team (asel)
  * 2017/02/08	Attack given a priority of 1 in constructor (asel)
  */
-public class TakeOwnership extends SWAffordance implements SWActionInterface {
+public class Obey extends SWAffordance implements SWActionInterface {
 
 	
 	/**
@@ -30,7 +32,7 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 	 * @param theTarget the target being attacked
 	 * @param m message renderer to display messages
 	 */
-	public TakeOwnership(SWEntityInterface theTarget, MessageRenderer m) {
+	public Obey(SWEntityInterface theTarget, MessageRenderer m) {
 		super(theTarget, m);	
 		priority = 1;
 	}
@@ -54,7 +56,7 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public String getDescription() {
-		return "take ownership of " + this.target.getShortDescription();
+		return this.target.getShortDescription() + " will obey your command, master.";
 	}
 
 
@@ -68,7 +70,15 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public boolean canDo(SWActor a) {
-		return true;
+		if(a instanceof SWForceActor){
+			if ( ((SWForceActor)a).getForcePower() > SWForceEntityInterface.MINDCONTROL_FORCE_PWR_REQ ){
+				return true;
+			}
+			a.say(target.getShortDescription() + " seems weak minded.\n"
+					+ "My power with The Force isn't strong enough for mind control right now" + 
+					"[" + ((SWForceActor)a).getForcePower() + "/" + SWForceEntityInterface.MINDCONTROL_FORCE_PWR_REQ + "]");
+		}
+		return false;
 	}
 
 	
@@ -96,44 +106,14 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public void act(SWActor a) {
-		Droid target = (Droid) this.getTarget();
-
-		if (target.getIsImmobile() == true) {
-			//Removing the take ownership affordance of an immobile Droid. Whoever repairs the
-			//Droid will gain its allegience!
-			
-		
-			//Print out notification - cant take ownership of an immobile Droid
-			a.say("Cant take ownership of " + target.getShortDescription() + ", who is \nimmobile. Need to"
-					+ " Disassemble or Repair first.");
+		Obey temp = this;
+		target.removeAffordance(this);
+		a.say("#  Your force strenght allows you to MIND CONTROL " + target.getLongDescription() + ".\nChoose Movement:");
+		if(target instanceof SWActor){
+			((SWForceActor)a).getScheduler().schedule(SWGridController.getUserDecision(a), (SWActor) target, 1);
+		target.addAffordance(temp);
 		}
 		
-		//If a Droid has no owner
-		else if ( target.getOwner() == null) {
-			
-			//Printing out notification of imminent ownership
-			a.say(a.getShortDescription()  + " is to take ownership of " + target.getShortDescription());
-
-			//Setting ownership & team affiliation
-			target.setOwner(a);
-			target.setTeam(a.getTeam());
-			
-			//Printing out ownership
-			a.say(target.getShortDescription() + " has new owner: " + target.getOwner().getShortDescription());
-			
-			//Printing team affiliation
-			a.say(target.getShortDescription() + " affiliation has changed to: " +  target.getTeam() );
-			
-			//Removing the take ownership affordance of the Droid (since you cant try to own
-			// a Droid that you already own!
-			target.removeAffordance(this);
-
-		}
-		else if (target.getOwner() != null) {
-			
-			//Printing out notification of prior ownership
-			a.say(a.getShortDescription()  + " already owns " + target.getShortDescription() + "!");
-		}
 
 		
 
