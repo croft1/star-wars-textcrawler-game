@@ -122,13 +122,6 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	}
 	
                                                                                                               
-	/**
-	 * Attempts to mindcontrol with the <code>Force</code>
-	 * @see 	#force
-	 */
-	public void tryForce() {
-		//add in the code to attack with force?
-	}
 
 	
 	public void trainForce(){	
@@ -136,9 +129,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	}
 	
 	
-	protected void setTitle(int forcePower){
-		
-	}
+	
 	
 	protected String getTitle(){
 		return titles[getForcePower() / 20];

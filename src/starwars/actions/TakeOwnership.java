@@ -106,9 +106,7 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 			//Print out notification - cant take ownership of an immobile Droid
 			a.say("Cant take ownership of " + target.getShortDescription() + ", who is \nimmobile. Need to"
 					+ " Disassemble or Repair first.");
-		}
-		
-		//If a Droid has no owner
+		}		//If a Droid has no owner
 		else if ( target.getOwner() == null) {
 			
 			//Printing out notification of imminent ownership

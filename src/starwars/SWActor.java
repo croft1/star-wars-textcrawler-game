@@ -292,7 +292,12 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 
 	@Override
 	public String getSymbol() {
-		return symbol;
+		if(isDead()){
+			return "{"+symbol+"}";
+		}else{
+			return symbol;
+		}
+		
 	}
 	
 
