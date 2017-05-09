@@ -62,15 +62,6 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	/**A set of <code>Capabilities</code> of this <code>SWActor</code>*/
 	private HashSet<Capability> capabilities;
 
-	/**The owner of the actor. Utilised for Droids**/
-	private SWActor owner;
-	
-	/**isImmobile boolean. Used for Droid SWActors in most actions*/
-	private boolean isImmobile;
-	
-	/**isDisassembled boolean. Used for the disassembly and repair of Droids**/
-	private boolean isDisassembled;
-
 	
 	
 	/**
@@ -102,7 +93,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		this.initHP = hitpoints;
 		this.world = world;
 		this.symbol = "@";
-		this.owner = null; //ally, no one owns the Actor (more so for Droids) --so, slaves are allowed? xD mc
+
 		
 		//SWActors are given the Attack affordance hence they can be attacked
 		SWAffordance attack = new Attack(this, m);
@@ -361,18 +352,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		/* Actually, that's not the case: all non-movement actions are transferred to newActions before the movements are transferred. --ram */
 	}
 	
-	public SWActor getOwner() { 
-		//Return the SWActor owner of this Actor (initially nothing, can change!)
-		return owner;
-	}
-	
-	public void setOwner(SWActor newOwner) {
-		//Set this SWActors' owner to newOwner
-		this.owner = newOwner;
-		
-		//Set humancontrolled boolean to true
-		this.humanControlled = true;
-	}
+
 	
 	public void setHitpoints(int newHP) {
 		
@@ -382,39 +362,5 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	public int getInitialHP() {
 		return initHP;
-	}
-	
-	public void setIsImmobile(boolean newisImmobile) {
-		this.isImmobile = newisImmobile;
-	}
-	
-	public boolean getIsImmobile() {
-		return isImmobile;
-	}
 
-	//isDisassembled setter & getter
-	
-	public void setIsDisassembled(boolean newIsDis) {
-		this.isDisassembled = newIsDis;
-	}
-	
-	public boolean getIsDisassembled() {
-		return isDisassembled;
-	}
-
-	public void setWielding(boolean isWielding) {
-		this.isWielding = isWielding;
-	}
-	
-	public String getCarryDescription(){
-		String wieldDesc = (isWielding()) ?  " is wielding " :  " is holding ";
-		
-		return this.getShortDescription() 
-		+ wieldDesc + itemCarried.getShortDescription() + " [" + itemCarried.getHitpoints() + "]";
-	}
-	
-	
-	
-	
-	
 }

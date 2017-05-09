@@ -3,6 +3,7 @@ package starwars.actions;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.Capability;
 import starwars.SWActor;
+import starwars.entities.actors.Droid;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
 import starwars.entities.Fillable;
@@ -23,11 +24,13 @@ public class HealDroid extends SWAffordance {
 	@Override
 	public void act(SWActor a) {
 		//Target is the Droid that is going to be healed.
-		SWActor target = (SWActor) this.getTarget();
-		
-		if (target.getIsImmobile() == true) {
+
+		Droid target = (Droid) this.getTarget();
+
+		if (target.getisImmobile() == true) {
+
 			//Print out notification - cant heal an immobile Droid.
-			System.out.println("Cant heal " + target.getShortDescription() + ", who is \nimmobile. Need to"
+			a.say("Cant heal " + target.getShortDescription() + ", who is \nimmobile. Need to"
 					+ " Disassemble or Repair first.");
 		}
 		
@@ -39,17 +42,17 @@ public class HealDroid extends SWAffordance {
 					
 					//If a player tries to heal a full HP NPC
 					if(target.getHitpoints() == target.getInitialHP()) {
-						System.out.println(target.getShortDescription() + " is at maximum HP!");
+						a.say(target.getShortDescription() + " is at maximum HP!");
 					}
 					
 					else {
 						//Printout of healing attempt
-						System.out.println("Healing " + target.getShortDescription() + " with "
+						a.say("Healing " + target.getShortDescription() + " with "
 								+ "an oil can of capacity " + itemCarried.getHitpoints() + "." );
 						
 						//Calculating depleted HP
 						int depletedHealth = target.getInitialHP() - target.getHitpoints();
-						System.out.println(target.getShortDescription() + " has so far"
+						a.say(target.getShortDescription() + " has so far"
 								+ " lost a total of " + depletedHealth + " HP." );
 						
 						//Checking if the oil can isnt empty
@@ -68,9 +71,9 @@ public class HealDroid extends SWAffordance {
 								target.setHitpoints(newHitpoints);
 								
 								//Print out to game
-								System.out.println(itemCarried.getShortDescription() + " is now "
+								a.say(itemCarried.getShortDescription() + " is now "
 										+ " empty: capacity of " + itemCarried.getHitpoints());
-								System.out.println(target.getShortDescription()+ " has healed"
+								a.say(target.getShortDescription()+ " has healed"
 										+ " to " + target.getHitpoints() + "HP");
 								
 							}
@@ -82,9 +85,9 @@ public class HealDroid extends SWAffordance {
 								itemCarried.takeDamage(depletedHealth);
 							
 								//Print out to game
-								System.out.println(itemCarried.getShortDescription() + " now has "
-										+ " capacity of " + itemCarried.getHitpoints());
-								System.out.println(target.getShortDescription()+ " has healed"
+								a.say(itemCarried.getShortDescription() + " now has "
+										+ "capacity of " + itemCarried.getHitpoints());
+								a.say(target.getShortDescription()+ " has healed"
 										+ " to " + target.getHitpoints() + "HP");
 								
 							}
@@ -93,7 +96,7 @@ public class HealDroid extends SWAffordance {
 						
 						//Else if the oil can is completely used.
 						else {
-							System.out.println("Cannot heal " + target.getShortDescription() + " with "
+							a.say("Cannot heal " + target.getShortDescription() + " with "
 									+ " an empty oil can!");
 						}
 							
@@ -105,13 +108,13 @@ public class HealDroid extends SWAffordance {
 					
 				}
 				else {
-					System.out.println(a.getShortDescription() + " is carrying " + a.getItemCarried().getShortDescription() 
+					a.say(a.getShortDescription() + " is carrying " + a.getItemCarried().getShortDescription() 
 							+ ". An oil can is required.");
 				}
 			} 
 			
 			else {
-				System.out.println(a.getShortDescription() + " cannot heal " + target.getShortDescription() 
+				a.say(a.getShortDescription() + " cannot heal " + target.getShortDescription() 
 				 + ", no Oil Can held! ");
 			}
 			

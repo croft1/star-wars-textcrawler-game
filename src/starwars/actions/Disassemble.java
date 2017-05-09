@@ -11,6 +11,7 @@ import starwars.SWLocation;
 import starwars.entities.Blaster;
 import starwars.entities.DroidParts;
 import starwars.entities.Fillable;
+import starwars.entities.actors.Droid;
 
 public class Disassemble extends SWAffordance {
 
@@ -28,26 +29,30 @@ public class Disassemble extends SWAffordance {
 	@Override
 	public void act(SWActor a) {
 		//Target is the Droid that is going to be healed.
-		SWActor target = (SWActor) this.getTarget();
+		Droid target = (Droid) this.getTarget();
 		
-		SWEntityInterface itemCarried = a.getItemCarried();
+		//SWEntityInterface itemCarried = a.getItemCarried();
 		
 		//If the entity trying to disassemble is Luke 
 		if (a.getSymbol() == "@") {
-			System.out.println(a.getShortDescription() + " is trying to disassemble " + 
+			a.say(a.getShortDescription() + " is trying to disassemble " + 
 		target.getShortDescription() + " ,\nwho is at " + target.getHitpoints() + " HP.");
 	
 			//If5 a Droid is still mobile
-			if (target.getIsImmobile() == false) {
-				System.out.println("Cant disassemble a mobile Droid!");
+
+			if (target.getisImmobile() == false) {
+				a.say("Cant disassemble a mobile Droid!");
+
 			}
 			
 			//Otherwise, disassemble into Droid Parts
 			else {
 				
 				//If the Droid has already been disassembled
-				if (target.getIsDisassembled() == true) {
-					System.out.println(target.getShortDescription() + " has already been \ndisassembled into Droid Parts.");
+
+				if (target.getisDisassembled() == true) {
+					a.say(target.getShortDescription() + " has already been \ndisassembled into Droid Parts.");
+
 				} 
 				
 				//Otherwise, create Droid Parts
