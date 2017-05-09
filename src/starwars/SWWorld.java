@@ -210,7 +210,10 @@ public class SWWorld extends World {
 		entityManager.setLocation(dale, loc);
 		
 		
-		
+		Canteen c = new Canteen(iface,100,100);
+		c.setSymbol("X");
+		loc = myGrid.getLocationByCoordinates(6, 6);
+		entityManager.setLocation(c, loc);
 		
 		// A Droid
 		Droid Droid_1 = new Droid(50, "Droid 1", iface, this);
