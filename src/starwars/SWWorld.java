@@ -248,36 +248,36 @@ public class SWWorld extends World {
 		Droid_2.addAffordance(new Disassemble(Droid_2, iface));
 		
 		// Added Two Immobile Droids (for Rapair and Disassesmble Actions)
-		Droid Droid_3 = new Droid(50, "Droid 3", iface, this);
-		Droid Droid_4 = new Droid(50, "Droid 4", iface, this);
+		Droid R2D2 = new Droid(200, "R2-D2", iface, this);
+		Droid C3PO = new Droid(200, "C3-P0", iface, this);
 		
-		Droid_3.setSymbol("D3");
-		Droid_4.setSymbol("D4");
+		R2D2.setSymbol("R2");
+		C3PO.setSymbol("C3");
 		
 		loc = myGrid.getLocationByCoordinates(0, 7);
-		entityManager.setLocation(Droid_3, loc);
+		entityManager.setLocation(R2D2, loc);
 		loc = myGrid.getLocationByCoordinates(0, 8);
-		entityManager.setLocation(Droid_4, loc);
+		entityManager.setLocation(C3PO, loc);
 		
 		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
-		Droid_3.addAffordance(new TakeOwnership(Droid_3, iface)); 
-		Droid_4.addAffordance(new TakeOwnership(Droid_4, iface)); 
+		R2D2.addAffordance(new TakeOwnership(R2D2, iface)); 
+		C3PO.addAffordance(new TakeOwnership(C3PO, iface)); 
 		
 		//Adding a HealDroid affordance - that SWACtors act upon
-		Droid_3.addAffordance(new HealDroid(Droid_3, iface));
-		Droid_4.addAffordance(new HealDroid(Droid_4, iface));
+		R2D2.addAffordance(new HealDroid(R2D2, iface));
+		C3PO.addAffordance(new HealDroid(C3PO, iface));
 		
 		//Adding a Repair affordance to the Droids - can be repaired
-		Droid_3.addAffordance(new Repair(Droid_3, iface));
-		Droid_4.addAffordance(new Repair(Droid_4, iface));	
+		R2D2.addAffordance(new Repair(R2D2, iface));
+		C3PO.addAffordance(new Repair(C3PO, iface));	
 		
 		//Adding a Disassemble affordance to the Droids - such that they can be disassembled into Droid Parts
-		Droid_3.addAffordance(new Disassemble(Droid_3, iface));
-		Droid_4.addAffordance(new Disassemble(Droid_4, iface));	
-				
-		Droid_3.setHitpoints(1);
-		Droid_4.setHitpoints(1);
+		R2D2.addAffordance(new Disassemble(R2D2, iface));
+		C3PO.addAffordance(new Disassemble(C3PO, iface));	
 		
+		//Setting R2-D2 & C3-P0's descriptions
+		R2D2.setShortDescription("the repair Droid");
+		C3PO.setShortDescription("the etiquette minded Droid");
 	}
 	
 
