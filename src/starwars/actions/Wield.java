@@ -76,26 +76,26 @@ public class Wield extends SWAffordance {
 	public void act(SWActor a) {
 		if (target instanceof SWEntityInterface) {
 			SWEntityInterface theItem = (SWEntityInterface) target;
-			a.setWielding(true);
 			
-			if(a.getItemCarried() instanceof SWForceEntityInterface 
-					&& a instanceof SWForceActor ){
-				if( ((SWForceActor) a).getForcePower() > SWForceEntityInterface.WIELD_FORCE_PWR_REQ){
-					//a force weapon and can wield
-					//remove the wield affordance
-					target.removeAffordance(this);
+			
+			if(theItem instanceof SWForceEntityInterface 
+					&& a instanceof SWForceActor  ){
+				if( ((SWForceActor) a).getForcePower() > SWForceEntityInterface.WIELD_FORCE_PWR_REQ ){
 					
-					// add a leave affordance - no need to just "hold" it again
-					target.addAffordance(new Leave(theItem, messageRenderer));
+					setWielding(true,a,theItem);
 					
 				}
 				//a force weapon but not wieldable
 				a.say(a.getItemCarried().getShortDescription() + " is so majestic to the touch -- you try to use it but you require more training with the ways of The Force."
 						+ "\n" + a.getShortDescription() + " put " + a.getItemCarried().getShortDescription() + " away to try again later");
-				
+				//dont need to run setwielding here to maintain wield affordance
 					
 				
+			} else{
+				
+				setWielding(true,a,theItem);
 			}
+			
 			
 			
 			
@@ -114,6 +114,17 @@ public class Wield extends SWAffordance {
 	@Override
 	public String getDescription() {
 		return "wield " + target.getShortDescription();
+	}
+	
+	private void setWielding(boolean w, SWActor a, SWEntityInterface item){
+		
+		a.setWielding(w);
+		
+		//if we want to wield, the wield affordance will be removed
+		target.removeAffordance((w)?this:new Leave(item, messageRenderer));
+		
+		//if we want to wield, the leave affordance is added
+		target.addAffordance((w)?new Leave(item, messageRenderer):this);
 	}
 
 }

@@ -362,5 +362,16 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	public int getInitialHP() {
 		return initHP;
+	}
 
+	public void setWielding(boolean b) {
+		isWielding = b;
+	}
+	
+	public String getCarryDescription(){
+		String wieldDesc = (isWielding()) ?  " is wielding " :  " is holding ";
+		
+		return this.getShortDescription() 
+		+ wieldDesc + itemCarried.getShortDescription() + " [" + itemCarried.getHitpoints() + "]";
+	}
 }
