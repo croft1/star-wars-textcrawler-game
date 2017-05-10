@@ -33,6 +33,8 @@ public class Droid extends SWActor {
 	/**isDisassembled boolean. Used for the disassembly and repair of Droids**/
 	private boolean isDisassembled;
 	
+	/**Patrol path used for specific Droids. Null otherwise**/
+	private Patrol droidPatrol;
 	/**
 	 * Creates a Droid. Droids are initially of NEUTRAL affiliation. Taking 
 	 * ownership of a Droid changes their allegience.
@@ -56,6 +58,15 @@ public class Droid extends SWActor {
 		this.owner = null;	//Initial owner - not null
 		this.isImmobile = false; //Initially not immobile
 		this.isDisassembled = false; //Initially not disassembled
+		
+		//Setting Droidpaths for a Droid that has a given path. Otherwise they are able to free roam.
+		if (droidPath == null) {
+			return;
+		}
+		else {
+			this.droidPatrol = new Patrol(droidPath);
+		}
+		
 		
 		//SWActors are given the Attack affordance hence they can be attacked
 		//SWAffordance healdroid = new HealDroid(this, m);
@@ -129,7 +140,12 @@ public class Droid extends SWActor {
 		//R2-D2 Repair droid specific act() code
 		else if (this.getSymbol() == "R2") {
 			
-			
+			//R2 moves
+			Direction R2Direction = this.getDroidPatrol().getNext();
+			say(getShortDescription() + " moves " + R2Direction);
+			Move myMove = new Move(R2Direction, messageRenderer, world);
+
+			scheduler.schedule(myMove, this, 1);
 			
 		}
 		
@@ -283,6 +299,10 @@ public class Droid extends SWActor {
 				}
 			}
 		}		
+	}
+	
+	private Patrol getDroidPatrol() {
+		return this.droidPatrol;
 	}
 	
 	private void c3POSpeaks() {
