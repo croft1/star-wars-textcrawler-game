@@ -49,7 +49,7 @@ public class Droid extends SWActor {
 	 * 
 	 */
 	public Droid(int hitpoints, String name, MessageRenderer m, SWWorld world) {
-		super(Team.NEUTRAL, 50, m, world);
+		super(Team.NEUTRAL, hitpoints, m, world);
 		// TODO Auto-generated constructor stub
 		this.name = name;
 		this.owner = null;	//Initial owner - not null
@@ -108,6 +108,16 @@ public class Droid extends SWActor {
 				selfHeal();
 			}	
 		} 
+		
+		//C-3PO Droid specific act ()code
+		else if (this.getSymbol() == "C3") {
+			say("IMMA NOT MOVIN!");
+		}
+		
+		//R2-D2 Repair droid specific act() code
+		else if (this.getSymbol() == "R2") {
+			
+		}
 		
 		//If a Droid is not immobile, and not human controlled (roaming)
 		else {	
@@ -177,7 +187,18 @@ public class Droid extends SWActor {
 
 	@Override
 	public String getShortDescription() {
-		return name + " the Droid";
+		
+		if (this.getSymbol() == "R2") {
+			return name + " the Repair Droid";
+		}
+		
+		else if (this.getSymbol() == "C3") {
+			return name + " the etiquette minded Droid";
+		}
+		
+		else {
+			return name + " the Droid";
+		}	
 	}
 
 	@Override
