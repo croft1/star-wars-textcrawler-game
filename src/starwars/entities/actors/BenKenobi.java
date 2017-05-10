@@ -66,82 +66,86 @@ public class BenKenobi extends SWLegend  {
 		}
 		
 		//Ben healing priorities...
+
 		
 		//When Ben (Obiwan) is not at 100% health..
 		if (this.getHitpoints() != this.getInitialHP()) {
 			say("Ben isnt feeling good. Needs the power of H20.");
-			
-			//See if Ben is nearby a water canteen that is FULL		
-			List<SWEntityInterface> contents = this.world.getEntityManager().contents(this.world.getEntityManager().whereIs(this));
-						
-			//Analyse items and entities around Ben
-			if (contents.size() > 1) { // if it is equal to one, the only thing here is this Player, so there is nothing to report
-				for (SWEntityInterface entityBen : contents) {
-					if (entityBen != this) { // don't include self in scene description
-						if (entityBen.getSymbol() == "o") {
-							
-							//Cast enetity as a Canteen to find its level.
-							Canteen foundCanteen = (Canteen) entityBen;
-							
-							if (foundCanteen.getLevel() == 10)
-							{
-								say("found a canteen full");
-								//Drop current item
-								if (this.getItemCarried() != null)
-								{
-									say("doing a leave");
-									say(this.getItemCarried().getShortDescription());
-									Leave benIitemLeave = new Leave(this.getItemCarried(), messageRenderer);
-									scheduler.schedule(benIitemLeave, this, 1);
-								}
-								else
-								{
-									say(this.getShortDescription() + " found a canteen that is full.\nHe decided to pick it up.");
-									//Droid takes the oil can. Scheduler implements the Take.
-									Take benTakes = new Take(entityBen, messageRenderer);
-									scheduler.schedule(benTakes, this, 1);
-								}
-								
-							}
-							else 
-							{
-								say(this.getShortDescription() + " found a canteen that isnt full.\nHe decided not to pick it up.");
-								return;
-							}
-						}
-					}	
-				}
-			}	
-			
-			//Drink from the canteen
-			
-			
-			
 		}
+			
+		//See if Ben is nearby a water canteen that is FULL		
+		List<SWEntityInterface> contents = this.world.getEntityManager().contents(this.world.getEntityManager().whereIs(this));
+						
+		//Analyse items and entities around Ben
+		if (contents.size() > 1) 
+		{ // if it is equal to one, the only thing here is this Player, so there is nothing to report
+			for (SWEntityInterface entityBen : contents) {
+				if (entityBen != this) { // don't include self in scene description
+					if (entityBen.getSymbol() == "o") {
+						
+					//Cast enetity as a Canteen to find its level.
+						Canteen foundCanteen = (Canteen) entityBen;
+						
+						if (foundCanteen.getLevel() == 10)
+						{
+							say("found a canteen full");
+							//Drop current item
+							if (this.getItemCarried() != null)
+							{
+								Leave benIitemLeave = new Leave(this.getItemCarried(), messageRenderer);
+								scheduler.schedule(benIitemLeave, this, 1);
+								
+								Take benTakes = new Take(entityBen, messageRenderer);
+								scheduler.schedule(benTakes, this, 1);
+							}
+							else
+							{
+								say(this.getShortDescription() + " found a canteen that is full.\nHe decided to pick it up.");
+								//Droid takes the oil can. Scheduler implements the Take.
+								Take benTakes = new Take(entityBen, messageRenderer);
+								scheduler.schedule(benTakes, this, 1);
+							}
+							
+						}
+						else 
+						{
+							say(this.getShortDescription() + " found a canteen that isnt full.\nHe decided not to pick it up.");
+							return;
+						}
+					}
+				}	
+			}
+		}
+		
+		//Check to see if ben has a water canteen
+			//if ben does have a water canteen"o""
+		//otherwise
+			//usual movement
 		
 		//Ben attacking neighbours
 		AttackInformation attack;
 		attack = AttackNeighbours.attackLocals(ben,  ben.world, true, true);
-		
+			
 		if (attack != null) {
 			say(getShortDescription() + " suddenly looks sprightly and attacks " +
 		attack.entity.getShortDescription());
 			scheduler.schedule(attack.affordance, ben, 1);
-			
+					
 		}
-		else {
-			if(trainingPupil){
+		else 
+		{
+			if (trainingPupil)
+			{
 				trainingPupil = false;
-			} else{
-				
-			
-			Direction newdirection = path.getNext();
-			say(getShortDescription() + " moves " + newdirection);
-			Move myMove = new Move(newdirection, messageRenderer, world);
-			scheduler.schedule(myMove, this, 1);
-			}
-		}
-			
+			} 
+			else
+			{
+				Direction newdirection = path.getNext();
+				say(getShortDescription() + " moves " + newdirection);
+				Move myMove = new Move(newdirection, messageRenderer, world);
+				scheduler.schedule(myMove, this, 1);
+			}	
+		}	
 	}
 	
 	public boolean isTrainingPupil(){
