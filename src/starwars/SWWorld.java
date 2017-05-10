@@ -247,6 +247,7 @@ public class SWWorld extends World {
 		//Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
 		Droid_2.addAffordance(new Disassemble(Droid_2, iface));
 		
+		//Create R2-D2 and C-3PO as extended Droids (as R2-D2 and C-3P0, along with a OwnableDroid class)
 	}
 	
 
