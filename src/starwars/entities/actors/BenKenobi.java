@@ -9,6 +9,7 @@ import starwars.SWForceActor;
 import starwars.SWLegend;
 import starwars.SWWorld;
 import starwars.Team;
+import starwars.actions.HealPlayer;
 import starwars.actions.Leave;
 import starwars.actions.MindControl;
 import starwars.actions.Move;
@@ -74,27 +75,66 @@ public class BenKenobi extends SWLegend  {
 			say("Ben isnt feeling good. Needs the power of H20.");
 		}
 			
-		//See if Ben is nearby a water canteen that is FULL		
-		List<SWEntityInterface> contents = this.world.getEntityManager().contents(this.world.getEntityManager().whereIs(this));
-						
-		//Analyse items and entities around Ben
-		if (contents.size() > 1) 
-		{ // if it is equal to one, the only thing here is this Player, so there is nothing to report
-			for (SWEntityInterface entityBen : contents) {
-				if (entityBen != this) { // don't include self in scene description
-					if (entityBen.getSymbol() == "o") {
-						
-					//Cast enetity as a Canteen to find its level.
-						Canteen foundCanteen = (Canteen) entityBen;
-						
-						if (foundCanteen.getLevel() == 10 && (this.getHitpoints() != this.getInitialHP()))
-						{
-							say("found a canteen full");
-							//Drop current item
-							if (this.getItemCarried() != null)
+		//If Ben is carrying an item
+		if (this.getItemCarried() != null)
+		{
+			if (this.getItemCarried().getSymbol() != "o") 
+			{
+				//See if Ben is nearby a water canteen that is FULL		
+				List<SWEntityInterface> contents = this.world.getEntityManager().contents(this.world.getEntityManager().whereIs(this));
+								
+				//Analyse items and entities around Ben
+				if (contents.size() > 1) 
+				{ // if it is equal to one, the only thing here is this Player, so there is nothing to report
+					for (SWEntityInterface entityBen : contents) {
+						if (entityBen != this) { // don't include self in scene description
+							if (entityBen.getSymbol() == "o") {
+								
+							//Cast enetity as a Canteen to find its level.
+								Canteen foundCanteen = (Canteen) entityBen;
+								
+								if (foundCanteen.getLevel() == 10 && (this.getHitpoints() != this.getInitialHP()))
+								{
+									say("Ben found a canteen thats full. He has taken damage so he will heal using the found\ncanteen. He will drop the item he is carrying: " + this.getItemCarried().getShortDescription());
+									
+									Leave benIitemLeave = new Leave(this.getItemCarried(), messageRenderer);
+									scheduler.schedule(benIitemLeave, this, 1);
+									
+									Take benTakes = new Take(entityBen, messageRenderer);
+									scheduler.schedule(benTakes, this, 1);
+									
+									//Set wanting to heal = true;
+									wantsToHeal = true;
+								}
+								else 
+								{
+									say(this.getShortDescription() + " found a canteen that isnt full or Ben is at full health.\nHe decided not to pick it up.");
+								}
+							}
+						}	
+					}
+				}
+			}
+		}
+		//If Ben is carrying nothing
+		else 
+		{
+			//See if Ben is nearby a water canteen that is FULL		
+			List<SWEntityInterface> contents = this.world.getEntityManager().contents(this.world.getEntityManager().whereIs(this));
+							
+			//Analyse items and entities around Ben
+			if (contents.size() > 1) 
+			{ // if it is equal to one, the only thing here is this Player, so there is nothing to report
+				for (SWEntityInterface entityBen : contents) {
+					if (entityBen != this) { // don't include self in scene description
+						if (entityBen.getSymbol() == "o") {
+							
+						//Cast enetity as a Canteen to find its level.
+							Canteen foundCanteen = (Canteen) entityBen;
+							
+							if (foundCanteen.getLevel() == 10 && (this.getHitpoints() != this.getInitialHP()))
 							{
-								Leave benIitemLeave = new Leave(this.getItemCarried(), messageRenderer);
-								scheduler.schedule(benIitemLeave, this, 1);
+								say("Ben found a canteen that is full. He is carrying nothing at the monemt, and\nhe has taken damage, so he will heal.");
 								
 								Take benTakes = new Take(entityBen, messageRenderer);
 								scheduler.schedule(benTakes, this, 1);
@@ -102,29 +142,35 @@ public class BenKenobi extends SWLegend  {
 								//Set wanting to heal = true;
 								wantsToHeal = true;
 							}
-							else
+							else 
 							{
-								say(this.getShortDescription() + " found a canteen that is full.\nHe decided to pick it up.");
-								//Droid takes the oil can. Scheduler implements the Take.
-								Take benTakes = new Take(entityBen, messageRenderer);
-								scheduler.schedule(benTakes, this, 1);
-								//Set wanting to heal = true 
-								wantsToHeal = true;
+								say(this.getShortDescription() + " found a canteen that isnt full or Ben is at full health.\nHe decided not to pick it up.");
 							}
 						}
-						else 
-						{
-							say(this.getShortDescription() + " found a canteen that isnt full or Ben is at full health.\nHe decided not to pick it up.");
-						}
-					}
-				}	
+					}	
+				}
 			}
 		}
 		
+		
 		if (wantsToHeal) 
 		{
-			say("I wanna heal. I wont move until");
+			say("Ben is healing. Health is at: " + this.getHitpoints() + "/" + this.getInitialHP() + "HP");
 			
+			if (this.getHitpoints() != this.getInitialHP()) 
+			{	
+				HealPlayer benHeals = new HealPlayer(this, messageRenderer);
+				scheduler.schedule(benHeals, this, 1);
+				
+				say("Ben took a sip of the water canteen, which replenished a little bit of HP!");
+				return;
+			}
+			
+			//Ben is at Full health. Get the item back
+			else
+			{
+				
+			}
 		}
 		else 
 		{
@@ -133,7 +179,7 @@ public class BenKenobi extends SWLegend  {
 			//Ben attacking neighbours
 			AttackInformation attack;
 			attack = AttackNeighbours.attackLocals(ben,  ben.world, true, true);
-				
+				 
 			if (attack != null) 
 			{
 				say(getShortDescription() + " suddenly looks sprightly and attacks " +
