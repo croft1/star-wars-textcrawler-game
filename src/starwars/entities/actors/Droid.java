@@ -15,7 +15,9 @@ import starwars.SWLocation;
 import starwars.SWWorld;
 import starwars.Team;
 import starwars.actions.Attack;
+import starwars.actions.Disassemble;
 import starwars.actions.Move;
+import starwars.actions.Repair;
 import starwars.actions.Take;
 import starwars.actions.HealDroid;
 import starwars.actions.Leave;
@@ -151,11 +153,20 @@ public class Droid extends SWActor {
 						say(this.getShortDescription() + " has come accross a Droid!");
 						
 						//R2 attempts to disassemble the Droid
+						Disassemble r2diss = new Disassemble(r2entity, messageRenderer);
+						scheduler.schedule(r2diss, this, 1);
 						
-						
-						
-						//R2 attempts to heal the Droid
-						
+						/*
+						//R2 attempts to repair the Droid
+						if (this.getItemCarried() != null) {
+							Repair r2rep = new Repair(r2entity, messageRenderer);
+							scheduler.schedule(r2rep, this, 1);
+						} 
+						else
+						{
+							return;
+						}
+						*/
 					}
 				}
 			}

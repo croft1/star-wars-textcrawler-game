@@ -289,6 +289,10 @@ public class SWWorld extends World {
 		//Adding a Disassesmble affordance to R2-D2 - he can be disassembled into DroidParts
 		R2D2.addAffordance(new Disassemble(R2D2, iface));
 		
+		//Make R2D2 hold some Droid Parts from the beginning
+		DroidParts r2dp = new DroidParts(iface);
+		R2D2.setItemCarried(r2dp);
+		
 		
 		// A testDroid
 				Droid testd = new Droid(50, "testdroid", iface, this, null);
