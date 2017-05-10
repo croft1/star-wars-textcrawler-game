@@ -111,7 +111,18 @@ public class Droid extends SWActor {
 		
 		//C-3PO Droid specific act ()code
 		else if (this.getSymbol() == "C3") {
-			say("IMMA NOT MOVIN!");
+			
+			//Double precision number to represenet C-3PO's chance of speaking
+			double c3Speak = Math.random();
+			
+			//10% chance of occuring a 0.9 or above
+			if (c3Speak >= 0.9) {
+				//Call C-3PO speak method (he talks!)
+				c3POSpeaks();
+			}
+			else {
+				return;
+			}
 		}
 		
 		//R2-D2 Repair droid specific act() code
@@ -270,4 +281,32 @@ public class Droid extends SWActor {
 			}
 		}		
 	}
+	
+	private void c3POSpeaks() {
+		int quoteChoice = (int) ( Math.random() * 10+1);
+		
+		switch (quoteChoice) {
+		case 1 : this.say("C-3PO says: 'Artoo says that the chances of survival \nare 725 to 1. Actually Artoo has \nbeen known to make mistakes... from time \nto time... Oh dear...' "); break;
+		case 2 : this.say("C-3PO says: 'Excuse me sir, but might I inquire \nas to what's going on?' "); break;
+		case 3 : this.say("C-3PO says: 'I have a bad feeling about this.' "); break; 
+		case 4 : this.say("C-3PO says: 'I've had the most peculiar dream.'"); break;
+		case 5 : this.say("C-3PO says: 'I'm programmed for etiquette, not destruction!'"); break;
+		case 6 : this.say("C-3PO says: 'Pardon me, sir, could you possibly resist fiddling \nwith technology that is beyond your comprehension?' "); break;
+		case 7 : this.say("C-3PO says: 'Well, you'll never get me to go back to that iceberg! \nI don't care how safe it is now, R2, it gives my motivators the \nchills just thinking about it. ' "); break;
+		case 8 : this.say("C-3PO says: 'Hello, I am C-3PO, human cyborg relations. How might I serve you?' "); break;
+		case 9 : this.say("C-3PO says: 'Hm, it seems no one wants my company tonight. '"); break;
+		case 10 : this.say("C-3PO says: 'This way looks potentially dangerous.' "); break;
+		}
+	}
 }
+
+/*
+ * REFERENCES
+ * 
+ * http://stackoverflow.com/questions/5887709/getting-random-numbers-in-java 10th
+ * 
+ * https://www.javatpoint.com/java-switch 10th
+ * 
+ * http://www.imdb.com/character/ch0000048/quotes 10th
+ * 
+ */
