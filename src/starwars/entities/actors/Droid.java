@@ -379,4 +379,6 @@ public class Droid extends SWActor {
  * 
  * http://www.imdb.com/character/ch0000048/quotes 10th
  * 
+ * http://stackoverflow.com/questions/2429228/in-java-how-does-one-turn-a-string-into-a-char-or-a-char-into-a-string 10th
+ * 
  */

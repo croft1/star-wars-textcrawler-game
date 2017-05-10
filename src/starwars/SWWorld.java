@@ -112,7 +112,7 @@ public class SWWorld extends World {
 		
 		
 		loc = myGrid.getLocationByCoordinates(5,9);
-		ben.takeDamage(5);  //FOR TESTING PURPOSES - GET IT OFF ONCE OK
+		ben.takeDamage(20);  //FOR TESTING PURPOSES - GET IT OFF ONCE OK
 		//test blaster
 		
 		
