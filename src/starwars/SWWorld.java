@@ -290,8 +290,8 @@ public class SWWorld extends World {
 		R2D2.addAffordance(new Disassemble(R2D2, iface));
 		
 		//Make R2D2 hold some Droid Parts from the beginning
-		//DroidParts r2dp = new DroidParts(iface);
-		R2D2.setItemCarried(null);
+		DroidParts r2dp = new DroidParts(iface);
+		R2D2.setItemCarried(r2dp);
 		
 		
 		// A testDroid
@@ -314,7 +314,6 @@ public class SWWorld extends World {
 				testd.setHitpoints(-1);
 				testd.setIsImmobile(true);
 				testd.setIsDisassembled(false);
-		
 	}
 	
 

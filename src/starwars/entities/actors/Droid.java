@@ -152,21 +152,29 @@ public class Droid extends SWActor {
 					if (r2entity.getSymbol().contains("D")) { // If R2 comes accross a Droid
 						say(this.getShortDescription() + " has come accross a Droid!");
 						
-						//R2 attempts to disassemble the Droid
-						Disassemble r2diss = new Disassemble(r2entity, messageRenderer);
-						scheduler.schedule(r2diss, this, 1);
+						//Cast target entity as a Droid for checking what it needs from R2
+						Droid targetr2 = (Droid) r2entity;
 						
-						
-						//R2 attempts to repair the Droid
-						if (this.getItemCarried() != null) {
-							Repair r2rep = new Repair(r2entity, messageRenderer);
-							scheduler.schedule(r2rep, this, 1);
-						} 
-						else
-						{
-							return;
+						//R2 attempts to disassemble the Droid if its immobile
+						if (targetr2.isImmobile && targetr2.isDisassembled == false) {
+							Disassemble r2diss = new Disassemble(r2entity, messageRenderer);
+							scheduler.schedule(r2diss, this, 1);
 						}
 						
+						
+						else if (targetr2.isImmobile && targetr2.isDisassembled) {
+							if (this.getItemCarried() != null) {
+								Repair r2rep = new Repair(r2entity, messageRenderer);
+								scheduler.schedule(r2rep, this, 1);
+							} 
+						}
+						else
+						{
+							//R2 attempts to Heal a Droid
+							HealDroid r2heal = new HealDroid(r2entity, messageRenderer);
+							scheduler.schedule(r2heal, this, 1);
+						}
+					
 					}
 				}
 			}
