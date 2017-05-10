@@ -247,37 +247,6 @@ public class SWWorld extends World {
 		//Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
 		Droid_2.addAffordance(new Disassemble(Droid_2, iface));
 		
-		// Added Two Immobile Droids (for Rapair and Disassesmble Actions)
-		Droid R2D2 = new Droid(200, "R2-D2", iface, this);
-		Droid C3PO = new Droid(200, "C3-P0", iface, this);
-		
-		R2D2.setSymbol("R2");
-		C3PO.setSymbol("C3");
-		
-		loc = myGrid.getLocationByCoordinates(0, 7);
-		entityManager.setLocation(R2D2, loc);
-		loc = myGrid.getLocationByCoordinates(0, 8);
-		entityManager.setLocation(C3PO, loc);
-		
-		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
-		R2D2.addAffordance(new TakeOwnership(R2D2, iface)); 
-		C3PO.addAffordance(new TakeOwnership(C3PO, iface)); 
-		
-		//Adding a HealDroid affordance - that SWACtors act upon
-		R2D2.addAffordance(new HealDroid(R2D2, iface));
-		C3PO.addAffordance(new HealDroid(C3PO, iface));
-		
-		//Adding a Repair affordance to the Droids - can be repaired
-		R2D2.addAffordance(new Repair(R2D2, iface));
-		C3PO.addAffordance(new Repair(C3PO, iface));	
-		
-		//Adding a Disassemble affordance to the Droids - such that they can be disassembled into Droid Parts
-		R2D2.addAffordance(new Disassemble(R2D2, iface));
-		C3PO.addAffordance(new Disassemble(C3PO, iface));	
-		
-		//Setting R2-D2 & C3-P0's descriptions
-		R2D2.setShortDescription("the repair Droid");
-		C3PO.setShortDescription("the etiquette minded Droid");
 	}
 	
 
