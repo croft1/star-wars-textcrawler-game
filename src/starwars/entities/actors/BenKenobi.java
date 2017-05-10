@@ -37,6 +37,7 @@ public class BenKenobi extends SWLegend  {
 	private static BenKenobi ben = null; // yes, it is OK to return the static instance!
 	private Patrol path;
 	private boolean trainingPupil = false;
+	private boolean wantsToHeal = false;
 	
 	private BenKenobi(MessageRenderer m, SWWorld world, Direction [] moves) {
 		super(Team.GOOD, 1000, m, world);
@@ -86,7 +87,7 @@ public class BenKenobi extends SWLegend  {
 					//Cast enetity as a Canteen to find its level.
 						Canteen foundCanteen = (Canteen) entityBen;
 						
-						if (foundCanteen.getLevel() == 10)
+						if (foundCanteen.getLevel() == 10 && (this.getHitpoints() != this.getInitialHP()))
 						{
 							say("found a canteen full");
 							//Drop current item
@@ -97,6 +98,9 @@ public class BenKenobi extends SWLegend  {
 								
 								Take benTakes = new Take(entityBen, messageRenderer);
 								scheduler.schedule(benTakes, this, 1);
+								
+								//Set wanting to heal = true;
+								wantsToHeal = true;
 							}
 							else
 							{
@@ -104,49 +108,65 @@ public class BenKenobi extends SWLegend  {
 								//Droid takes the oil can. Scheduler implements the Take.
 								Take benTakes = new Take(entityBen, messageRenderer);
 								scheduler.schedule(benTakes, this, 1);
+								//Set wanting to heal = true 
+								wantsToHeal = true;
 							}
-							
 						}
 						else 
 						{
-							say(this.getShortDescription() + " found a canteen that isnt full.\nHe decided not to pick it up.");
-							return;
+							say(this.getShortDescription() + " found a canteen that isnt full or Ben is at full health.\nHe decided not to pick it up.");
 						}
 					}
 				}	
 			}
 		}
 		
-		//Check to see if ben has a water canteen
-			//if ben does have a water canteen"o""
-		//otherwise
-			//usual movement
-		
-		//Ben attacking neighbours
-		AttackInformation attack;
-		attack = AttackNeighbours.attackLocals(ben,  ben.world, true, true);
+		if (wantsToHeal) 
+		{
+			say("I wanna heal. I wont move until");
 			
-		if (attack != null) {
-			say(getShortDescription() + " suddenly looks sprightly and attacks " +
-		attack.entity.getShortDescription());
-			scheduler.schedule(attack.affordance, ben, 1);
-					
 		}
 		else 
 		{
-			if (trainingPupil)
+			say("Lets go");
+			
+			//Ben attacking neighbours
+			AttackInformation attack;
+			attack = AttackNeighbours.attackLocals(ben,  ben.world, true, true);
+				
+			if (attack != null) 
 			{
-				trainingPupil = false;
-			} 
-			else
+				say(getShortDescription() + " suddenly looks sprightly and attacks " +
+						attack.entity.getShortDescription());
+				scheduler.schedule(attack.affordance, ben, 1);
+						
+			}
+			else 
 			{
-				Direction newdirection = path.getNext();
-				say(getShortDescription() + " moves " + newdirection);
-				Move myMove = new Move(newdirection, messageRenderer, world);
-				scheduler.schedule(myMove, this, 1);
+				if (trainingPupil)
+				{
+					trainingPupil = false;
+				} 
+				else
+				{
+					Direction newdirection = path.getNext();
+					say(getShortDescription() + " moves " + newdirection);
+					Move myMove = new Move(newdirection, messageRenderer, world);
+					scheduler.schedule(myMove, this, 1);
+				
+				}
 			}	
-		}	
+			
+		}
 	}
+		
+		
+		
+		//Check to see if ben has a item
+			//if ben does have a water canteen"o""
+		//otherwise
+			//usual movement
+	
 	
 	public boolean isTrainingPupil(){
 		return trainingPupil;
