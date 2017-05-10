@@ -1,14 +1,19 @@
 package starwars.entities.actors;
 
+import java.util.List;
+
 import edu.monash.fit2099.simulator.space.Direction;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
+import starwars.SWEntityInterface;
 import starwars.SWForceActor;
 import starwars.SWLegend;
 import starwars.SWWorld;
 import starwars.Team;
 import starwars.actions.MindControl;
 import starwars.actions.Move;
+import starwars.actions.Take;
 import starwars.actions.TrainForce;
+import starwars.entities.Canteen;
 import starwars.entities.Force;
 import starwars.entities.LightSaber;
 import starwars.entities.actors.behaviors.AttackInformation;
@@ -58,27 +63,77 @@ public class BenKenobi extends SWLegend  {
 		if(isDead()) {
 			return;
 		}
-		AttackInformation attack;
-		attack = AttackNeighbours.attackLocals(ben,  ben.world, true, true);
 		
-		if (attack != null) {
-			say(getShortDescription() + " suddenly looks sprightly and attacks " +
-		attack.entity.getShortDescription());
-			scheduler.schedule(attack.affordance, ben, 1);
-		}
-		else {
-			if(trainingPupil){
-				trainingPupil = false;
-			} else{
-				
+		//Ben healing priorities...
+		
+		//When Ben (Obiwan) is not at 100% health..
+		if (this.getHitpoints() != this.getInitialHP()) {
+			say("Ben isnt feeling good. Needs the power of H20.");
 			
-			Direction newdirection = path.getNext();
-			say(getShortDescription() + " moves " + newdirection);
-			Move myMove = new Move(newdirection, messageRenderer, world);
-
-			scheduler.schedule(myMove, this, 1);
-			}
+			//See if Ben is nearby a water canteen that is FULL
+			
+			List<SWEntityInterface> contents = this.world.getEntityManager().contents(this.world.getEntityManager().whereIs(this));
+						
+			//Analyse items and entities around Ben
+			if (contents.size() > 1) { // if it is equal to one, the only thing here is this Player, so there is nothing to report
+				for (SWEntityInterface entityBen : contents) {
+					if (entityBen != this) { // don't include self in scene description
+						if (entityBen.getSymbol() == "o") {
+							
+							//Cast enetity as a Canteen to find its level.
+							
+							Canteen foundCanteen = (Canteen) entityBen;
+							
+							if (foundCanteen.getLevel() == 10)
+							{
+								this.say(this.getShortDescription() + " found a canteen that is full.\nHe decided to pick it up.");
+								//Droid takes the oil can. Scheduler implements the Take.
+								Take benTakes = new Take(entityBen, messageRenderer);
+								scheduler.schedule(benTakes, this, 1);
+							}
+							else 
+							{
+								this.say(this.getShortDescription() + " found a canteen that isnt full.\nHe decided not to pick it up.");
+								return;
+							}
+						}
+					}	
+				}
+			}	
+			
+			//Drink from the canteen
+			
+			
+			
 		}
+		
+		else 
+		
+		{
+			//Ben attacking neighbours
+			AttackInformation attack;
+			attack = AttackNeighbours.attackLocals(ben,  ben.world, true, true);
+			
+			if (attack != null) {
+				say(getShortDescription() + " suddenly looks sprightly and attacks " +
+			attack.entity.getShortDescription());
+				scheduler.schedule(attack.affordance, ben, 1);
+				
+			}
+			else {
+				if(trainingPupil){
+					trainingPupil = false;
+				} else{
+					
+				
+				Direction newdirection = path.getNext();
+				say(getShortDescription() + " moves " + newdirection);
+				Move myMove = new Move(newdirection, messageRenderer, world);
+
+				scheduler.schedule(myMove, this, 1);
+				}
+			}
+		}		
 	}
 	
 	public boolean isTrainingPupil(){
