@@ -288,6 +288,28 @@ public class SWWorld extends World {
 		R2D2.addAffordance(new Repair(R2D2, iface));				
 		//Adding a Disassesmble affordance to R2-D2 - he can be disassembled into DroidParts
 		R2D2.addAffordance(new Disassemble(R2D2, iface));
+		
+		
+		// A testDroid
+				Droid testd = new Droid(50, "testdroid", iface, this, null);
+						
+				testd.setSymbol("TD");
+				loc = myGrid.getLocationByCoordinates(1, 0);
+				entityManager.setLocation(testd, loc);
+					
+				
+				//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
+				testd.addAffordance(new TakeOwnership(testd, iface)); 		
+				//Adding a HealDroid affordance - that SWACtors act upon
+				testd.addAffordance(new HealDroid(testd, iface));		
+				//Adding a Repair affordance to the Droid - can be repaired
+				testd.addAffordance(new Repair(testd, iface));				
+				//Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
+				testd.addAffordance(new Disassemble(testd, iface));
+				
+				testd.setHitpoints(-1);
+				testd.setIsImmobile(true);
+		
 	}
 	
 

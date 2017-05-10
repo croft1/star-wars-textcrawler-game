@@ -140,12 +140,34 @@ public class Droid extends SWActor {
 		//R2-D2 Repair droid specific act() code
 		else if (this.getSymbol() == "R2") {
 			
+			//Describe who R2 can see
+			//get the contents of the location
+			List<SWEntityInterface> r2contents = this.world.getEntityManager().contents(this.world.getEntityManager().whereIs(this));
+			
+			//and describe the contents
+			if (r2contents.size() > 1) { // if it is equal to one, the only thing here is R2, so there is nothing to report
+				for (SWEntityInterface r2entity : r2contents) {
+					if (r2entity.getSymbol().contains("D")) { // If R2 comes accross a Droid
+						say(this.getShortDescription() + " has come accross a Droid!");
+						
+						//R2 attempts to disassemble the Droid
+						
+						
+						
+						//R2 attempts to heal the Droid
+						
+					}
+				}
+			}
+			
 			//R2 moves
 			Direction R2Direction = this.getDroidPatrol().getNext();
 			say(getShortDescription() + " moves " + R2Direction);
 			Move myMove = new Move(R2Direction, messageRenderer, world);
 
 			scheduler.schedule(myMove, this, 1);
+			
+			
 			
 		}
 		
