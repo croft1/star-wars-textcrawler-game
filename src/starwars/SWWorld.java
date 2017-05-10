@@ -294,6 +294,7 @@ public class SWWorld extends World {
 		R2D2.setItemCarried(r2dp);
 		
 		
+		/*
 		// A testDroid
 				Droid testd = new Droid(50, "testdroid", iface, this, null);
 						
@@ -314,6 +315,7 @@ public class SWWorld extends World {
 				testd.setHitpoints(-1);
 				testd.setIsImmobile(true);
 				testd.setIsDisassembled(false);
+		*/
 	}
 	
 
