@@ -103,11 +103,19 @@ public class Disassemble extends SWAffordance {
 					//Create new Droid Parts
 					DroidParts droidPImm = new DroidParts(this.messageRenderer);
 					
-					//Place created Droid Parts in the world
-					entityManager.setLocation(droidPImm, entityManager.whereIs(target));
-					
 					//Set the immoble Droid to disassembled
 					target.setIsDisassembled(true);
+					
+					//If R2 is carrying droid Parts, leave them. else take them!
+					if (a.getItemCarried() != null) {
+						a.say(a.getShortDescription() + "is already holding an item. Cannot\ntake the Droid Parts!");
+						return;
+					}
+					else
+					{
+						a.say(a.getShortDescription() + " took the Droid Parts from the \nDroid he disassembled.");
+						a.setItemCarried(droidPImm);
+					}
 	
 				}
 			}			

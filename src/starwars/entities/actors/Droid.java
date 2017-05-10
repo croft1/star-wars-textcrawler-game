@@ -156,7 +156,7 @@ public class Droid extends SWActor {
 						Disassemble r2diss = new Disassemble(r2entity, messageRenderer);
 						scheduler.schedule(r2diss, this, 1);
 						
-						/*
+						
 						//R2 attempts to repair the Droid
 						if (this.getItemCarried() != null) {
 							Repair r2rep = new Repair(r2entity, messageRenderer);
@@ -166,7 +166,7 @@ public class Droid extends SWActor {
 						{
 							return;
 						}
-						*/
+						
 					}
 				}
 			}
