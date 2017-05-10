@@ -209,10 +209,11 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(4,7);
 		entityManager.setLocation(dale, loc);
 		
-		
+		// A new canteen for Ben to Drink from
 		Canteen c = new Canteen(iface,100,100);
-		c.setSymbol("X");
+		c.setSymbol("o");
 		loc = myGrid.getLocationByCoordinates(6, 6);
+		c.setLevel(10);
 		entityManager.setLocation(c, loc);
 		
 		// A Droid
