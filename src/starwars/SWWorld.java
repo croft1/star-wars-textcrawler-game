@@ -247,11 +247,22 @@ public class SWWorld extends World {
 		//Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
 		Droid_2.addAffordance(new Disassemble(Droid_2, iface));
 		
-		//Creating C-3PO
+		//Creating C-3PO & attributes
 		Droid C3PO = new Droid(200, "C-3PO", iface, this);
 		C3PO.setSymbol("C3");
 		loc = myGrid.getLocationByCoordinates(0, 7);
 		entityManager.setLocation(C3PO, loc);
+		
+		//Adding a TakeOwnership Affordance to C-3PO - thus an SWActor can take ownership of him.
+		C3PO.addAffordance(new TakeOwnership(C3PO, iface)); 		
+		//Adding a HealDroid affordance - that SWACtors act upon
+		C3PO.addAffordance(new HealDroid(C3PO, iface));		
+		//Adding a Repair affordance to C-3PO- can be repaired
+		C3PO.addAffordance(new Repair(C3PO, iface));				
+		//Adding a Disassesmble affordance to C-3PO - he can be disassembled into DroidParts
+		C3PO.addAffordance(new Disassemble(C3PO, iface));
+				
+		
 	}
 	
 
