@@ -161,23 +161,29 @@ public class Droid extends SWActor {
 							scheduler.schedule(r2diss, this, 1);
 						}
 						
-						
+						//R2 tries to repair a droid who is immobile and disassembled
 						else if (targetr2.isImmobile && targetr2.isDisassembled) {
 							if (this.getItemCarried() != null) {
 								Repair r2rep = new Repair(r2entity, messageRenderer);
 								scheduler.schedule(r2rep, this, 1);
 							} 
 						}
-						else
+						
+						//R2 attempts to Heal a Droid if active and not disassembled
+						else if (targetr2.isDisassembled == false && targetr2.isImmobile == false)
 						{
-							//R2 attempts to Heal a Droid
+							
 							HealDroid r2heal = new HealDroid(r2entity, messageRenderer);
 							scheduler.schedule(r2heal, this, 1);
 						}
-					
 					}
 				}
 			}
+					
+			//Heals himself if he can
+			
+			HealDroid droidHealR2 = new HealDroid(this, messageRenderer);
+			scheduler.schedule(droidHealR2, this, 1);
 			
 			//R2 moves
 			Direction R2Direction = this.getDroidPatrol().getNext();
@@ -316,7 +322,7 @@ public class Droid extends SWActor {
 	
 	
 	private void selfHeal() {
-
+		
 		//IF the Droid is carrying an item...
 		if (this.getItemCarried() != null){
 			

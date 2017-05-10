@@ -126,33 +126,48 @@ public class HealDroid extends SWAffordance {
 		
 		//If R2-D2 comes accross a Droid
 		if (a.getSymbol() == "R2") {
-			if (target.getIsImmobile() == true) 
-			{
-				//Print out notification - cant heal an immobile Droid.
-				a.say("Cant heal " + target.getShortDescription() + ", who is \nimmobile. Need to"
-				+ " Disassemble or Repair first.");
+			
+			
+			if (a.getSymbol() == target.getSymbol()) {
+				
+				//R2 only heals himself when he is at half health
+				if(a.getHitpoints() < (a.getInitialHP()/2)) {
+					a.setHitpoints(a.getInitialHP());
+					a.say("R2-D2 has healed himself to " + a.getHitpoints() + "HP");
+				}
 			}
 			
 			else 
 			{
-				//If a player tries to heal a full HP NPC
-				if(target.getHitpoints() == target.getInitialHP()) 
+				if (target.getIsImmobile() == true) 
 				{
-					a.say(target.getShortDescription() + " is at maximum HP!");
+					//Print out notification - cant heal an immobile Droid.
+					a.say("Cant heal " + target.getShortDescription() + ", who is \nimmobile. Need to"
+					+ " Disassemble or Repair first.");
 				}
 				
 				else 
 				{
-					//Otherwise the oil can CAN completely heal the target
-					target.setHitpoints(target.getInitialHP());
-											
-					//Print out to game
-					a.say("R2-D2 has healed " + 
-					target.getShortDescription()
-					+ " to " + target.getHitpoints() + "HP");
-						
-				}
+					//If a player tries to heal a full HP NPC
+					if(target.getHitpoints() == target.getInitialHP()) 
+					{
+						a.say(target.getShortDescription() + " is at maximum HP!");
+					}
+					
+					else 
+					{
+						//Otherwise the oil can CAN completely heal the target
+						target.setHitpoints(target.getInitialHP());
+												
+						//Print out to game
+						a.say("R2-D2 has healed " + 
+						target.getShortDescription()
+						+ " to " + target.getHitpoints() + "HP");
+							
+					}
+				}				
 			}
+			
 		}
 	}
 		
