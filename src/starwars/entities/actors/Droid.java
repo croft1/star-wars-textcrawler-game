@@ -6,6 +6,7 @@ import java.util.List;
 import edu.monash.fit2099.gridworld.Grid;
 import edu.monash.fit2099.simulator.space.Direction;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
+import starwars.entities.actors.behaviors.Patrol;
 import starwars.SWAction;
 import starwars.SWActor;
 import starwars.SWAffordance;
@@ -48,7 +49,7 @@ public class Droid extends SWActor {
 	 *            <code>Droid</code> belongs to
 	 * 
 	 */
-	public Droid(int hitpoints, String name, MessageRenderer m, SWWorld world) {
+	public Droid(int hitpoints, String name, MessageRenderer m, SWWorld world, Direction [] droidPath) {
 		super(Team.NEUTRAL, hitpoints, m, world);
 		// TODO Auto-generated constructor stub
 		this.name = name;
@@ -127,6 +128,8 @@ public class Droid extends SWActor {
 		
 		//R2-D2 Repair droid specific act() code
 		else if (this.getSymbol() == "R2") {
+			
+			
 			
 		}
 		
