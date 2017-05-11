@@ -1,3 +1,10 @@
+/**
+ * starwars.entities.actors package
+ * 
+ *  Used in the SWApplication (roguelike game) for all actors (both human
+ *  and non human) who will wander the map in survival & questing!	
+ *
+ */
 package starwars.entities.actors;
 
 
@@ -109,31 +116,4 @@ public class Player extends SWForceActor {
 			}
 		}
 	}
-	
-
-	
-
-	private String nextToDroid() {
-		SWLocation location = this.world.getEntityManager().whereIs(this);
-		//get the contents of the location
-		List<SWEntityInterface> contents = this.world.getEntityManager().contents(location);
-				
-		//and describe the contents
-		if (contents.size() > 1) { // if it is equal to one, the only thing here is this Player, so there is nothing to report
-			for (SWEntityInterface entity : contents) {
-				String entity_symbol = "D1";
-				if (entity.getSymbol() == entity_symbol) { // If the Droid is next to Luke (denoted by @)
-					return (this.getLongDescription() + " is next to " + entity.getShortDescription() + "!");
-					}
-				}
-			}
-		return ("Luke is not next to a Droid");
-	}
-	
-	
-
-
-
-	
-
 }
