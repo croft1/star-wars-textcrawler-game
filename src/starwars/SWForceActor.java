@@ -47,21 +47,6 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	
 
 	
-	/**
-	 * Returns whether the SWActor has the <code>Force</code>.
-	 * 
-	 * @return 	the boolean of force presence in an <code>SWActor</code> 
-	 * @see 	#force
-	 */
-	
-	public boolean hasForce() {
-		return (force != null);
-	}
-	
-	
-	
-	
-	
 
 
 
