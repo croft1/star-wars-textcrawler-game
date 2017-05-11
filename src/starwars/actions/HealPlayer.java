@@ -1,3 +1,11 @@
+/**
+ * starwars.actions package
+ * 
+ * Initiates actions that will be able to be initiated by SWActors in the Star Wars
+ * roguelike game. This includes actions like Obey (the Force), TakeOwnership (of Droids),
+ * Leave (an item) and so forth!
+ *
+ */
 package starwars.actions;
 
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
@@ -8,6 +16,18 @@ import starwars.SWEntityInterface;
 import starwars.entities.Canteen;
 import starwars.entities.Fillable;
 
+/**
+ * Class for HealDroid
+ * 
+ * The HealPlayer action enables SWActors (like the Player and Ben Kenobi) to be
+ * able to heal themselves when they would like to. The affiliated
+ * SWActor who wants to heal needs to have a Water Canteen with a level >0
+ * to do so. Otherwise it will need to be filled at the Moisture Farms.
+ * 
+ * @author jas
+ * @author mewc
+ *
+ */
 public class HealPlayer extends SWAffordance {
 
 	/**

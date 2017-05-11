@@ -1,3 +1,10 @@
+/**
+ * starwars.entities.actors package
+ * 
+ *  Used in the SWApplication (roguelike game) for all actors (both human
+ *  and non human) who will wander the map in survival & questing!	
+ *
+ */
 package starwars.entities.actors;
 
 import java.util.ArrayList;
@@ -22,6 +29,25 @@ import starwars.actions.Take;
 import starwars.actions.HealDroid;
 import starwars.actions.Leave;
 
+
+/**
+ * Class for Droid SWActors  
+ * 
+ * Droids are non human SWActors able to follow the player if taken 
+ * ownership of. Droid, like all SWActors also have a certain abount of hitpoints that
+ * renders them ímmoble if falling below zero. It is to this need then that
+ * the Droid can be dismantled into Droid Parts - and then re-assembled 
+ * by using these parts.
+ * 
+ * Droids also are ownable - thus, if a player comes accross a neutral
+ * affiliated Droid, they can take up their ownership. Droids do NOT use
+ * the Force, so they are essentially the owners' companions!
+ * 
+ * @author rober_000
+ * @author jas
+ * @author mewc
+ *
+ */
 public class Droid extends SWActor {
 
 	private String name;
@@ -37,13 +63,14 @@ public class Droid extends SWActor {
 	
 	/**Patrol path used for specific Droids. Null otherwise**/
 	private Patrol droidPatrol;
+	
 	/**
-	 * Creates a Droid. Droids are initially of NEUTRAL affiliation. Taking 
+	 * Constructor for a Droid. Droids are initially of NEUTRAL affiliation. Taking 
 	 * ownership of a Droid changes their allegience.
 	 * 
 	 * @param hitpoints
 	 *            the number of hit points of this Droid has. If this
-	 *            decreases to below zero, the Raider will become immobile
+	 *            decreases to below zero, the Droid will become immobile
 	 * @param name
 	 *            the Droids name. Used in displaying descriptions.
 	 * @param m
@@ -69,13 +96,21 @@ public class Droid extends SWActor {
 			this.droidPatrol = new Patrol(droidPath);
 		}
 		
-		
-		//SWActors are given the Attack affordance hence they can be attacked
-		//SWAffordance healdroid = new HealDroid(this, m);
-		//this.addAffordance(healdroid);
-		
 	}
 
+	/**
+	 * act() method for Droids
+	 * 
+	 * Implements the Droids' actions - which if a regular Droid, is essentially moving around
+	 * in a random fashion (20%) chance each turn.
+	 * 
+	 * Droids can heal themselves if they are below half their health - if they come accross a 
+	 * oil can they have picked up.
+	 * 
+	 * Once taken owership, Droids follow their new owner until they are once again immobile. On 
+	 * repair, Droids take on their ownsers allegience, so be wary!
+	 * 
+	 */
 	@Override
 	public void act() {
 
@@ -262,6 +297,15 @@ public class Droid extends SWActor {
 		}	
 	}
 
+	/**
+	 * getShortDescription() method for Droids
+	 * 
+	 * Returns the short string descripton of a Droid. This is based on the basis of a Droid - if it is either
+	 * C-3PO or R2-D2, the function returns specialized descriptions matching their functions. Otherwise for
+	 * regular Droids, the return is the same - " the Droid ".
+	 * 
+	 * @return 	description	- The Droids' short descripton in String format
+	 */
 	@Override
 	public String getShortDescription() {
 		
@@ -278,22 +322,54 @@ public class Droid extends SWActor {
 		}	
 	}
 
+	/**
+	 * getLongDescription() method for Droids
+	 * 
+	 * Returns the short string description (as this.getShortDEscripton) of a Droid. This is based on 
+	 * the basis of a Droid - if it is either C-3PO or R2-D2, the function returns specialized descriptions 
+	 * matching their functions. Otherwise for regular Droids, the return is the same - " the Droid ".
+	 * 
+	 * @return 	short descripton 	- The Droids' short descripton in String format
+	 */
 	@Override
 	public String getLongDescription() {
 		return this.getShortDescription();
 	}
 
+	/**
+	 * describeLcation() method for Droids
+	 * 
+	 * Returns the SWlocation of the Droids current position in the SWWorld map. 
+	 * 
+	 * @return 	location 	- The Droids' SWLocation on the created SWWorld.
+	 */
 	private String describeLocation() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		return this.getShortDescription() + " [" + this.getHitpoints() + "] is at " + location.getShortDescription();
-
 	}
 	
+	/**
+	 * getOwner() method for Droids
+	 * 
+	 * Returns the SWActor owner the Droids currently. If the Droid does not have a
+	 * owner, this function returns null.
+	 * 
+	 * @return 	owner 	- The Droids' SWActor owner at present calltime.
+	 */
 	public SWActor getOwner() {
 		//Return the SWActor owner of this Actor (initially nothing, can change!)
 		return owner;
 	}
 	
+	/**
+	 * setOwner() method for Droids
+	 * 
+	 * Initiates the SWActor owner of the Droid that will take owner of said Droid. This
+	 * method also sets the humanControlled variable to true.
+	 * 
+	 * @param 	newOwner	- The new owner (SWActor) of the Droid 
+	 * 
+	 */
 	public void setOwner(SWActor newOwner) {
 		//Set this SWActors' owner to newOwner
 		this.owner = newOwner;
@@ -302,25 +378,59 @@ public class Droid extends SWActor {
 		this.humanControlled = true;
 	}
 	
+	/**
+	 * setIsImmobile() method for Droids
+	 * 
+	 * Initiates the mobile status of Droids once called upon.
+	 * 
+	 * @param 	newisImmobile	- The new mobile status of the Droid 
+	 * 
+	 */
 	public void setIsImmobile(boolean newisImmobile) {
 		this.isImmobile = newisImmobile;
 	}
 	
+	/**
+	 * getIsImmobile() method for Droids
+	 * 
+	 * Returns the current mobility status of a Droid
+	 * 
+	 * @return 	isImmobile	- The mobility status of a Droid (Boolean)
+	 * 
+	 */
 	public boolean getIsImmobile() {
 		return isImmobile;
 	}
 
-	//isDisassembled setter & getter
-	
+	/**
+	 * setIsDisassembled() method for Droids
+	 * 
+	 * Initiates the disassembled status of Droids once called upon. Note that
+	 * disassembled Droid will drop some Droid Parts in use for repairing the Droid
+	 * back to usable health!
+	 * 
+	 * @param 	newIsDis	- The new disassembled status of the Droid 
+	 * 
+	 */
 	public void setIsDisassembled(boolean newIsDis) {
 		this.isDisassembled = newIsDis;
 	}
-	
+
+	/**
+	 * getIsDisassembled() method for Droids
+	 * 
+	 * Obtains the disassembled status of a Droid once called upon. Note that
+	 * disassembled Droid will drop some Droid Parts in use for repairing the Droid
+	 * back to usable health!
+	 * 
+	 * @return 	isDisassembled	- The disassembled status of the Droid 
+	 * 
+	 */
 	public boolean getIsDisassembled() {
 		return isDisassembled;
 	}
 	
-	
+	//Selfheal method for Droids	( if they are at lower than half health)
 	private void selfHeal() {
 		
 		//IF the Droid is carrying an item...
@@ -348,10 +458,12 @@ public class Droid extends SWActor {
 		}		
 	}
 	
+	//Droid Patrol method (for R2-D2's implementation)
 	private Patrol getDroidPatrol() {
 		return this.droidPatrol;
 	}
 	
+	//c3OSpeaks method - for calling in random quotes from C-3PO fine choice of literacy!
 	private void c3POSpeaks() {
 		int quoteChoice = (int) ( Math.random() * 10+1);
 		

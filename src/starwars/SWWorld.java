@@ -112,8 +112,6 @@ public class SWWorld extends World {
 		
 		
 		loc = myGrid.getLocationByCoordinates(5,9);
-		ben.takeDamage(20);  //FOR TESTING PURPOSES - GET IT OFF ONCE OK
-		//test blaster
 		
 		
 		// Luke
@@ -234,7 +232,7 @@ public class SWWorld extends World {
 		//Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
 		Droid_1.addAffordance(new Disassemble(Droid_1, iface));
 		
-		// A Droid
+		// A second Droid
 		Droid Droid_2 = new Droid(50, "Droid 2", iface, this, null);
 				
 		Droid_2.setSymbol("D2");
@@ -250,6 +248,29 @@ public class SWWorld extends World {
 		Droid_2.addAffordance(new Repair(Droid_2, iface));				
 		//Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
 		Droid_2.addAffordance(new Disassemble(Droid_2, iface));
+		
+		//A third Droid
+		Droid Droid_3 = new Droid(50, "Droid 3", iface, this, null);
+		
+		Droid_3.setSymbol("D3");
+		loc = myGrid.getLocationByCoordinates(3, 0);
+		entityManager.setLocation(Droid_3, loc);
+			
+		
+		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
+		Droid_3.addAffordance(new TakeOwnership(Droid_3, iface)); 		
+		//Adding a HealDroid affordance - that SWACtors act upon
+		Droid_3.addAffordance(new HealDroid(Droid_3, iface));		
+		//Adding a Repair affordance to the Droid - can be repaired
+		Droid_3.addAffordance(new Repair(Droid_3, iface));				
+		//Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
+		Droid_3.addAffordance(new Disassemble(Droid_3, iface));
+		
+		//Setting D3 to be immobile and no health (for R2-D2 to help)
+		Droid_3.setHitpoints(0);
+		Droid_3.setIsImmobile(true);
+		
+		
 		
 		//Creating C-3PO & attributes
 		Droid C3PO = new Droid(200, "C-3PO", iface, this, null);
@@ -296,29 +317,6 @@ public class SWWorld extends World {
 		//Make R2D2 hold some Droid Parts from the beginning
 		DroidParts r2dp = new DroidParts(iface);
 		R2D2.setItemCarried(r2dp);
-		R2D2.setHitpoints(50);
-		
-		
-		// A testDroid
-				Droid testd = new Droid(50, "testdroid", iface, this, null);
-						
-				testd.setSymbol("TD");
-				loc = myGrid.getLocationByCoordinates(1, 0);
-				entityManager.setLocation(testd, loc);
-					
-				
-				//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
-				testd.addAffordance(new TakeOwnership(testd, iface)); 		
-				//Adding a HealDroid affordance - that SWACtors act upon
-				testd.addAffordance(new HealDroid(testd, iface));		
-				//Adding a Repair affordance to the Droid - can be repaired
-				testd.addAffordance(new Repair(testd, iface));				
-				//Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
-				testd.addAffordance(new Disassemble(testd, iface));
-				
-				testd.setHitpoints(-1);
-				testd.setIsImmobile(true);
-				testd.setIsDisassembled(false);
 		
 	}
 	
