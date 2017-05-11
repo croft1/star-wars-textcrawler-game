@@ -1,6 +1,7 @@
 package starwars.actions;
 
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
+import starwars.Capability;
 import starwars.SWAction;
 import starwars.SWActor;
 import starwars.SWAffordance;
@@ -10,24 +11,19 @@ import starwars.SWForceEntityInterface;
 import starwars.entities.LightSaber;
 
 /**
- * <code>SWAction</code> that lets a <code>SWActor</code> pick up an object.
+ * <code>SWAction</code> that lets a <code>SWActor</code> weild up a weapon with the attack affordance.
+ * 
+ * an actor w
  * 
  * @author ram
  */
 /*
- * Changelog
- * 2017/01/26	- candDo method changed. An actor can only take if it's not holding any items already.
- * 				- act method modified. Take affordance removed from the item picked up, since an item picked up
- * 				  cannot be taken. This is just a safe guard.
- * 2017/02/03	- Actors are no longer given a leave action after taking an item.
- * 				- Leave action was removed since students had to add this functionality. (yes there was a leave action
- * 				  but I've failed to document it here)
- * 				- canDo method changed to return true only if the actor is not carrying an item (asel)
+
  */
 public class Wield extends SWAffordance {
 
 	/**
-	 * Constructor for the <code>Take</code> Class. Will initialize the message renderer, the target and 
+	 * Constructor for the <code>Wield</code> Class. Will initialize the message renderer, the target and 
 	 * set the priority of this <code>Action</code> to 1 (lowest priority is 0).
 	 * 
 	 * @param theTarget a <code>SWEntity</code> that is being taken
@@ -92,8 +88,10 @@ public class Wield extends SWAffordance {
 					
 				
 			} else{
+				if(((SWEntityInterface) target).hasCapability(Capability.WEAPON)){
+					setWielding(true,a,theItem);
+				}
 				
-				setWielding(true,a,theItem);
 			}
 			
 			
