@@ -112,8 +112,6 @@ public class SWWorld extends World {
 		
 		
 		loc = myGrid.getLocationByCoordinates(5,9);
-		ben.takeDamage(20);  //FOR TESTING PURPOSES - GET IT OFF ONCE OK
-		//test blaster
 		
 		
 		// Luke
@@ -296,29 +294,6 @@ public class SWWorld extends World {
 		//Make R2D2 hold some Droid Parts from the beginning
 		DroidParts r2dp = new DroidParts(iface);
 		R2D2.setItemCarried(r2dp);
-		R2D2.setHitpoints(50);
-		
-		
-		// A testDroid
-				Droid testd = new Droid(50, "testdroid", iface, this, null);
-						
-				testd.setSymbol("TD");
-				loc = myGrid.getLocationByCoordinates(1, 0);
-				entityManager.setLocation(testd, loc);
-					
-				
-				//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
-				testd.addAffordance(new TakeOwnership(testd, iface)); 		
-				//Adding a HealDroid affordance - that SWACtors act upon
-				testd.addAffordance(new HealDroid(testd, iface));		
-				//Adding a Repair affordance to the Droid - can be repaired
-				testd.addAffordance(new Repair(testd, iface));				
-				//Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
-				testd.addAffordance(new Disassemble(testd, iface));
-				
-				testd.setHitpoints(-1);
-				testd.setIsImmobile(true);
-				testd.setIsDisassembled(false);
 		
 	}
 	
