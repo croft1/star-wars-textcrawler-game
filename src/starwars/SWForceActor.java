@@ -24,8 +24,8 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	private String[] titles = {" the Wanderer"," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
 	
 	/** 
-	 * Protected constructor to prevent random other code from creating 
-	 * SWLegends or their descendents.
+	 * Protected constructor to prevent random other code
+	 * 
 	 * @param team
 	 * @param hitpoints
 	 * @param m

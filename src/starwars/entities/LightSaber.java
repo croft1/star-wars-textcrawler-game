@@ -31,6 +31,8 @@ public class LightSaber extends SWForceEntity implements SWForceEntityInterface 
 	 * 	<li>Add a <code>Take</code> affordance to this <code>LightSaber</code> so it can be taken</li> 
 	 * </ul>
 	 * 
+	 * @author croft1  added lightsaber as a forceintity
+	 * 
 	 * @param m <code>MessageRenderer</code> to display messages.
 	 * 
 	 * @see {@link starwars.actions.Take}

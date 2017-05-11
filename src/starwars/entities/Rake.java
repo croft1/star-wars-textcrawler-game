@@ -6,17 +6,13 @@ import starwars.SWEntity;
 import starwars.actions.Fill;
 
 /**
- * A canteen that can be used to contain water.
+ * A Mace that can be used to contain water.
  * 
- * It can be filled at a Reservoir, or any other Entity
- * that has a Dip affordance.
- * 
- * Please note that drinking from the canteen is currently 
- * unimplemented
+
+
  * 
  * 
- * @author Robert Merkel
- * 
+ * @author croft1
  */
 public class Rake extends SWEntity {
 
