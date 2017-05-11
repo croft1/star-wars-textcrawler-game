@@ -28,62 +28,117 @@ public class Repair extends SWAffordance {
 	
 		//If the Droid is still mobile
 
-
-		if (target.getIsImmobile() == false) {
-			a.say("Cant repair a mobile Droid!");
-
-		}
-		
-		//Otherwise, attempt to repair a Droid
-		else {
+		//If the entity trying to disassemble is Luke 
+		if (a.getSymbol() == "@") {
 			
-			//If the player has no items
-			if (a.getItemCarried() == null) {
-				a.say(a.getShortDescription() + " has no items held." + 
-					("\nObtain Droid Parts to repair this Droid."));
+			if (target.getIsImmobile() == false) {
+				a.say("Cant repair a mobile Droid!");
+	
 			}
 			
+			//Otherwise, attempt to repair a Droid
 			else {
-				//If the item is not Droid Parts
-				if(a.getItemCarried().getSymbol() != "dp") {
-					a.say(a.getShortDescription() + " is holding " + 
-							a.getItemCarried().getShortDescription() + "\nObtain Droid Parts to repair this Droid.");
+				
+				//If the player has no items
+				if (a.getItemCarried() == null) {
+					a.say(a.getShortDescription() + " has no items held." + 
+						("\nObtain Droid Parts to repair this Droid."));
 				}
 				
-				//Otherwise, Droid Parts are held. Repair the immobile & disassembled Droid
 				else {
-							
-					//Remove the Droid Parts from the Actors' inventory
-					a.setItemCarried(null);
+					//If the item is not Droid Parts
+					if(a.getItemCarried().getSymbol() != "dp") {
+						a.say(a.getShortDescription() + " is holding " + 
+								a.getItemCarried().getShortDescription() + "\nObtain Droid Parts to repair this Droid.");
+					}
 					
-					//Make Droids' health back to max HP
-					target.setHitpoints(target.getInitialHP());
-					
-					//Printout of repair 
-					a.say(target.getShortDescription() + " was repaired by " + a.getShortDescription()
-					+ ".\n" + target.getShortDescription() + " now has " + target.getHitpoints() + " HP.");
-					
-					//Set isImmobile to false
-					target.setIsImmobile(false);
-					
-					//Set isDisassembled to false
-					target.setIsDisassembled(false);
-					
-					//Set allegience to repairing character
-					target.setOwner(a);
-					target.setTeam(a.getTeam());
-					
-					//Printing out ownership
-					a.say(target.getShortDescription() + " has new owner: " + target.getOwner().getShortDescription());
-					
-					//Printing team affiliation
-					a.say(target.getShortDescription() + " affiliation has changed to: " +  target.getTeam() );
-
-					//Add an attack affordance to the repaired Droid, so it can be attacked again
-					target.addAffordance(new Attack(target, this.messageRenderer));
+					//Otherwise, Droid Parts are held. Repair the immobile & disassembled Droid
+					else {
+								
+						//Remove the Droid Parts from the Actors' inventory
+						a.setItemCarried(null);
+						
+						//Make Droids' health back to max HP
+						target.setHitpoints(target.getInitialHP());
+						
+						//Printout of repair 
+						a.say(target.getShortDescription() + " was repaired by " + a.getShortDescription()
+						+ ".\n" + target.getShortDescription() + " now has " + target.getHitpoints() + " HP.");
+						
+						//Set isImmobile to false
+						target.setIsImmobile(false);
+						
+						//Set isDisassembled to false
+						target.setIsDisassembled(false);
+						
+						//Set allegience to repairing character
+						target.setOwner(a);
+						target.setTeam(a.getTeam());
+						
+						//Printing out ownership
+						a.say(target.getShortDescription() + " has new owner: " + target.getOwner().getShortDescription());
+						
+						//Printing team affiliation
+						a.say(target.getShortDescription() + " affiliation has changed to: " +  target.getTeam() );
+	
+						//Add an attack affordance to the repaired Droid, so it can be attacked again
+						target.addAffordance(new Attack(target, this.messageRenderer));
+					}
 				}
 			}
 		}
+		
+		//If the entity trying to disassemble is R2D2 
+				if (a.getSymbol() == "R2") {
+					
+					if (target.getIsImmobile() == false) {
+						a.say("Cant repair a mobile Droid!");
+			
+					}
+					
+					//Otherwise, attempt to repair a Droid
+					else {
+						
+						//If the player has no items
+						if (a.getItemCarried() == null) {
+							a.say(a.getShortDescription() + " has no items held." + 
+								("\nObtain Droid Parts to repair this Droid."));
+						}
+						
+						else {
+							//If the item is not Droid Parts
+							if(a.getItemCarried().getSymbol() != "dp") {
+								a.say(a.getShortDescription() + " is holding " + 
+										a.getItemCarried().getShortDescription() + "\nObtain Droid Parts to repair this Droid.");
+							}
+							
+							//Otherwise, Droid Parts are held. Repair the immobile & disassembled Droid
+							else {
+										
+								//Remove the Droid Parts from the Actors' inventory
+								a.setItemCarried(null);
+								
+								//Make Droids' health back to max HP
+								target.setHitpoints(target.getInitialHP());
+								
+								//Printout of repair 
+								a.say(target.getShortDescription() + " was repaired by " + a.getShortDescription()
+								+ ".\n" + target.getShortDescription() + " now has " + target.getHitpoints() + " HP.");
+								
+								//Set isImmobile to false
+								target.setIsImmobile(false);
+								
+								//Set isDisassembled to false
+								target.setIsDisassembled(false);
+								
+								//Add an attack affordance to the repaired Droid, so it can be attacked again
+								target.addAffordance(new Attack(target, this.messageRenderer));
+							}
+						}
+					}
+				} 
+		
+		
 	}
 
 	@Override

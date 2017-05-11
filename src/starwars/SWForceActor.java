@@ -119,17 +119,11 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	 */
 	protected void setForce(Force force) {
 		this.force = force;
-	}
-	
-                                                                                                              
-
+	}                                                                                                       
 	
 	public void trainForce(){	
 			force.trainPower();	
-	}
-	
-	
-	
+	}	
 	
 	protected String getTitle(){
 		return titles[getForcePower() / 20];
@@ -139,4 +133,6 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	public Scheduler getScheduler(){
 		return scheduler;
 	}
+	
+	
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import edu.monash.fit2099.gridworld.Grid;
 import edu.monash.fit2099.simulator.space.Direction;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
+import starwars.entities.actors.behaviors.Patrol;
 import starwars.SWAction;
 import starwars.SWActor;
 import starwars.SWAffordance;
@@ -14,7 +15,9 @@ import starwars.SWLocation;
 import starwars.SWWorld;
 import starwars.Team;
 import starwars.actions.Attack;
+import starwars.actions.Disassemble;
 import starwars.actions.Move;
+import starwars.actions.Repair;
 import starwars.actions.Take;
 import starwars.actions.HealDroid;
 import starwars.actions.Leave;
@@ -32,6 +35,8 @@ public class Droid extends SWActor {
 	/**isDisassembled boolean. Used for the disassembly and repair of Droids**/
 	private boolean isDisassembled;
 	
+	/**Patrol path used for specific Droids. Null otherwise**/
+	private Patrol droidPatrol;
 	/**
 	 * Creates a Droid. Droids are initially of NEUTRAL affiliation. Taking 
 	 * ownership of a Droid changes their allegience.
@@ -48,13 +53,22 @@ public class Droid extends SWActor {
 	 *            <code>Droid</code> belongs to
 	 * 
 	 */
-	public Droid(int hitpoints, String name, MessageRenderer m, SWWorld world) {
-		super(Team.NEUTRAL, 50, m, world);
+	public Droid(int hitpoints, String name, MessageRenderer m, SWWorld world, Direction [] droidPath) {
+		super(Team.NEUTRAL, hitpoints, m, world);
 		// TODO Auto-generated constructor stub
 		this.name = name;
 		this.owner = null;	//Initial owner - not null
 		this.isImmobile = false; //Initially not immobile
 		this.isDisassembled = false; //Initially not disassembled
+		
+		//Setting Droidpaths for a Droid that has a given path. Otherwise they are able to free roam.
+		if (droidPath == null) {
+			return;
+		}
+		else {
+			this.droidPatrol = new Patrol(droidPath);
+		}
+		
 		
 		//SWActors are given the Attack affordance hence they can be attacked
 		//SWAffordance healdroid = new HealDroid(this, m);
@@ -108,6 +122,79 @@ public class Droid extends SWActor {
 				selfHeal();
 			}	
 		} 
+		
+		//C-3PO Droid specific act ()code
+		else if (this.getSymbol() == "C3") {
+			
+			//Double precision number to represenet C-3PO's chance of speaking
+			double c3Speak = Math.random();
+			
+			//10% chance of occuring a 0.9 or above
+			if (c3Speak >= 0.9) {
+				//Call C-3PO speak method (he talks!)
+				c3POSpeaks();
+			}
+			else {
+				return;
+			}
+		}
+		
+		//R2-D2 Repair droid specific act() code
+		else if (this.getSymbol() == "R2") {
+			
+			//Describe who R2 can see
+			//get the contents of the location
+			List<SWEntityInterface> r2contents = this.world.getEntityManager().contents(this.world.getEntityManager().whereIs(this));
+			
+			//and describe the contents
+			if (r2contents.size() > 1) { // if it is equal to one, the only thing here is R2, so there is nothing to report
+				for (SWEntityInterface r2entity : r2contents) {
+					if (r2entity.getSymbol().contains("D")) { // If R2 comes accross a Droid
+						say(this.getShortDescription() + " has come accross a Droid!");
+						
+						//Cast target entity as a Droid for checking what it needs from R2
+						Droid targetr2 = (Droid) r2entity;
+						
+						//R2 attempts to disassemble the Droid if its immobile
+						if (targetr2.isImmobile && targetr2.isDisassembled == false) {
+							Disassemble r2diss = new Disassemble(r2entity, messageRenderer);
+							scheduler.schedule(r2diss, this, 1);
+						}
+						
+						//R2 tries to repair a droid who is immobile and disassembled
+						else if (targetr2.isImmobile && targetr2.isDisassembled) {
+							if (this.getItemCarried() != null) {
+								Repair r2rep = new Repair(r2entity, messageRenderer);
+								scheduler.schedule(r2rep, this, 1);
+							} 
+						}
+						
+						//R2 attempts to Heal a Droid if active and not disassembled
+						else if (targetr2.isDisassembled == false && targetr2.isImmobile == false)
+						{
+							
+							HealDroid r2heal = new HealDroid(r2entity, messageRenderer);
+							scheduler.schedule(r2heal, this, 1);
+						}
+					}
+				}
+			}
+					
+			//Heals himself if he can
+			
+			HealDroid droidHealR2 = new HealDroid(this, messageRenderer);
+			scheduler.schedule(droidHealR2, this, 1);
+			
+			//R2 moves
+			Direction R2Direction = this.getDroidPatrol().getNext();
+			say(getShortDescription() + " moves " + R2Direction);
+			Move myMove = new Move(R2Direction, messageRenderer, world);
+
+			scheduler.schedule(myMove, this, 1);
+			
+			
+			
+		}
 		
 		//If a Droid is not immobile, and not human controlled (roaming)
 		else {	
@@ -177,7 +264,18 @@ public class Droid extends SWActor {
 
 	@Override
 	public String getShortDescription() {
-		return name + " the Droid";
+		
+		if (this.getSymbol() == "R2") {
+			return name + " the Repair Droid";
+		}
+		
+		else if (this.getSymbol() == "C3") {
+			return name + " the etiquette minded Droid";
+		}
+		
+		else {
+			return name + " the Droid";
+		}	
 	}
 
 	@Override
@@ -224,7 +322,7 @@ public class Droid extends SWActor {
 	
 	
 	private void selfHeal() {
-
+		
 		//IF the Droid is carrying an item...
 		if (this.getItemCarried() != null){
 			
@@ -249,4 +347,38 @@ public class Droid extends SWActor {
 			}
 		}		
 	}
+	
+	private Patrol getDroidPatrol() {
+		return this.droidPatrol;
+	}
+	
+	private void c3POSpeaks() {
+		int quoteChoice = (int) ( Math.random() * 10+1);
+		
+		switch (quoteChoice) {
+		case 1 : this.say("C-3PO says: 'Artoo says that the chances of survival \nare 725 to 1. Actually Artoo has \nbeen known to make mistakes... from time \nto time... Oh dear...' "); break;
+		case 2 : this.say("C-3PO says: 'Excuse me sir, but might I inquire \nas to what's going on?' "); break;
+		case 3 : this.say("C-3PO says: 'I have a bad feeling about this.' "); break; 
+		case 4 : this.say("C-3PO says: 'I've had the most peculiar dream.'"); break;
+		case 5 : this.say("C-3PO says: 'I'm programmed for etiquette, not destruction!'"); break;
+		case 6 : this.say("C-3PO says: 'Pardon me, sir, could you possibly resist fiddling \nwith technology that is beyond your comprehension?' "); break;
+		case 7 : this.say("C-3PO says: 'Well, you'll never get me to go back to that iceberg! \nI don't care how safe it is now, R2, it gives my motivators the \nchills just thinking about it. ' "); break;
+		case 8 : this.say("C-3PO says: 'Hello, I am C-3PO, human cyborg relations. How might I serve you?' "); break;
+		case 9 : this.say("C-3PO says: 'Hm, it seems no one wants my company tonight. '"); break;
+		case 10 : this.say("C-3PO says: 'This way looks potentially dangerous.' "); break;
+		}
+	}
 }
+
+/*
+ * REFERENCES
+ * 
+ * http://stackoverflow.com/questions/5887709/getting-random-numbers-in-java 10th
+ * 
+ * https://www.javatpoint.com/java-switch 10th
+ * 
+ * http://www.imdb.com/character/ch0000048/quotes 10th
+ * 
+ * http://stackoverflow.com/questions/2429228/in-java-how-does-one-turn-a-string-into-a-char-or-a-char-into-a-string 10th
+ * 
+ */

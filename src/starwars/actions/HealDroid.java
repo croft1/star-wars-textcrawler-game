@@ -27,100 +27,149 @@ public class HealDroid extends SWAffordance {
 
 		Droid target = (Droid) this.getTarget();
 
-		if (target.getIsImmobile() == true) {
-
-			//Print out notification - cant heal an immobile Droid.
-			a.say("Cant heal " + target.getShortDescription() + ", who is \nimmobile. Need to"
-					+ " Disassemble or Repair first.");
+		//If Luke is attempting to heal a Droid (i.e needs a oil can!)
+		if (a.getSymbol() == "@") {
+			if (target.getIsImmobile() == true) {
+	
+				//Print out notification - cant heal an immobile Droid.
+				a.say("Cant heal " + target.getShortDescription() + ", who is \nimmobile. Need to"
+						+ " Disassemble or Repair first.");
+			}
+			
+			else {
+				SWEntityInterface itemCarried = a.getItemCarried();
+				if (itemCarried != null) {//if an item is carried
+					if (itemCarried.getShortDescription() == "an oil can") {
+						//Healing process
+						
+						//If a player tries to heal a full HP NPC
+						if(target.getHitpoints() == target.getInitialHP()) {
+							a.say(target.getShortDescription() + " is at maximum HP!");
+						}
+						
+						else {
+							//Printout of healing attempt
+							a.say("Healing " + target.getShortDescription() + " with "
+									+ "an oil can of capacity " + itemCarried.getHitpoints() + "." );
+							
+							//Calculating depleted HP
+							int depletedHealth = target.getInitialHP() - target.getHitpoints();
+							a.say(target.getShortDescription() + " has so far"
+									+ " lost a total of " + depletedHealth + " HP." );
+							
+							//Checking if the oil can isnt empty
+							if (itemCarried.getHitpoints() > 0) {
+								int newHitpoints;	//Defining newHitpoints for the target. Will change in two scenarios as below
+								
+								//If the depleted health is MORE than the current capacity of the oil can
+								if (depletedHealth > itemCarried.getHitpoints()) {
+									//Setting newHitpoints for the target
+									newHitpoints = target.getHitpoints() + itemCarried.getHitpoints();
+									
+									//Deplete the oil can
+									itemCarried.takeDamage(itemCarried.getHitpoints());
+									
+									//Set the new HP to the target
+									target.setHitpoints(newHitpoints);
+									
+									//Print out to game
+									a.say(itemCarried.getShortDescription() + " is now "
+											+ " empty: capacity of " + itemCarried.getHitpoints());
+									a.say(target.getShortDescription()+ " has healed"
+											+ " to " + target.getHitpoints() + "HP");
+									
+								}
+								//Otherwise the oil can CAN completely heal the target
+								else { 
+									target.setHitpoints(target.getInitialHP());
+									
+									//Deplete the oil can
+									itemCarried.takeDamage(depletedHealth);
+								
+									//Print out to game
+									a.say(itemCarried.getShortDescription() + " now has "
+											+ "capacity of " + itemCarried.getHitpoints());
+									a.say(target.getShortDescription()+ " has healed"
+											+ " to " + target.getHitpoints() + "HP");
+									
+								}
+								
+							} 
+							
+							//Else if the oil can is completely used.
+							else {
+								a.say("Cannot heal " + target.getShortDescription() + " with "
+										+ " an empty oil can!");
+							}
+								
+							
+							
+						}
+						
+						
+						
+					}
+					else {
+						a.say(a.getShortDescription() + " is carrying " + a.getItemCarried().getShortDescription() 
+								+ ". An oil can is required.");
+					}
+				} 
+				
+				else {
+					a.say(a.getShortDescription() + " cannot heal " + target.getShortDescription() 
+					 + ", no Oil Can held! ");
+				}
+				
+				
+			}
 		}
 		
-		else {
-			SWEntityInterface itemCarried = a.getItemCarried();
-			if (itemCarried != null) {//if an item is carried
-				if (itemCarried.getShortDescription() == "an oil can") {
-					//Healing process
-					
+		//If R2-D2 comes accross a Droid
+		if (a.getSymbol() == "R2") {
+			
+			
+			if (a.getSymbol() == target.getSymbol()) {
+				
+				//R2 only heals himself when he is at half health
+				if(a.getHitpoints() < (a.getInitialHP()/2)) {
+					a.setHitpoints(a.getInitialHP());
+					a.say("R2-D2 has healed himself to " + a.getHitpoints() + "HP");
+				}
+			}
+			
+			else 
+			{
+				if (target.getIsImmobile() == true) 
+				{
+					//Print out notification - cant heal an immobile Droid.
+					a.say("Cant heal " + target.getShortDescription() + ", who is \nimmobile. Need to"
+					+ " Disassemble or Repair first.");
+				}
+				
+				else 
+				{
 					//If a player tries to heal a full HP NPC
-					if(target.getHitpoints() == target.getInitialHP()) {
+					if(target.getHitpoints() == target.getInitialHP()) 
+					{
 						a.say(target.getShortDescription() + " is at maximum HP!");
 					}
 					
-					else {
-						//Printout of healing attempt
-						a.say("Healing " + target.getShortDescription() + " with "
-								+ "an oil can of capacity " + itemCarried.getHitpoints() + "." );
-						
-						//Calculating depleted HP
-						int depletedHealth = target.getInitialHP() - target.getHitpoints();
-						a.say(target.getShortDescription() + " has so far"
-								+ " lost a total of " + depletedHealth + " HP." );
-						
-						//Checking if the oil can isnt empty
-						if (itemCarried.getHitpoints() > 0) {
-							int newHitpoints;	//Defining newHitpoints for the target. Will change in two scenarios as below
+					else 
+					{
+						//Otherwise the oil can CAN completely heal the target
+						target.setHitpoints(target.getInitialHP());
+												
+						//Print out to game
+						a.say("R2-D2 has healed " + 
+						target.getShortDescription()
+						+ " to " + target.getHitpoints() + "HP");
 							
-							//If the depleted health is MORE than the current capacity of the oil can
-							if (depletedHealth > itemCarried.getHitpoints()) {
-								//Setting newHitpoints for the target
-								newHitpoints = target.getHitpoints() + itemCarried.getHitpoints();
-								
-								//Deplete the oil can
-								itemCarried.takeDamage(itemCarried.getHitpoints());
-								
-								//Set the new HP to the target
-								target.setHitpoints(newHitpoints);
-								
-								//Print out to game
-								a.say(itemCarried.getShortDescription() + " is now "
-										+ " empty: capacity of " + itemCarried.getHitpoints());
-								a.say(target.getShortDescription()+ " has healed"
-										+ " to " + target.getHitpoints() + "HP");
-								
-							}
-							//Otherwise the oil can CAN completely heal the target
-							else { 
-								target.setHitpoints(target.getInitialHP());
-								
-								//Deplete the oil can
-								itemCarried.takeDamage(depletedHealth);
-							
-								//Print out to game
-								a.say(itemCarried.getShortDescription() + " now has "
-										+ "capacity of " + itemCarried.getHitpoints());
-								a.say(target.getShortDescription()+ " has healed"
-										+ " to " + target.getHitpoints() + "HP");
-								
-							}
-							
-						} 
-						
-						//Else if the oil can is completely used.
-						else {
-							a.say("Cannot heal " + target.getShortDescription() + " with "
-									+ " an empty oil can!");
-						}
-							
-						
-						
 					}
-					
-					
-					
-				}
-				else {
-					a.say(a.getShortDescription() + " is carrying " + a.getItemCarried().getShortDescription() 
-							+ ". An oil can is required.");
-				}
-			} 
-			
-			else {
-				a.say(a.getShortDescription() + " cannot heal " + target.getShortDescription() 
-				 + ", no Oil Can held! ");
+				}				
 			}
 			
-			
-	}
 		}
+	}
 		
 		
 
