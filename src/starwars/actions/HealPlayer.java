@@ -21,7 +21,7 @@ import starwars.entities.Fillable;
  * 
  * The HealPlayer action enables SWActors (like the Player and Ben Kenobi) to be
  * able to heal themselves when they would like to. The affiliated
- * SWActor who wants to heal needs to have a Water Canteen with a level >0
+ * SWActor who wants to heal needs to have a Water Canteen with a level  greater than 0
  * to do so. Otherwise it will need to be filled at the Moisture Farms.
  * 
  * @author jas
