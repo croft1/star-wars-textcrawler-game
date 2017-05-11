@@ -34,12 +34,12 @@ import starwars.actions.Leave;
  * Class for Droid SWActors  
  * 
  * Droids are non human SWActors able to follow the player if taken 
- * ownership of. Droid, like all SWActors also have a certain abount of hitpoints that
- * renders them ímmoble if falling below zero. It is to this need then that
+ * ownership of. Droid, like all SWActors also have a certain amount of hitpoints that
+ * renders them ímmobile if falling below zero. It is to this need then that
  * the Droid can be dismantled into Droid Parts - and then re-assembled 
  * by using these parts.
  * 
- * Droids also are ownable - thus, if a player comes accross a neutral
+ * Droids also are ownable - thus, if a player comes across a neutral
  * affiliated Droid, they can take up their ownership. Droids do NOT use
  * the Force, so they are essentially the owners' companions!
  * 
@@ -107,8 +107,8 @@ public class Droid extends SWActor {
 	 * Droids can heal themselves if they are below half their health - if they come accross a 
 	 * oil can they have picked up.
 	 * 
-	 * Once taken owership, Droids follow their new owner until they are once again immobile. On 
-	 * repair, Droids take on their ownsers allegience, so be wary!
+	 * Once taken ownership, Droids follow their new owner until they are once again immobile. On 
+	 * repair, Droids take on their owners allegiance, so be wary!
 	 * 
 	 */
 	@Override
@@ -300,11 +300,11 @@ public class Droid extends SWActor {
 	/**
 	 * getShortDescription() method for Droids
 	 * 
-	 * Returns the short string descripton of a Droid. This is based on the basis of a Droid - if it is either
+	 * Returns the short string description of a Droid. This is based on the basis of a Droid - if it is either
 	 * C-3PO or R2-D2, the function returns specialized descriptions matching their functions. Otherwise for
 	 * regular Droids, the return is the same - " the Droid ".
 	 * 
-	 * @return 	description	- The Droids' short descripton in String format
+	 * @return 	description	- The Droids' short description in String format
 	 */
 	@Override
 	public String getShortDescription() {
@@ -348,7 +348,7 @@ public class Droid extends SWActor {
 	 * Returns the SWActor owner the Droids currently. If the Droid does not have a
 	 * owner, this function returns null.
 	 * 
-	 * @return 	owner 	- The Droids' SWActor owner at present calltime.
+	 * @return 	owner 	- The Droids' SWActor owner at present runtime.
 	 */
 	public SWActor getOwner() {
 		//Return the SWActor owner of this Actor (initially nothing, can change!)
