@@ -13,23 +13,19 @@ import starwars.swinterfaces.SWGridController;
 /**
  * Command to attack entities.
  * 
- * This affordance is attached to all attackable entities
+ * This affordance is attached to all weak minded entities
  * 
- * @author David.Squire@monash.edu (dsquire)
+ * @author croft1
  */
-/*
- * Change log
- * 2017/02/03	Fixed the bug where the an actor could attack another actor in the same team (asel)
- * 2017/02/08	Attack given a priority of 1 in constructor (asel)
- */
+
 public class Obey extends SWAffordance implements SWActionInterface {
 
 	
 	/**
-	 * Constructor for the <code>Attack</code> class. Will initialize the <code>messageRenderer</code> and
-	 * give <code>Attack</code> a priority of 1 (lowest priority is 0).
+	 * Constructor for the <code>Obey</code> class. Will initialize the <code>messageRenderer</code> and
+	 * give <code>Obey</code> a priority of 1 (lowest priority is 0).
 	 * 
-	 * @param theTarget the target being attacked
+	 * @param theTarget the target being subject to mind control
 	 * @param m message renderer to display messages
 	 */
 	public Obey(SWEntityInterface theTarget, MessageRenderer m) {
@@ -39,9 +35,9 @@ public class Obey extends SWAffordance implements SWActionInterface {
 
 
 	/**
-	 * Returns the time is takes to perform this <code>Attack</code> action.
+	 * Returns the time is takes to perform this <code>Obey</code> action.
 	 * 
-	 * @return The duration of the Attack action. Currently hard coded to return 1.
+	 * @return The duration of the Obey action. Currently hard coded to return 1.
 	 */
 	@Override
 	public int getDuration() {
@@ -50,9 +46,9 @@ public class Obey extends SWAffordance implements SWActionInterface {
 
 	
 	/**
-	 * A String describing what this <code>Attack</code> action will do, suitable for display on a user interface
+	 * A String describing what this <code>Obey</code> action will do, suitable for display on a user interface
 	 * 
-	 * @return String comprising "attack " and the short description of the target of this <code>Affordance</code>
+	 * @return String comprising "Obey " and the short description of the target of this <code>Affordance</code>
 	 */
 	@Override
 	public String getDescription() {
@@ -63,10 +59,11 @@ public class Obey extends SWAffordance implements SWActionInterface {
 	/**
 	 * Determine whether a particular <code>SWActor a</code> can attack the target.
 	 * 
-	 * @author 	dsquire
+	 * @author 	croft1
 	 * @param 	a the <code>SWActor</code> being queried
-	 * @return 	true any <code>SWActor</code> can always try an attack, it just won't do much 
-	 * 			good unless this <code>SWActor a</code> has a suitable weapon.
+	 * @return 	true any <code>SWActor</code> that tried to perform obey must be a <code>SWForceActor</code> and
+	 * 	also have the necessary force power requirements to perform the mind control
+	 * @return false if not a forceactor, and not enough force power will print a message 
 	 */
 	@Override
 	public boolean canDo(SWActor a) {
@@ -83,26 +80,19 @@ public class Obey extends SWAffordance implements SWActionInterface {
 
 	
 	/**
-	 * Perform the <code>Attack</code> command on an entity.
+	 * Perform the <code>Obey</code> command on an entity.
 	 * <p>
-	 * This method does not perform any damage (an attack) if,
+	 * This method does not make a user control the mind of a subject if
 	 * <ul>
-	 * 	<li>The target of the <code>Attack</code> and the <code>SWActor a</code> are in the same <code>Team</code></li>
-	 * 	<li>The <code>SWActor a</code> is holding an item without the <code>WEAPON Affordance</code></li>
+	 * 	<li>The target of the <code>Obey</code> and the <code>SWForceActor a</code> are both a force actor ></li>
+	 * 	<li>The <code>SWForceActor a</code> contains inadquate force power</li>
 	 * </ul>
 	 * <p>
-	 * else it would damage the entity attacked, tires the attacker, and blunts any weapon used for the attack.
-	 * 
-	 * TODO : check if the weapon has enough hitpoints and the attacker has enough energy before an attack.
-	 * 
-	 * @author 	dsquire -  adapted from the equivalent class in the old Eiffel version
-	 * @author 	Asel - bug fixes.
+	 
+	 * @author 	mewc
 	 * @param 	a the <code>SWActor</code> who is attacking
-	 * @pre 	this method should only be called if the <code>SWActor a</code> is alive
-	 * @pre		an <code>Attack</code> must not be performed on a dead <code>SWActor</code>
-	 * @post	if a <code>SWActor</code>dies in an <code>Attack</code> their <code>Attack</code> affordance would be removed
-	 * @see		starwars.SWActor#isDead()
-	 * @see 	starwars.Team
+	 * @pre 	this method should only be called if the <code>SWActor a</code> is a <code>SWForceActor a</code>
+
 	 */
 	@Override
 	public void act(SWActor a) {

@@ -74,22 +74,15 @@ public class MindControl extends SWAffordance implements SWActionInterface {
 	 * <p>
 	 * This method does not perform any damage (an attack) if,
 	 * <ul>
-	 * 	<li>The target of the <code>Attack</code> and the <code>SWActor a</code> are in the same <code>Team</code></li>
-	 * 	<li>The <code>SWActor a</code> is holding an item without the <code>WEAPON Affordance</code></li>
+	 * 	<li>The target of the <code>Mind Control</code> doesnt posess the force</li>
+	 * 	<li>The <code>SWForceActor a</code> has the required forcePower to perform the action</li>
 	 * </ul>
 	 * <p>
 	 * else it would damage the entity attacked, tires the attacker, and blunts any weapon used for the attack.
 	 * 
-	 * TODO : check if the weapon has enough hitpoints and the attacker has enough energy before an attack.
-	 * 
-	 * @author 	dsquire -  adapted from the equivalent class in the old Eiffel version
-	 * @author 	Asel - bug fixes.
-	 * @param 	a the <code>SWActor</code> who is attacking
-	 * @pre 	this method should only be called if the <code>SWActor a</code> is alive
-	 * @pre		an <code>Attack</code> must not be performed on a dead <code>SWActor</code>
-	 * @post	if a <code>SWActor</code>dies in an <code>Attack</code> their <code>Attack</code> affordance would be removed
-	 * @see		starwars.SWActor#isDead()
-	 * @see 	starwars.Team
+
+	 * @author 	croft1
+
 	 */
 	@Override
 	public void act(SWActor a) {

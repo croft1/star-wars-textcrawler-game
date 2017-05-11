@@ -21,15 +21,11 @@ public class Humanoid extends SWActor {
 	private String name;
 
 	/**
-	 * Create a Tusken Raider.  Tusken Raiders will randomly wander
-	 * around the playfield (on any given turn, there is a 50% probability
-	 * that they will move) and attack anything they can (if they can attack
-	 * something, they will).  They 
-	 * are all members of team TUSKEN, so their attempts to attack
-	 * other Tusken Raiders won't be effectual.
+	 * Create a Humanoid.  THey won't move and are weak minded
+	 *
 	 * 
 	 * @param hitpoints
-	 *            the number of hit points of this Tusken Raider. If this
+	 *            the number of hit points of this HJumanoid. If this
 	 *            decreases to below zero, the Raider will die.
 	 * @param name
 	 *            this raider's name. Used in displaying descriptions.
@@ -37,7 +33,7 @@ public class Humanoid extends SWActor {
 	 *            <code>MessageRenderer</code> to display messages.
 	 * @param world
 	 *            the <code>SWWorld</code> world to which this
-	 *            <code>TuskenRaider</code> belongs to
+	 *            <code>Humanoid</code> belongs to
 	 * 
 	 */
 	public Humanoid(Team team, int hitpoints, MessageRenderer m, SWWorld world) {
@@ -49,14 +45,20 @@ public class Humanoid extends SWActor {
 		
 	}
 
+	
+	/**
+	 **A humanoid doesn't move, so it doesn't need to do anything
+	
+	 * @author 	croft1
+	 *
+	 */
 	@Override
 	public void act() {
-		if (isDead()) {
-			return;
-		}
 		
 		
 	}
+	
+	
 
 	@Override
 	public String getShortDescription() {

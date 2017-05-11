@@ -24,8 +24,8 @@ public class TrainForce extends SWAffordance implements SWActionInterface {
 
 	
 	/**
-	 * Constructor for the <code>Mind Control</code> class. Will initialize the <code>messageRenderer</code> and
-	 * give <code>MindControl</code> a priority of 1 (lowest priority is 0).
+	 * Constructor for the <code>TrainForce</code> class. Will initialize the <code>messageRenderer</code> and
+	 * give <code>TrainForce</code> a priority of 1 (lowest priority is 0).
 	 * 
 	 * @param theTarget the target being attacked
 	 * @param m message renderer to display messages
@@ -37,7 +37,7 @@ public class TrainForce extends SWAffordance implements SWActionInterface {
 
 
 	/**
-	 * Returns the time is takes to perform this <code>Attack</code> action.
+	 * Returns the time is takes to perform this <code>TrainForce</code> action.
 	 * 
 	 * @return The duration of the Attack action. Currently hard coded to return 1.
 	 */
@@ -48,7 +48,7 @@ public class TrainForce extends SWAffordance implements SWActionInterface {
 
 	
 	/**
-	 * A String describing what this <code>Attack</code> action will do, suitable for display on a user interface
+	 * A String describing what this <code>TrainForce</code> action will do, suitable for display on a user interface
 	 * 
 	 * @return String comprising "attack " and the short description of the target of this <code>Affordance</code>
 	 */
@@ -59,9 +59,9 @@ public class TrainForce extends SWAffordance implements SWActionInterface {
 
 
 	/**
-	 * Determine whether a particular <code>SWActor a</code> can attack the target.
+	 * Determine whether a particular <code>SWActor a</code> can TrainForce on the target.
 	 * 
-	 * @author 	dsquire
+	 * @author 	croft1
 	 * @param 	a the <code>SWActor</code> being queried
 	 * @return 	true any <code>SWActor</code> can always try an attack, it just won't do much 
 	 * 			good unless this <code>SWActor a</code> has a suitable weapon.
@@ -77,20 +77,14 @@ public class TrainForce extends SWAffordance implements SWActionInterface {
 
 	
 	/**
-	 * Perform the <code>Mind Control</code> command on an entity.
+	 * Perform the <code>TrainForce</code> command on an entity.
 	 * <p>
-	 * This method does not perform any damage (an attack) if,
-	 * <ul>
-	 * 	<li>The target of the <code>Attack</code> and the <code>SWActor a</code> are in the same <code>Team</code></li>
-	 * 	<li>The <code>SWActor a</code> is holding an item without the <code>WEAPON Affordance</code></li>
-	 * </ul>
+	 * This method does not perform a train (an TrainForce) if,
+	 * 
 	 * <p>
-	 * else it would damage the entity attacked, tires the attacker, and blunts any weapon used for the attack.
-	 * 
-	 * TODO : check if the weapon has enough hitpoints and the attacker has enough energy before an attack.
-	 * 
-	 * @author 	dsquire -  adapted from the equivalent class in the old Eiffel version
-	 * @author 	Asel - bug fixes.
+
+
+	 * @author 	croft1 - adapted from mind control to train force
 	 * @param 	a the <code>SWActor</code> who is attacking
 	 * @pre 	this method should only be called if the <code>SWActor a</code> is alive
 	 * @pre		an <code>Attack</code> must not be performed on a dead <code>SWActor</code>
