@@ -336,13 +336,7 @@ public class Droid extends SWActor {
 		return this.getShortDescription();
 	}
 
-	/**
-	 * describeLcation() method for Droids
-	 * 
-	 * Returns the SWlocation of the Droids current position in the SWWorld map. 
-	 * 
-	 * @return 	location 	- The Droids' SWLocation on the created SWWorld.
-	 */
+	//Private describeLocation() method for Droids - describes the location of a Droid
 	private String describeLocation() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		return this.getShortDescription() + " [" + this.getHitpoints() + "] is at " + location.getShortDescription();
