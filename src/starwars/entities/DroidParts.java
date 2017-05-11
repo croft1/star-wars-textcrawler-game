@@ -1,7 +1,7 @@
 /**
  * starwars.entities package
  * 
- * Initiates entities that will be able to be usable by actors in the Star Wats
+ * Initiates entities that will be able to be usable by SWActors in the Star Wars
  * roguelike game. This includes items like a LightSaber, Blaster, Water Canteen and
  * so forth!
  *
