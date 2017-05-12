@@ -120,12 +120,13 @@ public class SWWorld extends World {
 		entityManager.setLocation(luke, loc);
 		luke.resetMoveCommands(loc);
 		
-		// OWEN AND BERU
+		// Owen and Beru
 		Humanoid owen = new Humanoid(Team.GOOD, 200, iface, this);
 		owen.setShortDescription("Uncle Owen");
 		loc = myGrid.getLocationByCoordinates(3,8);
 		entityManager.setLocation(owen, loc);
 		owen.setSymbol("H");
+		
 		Humanoid beru = new Humanoid(Team.GOOD, 200, iface, this);
 		beru.setShortDescription("Aunty Beru");
 		loc = myGrid.getLocationByCoordinates(5,8);
@@ -195,16 +196,19 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(2,1);
 		entityManager.setLocation(tim, loc);
 		
+		// A second Tusken Raider
 		TuskenRaider lawrence = new TuskenRaider(20, "Lawrence Jacoby", iface, this);
 		lawrence.setSymbol("T");
 		loc = myGrid.getLocationByCoordinates(4,3);
 		entityManager.setLocation(lawrence, loc);
 		
+		// A third Tusken Raider
 		TuskenRaider james = new TuskenRaider(14, "James Hurley", iface, this);
 		james.setSymbol("T");
 		loc = myGrid.getLocationByCoordinates(6,3);
 		entityManager.setLocation(james, loc);
 		
+		// A fourth Tusken Raider
 		TuskenRaider dale = new TuskenRaider(88, "Dale Cooper", iface, this);
 		dale.setSymbol("T");
 		loc = myGrid.getLocationByCoordinates(4,7);
