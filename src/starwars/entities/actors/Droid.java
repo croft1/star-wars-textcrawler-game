@@ -114,7 +114,7 @@ public class Droid extends SWActor {
 	@Override
 	public void act() {
 
-		//Location symbol of a Droid
+		//Location symbol of a Droid (Stack Overflow 2010)
 		char locationSymbol = this.world.getEntityManager().whereIs(this).getSymbol();
 		
 		//Begin act
@@ -184,7 +184,7 @@ public class Droid extends SWActor {
 			//and describe the contents
 			if (r2contents.size() > 1) { // if it is equal to one, the only thing here is R2, so there is nothing to report
 				for (SWEntityInterface r2entity : r2contents) {
-					if (r2entity.getSymbol().contains("D")) { // If R2 comes accross a Droid
+					if (r2entity.getSymbol().contains("D")) { // If R2 comes across a Droid (Stack Overflow 2010)
 						say(this.getShortDescription() + " has come accross a Droid!");
 						
 						//Cast target entity as a Droid for checking what it needs from R2
@@ -457,7 +457,8 @@ public class Droid extends SWActor {
 		return this.droidPatrol;
 	}
 	
-	//c3OSpeaks method - for calling in random quotes from C-3PO fine choice of literacy!
+	//c3OSpeaks method - for calling in random quotes from C-3PO fine choice of literacy! (, Java Switch Statement, viewed 10 May 2017,
+	// (Javatpoint 2017) (The Internet Movie Database 2017)
 	private void c3POSpeaks() {
 		int quoteChoice = (int) ( Math.random() * 10+1);
 		
