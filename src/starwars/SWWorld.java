@@ -190,6 +190,11 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(3, 4);
 		entityManager.setLocation(blaster, loc);
 		
+		// The Millenium Falcon
+		MilleniumFalcon millFalc = new MilleniumFalcon(iface);
+		loc = myGrid.getLocationByCoordinates(0, 2);
+		entityManager.setLocation(millFalc, loc);
+		
 		// A Tusken Raider
 		TuskenRaider tim = new TuskenRaider(10, "Tim", iface, this);
 		tim.setSymbol("T");
