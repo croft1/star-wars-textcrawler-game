@@ -110,13 +110,10 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(4,  5);
 		entityManager.setLocation(ben, loc);
 		
-		
-		loc = myGrid.getLocationByCoordinates(5,9);
-		
-		
 		// Luke
 		Player luke = new Player(Team.GOOD, 100, iface, this);
 		luke.setShortDescription("Luke");
+		loc = myGrid.getLocationByCoordinates(5,9);
 		entityManager.setLocation(luke, loc);
 		luke.resetMoveCommands(loc);
 		
@@ -185,10 +182,17 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(5,5);
 		entityManager.setLocation(lightSaber, loc);
 		
+		
 		// A blaster 
 		Blaster blaster = new Blaster(iface);
 		loc = myGrid.getLocationByCoordinates(3, 4);
 		entityManager.setLocation(blaster, loc);
+		
+		// The Millenium Falcon
+		MilleniumFalcon millFalc = new MilleniumFalcon(iface);
+		loc = myGrid.getLocationByCoordinates(0, 2);
+		entityManager.setLocation(millFalc, loc);
+		millFalc.addAffordance( new Fly(millFalc, iface));
 		
 		// A Tusken Raider
 		TuskenRaider tim = new TuskenRaider(10, "Tim", iface, this);
