@@ -21,6 +21,9 @@ public class Application {
 	public static void main(String args[]) {
 		
 		SWWorld world = new SWWorld();
+		//SWWorld yavinFour = new SWWorld();
+		//SWWorld deathStar = new SWWorld();
+		
 		
 		//Grid controller controls the data and commands between the UI and the model
 		SWGridController uiController = new SWGridController(world);
