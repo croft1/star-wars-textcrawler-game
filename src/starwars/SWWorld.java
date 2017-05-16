@@ -185,6 +185,7 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(5,5);
 		entityManager.setLocation(lightSaber, loc);
 		
+		
 		// A blaster 
 		Blaster blaster = new Blaster(iface);
 		loc = myGrid.getLocationByCoordinates(3, 4);
@@ -194,6 +195,7 @@ public class SWWorld extends World {
 		MilleniumFalcon millFalc = new MilleniumFalcon(iface);
 		loc = myGrid.getLocationByCoordinates(0, 2);
 		entityManager.setLocation(millFalc, loc);
+		millFalc.addAffordance( new Fly(millFalc, iface));
 		
 		// A Tusken Raider
 		TuskenRaider tim = new TuskenRaider(10, "Tim", iface, this);
