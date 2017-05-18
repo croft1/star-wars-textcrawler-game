@@ -1,13 +1,39 @@
+/**
+ * starwars.entities package
+ * 
+ * Initiates entities that will be able to be usable by SWActors in the Star Wars
+ * roguelike game. This includes items like a LightSaber, Blaster, Water Canteen and
+ * so forth!
+ *
+ */
+
 package starwars.entities;
 
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.SWEntity;
 import starwars.actions.Take;
 
+/**
+ * Class for Droid SWActors  
+ * 
+ * Droid Parts are used by SWActors in the need of repairing immobile Droids.
+ * Droid Parts are consumed when used - so be wary which Droid you would like to
+ * bring back to mobility!
+ * 
+ * @author jas
+ * @author mewc
+ *
+ */
 public class DroidParts extends SWEntity {
 
 	/**
 	 * Constructor for the <code>Droid Parts</code>. 
+	 * 
+	 * Creates some new DroidParts with predefined short and long descriptions. Also
+	 * initiates a Take affordance (these can be taken by SWActors!
+	 * 
+	 * @param	m	- MessageRenderer that these Droid Parts will use to display notification
+	 * to (mainly their description)
 	 */
 	public DroidParts(MessageRenderer m) {
 		super(m);

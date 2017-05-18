@@ -1,3 +1,10 @@
+/**
+ * starwars.entities.actors package
+ * 
+ *  Used in the SWApplication (roguelike game) for all actors (both human
+ *  and non human) who will wander the map in survival & questing!	
+ *
+ */
 package starwars.entities.actors;
 
 import java.util.ArrayList;
@@ -22,6 +29,25 @@ import starwars.actions.Take;
 import starwars.actions.HealDroid;
 import starwars.actions.Leave;
 
+
+/**
+ * Class for Droid SWActors  
+ * 
+ * Droids are non human SWActors able to follow the player if taken 
+ * ownership of. Droid, like all SWActors also have a certain amount of hitpoints that
+ * renders them ímmobile if falling below zero. It is to this need then that
+ * the Droid can be dismantled into Droid Parts - and then re-assembled 
+ * by using these parts.
+ * 
+ * Droids also are ownable - thus, if a player comes across a neutral
+ * affiliated Droid, they can take up their ownership. Droids do NOT use
+ * the Force, so they are essentially the owners' companions!
+ * 
+ * @author rober_000
+ * @author jas
+ * @author mewc
+ *
+ */
 public class Droid extends SWActor {
 
 	private String name;
@@ -37,13 +63,14 @@ public class Droid extends SWActor {
 	
 	/**Patrol path used for specific Droids. Null otherwise**/
 	private Patrol droidPatrol;
+	
 	/**
-	 * Creates a Droid. Droids are initially of NEUTRAL affiliation. Taking 
+	 * Constructor for a Droid. Droids are initially of NEUTRAL affiliation. Taking 
 	 * ownership of a Droid changes their allegience.
 	 * 
 	 * @param hitpoints
 	 *            the number of hit points of this Droid has. If this
-	 *            decreases to below zero, the Raider will become immobile
+	 *            decreases to below zero, the Droid will become immobile
 	 * @param name
 	 *            the Droids name. Used in displaying descriptions.
 	 * @param m
@@ -69,17 +96,25 @@ public class Droid extends SWActor {
 			this.droidPatrol = new Patrol(droidPath);
 		}
 		
-		
-		//SWActors are given the Attack affordance hence they can be attacked
-		//SWAffordance healdroid = new HealDroid(this, m);
-		//this.addAffordance(healdroid);
-		
 	}
 
+	/**
+	 * act() method for Droids
+	 * 
+	 * Implements the Droids' actions - which if a regular Droid, is essentially moving around
+	 * in a random fashion (20%) chance each turn.
+	 * 
+	 * Droids can heal themselves if they are below half their health - if they come accross a 
+	 * oil can they have picked up.
+	 * 
+	 * Once taken ownership, Droids follow their new owner until they are once again immobile. On 
+	 * repair, Droids take on their owners allegiance, so be wary!
+	 * 
+	 */
 	@Override
 	public void act() {
 
-		//Location symbol of a Droid
+		//Location symbol of a Droid (Stack Overflow 2010)
 		char locationSymbol = this.world.getEntityManager().whereIs(this).getSymbol();
 		
 		//Begin act
@@ -149,7 +184,7 @@ public class Droid extends SWActor {
 			//and describe the contents
 			if (r2contents.size() > 1) { // if it is equal to one, the only thing here is R2, so there is nothing to report
 				for (SWEntityInterface r2entity : r2contents) {
-					if (r2entity.getSymbol().contains("D")) { // If R2 comes accross a Droid
+					if (r2entity.getSymbol().contains("D")) { // If R2 comes across a Droid (Stack Overflow 2010)
 						say(this.getShortDescription() + " has come accross a Droid!");
 						
 						//Cast target entity as a Droid for checking what it needs from R2
@@ -262,6 +297,15 @@ public class Droid extends SWActor {
 		}	
 	}
 
+	/**
+	 * getShortDescription() method for Droids
+	 * 
+	 * Returns the short string description of a Droid. This is based on the basis of a Droid - if it is either
+	 * C-3PO or R2-D2, the function returns specialized descriptions matching their functions. Otherwise for
+	 * regular Droids, the return is the same - " the Droid ".
+	 * 
+	 * @return 	description	- The Droids' short description in String format
+	 */
 	@Override
 	public String getShortDescription() {
 		
@@ -278,22 +322,48 @@ public class Droid extends SWActor {
 		}	
 	}
 
+	/**
+	 * getLongDescription() method for Droids
+	 * 
+	 * Returns the short string description (as this.getShortDEscripton) of a Droid. This is based on 
+	 * the basis of a Droid - if it is either C-3PO or R2-D2, the function returns specialized descriptions 
+	 * matching their functions. Otherwise for regular Droids, the return is the same - " the Droid ".
+	 * 
+	 * @return 	short descripton 	- The Droids' short descripton in String format
+	 */
 	@Override
 	public String getLongDescription() {
 		return this.getShortDescription();
 	}
 
+	//Private describeLocation() method for Droids - describes the location of a Droid
 	private String describeLocation() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		return this.getShortDescription() + " [" + this.getHitpoints() + "] is at " + location.getShortDescription();
-
 	}
 	
+	/**
+	 * getOwner() method for Droids
+	 * 
+	 * Returns the SWActor owner the Droids currently. If the Droid does not have a
+	 * owner, this function returns null.
+	 * 
+	 * @return 	owner 	- The Droids' SWActor owner at present runtime.
+	 */
 	public SWActor getOwner() {
 		//Return the SWActor owner of this Actor (initially nothing, can change!)
 		return owner;
 	}
 	
+	/**
+	 * setOwner() method for Droids
+	 * 
+	 * Initiates the SWActor owner of the Droid that will take owner of said Droid. This
+	 * method also sets the humanControlled variable to true.
+	 * 
+	 * @param 	newOwner	- The new owner (SWActor) of the Droid 
+	 * 
+	 */
 	public void setOwner(SWActor newOwner) {
 		//Set this SWActors' owner to newOwner
 		this.owner = newOwner;
@@ -302,25 +372,59 @@ public class Droid extends SWActor {
 		this.humanControlled = true;
 	}
 	
+	/**
+	 * setIsImmobile() method for Droids
+	 * 
+	 * Initiates the mobile status of Droids once called upon.
+	 * 
+	 * @param 	newisImmobile	- The new mobile status of the Droid 
+	 * 
+	 */
 	public void setIsImmobile(boolean newisImmobile) {
 		this.isImmobile = newisImmobile;
 	}
 	
+	/**
+	 * getIsImmobile() method for Droids
+	 * 
+	 * Returns the current mobility status of a Droid
+	 * 
+	 * @return 	isImmobile	- The mobility status of a Droid (Boolean)
+	 * 
+	 */
 	public boolean getIsImmobile() {
 		return isImmobile;
 	}
 
-	//isDisassembled setter & getter
-	
+	/**
+	 * setIsDisassembled() method for Droids
+	 * 
+	 * Initiates the disassembled status of Droids once called upon. Note that
+	 * disassembled Droid will drop some Droid Parts in use for repairing the Droid
+	 * back to usable health!
+	 * 
+	 * @param 	newIsDis	- The new disassembled status of the Droid 
+	 * 
+	 */
 	public void setIsDisassembled(boolean newIsDis) {
 		this.isDisassembled = newIsDis;
 	}
-	
+
+	/**
+	 * getIsDisassembled() method for Droids
+	 * 
+	 * Obtains the disassembled status of a Droid once called upon. Note that
+	 * disassembled Droid will drop some Droid Parts in use for repairing the Droid
+	 * back to usable health!
+	 * 
+	 * @return 	isDisassembled	- The disassembled status of the Droid 
+	 * 
+	 */
 	public boolean getIsDisassembled() {
 		return isDisassembled;
 	}
 	
-	
+	//Selfheal method for Droids	( if they are at lower than half health)
 	private void selfHeal() {
 		
 		//IF the Droid is carrying an item...
@@ -348,10 +452,13 @@ public class Droid extends SWActor {
 		}		
 	}
 	
+	//Droid Patrol method (for R2-D2's implementation)
 	private Patrol getDroidPatrol() {
 		return this.droidPatrol;
 	}
 	
+	//c3OSpeaks method - for calling in random quotes from C-3PO fine choice of literacy! (, Java Switch Statement, viewed 10 May 2017,
+	// (Javatpoint 2017) (The Internet Movie Database 2017)
 	private void c3POSpeaks() {
 		int quoteChoice = (int) ( Math.random() * 10+1);
 		
@@ -371,14 +478,21 @@ public class Droid extends SWActor {
 }
 
 /*
- * REFERENCES
- * 
- * http://stackoverflow.com/questions/5887709/getting-random-numbers-in-java 10th
- * 
- * https://www.javatpoint.com/java-switch 10th
- * 
- * http://www.imdb.com/character/ch0000048/quotes 10th
- * 
- * http://stackoverflow.com/questions/2429228/in-java-how-does-one-turn-a-string-into-a-char-or-a-char-into-a-string 10th
- * 
- */
+REFERENCES
+
+Javatpoint 2017, Java Switch Statement, viewed 10 May 2017,
+https://www.javatpoint.com/java-switch 
+
+Stack Overflow 2011, Getting random numbers in Java [duplicate], viewed 10 May 2017,
+http://stackoverflow.com/questions/5887709/getting-random-numbers-in-java
+
+Stack Overflow 2010, In Java, how do I check if a string contains a substring (ignoring case)? [duplicate], viewed 7 May 2017,
+http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
+
+Stack Overflow 2010, In Java how does one turn a String into a char or a char into a String?, viewed 10 April 2017,
+http://stackoverflow.com/questions/2429228/in-java-how-does-one-turn-a-string-into-a-char-or-a-char-into-a-string
+
+The Internet Movie Database 2017, Quotes for C-3PO (Character), viewed 10 April 2017,
+http://www.imdb.com/character/ch0000048/quotes 
+
+*/

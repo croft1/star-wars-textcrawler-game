@@ -30,6 +30,15 @@ import starwars.entities.Force;
 import starwars.entities.LightSaber;
 import starwars.swinterfaces.SWGridController;
 
+/**
+ * Abstrct Class for SWActor
+ * 
+ * The SWActor class describes those actors (Droids, player, Tusken Raiderese, Bens) that
+ * whose inherited class comes from. All SWActors have a team, health, hitpoints and so
+ * forth. All actors aswell have methods that can be called for any actor - despite the
+ * subclass that they are instansiated from.* 
+ *
+ */
 public abstract class SWActor extends Actor<SWActionInterface> implements SWEntityInterface {
 	
 	/**the <code>Team</code> to which this <code>SWActor</code> belongs to**/
@@ -288,8 +297,16 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	public boolean isDead() {
 		return hitpoints <= 0;
 	}
-	
 
+	/**
+	 * getSymbol() method
+	 * 
+	 * Returns the symbol denoting the SWActor in the SWWorld in question
+	 * 
+	 * @return 	the symbol denoting this <code>SWActor</code>.
+	 * @ore 	The SWActor is defined and not null
+	 * 
+	 */
 	@Override
 	public String getSymbol() {
 		if(isDead()){
@@ -300,7 +317,15 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		
 	}
 	
-
+	/**
+	 * setSymbol() method
+	 * 
+	 * Sets the symbol denoting the SWActor in the SWWorld in question
+	 * 
+	 * @param 	s	- the new symbol denoting this <code>SWActor</code>.
+	 * @ore 	The SWActor is defined and not null
+	 * 
+	 */
 	@Override
 	public void setSymbol(String s) {
 		symbol = s;
@@ -318,7 +343,15 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		return humanControlled;
 	}
 	
-
+	/**
+	 * hasCapability() method
+	 * 
+	 * Returns the boolean describing if this SWActor has a certain Capability
+	 * 
+	 * @param 	c	- the capability in question if the <code>SWActor</code> can perform.
+	 * @ore 	The SWActor is defined and not null
+	 * 
+	 */
 	@Override
 	public boolean hasCapability(Capability c) {
 		return capabilities.contains(c);
@@ -358,21 +391,56 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	}
 	
 
-	
+	/**
+	 * setHitPoints() method
+	 * 
+	 * Sets the current hitpoints (HP) of this <code>SWActor</code>.
+	 * 
+	 * @param  	newHP	- the current HP of the <code>SWActor</code>.
+	 * @ore 	The SWActor is defined and not null
+	 * 
+	 */
 	public void setHitpoints(int newHP) {
 		
 		//Set this Actors' HP to the integer newHP
 		this.hitpoints = newHP;
 	}
 	
+	/**
+	 * getInitialHP() method
+	 * 
+	 * Gets the initial, full hitpoints (HP) of this <code>SWActor</code>.
+	 * 
+	 * @return  	initHP	- the initial (full) HP of the <code>SWActor</code>.
+	 * @ore 	The SWActor is defined and not null
+	 * 
+	 */
 	public int getInitialHP() {
 		return initHP;
 	}
 
+	/**
+	 * setWielding() method
+	 * 
+	 * Sets a Boolean describing if a <code>SWActor</code> is wielding a weapon.
+	 * 
+	 * @param  	b	- Boolean representing if the <code>SWActor</code> is wielding a weapon.
+	 * @ore 	The SWActor is defined and not null
+	 * 
+	 */
 	public void setWielding(boolean b) {
 		isWielding = b;
 	}
 	
+	/**
+	 * getCarryDescription() method
+	 * 
+	 * Returns a string describing the item currently held by this  <code>SWActor</code>.
+	 * 
+	 * @return  	String of the current weapon or item that the  <code>SWActor</code> is holding.
+	 * @ore 	The SWActor is defined, not null and holding an item
+	 * 
+	 */
 	public String getCarryDescription(){
 		String wieldDesc = (isWielding()) ?  " is wielding " :  " is holding ";
 		
@@ -380,3 +448,23 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		+ wieldDesc + itemCarried.getShortDescription() + " [" + itemCarried.getHitpoints() + "]";
 	}
 }
+
+/*
+REFERENCES
+
+Javatpoint 2017, Java Switch Statement, viewed 10 May 2017,
+https://www.javatpoint.com/java-switch 
+
+Stack Overflow 2011, Getting random numbers in Java [duplicate], viewed 10 May 2017,
+http://stackoverflow.com/questions/5887709/getting-random-numbers-in-java
+
+Stack Overflow 2010, In Java, how do I check if a string contains a substring (ignoring case)? [duplicate], viewed 7 May 2017,
+http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
+
+Stack Overflow 2010, In Java how does one turn a String into a char or a char into a String?, viewed 10 April 2017,
+http://stackoverflow.com/questions/2429228/in-java-how-does-one-turn-a-string-into-a-char-or-a-char-into-a-string
+
+The Internet Movie Database 2017, Quotes for C-3PO (Character), viewed 10 April 2017,
+http://www.imdb.com/character/ch0000048/quotes 
+
+*/

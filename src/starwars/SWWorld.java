@@ -110,24 +110,20 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(4,  5);
 		entityManager.setLocation(ben, loc);
 		
-		
-		loc = myGrid.getLocationByCoordinates(5,9);
-		ben.takeDamage(20);  //FOR TESTING PURPOSES - GET IT OFF ONCE OK
-		//test blaster
-		
-		
 		// Luke
 		Player luke = new Player(Team.GOOD, 100, iface, this);
 		luke.setShortDescription("Luke");
+		loc = myGrid.getLocationByCoordinates(5,9);
 		entityManager.setLocation(luke, loc);
 		luke.resetMoveCommands(loc);
 		
-		// OWEN AND BERU
+		// Owen and Beru
 		Humanoid owen = new Humanoid(Team.GOOD, 200, iface, this);
 		owen.setShortDescription("Uncle Owen");
 		loc = myGrid.getLocationByCoordinates(3,8);
 		entityManager.setLocation(owen, loc);
 		owen.setSymbol("H");
+		
 		Humanoid beru = new Humanoid(Team.GOOD, 200, iface, this);
 		beru.setShortDescription("Aunty Beru");
 		loc = myGrid.getLocationByCoordinates(5,8);
@@ -186,10 +182,17 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(5,5);
 		entityManager.setLocation(lightSaber, loc);
 		
+		
 		// A blaster 
 		Blaster blaster = new Blaster(iface);
 		loc = myGrid.getLocationByCoordinates(3, 4);
 		entityManager.setLocation(blaster, loc);
+		
+		// The Millenium Falcon
+		MilleniumFalcon millFalc = new MilleniumFalcon(iface);
+		loc = myGrid.getLocationByCoordinates(0, 2);
+		entityManager.setLocation(millFalc, loc);
+		millFalc.addAffordance( new Fly(millFalc, iface));
 		
 		// A Tusken Raider
 		TuskenRaider tim = new TuskenRaider(10, "Tim", iface, this);
@@ -197,16 +200,19 @@ public class SWWorld extends World {
 		loc = myGrid.getLocationByCoordinates(2,1);
 		entityManager.setLocation(tim, loc);
 		
+		// A second Tusken Raider
 		TuskenRaider lawrence = new TuskenRaider(20, "Lawrence Jacoby", iface, this);
 		lawrence.setSymbol("T");
 		loc = myGrid.getLocationByCoordinates(4,3);
 		entityManager.setLocation(lawrence, loc);
 		
+		// A third Tusken Raider
 		TuskenRaider james = new TuskenRaider(14, "James Hurley", iface, this);
 		james.setSymbol("T");
 		loc = myGrid.getLocationByCoordinates(6,3);
 		entityManager.setLocation(james, loc);
 		
+		// A fourth Tusken Raider
 		TuskenRaider dale = new TuskenRaider(88, "Dale Cooper", iface, this);
 		dale.setSymbol("T");
 		loc = myGrid.getLocationByCoordinates(4,7);
@@ -234,7 +240,7 @@ public class SWWorld extends World {
 		//Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
 		Droid_1.addAffordance(new Disassemble(Droid_1, iface));
 		
-		// A Droid
+		// A second Droid
 		Droid Droid_2 = new Droid(50, "Droid 2", iface, this, null);
 				
 		Droid_2.setSymbol("D2");
@@ -250,6 +256,29 @@ public class SWWorld extends World {
 		Droid_2.addAffordance(new Repair(Droid_2, iface));				
 		//Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
 		Droid_2.addAffordance(new Disassemble(Droid_2, iface));
+		
+		//A third Droid
+		Droid Droid_3 = new Droid(50, "Droid 3", iface, this, null);
+		
+		Droid_3.setSymbol("D3");
+		loc = myGrid.getLocationByCoordinates(3, 0);
+		entityManager.setLocation(Droid_3, loc);
+			
+		
+		//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
+		Droid_3.addAffordance(new TakeOwnership(Droid_3, iface)); 		
+		//Adding a HealDroid affordance - that SWACtors act upon
+		Droid_3.addAffordance(new HealDroid(Droid_3, iface));		
+		//Adding a Repair affordance to the Droid - can be repaired
+		Droid_3.addAffordance(new Repair(Droid_3, iface));				
+		//Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
+		Droid_3.addAffordance(new Disassemble(Droid_3, iface));
+		
+		//Setting D3 to be immobile and no health (for R2-D2 to help)
+		Droid_3.setHitpoints(0);
+		Droid_3.setIsImmobile(true);
+		
+		
 		
 		//Creating C-3PO & attributes
 		Droid C3PO = new Droid(200, "C-3PO", iface, this, null);
@@ -296,29 +325,6 @@ public class SWWorld extends World {
 		//Make R2D2 hold some Droid Parts from the beginning
 		DroidParts r2dp = new DroidParts(iface);
 		R2D2.setItemCarried(r2dp);
-		R2D2.setHitpoints(50);
-		
-		
-		// A testDroid
-				Droid testd = new Droid(50, "testdroid", iface, this, null);
-						
-				testd.setSymbol("TD");
-				loc = myGrid.getLocationByCoordinates(1, 0);
-				entityManager.setLocation(testd, loc);
-					
-				
-				//Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
-				testd.addAffordance(new TakeOwnership(testd, iface)); 		
-				//Adding a HealDroid affordance - that SWACtors act upon
-				testd.addAffordance(new HealDroid(testd, iface));		
-				//Adding a Repair affordance to the Droid - can be repaired
-				testd.addAffordance(new Repair(testd, iface));				
-				//Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
-				testd.addAffordance(new Disassemble(testd, iface));
-				
-				testd.setHitpoints(-1);
-				testd.setIsImmobile(true);
-				testd.setIsDisassembled(false);
 		
 	}
 	
@@ -404,7 +410,21 @@ public class SWWorld extends World {
 }
 
 /*
- References
- 
- http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case 7th
+REFERENCES
+
+Javatpoint 2017, Java Switch Statement, viewed 10 May 2017,
+https://www.javatpoint.com/java-switch 
+
+Stack Overflow 2011, Getting random numbers in Java [duplicate], viewed 10 May 2017,
+http://stackoverflow.com/questions/5887709/getting-random-numbers-in-java
+
+Stack Overflow 2010, In Java, how do I check if a string contains a substring (ignoring case)? [duplicate], viewed 7 May 2017,
+http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
+
+Stack Overflow 2010, In Java how does one turn a String into a char or a char into a String?, viewed 10 April 2017,
+http://stackoverflow.com/questions/2429228/in-java-how-does-one-turn-a-string-into-a-char-or-a-char-into-a-string
+
+The Internet Movie Database 2017, Quotes for C-3PO (Character), viewed 10 April 2017,
+http://www.imdb.com/character/ch0000048/quotes 
+
 */

@@ -1,3 +1,11 @@
+/**
+ * starwars.actions package
+ * 
+ * Initiates actions that will be able to be initiated by SWActors in the Star Wars
+ * roguelike game. This includes actions like Obey (the Force), TakeOwnership (of Droids),
+ * Leave (an item) and so forth!
+ *
+ */
 package starwars.actions;
 
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
@@ -8,19 +16,63 @@ import starwars.SWAffordance;
 import starwars.SWEntityInterface;
 import starwars.entities.Fillable;
 
+/**
+ * Class for HealDroid
+ * 
+ * The HealDroid action enables other SWActors (like the Player and Droid R2-D2) to be
+ * able to heal other Droids (and themselves) when they would like to. The affiliated
+ * SWActor who wants to heal needs to have a Oil Can to do so (minus R2-D2), who has an
+ * internal Oil distributor!
+ * 
+ * @author jas
+ * @author mewc
+ *
+ */
 public class HealDroid extends SWAffordance {
 
+	/**
+	 * Constructor for HealDroid
+	 * 
+	 * @param 	theTarget	- SWEntityInterface that the heal will effect
+	 * @param 	m	- MessageRenderer used for displaying messages to output.
+	 *
+	 */
 	public HealDroid(SWEntityInterface theTarget, MessageRenderer m) {
 		super(theTarget, m);
 		priority = 1;
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Public Method canDo(SWActor a)
+	 *
+	 * Returns a boolean exclaiming that the particular SWActor (a) is able to
+	 * use HealDroid.
+	 * 
+	 * @param 	a	- The SWActor in question of being able to undertake this action
+	 * 
+	 * @return 	- Boolean (true) that exclaims this actor can undertake the healing
+	 * of a particular Droid
+	 *
+	 */
 	@Override
 	public boolean canDo(SWActor a) {
 		return true;
 	}
 
+	/**
+	 * Public Method act(SWActor a)
+	 *
+	 * Initiates the HealDroid process once option is selected from the same menu.
+	 * (also preselected if R2-D2 comes across a Droid who needs healing).
+	 * Depending on certain conditions (such as if the actor (a) is holding a oil can
+	 * or if the target Droid is at full health) are checked in a logical order
+	 * in the enabling of healing the target Droid.
+	 * 
+	 * @param 	a	- The SWActor in question of being able to undertake the process of 
+	 * healing a Droid.
+	 *
+	 */
 	@Override
 	public void act(SWActor a) {
 		//Target is the Droid that is going to be healed.
@@ -172,10 +224,38 @@ public class HealDroid extends SWAffordance {
 	}
 		
 		
-
+	/**
+	 * public method getDescription()
+	 * 
+	 * Returns a string description of HealDroid. Used when showing the player they 
+	 * are able to complete this action selected.
+	 * 
+	 * @return	-	String of action - implemented in game selection options.
+	 *
+	 */
 	@Override
 	public String getDescription() {
 		return "heal " + target.getShortDescription();
 	}
 
 }
+
+/*
+REFERENCES
+
+Javatpoint 2017, Java Switch Statement, viewed 10 May 2017,
+https://www.javatpoint.com/java-switch 
+
+Stack Overflow 2011, Getting random numbers in Java [duplicate], viewed 10 May 2017,
+http://stackoverflow.com/questions/5887709/getting-random-numbers-in-java
+
+Stack Overflow 2010, In Java, how do I check if a string contains a substring (ignoring case)? [duplicate], viewed 7 May 2017,
+http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
+
+Stack Overflow 2010, In Java how does one turn a String into a char or a char into a String?, viewed 10 April 2017,
+http://stackoverflow.com/questions/2429228/in-java-how-does-one-turn-a-string-into-a-char-or-a-char-into-a-string
+
+The Internet Movie Database 2017, Quotes for C-3PO (Character), viewed 10 April 2017,
+http://www.imdb.com/character/ch0000048/quotes 
+
+*/

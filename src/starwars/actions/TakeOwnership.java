@@ -1,3 +1,11 @@
+/**
+ * starwars.actions package
+ * 
+ * Initiates actions that will be able to be initiated by SWActors in the Star Wars
+ * roguelike game. This includes actions like Obey (the Force), TakeOwnership (of Droids),
+ * Leave (an item) and so forth!
+ *
+ */
 package starwars.actions;
 
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
@@ -9,26 +17,25 @@ import starwars.SWEntityInterface;
 import starwars.entities.actors.Droid;
 
 /**
- * Command to attack entities.
+ * Class for TakeOwnership
  * 
- * This affordance is attached to all attackable entities
+ * The TakeOwnership  action enables SWActors (like the Player) to be
+ * able to take ownership of neutral Droids  when they would like to. The 
+ * Droid, once taken ownership of, will then follow the players every move,
+ * essentially being their sidekick throughout the game!
  * 
- * @author David.Squire@monash.edu (dsquire)
- */
-/*
- * Change log
- * 2017/02/03	Fixed the bug where the an actor could attack another actor in the same team (asel)
- * 2017/02/08	Attack given a priority of 1 in constructor (asel)
+ * @author jas
+ * @author mewc
+ *
  */
 public class TakeOwnership extends SWAffordance implements SWActionInterface {
 
 	
 	/**
-	 * Constructor for the <code>Attack</code> class. Will initialize the <code>messageRenderer</code> and
-	 * give <code>Attack</code> a priority of 1 (lowest priority is 0).
+	 * Constructor for the <code>TakeOwnership</code> class. 
 	 * 
-	 * @param theTarget the target being attacked
-	 * @param m message renderer to display messages
+	 * @param theTarget 	- the Droid being taken ownership of
+	 * @param m 	- the message renderer to display messages
 	 */
 	public TakeOwnership(SWEntityInterface theTarget, MessageRenderer m) {
 		super(theTarget, m);	
@@ -37,9 +44,9 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 
 
 	/**
-	 * Returns the time is takes to perform this <code>Attack</code> action.
+	 * Returns the time is takes to perform this <code>TakeOwnership</code> action.
 	 * 
-	 * @return The duration of the Attack action. Currently hard coded to return 1.
+	 * @return The duration of the TakeOwnership action. Currently hard coded to return 1.
 	 */
 	@Override
 	public int getDuration() {
@@ -48,9 +55,9 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 
 	
 	/**
-	 * A String describing what this <code>Attack</code> action will do, suitable for display on a user interface
+	 * A String describing what this <code>TakeOwnership</code> action will do, suitable for display on a user interface
 	 * 
-	 * @return String comprising "attack " and the short description of the target of this <code>Affordance</code>
+	 * @return String comprising "taken ownership of " and the short description of the target Droid of this <code>Affordance</code>
 	 */
 	@Override
 	public String getDescription() {
@@ -59,12 +66,12 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 
 
 	/**
-	 * Determine whether a particular <code>SWActor a</code> can attack the target.
+	 * Determine whether a particular <code>SWActor a</code> can take ownership of the target.
 	 * 
 	 * @author 	dsquire
 	 * @param 	a the <code>SWActor</code> being queried
-	 * @return 	true any <code>SWActor</code> can always try an attack, it just won't do much 
-	 * 			good unless this <code>SWActor a</code> has a suitable weapon.
+	 * @return 	true any <code>SWActor</code> can always try to take ownership of a Droid, 
+	 * however if the Droid already has a owner or is immobile/disassembled, it wont do much!
 	 */
 	@Override
 	public boolean canDo(SWActor a) {
@@ -73,26 +80,14 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 
 	
 	/**
-	 * Perform the <code>Attack</code> command on an entity.
-	 * <p>
-	 * This method does not perform any damage (an attack) if,
-	 * <ul>
-	 * 	<li>The target of the <code>Attack</code> and the <code>SWActor a</code> are in the same <code>Team</code></li>
-	 * 	<li>The <code>SWActor a</code> is holding an item without the <code>WEAPON Affordance</code></li>
-	 * </ul>
-	 * <p>
-	 * else it would damage the entity attacked, tires the attacker, and blunts any weapon used for the attack.
-	 * 
-	 * TODO : check if the weapon has enough hitpoints and the attacker has enough energy before an attack.
-	 * 
-	 * @author 	dsquire -  adapted from the equivalent class in the old Eiffel version
-	 * @author 	Asel - bug fixes.
-	 * @param 	a the <code>SWActor</code> who is attacking
-	 * @pre 	this method should only be called if the <code>SWActor a</code> is alive
-	 * @pre		an <code>Attack</code> must not be performed on a dead <code>SWActor</code>
-	 * @post	if a <code>SWActor</code>dies in an <code>Attack</code> their <code>Attack</code> affordance would be removed
-	 * @see		starwars.SWActor#isDead()
-	 * @see 	starwars.Team
+	 * Public Method act(SWActor a)
+	 *
+	 * Initiates the TakeOwnership process once option is selected from the same menu.
+	 * Depending on certain conditions (like if the Droid being queried is mobile, if they
+	 * do not have a owner currently for example), this act() action will change the 
+	 * action of the situation at hand.
+	 * @param 	a	- The SWActor in question of being able to undertake this action
+	 *
 	 */
 	@Override
 	public void act(SWActor a) {
@@ -131,10 +126,26 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 			
 			//Printing out notification of prior ownership
 			a.say(a.getShortDescription()  + " already owns " + target.getShortDescription() + "!");
-		}
-
-		
-
-		
+		}	
 	}
 }
+
+/*
+REFERENCES
+
+Javatpoint 2017, Java Switch Statement, viewed 10 May 2017,
+https://www.javatpoint.com/java-switch 
+
+Stack Overflow 2011, Getting random numbers in Java [duplicate], viewed 10 May 2017,
+http://stackoverflow.com/questions/5887709/getting-random-numbers-in-java
+
+Stack Overflow 2010, In Java, how do I check if a string contains a substring (ignoring case)? [duplicate], viewed 7 May 2017,
+http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
+
+Stack Overflow 2010, In Java how does one turn a String into a char or a char into a String?, viewed 10 April 2017,
+http://stackoverflow.com/questions/2429228/in-java-how-does-one-turn-a-string-into-a-char-or-a-char-into-a-string
+
+The Internet Movie Database 2017, Quotes for C-3PO (Character), viewed 10 April 2017,
+http://www.imdb.com/character/ch0000048/quotes 
+
+*/
