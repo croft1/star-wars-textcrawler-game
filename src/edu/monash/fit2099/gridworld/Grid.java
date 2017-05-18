@@ -97,9 +97,14 @@ public abstract class Grid<T extends Location> extends LocationContainer<T> {
 			assert (angle >=0 && angle <= 360)	:"angle should be between 0 and 360 inclusive";
 			
 			//Precondition 2 - Ensure angle corresponds to one of the 8 directions
-			assert (validAngles.contains(angle)):"angle should correpsond to one of the 8 directions";
+			assert (getValidAngles().contains(angle)):"angle should correpsond to one of the 8 directions";
 			
 			this.angle = angle;
+		}
+
+		//Needed to be added as there was an illegal reference to static field from init error causing problems
+		private List<Integer> getValidAngles(){
+			return validAngles;
 		}
 		
 		/**
