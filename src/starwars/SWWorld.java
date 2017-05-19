@@ -34,17 +34,7 @@ public abstract class SWWorld extends World {
 	/**The entity manager of the world which keeps track of <code>SWEntities</code> and their <code>SWLocation</code>s*/
 	protected static final EntityManager<SWEntityInterface, SWLocation> entityManager = new EntityManager<SWEntityInterface, SWLocation>();
 	
-	/**
-	 * Constructor of <code>SWWorld</code>. This will initialize the <code>SWLocationMaker</code>
-	 * and the grid.
-	 */
-	public SWWorld() {
-		SWLocation.SWLocationMaker factory = SWLocation.getMaker();
-		myGrid = new SWGrid(factory);
-		space = myGrid;
-		name = "Somewhere...";
-		
-	}
+
 
 	/** 
 	 * Returns the height of the <code>Grid</code>. Useful to the Views when rendering the map.

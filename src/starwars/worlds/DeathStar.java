@@ -24,13 +24,15 @@ import starwars.entities.actors.*;
  */
 public class DeathStar extends SWWorld {
 
+
+
 	/**
 	 * Constructor of <code>SWWorld</code>. This will initialize the <code>SWLocationMaker</code>
 	 * and the grid.
 	 */
 	public DeathStar() {
 		SWLocation.SWLocationMaker factory = SWLocation.getMaker();
-		myGrid = new SWGrid(factory);
+		myGrid = new SWGrid(10,10, factory);
 		space = myGrid;
 		name = "The Death Star";
 
@@ -51,7 +53,7 @@ public class DeathStar extends SWWorld {
 				loc = myGrid.getLocationByCoordinates(col, row);
 				loc.setLongDescription(name + " (" + col + ", " + row + ")");
 				loc.setShortDescription(name + " (" + col + ", " + row + ")");
-				loc.setSymbol('.');
+				loc.setSymbol('x');
 			}
 		}
 

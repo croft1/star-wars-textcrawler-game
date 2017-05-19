@@ -29,9 +29,9 @@ public class YavinFour extends SWWorld {
 	 */
 	public YavinFour() {
 		SWLocation.SWLocationMaker factory = SWLocation.getMaker();
-		myGrid = new SWGrid(factory);
+		myGrid = new SWGrid(2,2,factory);
 		space = myGrid;
-		name = "The Death Star";
+		name = "Yavin IV";
 
 	}
 
@@ -49,9 +49,9 @@ public class YavinFour extends SWWorld {
 		for (int row = 0; row < height(); row++) {
 			for (int col = 0; col < width(); col++) {
 				loc = myGrid.getLocationByCoordinates(col, row);
-				loc.setLongDescription("SWWorld (" + col + ", " + row + ")");
-				loc.setShortDescription("SWWorld (" + col + ", " + row + ")");
-				loc.setSymbol('.');
+				loc.setLongDescription(name + " (" + col + ", " + row + ")");
+				loc.setShortDescription(name + " (" + col + ", " + row + ")");
+				loc.setSymbol('_');
 			}
 		}
 
@@ -66,7 +66,7 @@ public class YavinFour extends SWWorld {
 		// Luke
 		Player luke = new Player(Team.GOOD, 100, iface, this);
 		luke.setShortDescription("Luke");
-		loc = myGrid.getLocationByCoordinates(5, 9);
+		loc = myGrid.getLocationByCoordinates(0, 0);
 		entityManager.setLocation(luke, loc);
 		luke.resetMoveCommands(loc);
 

@@ -22,29 +22,35 @@ import starwars.worlds.YavinFour;
 
 public class Application {
 	public static void main(String args[]) {
-		
 		SWWorld tatooine = new Tatooine();
 		SWWorld yavinFour = new YavinFour();
 		SWWorld deathStar = new DeathStar();
-		
-		
+
+		runWorld(yavinFour);
+		runWorld(deathStar);
+		runWorld(tatooine);
+	}
+
+
+	//primarily for testing,
+	private static void runWorld(SWWorld world){
+
 		//Grid controller controls the data and commands between the UI and the model
-		SWGridController uiController = new SWGridController(tatooine);
-		
-		Scheduler theScheduler = new Scheduler(1, tatooine);
+		SWGridController uiController = new SWGridController(world);
+
+		Scheduler theScheduler = new Scheduler(1, world);
 		SWActor.setScheduler(theScheduler);
-		
+
 		// set up the world
-		tatooine.initializeWorld(uiController);
-	
+		world.initializeWorld(uiController);
+
 		// kick off the scheduler
 		while(true) {
 			uiController.render();
 			theScheduler.tick();
 		}
-		
-		
 	}
+
 	
 	
 

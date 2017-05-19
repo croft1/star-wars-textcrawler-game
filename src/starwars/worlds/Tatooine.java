@@ -32,9 +32,9 @@ public class Tatooine extends SWWorld {
     public Tatooine() {
 
         SWLocation.SWLocationMaker factory = SWLocation.getMaker();
-        myGrid = new SWGrid(factory);
+        myGrid = new SWGrid(10,15,factory);
         space = myGrid;
-        name = "The Death Star";
+        name = "Tatooine";
 
     }
 
@@ -51,8 +51,8 @@ public class Tatooine extends SWWorld {
         for (int row = 0; row < height(); row++) {
             for (int col = 0; col < width(); col++) {
                 loc = myGrid.getLocationByCoordinates(col, row);
-                loc.setLongDescription("SWWorld (" + col + ", " + row + ")");
-                loc.setShortDescription("SWWorld (" + col + ", " + row + ")");
+                loc.setLongDescription(name + " (" + col + ", " + row + ")");
+                loc.setShortDescription(name + " (" + col + ", " + row + ")");
                 loc.setSymbol('.');
             }
         }
