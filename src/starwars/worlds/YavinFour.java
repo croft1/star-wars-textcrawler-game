@@ -63,12 +63,20 @@ public class YavinFour extends SWWorld {
 				CompassBearing.EAST, CompassBearing.EAST,
 				CompassBearing.NORTHWEST, CompassBearing.NORTHWEST};
 
+
+		//TODO Need to move the existing player to this position, not create a new one
 		// Luke
-		Player luke = new Player(Team.GOOD, 100, iface, this);
-		luke.setShortDescription("Luke");
-		loc = myGrid.getLocationByCoordinates(0, 0);
-		entityManager.setLocation(luke, loc);
-		luke.resetMoveCommands(loc);
+
+
+        GeneralAckbar ga = new GeneralAckbar(iface, this);
+        loc = myGrid.getLocationByCoordinates(0, 1);
+        entityManager.setLocation(ga, loc);
+        ga.setSymbol("GA");
+
+        MonMothma mm = new MonMothma(iface, this);
+        loc = myGrid.getLocationByCoordinates(1, 0);
+        entityManager.setLocation(ga, loc);
+        mm.setSymbol("MM");
 
 	}
 }

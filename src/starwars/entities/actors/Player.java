@@ -12,6 +12,7 @@ import java.util.List;
 
 import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
+import edu.monash.fit2099.values.TColor;
 import starwars.SWActor;
 import starwars.SWEntityInterface;
 import starwars.SWForceActor;
@@ -56,7 +57,7 @@ public class Player extends SWForceActor {
 	public Player(Team team, int hitpoints, MessageRenderer m, SWWorld world) {
 		super(team, hitpoints, m, world);
 		humanControlled = true; // this feels like a hack. Surely this should('nt?) be dynamic. Thats starwars
-		
+		this.setSymbol("@");
 		//use default force
 	}
 	

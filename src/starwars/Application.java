@@ -26,9 +26,10 @@ public class Application {
 		SWWorld yavinFour = new YavinFour();
 		SWWorld deathStar = new DeathStar();
 
+		runWorld(tatooine);
 		runWorld(yavinFour);
 		runWorld(deathStar);
-		runWorld(tatooine);
+
 	}
 
 
