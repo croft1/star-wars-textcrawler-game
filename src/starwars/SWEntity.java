@@ -33,7 +33,7 @@ public class SWEntity extends Entity implements SWEntityInterface {
 	 * 
 	 * @param m the <code>messageRenderer</code> to display messages
 	 */
-	protected SWEntity(MessageRenderer m) {
+	public SWEntity(MessageRenderer m) {
 		super(m);
 		capabilities = new HashSet<Capability>();
 		

@@ -1,0 +1,75 @@
+package starwars.worlds;
+
+import edu.monash.fit2099.gridworld.Grid.CompassBearing;
+import edu.monash.fit2099.simulator.matter.EntityManager;
+import edu.monash.fit2099.simulator.space.Direction;
+import edu.monash.fit2099.simulator.space.Location;
+import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
+import starwars.*;
+import starwars.actions.*;
+import starwars.entities.*;
+import starwars.entities.actors.*;
+
+/**
+ * Class representing a world in the Star Wars universe. 
+ * 
+ * @author ram
+ */
+/*
+ * Change log
+ * 2017-02-02:  Render method was removed from Middle Earth
+ * 				Displaying the Grid is now handled by the TextInterface rather 
+ * 				than by the Grid or MiddleWorld classes (asel)
+ */
+public class YavinFour extends SWWorld {
+
+	/**
+	 * Constructor of <code>SWWorld</code>. This will initialize the <code>SWLocationMaker</code>
+	 * and the grid.
+	 */
+	public YavinFour() {
+		SWLocation.SWLocationMaker factory = SWLocation.getMaker();
+		myGrid = new SWGrid(factory);
+		space = myGrid;
+		name = "The Death Star";
+
+	}
+
+
+	/**
+	 * Set up the world, setting descriptions for locations and placing items and actors
+	 * on the grid.
+	 *
+	 * @param iface a MessageRenderer to be passed onto newly-created entities
+	 * @author ram
+	 */
+	public void initializeWorld(MessageRenderer iface) {
+		SWLocation loc;
+		// Set default location string
+		for (int row = 0; row < height(); row++) {
+			for (int col = 0; col < width(); col++) {
+				loc = myGrid.getLocationByCoordinates(col, row);
+				loc.setLongDescription("SWWorld (" + col + ", " + row + ")");
+				loc.setShortDescription("SWWorld (" + col + ", " + row + ")");
+				loc.setSymbol('.');
+			}
+		}
+
+
+		Direction[] patrolmoves = {CompassBearing.EAST, CompassBearing.EAST,
+				CompassBearing.SOUTH,
+				CompassBearing.WEST, CompassBearing.WEST,
+				CompassBearing.SOUTH,
+				CompassBearing.EAST, CompassBearing.EAST,
+				CompassBearing.NORTHWEST, CompassBearing.NORTHWEST};
+
+		// Luke
+		Player luke = new Player(Team.GOOD, 100, iface, this);
+		luke.setShortDescription("Luke");
+		loc = myGrid.getLocationByCoordinates(5, 9);
+		entityManager.setLocation(luke, loc);
+		luke.resetMoveCommands(loc);
+
+	}
+}
+	
