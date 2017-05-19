@@ -74,8 +74,8 @@ public class YavinFour extends SWWorld {
         ga.setSymbol("GA");
 
         MonMothma mm = new MonMothma(iface, this);
-        loc = myGrid.getLocationByCoordinates(1, 0);
-        entityManager.setLocation(ga, loc);
+        loc = myGrid.getLocationByCoordinates(1, 1);
+        entityManager.setLocation(mm, loc);
         mm.setSymbol("MM");
 
 	}

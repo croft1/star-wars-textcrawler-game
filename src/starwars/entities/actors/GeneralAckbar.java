@@ -47,7 +47,7 @@ public class GeneralAckbar extends SWActor {
 	private String describeLocation() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		String says = " looks at you curiously";
-		if (Math.random() >= 0.1){
+		if (Math.random() >= 0.9){
 			says += " then bellows: it's a Trap!";
 		}
 
