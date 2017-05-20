@@ -13,6 +13,7 @@ import starwars.*;
 import starwars.actions.*;
 import starwars.entities.Canteen;
 import starwars.entities.Force;
+import starwars.entities.Plans;
 import starwars.entities.actors.behaviors.AttackInformation;
 import starwars.entities.actors.behaviors.AttackNeighbours;
 import starwars.entities.actors.behaviors.Patrol;
@@ -46,7 +47,7 @@ public class PrincessLeia extends SWLegend  {
 		//setItemCarried(bensweapon);
 		Force f = new Force(m, 40);	//80+ means hes the chosen one
 		setForce(f);
-		
+		setItemCarried(new Plans(m));
 		//this.addAffordance();	//ADD IN FOLLOW AFFORDANCE
 
 	}
