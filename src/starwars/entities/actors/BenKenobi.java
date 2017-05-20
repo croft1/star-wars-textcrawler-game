@@ -54,8 +54,9 @@ public class BenKenobi extends SWLegend  {
 		path = new Patrol(moves);
 		this.setShortDescription("Ben Kenobi");
 		this.setLongDescription("Ben Kenobi, an old man who has perhaps seen too much");
-		//LightSaber bensweapon = new LightSaber(m);
-		//setItemCarried(bensweapon);
+		LightSaber bensweapon = new LightSaber(m);
+		setItemCarried(bensweapon);
+		setWielding(true);
 		Force bensForce = new Force(m, 79);	//80+ means hes the chosen one
 		setForce(bensForce);
 		

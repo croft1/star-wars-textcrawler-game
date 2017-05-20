@@ -41,6 +41,7 @@ public class Humanoid extends SWActor {
 		// TODO Auto-generated constructor stub
 		
 		setItemCarried(new Rake(m));
+		setWielding(true);
 		this.addAffordance(new Obey(this, m));	//allow any humanoid to obey those with force
 		
 	}

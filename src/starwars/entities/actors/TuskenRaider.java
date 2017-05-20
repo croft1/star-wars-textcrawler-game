@@ -43,6 +43,7 @@ public class TuskenRaider extends SWActor {
 		// TODO Auto-generated constructor stub
 		this.name = name;
 		setItemCarried(new Mace(m));
+		setWielding(true);
 	}
 
 	@Override
