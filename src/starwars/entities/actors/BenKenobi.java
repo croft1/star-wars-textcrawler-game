@@ -19,7 +19,7 @@ import starwars.SWWorld;
 import starwars.Team;
 import starwars.actions.HealPlayer;
 import starwars.actions.Leave;
-import starwars.actions.MindControl;
+
 import starwars.actions.Move;
 import starwars.actions.Take;
 import starwars.actions.TrainForce;

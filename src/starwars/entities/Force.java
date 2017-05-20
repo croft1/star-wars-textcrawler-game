@@ -20,7 +20,7 @@ public class Force extends SWEntity {
 	
 	
 	private int power;
-    private int charge;
+    private int charge = 100;
 	
 	/**
 	 * Constructor for the <code>Blaster</code> class. This constructor will,
@@ -53,9 +53,19 @@ public class Force extends SWEntity {
 		return power;
 	}
 
-	
-	
-	/**
+    public int getCharge() {
+        return charge;
+    }
+
+    public void useCharge(int chargeUsed) {
+        charge -= chargeUsed;
+    }
+
+    public void reCharge(){
+	    charge += 1;
+    }
+
+    /**
 	 * 
 	 * 
 	 * @return 	Single Character string "s"

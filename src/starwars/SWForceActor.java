@@ -4,7 +4,7 @@ import edu.monash.fit2099.simulator.matter.Affordance;
 import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.actions.Choke;
-import starwars.actions.MindControl;
+
 import starwars.entities.Force;
 
 /**
@@ -77,6 +77,27 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	public int getForcePower() {
 		return (force != null)? force.getPower() : -1;
 	}
+
+	/**
+	 * Returns the points of the <code>Force</code> in terms of strength
+	 *
+	 * @return 	the boolean of force presence in an <code>SWActor</code>
+	 * @see 	#force
+	 */
+
+	public int getForceCharge() {
+		return (force != null)? force.getCharge() : -1;
+	}
+
+	/**
+	 * Reduces the the points of the <code>Charge</code> that allows use of mind control/choke
+	 *
+	 * @see 	#force
+	 */
+
+	public void useCharge(int chargeUsed) {
+		this.force.useCharge(chargeUsed);
+	}
 	
 	
 	/**
@@ -102,7 +123,8 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	public void trainForce(){	
 			force.trainPower();	
 	}	
-	
+
+
 	
 	/**
 	 * Returns the string of the SWForceActors title
@@ -135,8 +157,8 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 
 	public void influence(int influence) {
 
-		if((influence + this.getInfluence()) <= 100 ||
-				(influence + this.getInfluence()) >= -100){
+		if((influence + this.getInfluence()) <= LIGHTSIDE_MAX ||
+				(influence + this.getInfluence()) >= DARKSIDE_MAX){
 			this.influence += (influence < 0)?influence *2:influence;//dark side is more corrupting but more seductive and easy
 		}
 
@@ -148,8 +170,8 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	}
 
 	protected void setInfluence(int influence) {
-		if((influence + this.getInfluence()) <= 100 ||
-				(influence + this.getInfluence()) >= -100){
+		if((influence + this.getInfluence()) <= LIGHTSIDE_MAX ||
+				(influence + this.getInfluence()) >= DARKSIDE_MAX){
 			this.influence += influence;
 		}
 
@@ -168,7 +190,6 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 				if (affEntity.getDescription().contains("choke")) {	//only triggered when going from dark to light
 					this.removeAffordance(affEntity);		//removes the obey affordance from actor
 					force.capabilities.remove(Capability.CHOKE);
-					this.addAffordance(new MindControl(this, messageRenderer));	//allow those with the force to perform mindcontrol
 					force.capabilities.add(Capability.MIND_CONTROL);   // and WEAPON so that it can be used to attack
 
 				}
@@ -178,7 +199,6 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 				if (affEntity.getDescription().contains("mind")) {	//when theyre already on the darkside, skip
 					this.addAffordance(affEntity);		//removes the obey affordance from actor
 					force.capabilities.add(Capability.CHOKE);
-					this.removeAffordance(new MindControl(this, messageRenderer));	//allow those with the force to perform mindcontrol
 					force.capabilities.remove(Capability.MIND_CONTROL);   // and WEAPON so that it can be used to attack
 
 				}

@@ -93,7 +93,9 @@ public class Player extends SWForceActor {
 	public void describeScene() {
 		//get the location of the player and describe it
 		SWLocation location = this.world.getEntityManager().whereIs(this);
-		say(this.getShortDescription() + " [HP: " + this.getHitpoints() + " F: " + this.getForcePower() + "(" + this.getInfluence() + ")] is at " + location.getShortDescription());
+		say(this.getShortDescription() + " [HP: " + this.getHitpoints() +
+				" F: " + this.getForcePower() + "(" + this.getForceCharge() + "/100) " +
+				" I: " + this.getInfluence() + "] is at " + location.getShortDescription());
 		
 		//get the items carried for the player
 		SWEntityInterface itemCarried = this.getItemCarried();
