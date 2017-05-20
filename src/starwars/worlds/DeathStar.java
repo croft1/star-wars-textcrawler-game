@@ -1,13 +1,9 @@
 package starwars.worlds;
 
 import edu.monash.fit2099.gridworld.Grid.CompassBearing;
-import edu.monash.fit2099.simulator.matter.EntityManager;
 import edu.monash.fit2099.simulator.space.Direction;
-import edu.monash.fit2099.simulator.space.Location;
-import edu.monash.fit2099.simulator.space.World;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.*;
-import starwars.actions.*;
 import starwars.entities.*;
 import starwars.entities.actors.*;
 
@@ -90,6 +86,28 @@ public class DeathStar extends SWWorld {
         loc = myGrid.getLocationByCoordinates(4, 4);
         entityManager.setLocation(dv, loc);
         dv.setSymbol("V");
+
+        StormTrooper st = new StormTrooper(iface, this);
+
+        loc = myGrid.getLocationByCoordinates(2, 2);
+        entityManager.setLocation(st, loc);
+
+        StormTrooper st4 = new StormTrooper(iface, this);
+
+        loc = myGrid.getLocationByCoordinates(6, 6);
+        entityManager.setLocation(st4, loc);
+
+        StormTrooper st3 = new StormTrooper(iface, this);
+        loc = myGrid.getLocationByCoordinates(2, 6);
+        entityManager.setLocation(st3, loc);
+
+        StormTrooper st2 = new StormTrooper(iface, this);
+        loc = myGrid.getLocationByCoordinates(6, 2);
+        entityManager.setLocation(st2, loc);
+
+        StormTrooper st1 = new StormTrooper(iface, this);
+        loc = myGrid.getLocationByCoordinates(1, 9);
+        entityManager.setLocation(st1, loc);
     }
 
 }
