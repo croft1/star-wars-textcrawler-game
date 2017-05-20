@@ -59,6 +59,7 @@ public class Player extends SWForceActor {
 		this.setSymbol("@");
 		//use default force
 		//use default force influecen
+		estSideOfForce();
 	}
 	
 	/**

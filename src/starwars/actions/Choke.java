@@ -13,7 +13,7 @@ import starwars.*;
 /*
  * 
  */
-public class ForceChoke extends SWAffordance implements SWActionInterface {
+public class Choke extends SWAffordance implements SWActionInterface {
 
 
 	/**
@@ -23,7 +23,7 @@ public class ForceChoke extends SWAffordance implements SWActionInterface {
 	 * @param theTarget the target being attacked
 	 * @param m message renderer to display messages
 	 */
-	public ForceChoke(SWEntityInterface theTarget, MessageRenderer m) {
+	public Choke(SWEntityInterface theTarget, MessageRenderer m) {
 		super(theTarget, m);	
 		priority = 1;
 	}

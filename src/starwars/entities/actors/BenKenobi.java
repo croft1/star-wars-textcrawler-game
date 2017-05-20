@@ -60,7 +60,7 @@ public class BenKenobi extends SWLegend  {
 		setForce(bensForce);
 		setInfluence(100);
 		this.addAffordance(new TrainForce(this, m));	//allow those with the force to perform mindcontrol
-		
+		estSideOfForce();
 	}
 
 	/**

@@ -3,8 +3,9 @@ package starwars;
 import edu.monash.fit2099.simulator.matter.Affordance;
 import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
+import starwars.actions.Choke;
+import starwars.actions.MindControl;
 import starwars.entities.Force;
-import starwars.entities.LightSaber;
 
 /**
  * This class represents "FORCE ACTORS" whom are people posessing the power of the force
@@ -44,6 +45,8 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 				this.removeAffordance(affEntity);		//removes the obey affordance from actor
 			}
 		}
+		estSideOfForce();
+
 		
 	}
 
@@ -140,6 +143,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 		if(this.influence < 10 && this.influence > 0){
 			say(this.getShortDescription() + " has almost been swayed to the DARK SIDE (" + this.influence + ")");
 		}
+		estSideOfForce();
 
 	}
 
@@ -149,6 +153,37 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 			this.influence += influence;
 		}
 
+	}
+
+	/**
+	 * When a force actor gets influenced, or starts off with a particular affinity to a side of the force,
+	 * you will then
+	 *
+	 */
+	protected void estSideOfForce(){
+		//this is real ugly,TODO fix ugliness
+		//Check each time any influence to ones affinity happens.
+		if(influence >= 0){	//when influence is positive, have light side powers enabled
+			for (Affordance affEntity : this.getAffordances()) {
+				if (affEntity.getDescription().contains("choke")) {	//only triggered when going from dark to light
+					this.removeAffordance(affEntity);		//removes the obey affordance from actor
+					force.capabilities.remove(Capability.CHOKE);
+					this.addAffordance(new MindControl(this, messageRenderer));	//allow those with the force to perform mindcontrol
+					force.capabilities.add(Capability.MIND_CONTROL);   // and WEAPON so that it can be used to attack
+
+				}
+			}
+		}else{  //when influence is negative, have darkside powers enabled
+			for (Affordance affEntity : this.getAffordances()) {
+				if (affEntity.getDescription().contains("mind")) {	//when theyre already on the darkside, skip
+					this.addAffordance(affEntity);		//removes the obey affordance from actor
+					force.capabilities.add(Capability.CHOKE);
+					this.removeAffordance(new MindControl(this, messageRenderer));	//allow those with the force to perform mindcontrol
+					force.capabilities.remove(Capability.MIND_CONTROL);   // and WEAPON so that it can be used to attack
+
+				}
+			}
+		}
 	}
 	
 }

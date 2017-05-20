@@ -50,7 +50,7 @@ public class DarthVader extends SWLegend  {
 		Force dv = new Force(m, 79);	//80+ means hes a sith lord
 		setForce(dv);
 		setInfluence(-100);
-
+        estSideOfForce();
 
 	}
 

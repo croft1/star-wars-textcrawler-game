@@ -1,13 +1,8 @@
 package starwars.entities;
 
-import java.util.HashSet;
-
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
-import starwars.Capability;
 
 import starwars.SWEntity;
-import starwars.actions.MindControl;
-import starwars.actions.Take;
 
 /**
  * An entity that has the <code>FORCE</code> attribute and so can
@@ -25,7 +20,7 @@ public class Force extends SWEntity {
 	
 	
 	private int power;
-
+    private int charge;
 	
 	/**
 	 * Constructor for the <code>Blaster</code> class. This constructor will,
@@ -50,13 +45,7 @@ public class Force extends SWEntity {
 		this.shortDescription = "The Force";
 		this.longDescription = "A mysterious presence can be felt";
 		this.power = power; // hit points are the strength/level of the current force entity
-		
-		//TODO add training this.addAffordance(new Take(this, m));//add the Take affordance so that the blaster can be picked up
-		//TODO maybe -- add affordance to convert to the dark side of the force
-		this.capabilities.add(Capability.MIND_CONTROL);   // and WEAPON so that it can be used to attack					
-		
-		this.addAffordance(new MindControl(this, m));	//allow those with the force to perform mindcontrol
-		
+
 	}
 	
 	
@@ -77,15 +66,7 @@ public class Force extends SWEntity {
 	}
 
 
-	/**
-	 * A symbol that is used to represent the Blaster on a text based user interface
-	 * 
-	 * @return 	Single Character string "s"
-	 * @see 	{@link starwars.SWEntityInterface#getSymbol()}
-	 */
-	public String getSymbol() {
-		return "f"; 
-	}
+
 	
 	
 	
