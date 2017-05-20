@@ -83,13 +83,18 @@ public class DarthVader extends SWLegend  {
 		//Darth Vader healing priorities...
 
 		
-		//When Darth Vader (Obiwan) is not at 100% health..
+
 		if (this.getHitpoints() < 100) {
 			say("Darth Vader is almost gone!");
 		}
 			
-
-		//TODO DV ATTACKING PEEPS
+        //patrolling
+		//TODO DV ATTACKING / choking PEEPS
+        if(true){
+            tryAttack();
+        }else{ //move
+            randomMovement();
+        }
 
 	}
 	

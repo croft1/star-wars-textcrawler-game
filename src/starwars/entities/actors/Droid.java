@@ -35,7 +35,7 @@ import starwars.actions.Leave;
  * 
  * Droids are non human SWActors able to follow the player if taken 
  * ownership of. Droid, like all SWActors also have a certain amount of hitpoints that
- * renders them ímmobile if falling below zero. It is to this need then that
+ * renders them ï¿½mmobile if falling below zero. It is to this need then that
  * the Droid can be dismantled into Droid Parts - and then re-assembled 
  * by using these parts.
  * 
@@ -262,20 +262,7 @@ public class Droid extends SWActor {
 			
 			
 			if (Math.random() > 0.8){
-				ArrayList<Direction> possibledirections = new ArrayList<Direction>();
-					
-				// build a list of available directions
-				for (Grid.CompassBearing d : Grid.CompassBearing.values()) {
-					if (SWWorld.getEntitymanager().seesExit(this, d)) {
-						possibledirections.add(d);
-					}
-				}
-
-				Direction heading = possibledirections.get((int) (Math.floor(Math.random() * possibledirections.size())));
-				say(getShortDescription() + " is heading " + heading + " next.");
-				Move myMove = new Move(heading, messageRenderer, world);
-					
-				scheduler.schedule(myMove, this, 1);
+				randomMovement();
 			}
 			
 			//If a Roaming Droid is at the Badlands, they lose health

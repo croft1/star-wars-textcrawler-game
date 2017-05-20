@@ -27,11 +27,6 @@ public class StormTrooper extends SWActor {
 	 * are all members of team TUSKEN, so their attempts to attack
 	 * other Tusken Raiders won't be effectual.
 	 *
-	 * @param hitpoints
-	 *            the number of hit points of this Tusken Raider. If this
-	 *            decreases to below zero, the Raider will die.
-	 * @param name
-	 *            this raider's name. Used in displaying descriptions.
 	 * @param m
 	 *            <code>MessageRenderer</code> to display messages.
 	 * @param world
@@ -68,21 +63,7 @@ public class StormTrooper extends SWActor {
 
 		}else{
 			
-			ArrayList<Direction> possibledirections = new ArrayList<Direction>();
-
-			// build a list of available directions
-			
-			for (Grid.CompassBearing d : Grid.CompassBearing.values()) {
-				if (SWWorld.getEntitymanager().seesExit(this, d)) {
-					possibledirections.add(d);
-				}
-			}
-
-			Direction heading = possibledirections.get((int) (Math.floor(Math.random() * possibledirections.size())));
-			say(getShortDescription() + " is heading " + heading + " next.");
-			Move myMove = new Move(heading, messageRenderer, world);
-
-			scheduler.schedule(myMove, this, 1);
+			randomMovement();
 		}
 	}
 
