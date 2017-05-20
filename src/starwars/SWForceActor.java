@@ -20,9 +20,11 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	
 	/**The set actors entity of the <code>Force </code> of this <code>SWActor</code>*/
 	private Force force = null;
-	
-	private String[] titles = {" the Wanderer"," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
-	
+	private int influence = 0;
+
+	private String[] lightTitles = {" the Wanderer"," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
+	private String[] darkTitles = {" the Corrupt"," the Descended ", " the Degenerate ", " the Sith ", " the SITH LORD "};
+
 	/** 
 	 * Protected constructor to prevent random other code
 	 * 
@@ -36,6 +38,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 		super(team, hitpoints, m, world);
 		Force defaultForce = new Force(m, 5);
 		setForce(defaultForce);
+		setInfluence(20);
 		for (Affordance affEntity : this.getAffordances()) {
 			if (affEntity.getDescription().contains("obey")) {
 				this.removeAffordance(affEntity);		//removes the obey affordance from actor
@@ -43,10 +46,6 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 		}
 		
 	}
-
-	
-
-	
 
 
 
@@ -95,7 +94,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	 * Incrememts the <code>ForcePower</code> in terms of strength
 	 * 
 	 * @see 	#force
-	 * @see 	#forcePower
+	 * @see 	#influence
 	 */
 	public void trainForce(){	
 			force.trainPower();	
@@ -106,17 +105,51 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	 * Returns the string of the SWForceActors title
 	 * 
 	 * @see 	#force
-	 * @see 	#forcePower
+	 * @see 	#influence
 	 */
 	protected String getTitle(){
-		return titles[getForcePower() / 20];
+		if(getInfluence() > 0){
+			return lightTitles[getForcePower() / 20];
+		}else{
+			return darkTitles[getForcePower() / 20];
+		}
+
 	}
 	
 	//needed for moving other players on mind control
 	public Scheduler getScheduler(){
 		return scheduler;
 	}
-	
+
+	public int getInfluence() {
+		return influence;
+	}
+
+	public String getInfluenceString() {
+		return (influence>0)?"+"+influence:"-"+influence;
+	}
+
+
+	public void influence(int influence) {
+
+		if((influence + this.getInfluence()) <= 100 ||
+				(influence + this.getInfluence()) >= -100){
+			this.influence += (influence < 0)?influence *2:influence;//dark side is more corrupting but more seductive
+		}
+
+		if(this.influence < 10 && this.influence > 0){
+			say(this.getShortDescription() + " has almost been swayed to the DARK SIDE (" + this.influence + ")");
+		}
+
+	}
+
+	protected void setInfluence(int influence) {
+		if((influence + this.getInfluence()) <= 100 ||
+				(influence + this.getInfluence()) >= -100){
+			this.influence += influence;
+		}
+
+	}
 	
 }
 

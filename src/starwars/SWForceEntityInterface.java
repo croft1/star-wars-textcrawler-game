@@ -19,8 +19,9 @@ public interface SWForceEntityInterface extends EntityInterface {
 	
 	public static final int WIELD_FORCE_PWR_REQ = 25;
 	public static final int MINDCONTROL_FORCE_PWR_REQ = 10;
-	
-	
+
+	public static final int LIGHTSIDE = 100;
+	public static final int DARKSIDE = -100;
 }
 
 /*

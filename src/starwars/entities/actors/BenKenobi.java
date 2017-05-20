@@ -58,7 +58,7 @@ public class BenKenobi extends SWLegend  {
 		//setItemCarried(bensweapon);
 		Force bensForce = new Force(m, 79);	//80+ means hes the chosen one
 		setForce(bensForce);
-		
+		setInfluence(100);
 		this.addAffordance(new TrainForce(this, m));	//allow those with the force to perform mindcontrol
 		
 	}

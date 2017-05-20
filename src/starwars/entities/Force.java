@@ -11,12 +11,12 @@ import starwars.actions.Take;
 
 /**
  * An entity that has the <code>FORCE</code> attribute and so can
- * be used to <code>Attack</code> others, etc.
+ * be used to <code>MindControl</code> others, <code>TrainForce</code> and use force entities.
  * 
- * @author 	dsquire
- * @see 	{@link starwars.entities.Reservoir}
- * @see 	{@link starwars.actions.Chop}
- * @see 	{@link starwars.actions.Attack}
+ * @author 	croft1
+ * @see 	{@link starwars.actions.TrainForce}
+ * @see 	{@link starwars.actions.MindControl}
+ * @see 	{@link starwars.entities.LightSaber}
  */
 /*
  *
@@ -25,6 +25,7 @@ public class Force extends SWEntity {
 	
 	
 	private int power;
+
 	
 	/**
 	 * Constructor for the <code>Blaster</code> class. This constructor will,
