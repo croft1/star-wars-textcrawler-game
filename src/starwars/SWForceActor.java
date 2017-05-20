@@ -3,7 +3,6 @@ package starwars;
 import edu.monash.fit2099.simulator.matter.Affordance;
 import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
-import starwars.actions.Choke;
 
 import starwars.entities.Force;
 

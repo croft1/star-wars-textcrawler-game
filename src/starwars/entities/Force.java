@@ -10,7 +10,6 @@ import starwars.SWEntity;
  * 
  * @author 	croft1
  * @see 	{@link starwars.actions.TrainForce}
- * @see 	{@link starwars.actions.MindControl}
  * @see 	{@link starwars.entities.LightSaber}
  */
 /*
