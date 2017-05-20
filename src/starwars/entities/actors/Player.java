@@ -47,7 +47,6 @@ public class Player extends SWForceActor {
 	 * 	<li>Set this <code>Player</code> as a human controlled <code>SWActor</code></li>
 	 * </ul>
 	 * 
-	 * @param force the <code>Force</code> to which the this <code>Player</code> has the gift to behold
 	 * @param team the <code>Team</code> to which the this <code>Player</code> belongs to
 	 * @param hitpoints the hit points of this <code>Player</code> to get started with
 	 * @param m <code>MessageRenderer</code> to display messages.

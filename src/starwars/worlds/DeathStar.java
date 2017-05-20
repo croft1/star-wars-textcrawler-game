@@ -79,13 +79,19 @@ public class DeathStar extends SWWorld {
         MilleniumFalcon millFalc = new MilleniumFalcon(iface);
         loc = myGrid.getLocationByCoordinates(0, 0);
         entityManager.setLocation(millFalc, loc);
-        millFalc.addAffordance(new Fly(millFalc, iface));
+
 
         PrincessLeia leia = PrincessLeia.getPrincessLeia(iface, this, patrolmoves);
         leia.setSymbol("L");
         loc = myGrid.getLocationByCoordinates(9, 9);
         entityManager.setLocation(leia, loc);
 
-	}
+        DarthVader dv = DarthVader.getDarthVader(iface, this, patrolmoves);
+        loc = myGrid.getLocationByCoordinates(4, 4);
+        entityManager.setLocation(dv, loc);
+        dv.setSymbol("V");
+    }
+
 }
+
 	
