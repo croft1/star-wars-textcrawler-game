@@ -67,6 +67,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 
 
 
+
 	/**
 	 * Returns the points of the <code>Force</code> in terms of strength
 	 * 

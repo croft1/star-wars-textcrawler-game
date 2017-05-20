@@ -68,8 +68,9 @@ public class Obey extends SWAffordance implements SWActionInterface {
 	@Override
 	public boolean canDo(SWActor a) {
 		if(a instanceof SWForceActor){
-			if ( ((SWForceActor)a).getForcePower() > SWForceEntityInterface.MINDCONTROL_FORCE_PWR_REQ
-					&& ((SWForceActor)a).getForceCharge() > SWForceEntityInterface.MINDCONTROL_CHARGE_USE){
+			if ( ((SWForceActor)a).getForcePower() > SWForceEntityInterface.MINDCONTROL_FORCE_PWR_REQ //has the force power requirement
+					&& ((SWForceActor)a).getForceCharge() > SWForceEntityInterface.MINDCONTROL_CHARGE_USE //has enough charge
+					&& ((SWForceActor)a).hasCapability(Capability.MIND_CONTROL)){	//has the capability
 				return true;
 			}
 

@@ -37,7 +37,7 @@ public class StormTrooper extends SWActor {
 	public StormTrooper(MessageRenderer m, SWWorld world) {
 		super(Team.EVIL, 100, m, world);
 		// TODO Auto-generated constructor stub
-		this.name = "Storm Trooper #" + getNextCloneNumber();
+		this.name = "#" + getNextCloneNumber();
 		setItemCarried(new Blaster(m));
 	}
 
@@ -69,7 +69,7 @@ public class StormTrooper extends SWActor {
 
 	@Override
 	public String getShortDescription() {
-		return name + " the Tusken Raider";
+		return name + " Storm Trooper";
 	}
 
 	@Override
