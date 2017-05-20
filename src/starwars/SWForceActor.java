@@ -20,7 +20,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	
 	/**The set actors entity of the <code>Force </code> of this <code>SWActor</code>*/
 	private Force force = null;
-	private int influence = 0;
+	private int influence = 0;		//influence is only for the person, not the entity "force"
 
 	private String[] lightTitles = {" the Wanderer"," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
 	private String[] darkTitles = {" the Corrupt"," the Descended ", " the Degenerate ", " the Sith ", " the SITH LORD "};
@@ -134,7 +134,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 
 		if((influence + this.getInfluence()) <= 100 ||
 				(influence + this.getInfluence()) >= -100){
-			this.influence += (influence < 0)?influence *2:influence;//dark side is more corrupting but more seductive
+			this.influence += (influence < 0)?influence *2:influence;//dark side is more corrupting but more seductive and easy
 		}
 
 		if(this.influence < 10 && this.influence > 0){

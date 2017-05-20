@@ -103,7 +103,7 @@ public class TrainForce extends SWAffordance implements SWActionInterface {
 				((SWForceActor)a).trainForce();
 
 			}
-			((SWForceActor)a).influence((int) Math.random() * ((8 - 1) + 1));
+			((SWForceActor)a).influence(3);
 			a.say("Thanks " + target.getShortDescription() + ", I feel closer to the ways of the force than ever!");
 			
 		}
