@@ -65,8 +65,13 @@ public class YavinFour extends SWWorld {
 
 
 		//TODO Need to move the existing player to this position, not create a new one
-		// Luke
-
+        // Luke - add in the existing luke entity to here on transport.
+        //DONT DO LIKE THIS - need to reuse to keep stats
+        Player luke = new Player(Team.GOOD, 100, iface, this);
+        luke.setShortDescription("Luke");
+        loc = myGrid.getLocationByCoordinates(5, 9);
+        entityManager.setLocation(luke, loc);
+        luke.resetMoveCommands(loc);
 
         GeneralAckbar ga = new GeneralAckbar(iface, this);
         loc = myGrid.getLocationByCoordinates(0, 1);

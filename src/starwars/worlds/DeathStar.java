@@ -58,12 +58,6 @@ public class DeathStar extends SWWorld {
 		}
 
 
-		//Ben's Hut
-		loc = myGrid.getLocationByCoordinates(5, 6);
-		loc.setLongDescription("Ben's Hut");
-		loc.setShortDescription("Ben's Hut");
-		loc.setSymbol('H');
-
 		Direction[] patrolmoves = {CompassBearing.EAST, CompassBearing.EAST,
 				CompassBearing.SOUTH,
 				CompassBearing.WEST, CompassBearing.WEST,
@@ -71,17 +65,26 @@ public class DeathStar extends SWWorld {
 				CompassBearing.EAST, CompassBearing.EAST,
 				CompassBearing.NORTHWEST, CompassBearing.NORTHWEST};
 
-		BenKenobi ben = BenKenobi.getBenKenobi(iface, this, patrolmoves);
-		ben.setSymbol("B");
-		loc = myGrid.getLocationByCoordinates(4, 5);
-		entityManager.setLocation(ben, loc);
 
-		// Luke
-		Player luke = new Player(Team.GOOD, 100, iface, this);
-		luke.setShortDescription("Luke");
-		loc = myGrid.getLocationByCoordinates(5, 9);
-		entityManager.setLocation(luke, loc);
-		luke.resetMoveCommands(loc);
+		// TODO Luke - add in the existing luke entity to here on transport.
+        //DONT DO LIKE THIS - need to reuse to keep stats
+        Player luke = new Player(Team.GOOD, 100, iface, this);
+        luke.setShortDescription("Luke");
+        loc = myGrid.getLocationByCoordinates(0, 0);
+        entityManager.setLocation(luke, loc);
+        luke.resetMoveCommands(loc);
+
+
+        // The Millenium Falcon
+        MilleniumFalcon millFalc = new MilleniumFalcon(iface);
+        loc = myGrid.getLocationByCoordinates(0, 0);
+        entityManager.setLocation(millFalc, loc);
+        millFalc.addAffordance(new Fly(millFalc, iface));
+
+        PrincessLeia leia = PrincessLeia.getPrincessLeia(iface, this, patrolmoves);
+        leia.setSymbol("L");
+        loc = myGrid.getLocationByCoordinates(9, 9);
+        entityManager.setLocation(leia, loc);
 
 	}
 }
