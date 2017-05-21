@@ -65,20 +65,10 @@ public class Influence extends SWAffordance implements SWActionInterface {
 	@Override
 	public boolean canDo(SWActor a) {
 		if(a instanceof SWForceActor){
-			if ( ((SWForceActor)a).getForcePower() > SWForceEntityInterface.CHOKE_FORCE_PWR_REQ
-					&& ((SWForceActor)a).getForceCharge() > CHOKE_CHARGE_USE
-					&& (a).hasCapability(Capability.CHOKE)){
+			if ( ((SWForceActor)a).hasCapability(Capability.INFLUENCE) ){ //if the actors force includes influence
+
 				return true;
 			}
-
-			//just for text output
-			String say = "My power with The Force isn't strong enough for CHOKE right now";
-			if(((SWForceActor)a).getForceCharge() > CHOKE_CHARGE_USE){
-				say = "I need to wait and recharge to use that again";
-			}
-			a.say(target.getShortDescription() + " is weak..\n"
-					+ say +
-					"[" + ((SWForceActor)a).getForcePower() + "/" + SWForceEntityInterface.CHOKE_FORCE_PWR_REQ + "]");
 		}
 		return false;
 	}
@@ -101,17 +91,15 @@ public class Influence extends SWAffordance implements SWActionInterface {
 	 */
 	@Override
 	public void act(SWActor a) {
+		int influenceSwing = ((SWLegend)a).getInfluencePower();
 
-		if(target instanceof SWActor && Math.random() > 0.5){   //50% chance to CHOKE  ANY actor
-			((SWForceActor)a).getScheduler().schedule(
-			        SWGridController.getUserDecision(a), (SWActor) target, 1);
-
-			((SWForceActor)a).useCharge(CHOKE_CHARGE_USE); //0 by default
-			((SWActor) target).takeDamage(CHOKE_FORCE_DMG); //50
-            a.say("Bow to the strength of the dark side -- FORCE CHOKE!");
-            target.say("I SUBMIT! STOP CHOKING");
-
-
+		//influence LUKE
+		if(Math.random() > ((SWForceActor)a).PROPAGATE_INFLUENCE //attempt to influence to dark side according to their propagate value (chance)
+				&&  Math.random() >  ((SWForceActor)target).RESIST_INFLUENCE){ //Luke chance to resist
+			((SWForceActor) target).influence(influenceSwing);
+			String feedback;
+			feedback = (influenceSwing>0)? "The Light Side is enhanced": "The Dark Side infects you more";
+			target.say(feedback);
 		}
 
 

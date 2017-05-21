@@ -161,7 +161,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 
 		if((influence + this.getInfluence()) <= LIGHTSIDE_MAX ||
 				(influence + this.getInfluence()) >= DARKSIDE_MAX){
-			this.influence += (influence < 0)?influence *2:influence;//dark side is more corrupting but more seductive and easy
+			this.influence += influence;
 		}
 
 		if(this.influence < 10 && this.influence > 0){

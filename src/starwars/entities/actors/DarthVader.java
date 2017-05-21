@@ -98,11 +98,7 @@ public class DarthVader extends SWLegend  {
             randomMovement();
         }
 
-        //influence LUKE
-        if(Math.random() > ((SWForceActor)a).PROPAGATE_INFLUENCE //attempt to influence to dark side
-                &&  Math.random() >  ((SWForceActor)target).RESIST_INFLUENCE){ //Luke chance to resist
 
-        }
 
 
 
@@ -145,6 +141,9 @@ public class DarthVader extends SWLegend  {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		return this.getShortDescription() + " [" + this.getHitpoints() + "] is at " + location.getShortDescription();
 	}
+
+
+
 
 
 
