@@ -19,13 +19,10 @@ import starwars.entities.actors.Droid;
 import starwars.entities.actors.Player;
 
 /**
- * Class for Repair
+ * Class for Fly
  * 
- * The Disassemble action enables SWActors (like the Player and Droid R2-D2) to be
- * able to repair immobile and Disassembled Droids into Droid Parts into working and mobile
- * condition. The Droid Parts used for the repair will be consumed - with the Droid 
- * repaired now taking on their repairer as their owner - changing their allegience to their
- * side and following their movements (minus R2-D2).
+ * The fly action will enable the SWActor (Player) the opportunity to travel inbetween worlds
+ * - which currently are Tatooine, Yavin IV and the Death Star. 
  * 
  * @author jas
  * @author mewc
@@ -34,9 +31,9 @@ import starwars.entities.actors.Player;
 public class Fly extends SWAffordance {
 
 	/**
-	 * Constructor for the <code>Repair</code> class. 
+	 * Constructor for the <code>Fly</code> class. 
 	 * 
-	 * @param theTarget 	- the Droid being repaired (SWEntityInterface)
+	 * @param theTarget 	- the Millenium Falcon being flown in (which is a SWEntity)
 	 * @param m 	- the message renderer to display messages
 	 */
 	public Fly(SWEntityInterface theTarget, MessageRenderer m) {
@@ -49,12 +46,12 @@ public class Fly extends SWAffordance {
 	 * Public Method canDo(SWActor a)
 	 *
 	 * Returns a boolean exclaiming that the particular SWActor (a) is able to
-	 * use Repair
+	 * use Fly (within the Millenium Falcon
 	 * 
 	 * @param 	a	- The SWActor in question of being able to undertake this action
 	 * 
-	 * @return 	- Boolean (true) that exclaims this actor can undertake the repair
-	 * of Droids 
+	 * @return 	- Boolean (true) that exclaims this actor can undertake the action of
+	 * flight in the Millenium Falcon
 	 *
 	 */
 	@Override
@@ -65,15 +62,11 @@ public class Fly extends SWAffordance {
 	/**
 	 * Public Method act(SWActor a)
 	 *
-	 * Initiates the Repair process once option is selected from the same menu.
-	 * (also preselected if R2-D2 comes across a Droid who isn't repaired).
-	 * Depending on certain conditions being met (such as if the Droid is not mobile etc) 
-	 * - the Droid will be repaired back to gull health and able to roam around the
-	 * SWWorld once again. The Droid will change allegience and follow their 
-	 * new owner (repairer), until the destruction of the Droid happens again.
+	 * Initiates the Fly process once option is selected from the same menu.
+	 *
 	 * 
 	 * @param 	a	- The SWActor in question of being able to undertake the process of 
-	 * repairing a Droid.
+	 * flight.
 	 *
 	 */
 	@Override
@@ -88,7 +81,7 @@ public class Fly extends SWAffordance {
 	/**
 	 * public method getDescription()
 	 * 
-	 * Returns a string description of Repair. Used when showing the player they 
+	 * Returns a string description of Fly. Used when showing the player they 
 	 * are able to complete this action selected.
 	 * 
 	 * @return	-	String of action - implemented in game selection options.
