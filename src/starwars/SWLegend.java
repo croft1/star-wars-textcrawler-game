@@ -40,6 +40,7 @@ public abstract class SWLegend extends SWForceActor {
 	protected SWLegend(Team team, int hitpoints, MessageRenderer m, SWWorld world) {
 		super(team, hitpoints, m, world);
 		isActivated = false;
+		force.capabilities.add(Capability.INFLUENCE);	//only LEGENDS can influence one witht he ways of the force
 	}
 
 	

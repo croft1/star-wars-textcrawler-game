@@ -18,4 +18,5 @@ public enum Capability {
 	MIND_CONTROL, //MIND_CONTROL capability allows an entity on the light side of the force to attempt to mind control those without it
 	CHOKE, //MIND_CONTROL capability allows an entity on the dark side of the force to  attempt to choke another
 	HOME, //HOME allows it to be used at home - doesnt do anything yet
+	INFLUENCE, //INFLUENCE allows one to sway another forceactor to their way of the force
 }

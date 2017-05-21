@@ -52,6 +52,8 @@ public class DarthVader extends SWLegend  {
 		setInfluence(-100);
         estSideOfForce();
 
+
+
 	}
 
 	/**
@@ -89,12 +91,20 @@ public class DarthVader extends SWLegend  {
 		}
 			
         //patrolling
-		//TODO DV ATTACKING / choking PEEPS
+		//TODO DV ATTACKING / choking PEEPS / seeing luke
         if(true){
             tryAttack();
         }else{ //move
             randomMovement();
         }
+
+        //influence LUKE
+        if(Math.random() > ((SWForceActor)a).PROPAGATE_INFLUENCE //attempt to influence to dark side
+                &&  Math.random() >  ((SWForceActor)target).RESIST_INFLUENCE){ //Luke chance to resist
+
+        }
+
+
 
 	}
 	

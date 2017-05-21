@@ -106,7 +106,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		this.symbol = "@";
 
 		
-		//SWActors are given the Attack affordance hence they can be attacked
+		//ALL SWActors are given the Attack affordance hence they can be attacked
 		SWAffordance attack = new Attack(this, m);
 		this.addAffordance(attack);
 		

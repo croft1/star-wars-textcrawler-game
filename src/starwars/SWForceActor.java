@@ -19,8 +19,10 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	
 	
 	/**The set actors entity of the <code>Force </code> of this <code>SWActor</code>*/
-	private Force force = null;
+	protected Force force = null;
 	private int influence = 0;		//influence is only for the person, not the entity "force"
+    public static  double RESIST_INFLUENCE = 1; // 100% chance to resist by default
+    public static  double PROPAGATE_INFLUENCE = 0.5; //50% change to have chance to influence force side
 
 	private String[] lightTitles = {" the Wanderer"," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
 	private String[] darkTitles = {" the Corrupt"," the Descended ", " the Degenerate ", " the Sith ", " the SITH LORD "};

@@ -19,6 +19,8 @@ import starwars.SWForceActor;
 import starwars.SWLocation;
 import starwars.SWWorld;
 import starwars.Team;
+import starwars.actions.Attack;
+import starwars.actions.Influence;
 import starwars.actions.Move;
 import starwars.entities.Force;
 import starwars.swinterfaces.SWGridController;
@@ -35,6 +37,8 @@ import starwars.swinterfaces.SWGridController;
  * 				A controller used to get user input rather than the UI directly (Asel)
  */
 public class Player extends SWForceActor {
+
+
 
 	/**
 	 * Constructor for the <code>Player</code> class. This constructor will,
@@ -60,6 +64,9 @@ public class Player extends SWForceActor {
 		//use default force
 		//use default force influecen
 		estSideOfForce();
+		RESIST_INFLUENCE = 0.75;
+		addAffordance(new Influence(this, m));		//player may be influenced to a side of the force
+
 	}
 	
 	/**
