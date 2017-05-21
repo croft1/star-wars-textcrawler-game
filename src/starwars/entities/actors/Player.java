@@ -12,12 +12,15 @@ import java.util.List;
 
 import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
+import edu.monash.fit2099.values.TColor;
 import starwars.SWActor;
 import starwars.SWEntityInterface;
 import starwars.SWForceActor;
 import starwars.SWLocation;
 import starwars.SWWorld;
 import starwars.Team;
+import starwars.actions.Attack;
+import starwars.actions.Influence;
 import starwars.actions.Move;
 import starwars.entities.Force;
 import starwars.swinterfaces.SWGridController;
@@ -35,6 +38,8 @@ import starwars.swinterfaces.SWGridController;
  */
 public class Player extends SWForceActor {
 
+
+
 	/**
 	 * Constructor for the <code>Player</code> class. This constructor will,
 	 * <ul>
@@ -46,7 +51,6 @@ public class Player extends SWForceActor {
 	 * 	<li>Set this <code>Player</code> as a human controlled <code>SWActor</code></li>
 	 * </ul>
 	 * 
-	 * @param force the <code>Force</code> to which the this <code>Player</code> has the gift to behold
 	 * @param team the <code>Team</code> to which the this <code>Player</code> belongs to
 	 * @param hitpoints the hit points of this <code>Player</code> to get started with
 	 * @param m <code>MessageRenderer</code> to display messages.
@@ -56,8 +60,13 @@ public class Player extends SWForceActor {
 	public Player(Team team, int hitpoints, MessageRenderer m, SWWorld world) {
 		super(team, hitpoints, m, world);
 		humanControlled = true; // this feels like a hack. Surely this should('nt?) be dynamic. Thats starwars
-		
+		this.setSymbol("@");
 		//use default force
+		//use default force influecen
+		estSideOfForce();
+		RESIST_INFLUENCE = 0.75;
+		addAffordance(new Influence(this, m));		//player may be influenced to a side of the force
+
 	}
 	
 	/**
@@ -91,7 +100,9 @@ public class Player extends SWForceActor {
 	public void describeScene() {
 		//get the location of the player and describe it
 		SWLocation location = this.world.getEntityManager().whereIs(this);
-		say(this.getShortDescription() + " [HP: " + this.getHitpoints() + " F: " + this.getForcePower() + "] is at " + location.getShortDescription());
+		say(this.getShortDescription() + " [HP: " + this.getHitpoints() +
+				" F: " + this.getForcePower() + "(" + this.getForceCharge() + "/100) " +
+				" I: " + this.getInfluenceString() + "] is at " + location.getShortDescription());
 		
 		//get the items carried for the player
 		SWEntityInterface itemCarried = this.getItemCarried();

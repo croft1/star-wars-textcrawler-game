@@ -68,11 +68,19 @@ public class Obey extends SWAffordance implements SWActionInterface {
 	@Override
 	public boolean canDo(SWActor a) {
 		if(a instanceof SWForceActor){
-			if ( ((SWForceActor)a).getForcePower() > SWForceEntityInterface.MINDCONTROL_FORCE_PWR_REQ ){
+			if ( ((SWForceActor)a).getForcePower() > SWForceEntityInterface.MINDCONTROL_FORCE_PWR_REQ //has the force power requirement
+					&& ((SWForceActor)a).getForceCharge() > SWForceEntityInterface.MINDCONTROL_CHARGE_USE //has enough charge
+					&& ((SWForceActor)a).hasCapability(Capability.MIND_CONTROL)){	//has the capability
 				return true;
 			}
+
+			//just for text output
+			String say = "My power with The Force isn't strong enough for mind control right now";
+			if(((SWForceActor)a).getForceCharge() > SWForceEntityInterface.MINDCONTROL_CHARGE_USE){
+				say = "I need to wait and recharge to use that again";
+			}
 			a.say(target.getShortDescription() + " seems weak minded.\n"
-					+ "My power with The Force isn't strong enough for mind control right now" + 
+					+ say +
 					"[" + ((SWForceActor)a).getForcePower() + "/" + SWForceEntityInterface.MINDCONTROL_FORCE_PWR_REQ + "]");
 		}
 		return false;
@@ -98,10 +106,11 @@ public class Obey extends SWAffordance implements SWActionInterface {
 	public void act(SWActor a) {
 		Obey temp = this;
 		target.removeAffordance(this);
-		a.say("#  Your force strenght allows you to MIND CONTROL " + target.getLongDescription() + ".\nChoose Movement:");
+		a.say("#  Your force strength allows you to MIND CONTROL " + target.getLongDescription() + ".\nChoose Movement:");
 		if(target instanceof SWActor){
 			((SWForceActor)a).getScheduler().schedule(SWGridController.getUserDecision(a), (SWActor) target, 1);
-		target.addAffordance(temp);
+			target.addAffordance(temp);
+			((SWForceActor)a).useCharge(SWForceEntityInterface.MINDCONTROL_CHARGE_USE);
 		}
 		
 

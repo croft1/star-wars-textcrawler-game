@@ -18,9 +18,11 @@ package starwars;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import edu.monash.fit2099.gridworld.Grid;
 import edu.monash.fit2099.gridworld.Grid.CompassBearing;
 import edu.monash.fit2099.simulator.matter.Actor;
 import edu.monash.fit2099.simulator.matter.Affordance;
+import edu.monash.fit2099.simulator.space.Direction;
 import edu.monash.fit2099.simulator.space.Location;
 import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
@@ -104,7 +106,7 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		this.symbol = "@";
 
 		
-		//SWActors are given the Attack affordance hence they can be attacked
+		//ALL SWActors are given the Attack affordance hence they can be attacked
 		SWAffordance attack = new Attack(this, m);
 		this.addAffordance(attack);
 		
@@ -446,6 +448,24 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		
 		return this.getShortDescription() 
 		+ wieldDesc + itemCarried.getShortDescription() + " [" + itemCarried.getHitpoints() + "]";
+	}
+
+	protected void randomMovement(){
+		ArrayList<Direction> possibledirections = new ArrayList<Direction>();
+
+		// build a list of available directions
+
+		for (Grid.CompassBearing d : Grid.CompassBearing.values()) {
+			if (SWWorld.getEntitymanager().seesExit(this, d)) {
+				possibledirections.add(d);
+			}
+		}
+
+		Direction heading = possibledirections.get((int) (Math.floor(Math.random() * possibledirections.size())));
+		say(getShortDescription() + " is heading " + heading + " next.");
+		Move myMove = new Move(heading, messageRenderer, world);
+
+		scheduler.schedule(myMove, this, 1);
 	}
 }
 

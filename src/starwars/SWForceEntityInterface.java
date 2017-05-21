@@ -19,8 +19,14 @@ public interface SWForceEntityInterface extends EntityInterface {
 	
 	public static final int WIELD_FORCE_PWR_REQ = 25;
 	public static final int MINDCONTROL_FORCE_PWR_REQ = 10;
-	
-	
+	public static final int CHOKE_FORCE_PWR_REQ = 5;
+	public static final int CHOKE_FORCE_DMG = 50;
+
+	public static final int MINDCONTROL_CHARGE_USE = 25;
+	public static final int CHOKE_CHARGE_USE = 0;
+
+	public static final int LIGHTSIDE_MAX = 100;
+	public static final int DARKSIDE_MAX = -100;
 }
 
 /*

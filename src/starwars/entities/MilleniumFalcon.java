@@ -41,8 +41,8 @@ public class MilleniumFalcon extends SWEntity {
 	public MilleniumFalcon(MessageRenderer m) {
 		super(m);
 		
-		this.shortDescription = "the Millenium Falcon";
-		this.longDescription = "the Millenimu Falcon, the Correlian YT-1300f light freighter/spacecraft";
+		this.shortDescription = "the Millennium Falcon";
+		this.longDescription = "the Millennium Falcon, the Correlian YT-1300f light freighter/spacecraft";
 		this.hitpoints = 100; // start with a fully charged pistol
 
 		this.addAffordance(new Fly(this, m));//add the Fly affordance so that Luke can use the Millenium Falcon to intertravel
@@ -57,6 +57,6 @@ public class MilleniumFalcon extends SWEntity {
 	 * @see 	{@link starwars.SWEntityInterface#getSymbol()}
 	 */
 	public String getSymbol() {
-		return "MF"; 
+		return "^";
 	}
 }

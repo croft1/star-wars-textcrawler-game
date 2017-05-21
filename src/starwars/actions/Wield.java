@@ -65,7 +65,6 @@ public class Wield extends SWAffordance {
 	 * @author 	ram
 	 * @author 	Asel (26/01/2017)
 	 * @param 	a the <code>SWActor</code> that is taking the target
-	 * @see 	{@link #theTarget}
 	 * @see		{@link starwars.SWActor#isDead()}
 	 */
 	@Override
@@ -79,6 +78,8 @@ public class Wield extends SWAffordance {
 				if( ((SWForceActor) a).getForcePower() > SWForceEntityInterface.WIELD_FORCE_PWR_REQ ){
 					
 					setWielding(true,a,theItem);
+					theItem.removeAffordance(this);
+					theItem.addAffordance(new Leave(a,messageRenderer));
 					
 				}
 				//a force weapon but not wieldable
@@ -90,6 +91,8 @@ public class Wield extends SWAffordance {
 			} else{
 				if(((SWEntityInterface) target).hasCapability(Capability.WEAPON)){
 					setWielding(true,a,theItem);
+					theItem.removeAffordance(this);
+					theItem.addAffordance(new Leave(a,messageRenderer));
 				}
 				
 			}

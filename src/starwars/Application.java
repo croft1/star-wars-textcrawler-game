@@ -2,6 +2,9 @@ package starwars;
 
 import edu.monash.fit2099.simulator.time.Scheduler;
 import starwars.swinterfaces.SWGridController;
+import starwars.worlds.DeathStar;
+import starwars.worlds.Tatooine;
+import starwars.worlds.YavinFour;
 
 /**
  * Driver class for the Star Wars package with <code>GridController</code>.  Contains nothing but a main().
@@ -19,29 +22,36 @@ import starwars.swinterfaces.SWGridController;
 
 public class Application {
 	public static void main(String args[]) {
-		
-		SWWorld world = new SWWorld();
-		//SWWorld yavinFour = new SWWorld();
-		//SWWorld deathStar = new SWWorld();
-		
-		
+		SWWorld tatooine = new Tatooine();
+		SWWorld yavinFour = new YavinFour();
+		SWWorld deathStar = new DeathStar();
+
+		runWorld(tatooine);
+		//runWorld(yavinFour);
+		//runWorld(deathStar);
+
+	}
+
+
+	//primarily for testing,
+	private static void runWorld(SWWorld world){
+
 		//Grid controller controls the data and commands between the UI and the model
 		SWGridController uiController = new SWGridController(world);
-		
+
 		Scheduler theScheduler = new Scheduler(1, world);
 		SWActor.setScheduler(theScheduler);
-		
+
 		// set up the world
 		world.initializeWorld(uiController);
-	
+
 		// kick off the scheduler
 		while(true) {
 			uiController.render();
 			theScheduler.tick();
 		}
-		
-		
 	}
+
 	
 	
 

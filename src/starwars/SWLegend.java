@@ -26,6 +26,7 @@ import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 public abstract class SWLegend extends SWForceActor {
 
 	private boolean isActivated;
+	private int baseInfluenceStrength = 7;
 
 	
 	/** 
@@ -40,6 +41,7 @@ public abstract class SWLegend extends SWForceActor {
 	protected SWLegend(Team team, int hitpoints, MessageRenderer m, SWWorld world) {
 		super(team, hitpoints, m, world);
 		isActivated = false;
+		force.capabilities.add(Capability.INFLUENCE);	//only LEGENDS can influence one witht he ways of the force
 	}
 
 	
@@ -60,6 +62,11 @@ public abstract class SWLegend extends SWForceActor {
 	}
 
 	protected abstract void legendAct();
+
+	public int getInfluencePower(){
+		return (this.getInfluence() > 0)?  baseInfluenceStrength :  baseInfluenceStrength *-3;  //dark side is more seductive
+
+	}
 }
 
 /*

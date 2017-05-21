@@ -3,8 +3,8 @@ package starwars;
 import edu.monash.fit2099.simulator.matter.Affordance;
 import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
+
 import starwars.entities.Force;
-import starwars.entities.LightSaber;
 
 /**
  * This class represents "FORCE ACTORS" whom are people posessing the power of the force
@@ -19,10 +19,14 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	
 	
 	/**The set actors entity of the <code>Force </code> of this <code>SWActor</code>*/
-	private Force force = null;
-	
-	private String[] titles = {" the Wanderer"," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
-	
+	protected Force force = null;
+	private int influence = 0;		//influence is only for the person, not the entity "force"
+    public static  double RESIST_INFLUENCE = 1; // 100% chance to resist by default
+    public static  double PROPAGATE_INFLUENCE = 0.5; //50% change to have chance to influence force side
+
+	private String[] lightTitles = {" the Wanderer"," the Enlightened ", " the Jedi ", " the Master Jedi ", " the CHOSEN ONE "};
+	private String[] darkTitles = {" the Corrupt"," the Descended ", " the Degenerate ", " the Sith ", " the SITH LORD "};
+
 	/** 
 	 * Protected constructor to prevent random other code
 	 * 
@@ -36,17 +40,16 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 		super(team, hitpoints, m, world);
 		Force defaultForce = new Force(m, 5);
 		setForce(defaultForce);
+		setInfluence(20);
 		for (Affordance affEntity : this.getAffordances()) {
 			if (affEntity.getDescription().contains("obey")) {
 				this.removeAffordance(affEntity);		//removes the obey affordance from actor
 			}
 		}
+		estSideOfForce();
+
 		
 	}
-
-	
-
-	
 
 
 
@@ -65,6 +68,7 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 
 
 
+
 	/**
 	 * Returns the points of the <code>Force</code> in terms of strength
 	 * 
@@ -74,6 +78,27 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	
 	public int getForcePower() {
 		return (force != null)? force.getPower() : -1;
+	}
+
+	/**
+	 * Returns the points of the <code>Force</code> in terms of strength
+	 *
+	 * @return 	the boolean of force presence in an <code>SWActor</code>
+	 * @see 	#force
+	 */
+
+	public int getForceCharge() {
+		return (force != null)? force.getCharge() : -1;
+	}
+
+	/**
+	 * Reduces the the points of the <code>Charge</code> that allows use of mind control/choke
+	 *
+	 * @see 	#force
+	 */
+
+	public void useCharge(int chargeUsed) {
+		this.force.useCharge(chargeUsed);
 	}
 	
 	
@@ -95,28 +120,93 @@ public abstract class SWForceActor extends SWActor implements SWForceEntityInter
 	 * Incrememts the <code>ForcePower</code> in terms of strength
 	 * 
 	 * @see 	#force
-	 * @see 	#forcePower
+	 * @see 	#influence
 	 */
 	public void trainForce(){	
 			force.trainPower();	
 	}	
-	
+
+
 	
 	/**
 	 * Returns the string of the SWForceActors title
 	 * 
 	 * @see 	#force
-	 * @see 	#forcePower
+	 * @see 	#influence
 	 */
 	protected String getTitle(){
-		return titles[getForcePower() / 20];
+		if(getInfluence() > 0){
+			return lightTitles[getForcePower() / 20];
+		}else{
+			return darkTitles[getForcePower() / 20];
+		}
+
 	}
 	
 	//needed for moving other players on mind control
 	public Scheduler getScheduler(){
 		return scheduler;
 	}
-	
+
+	public int getInfluence() {
+		return influence;
+	}
+
+	public String getInfluenceString() {
+		return (influence>0)?"+"+influence:"-"+influence;
+	}
+
+
+	public void influence(int influence) {
+
+		if((influence + this.getInfluence()) <= LIGHTSIDE_MAX ||
+				(influence + this.getInfluence()) >= DARKSIDE_MAX){
+			this.influence += influence;
+		}
+
+		if(this.influence < 10 && this.influence > 0){
+			say(this.getShortDescription() + " has almost been swayed to the DARK SIDE (" + this.influence + ")");
+		}
+		estSideOfForce();
+
+	}
+
+	protected void setInfluence(int influence) {
+		if((influence + this.getInfluence()) <= LIGHTSIDE_MAX ||
+				(influence + this.getInfluence()) >= DARKSIDE_MAX){
+			this.influence += influence;
+		}
+
+	}
+
+	/**
+	 * When a force actor gets influenced, or starts off with a particular affinity to a side of the force,
+	 * you will then
+	 *
+	 */
+	protected void estSideOfForce(){
+		//this is real ugly,TODO fix ugliness
+		//Check each time any influence to ones affinity happens.
+		if(influence >= 0){	//when influence is positive, have light side powers enabled
+			for (Affordance affEntity : this.getAffordances()) {
+				if (affEntity.getDescription().contains("choke")) {	//only triggered when going from dark to light
+					this.removeAffordance(affEntity);		//removes the obey affordance from actor
+					force.capabilities.remove(Capability.CHOKE);
+					force.capabilities.add(Capability.MIND_CONTROL);   // and WEAPON so that it can be used to attack
+
+				}
+			}
+		}else{  //when influence is negative, have darkside powers enabled
+			for (Affordance affEntity : this.getAffordances()) {
+				if (affEntity.getDescription().contains("mind")) {	//when theyre already on the darkside, skip
+					this.addAffordance(affEntity);		//removes the obey affordance from actor
+					force.capabilities.add(Capability.CHOKE);
+					force.capabilities.remove(Capability.MIND_CONTROL);   // and WEAPON so that it can be used to attack
+
+				}
+			}
+		}
+	}
 	
 }
 
