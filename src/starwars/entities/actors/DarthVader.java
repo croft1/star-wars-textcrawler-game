@@ -82,9 +82,6 @@ public class DarthVader extends SWLegend  {
 			return;
 		}
 		
-		//Darth Vader healing priorities...
-
-		
 
 		if (this.getHitpoints() < 100) {
 			say("Darth Vader is almost gone!");
@@ -92,8 +89,18 @@ public class DarthVader extends SWLegend  {
 			
         //patrolling
 		//TODO DV ATTACKING / choking PEEPS / seeing luke
-        if(true){
+        if(Math.random() > 0.5){        //50% chance to attack
+
             tryAttack();
+            AttackInformation attack = AttackNeighbours.attackLocals(this, this.world, false, true);
+            if (attack != null) {
+                say(getShortDescription() + " has attacked " + attack.entity.getShortDescription());
+                scheduler.schedule(attack.affordance, this, 1);
+            }
+
+            else {
+
+            }
         }else{ //move
             randomMovement();
         }
