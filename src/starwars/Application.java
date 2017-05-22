@@ -33,14 +33,16 @@ public class Application {
 		SWWorld deathStar = new DeathStar(SWuniv);
 		
 		//Add the three worlds (two planets, 1 ship) to the universe
-		SWuniv.getWorlds().add(tatooine);
-		SWuniv.getWorlds().add(yavinFour);
-		SWuniv.getWorlds().add(deathStar);
+		SWuniv.getWorlds().add(tatooine);	//Tatooine at index 0
+		SWuniv.getWorlds().add(yavinFour);	//Yavin IV at index 1
+		SWuniv.getWorlds().add(deathStar);	//The Death Star at index 2
 		
+		//Set the current active world to Tatooine
+		SWuniv.setActiveWorld(tatooine);
 		
 		//Run the three worlds
-		//runWorld(tatooine);
-		//runWorld(yavinFour);
+		runWorld(tatooine);
+		runWorld(yavinFour);
 		runWorld(deathStar);
 
 

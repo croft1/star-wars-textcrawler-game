@@ -63,6 +63,10 @@ public class SWUniverse {
 	public String getUniverseName() {
 		return this.name;
 	}
+	
+	public void setActiveWorld(SWWorld newActiveWorld) {
+		this.activeWorld = newActiveWorld;
+	}
 }
 
 /*

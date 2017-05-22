@@ -10,6 +10,7 @@ package starwars.actions;
 
 import java.util.ArrayList;
 
+import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.*;
 import starwars.Capability;
@@ -20,6 +21,7 @@ import starwars.entities.Fillable;
 import starwars.entities.MilleniumFalcon;
 import starwars.entities.actors.Droid;
 import starwars.entities.actors.Player;
+import starwars.swinterfaces.SWGridController;
 import starwars.worlds.YavinFour;
 
 /**
@@ -85,7 +87,33 @@ public class FlyToYavinFour extends SWAffordance {
 			if (followersList.size() == 0)
 			{
 				a.say("No one is following me");
+				
+				a.say(a.getShortDescription() + " is on world " + a.getWorld().getWorldName() 
+						+ " in the " + a.getWorld().getUniverse().getUniverseName());
+				
+				//Yavin IV is at index 1 of the universe world list.. obtain it
+				SWWorld yavin = a.getWorld().getUniverse().getWorlds().get(1);
+				a.say(yavin.getWorldName());
+				
+				//Set the world of luke to yavin IV
+				a.setWorld(yavin);
+				
+				a.getWorld().getUniverse().setActiveWorld(yavin);
+				
+				//Grid controller controls the data and commands between the UI and the model
+				SWGridController uiController = new SWGridController(yavin);
 
+				Scheduler theScheduler = new Scheduler(1, yavin);
+				SWActor.setScheduler(theScheduler);
+
+				// set up the world
+				yavin.initializeWorld(uiController);
+				
+				// kick off the scheduler
+				while(true) {
+					uiController.render();
+					theScheduler.tick();
+				}
 			}
 			
 		}

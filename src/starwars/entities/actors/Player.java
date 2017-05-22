@@ -130,7 +130,7 @@ public class Player extends SWForceActor {
 		}
 		
 		//Gets SWWorld
-		SWWorld ownedWorld = this.getWorld(this);
+		SWWorld ownedWorld = this.getWorld();
 		
 		say(ownedWorld.getWorldName());
 		
