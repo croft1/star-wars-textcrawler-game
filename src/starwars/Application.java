@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class Application {
 	public static void main(String args[]) {
 		//Implement a new SWUniverse
-		SWUniverse SWuniv = new SWUniverse("Star Wars");
+		SWUniverse SWuniv = new SWUniverse("The Star Wars Universe");
 		
 		//Implement three worlds in the Star Wars universe
 		SWWorld tatooine = new Tatooine(SWuniv);
@@ -39,9 +39,9 @@ public class Application {
 		
 		
 		//Run the three worlds
-		runWorld(tatooine);
+		//runWorld(tatooine);
 		//runWorld(yavinFour);
-		//runWorld(deathStar);
+		runWorld(deathStar);
 
 
 	}
