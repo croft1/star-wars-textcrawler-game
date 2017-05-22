@@ -8,7 +8,10 @@
  */
 package starwars.actions;
 
+import java.util.ArrayList;
+
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
+import starwars.*;
 import starwars.Capability;
 import starwars.SWActor;
 import starwars.SWAffordance;
@@ -17,6 +20,7 @@ import starwars.entities.Fillable;
 import starwars.entities.MilleniumFalcon;
 import starwars.entities.actors.Droid;
 import starwars.entities.actors.Player;
+import starwars.worlds.YavinFour;
 
 /**
  * Class for Fly to Yavin IV
@@ -73,7 +77,18 @@ public class FlyToYavinFour extends SWAffordance {
 	public void act(SWActor a) {
 		//If the entity trying to fly is Luke
 		if (a instanceof Player) {
-			a.say("Luke is trying to go to Yavin IV");
+			
+			//Get the Array List depicting the followers of Luke
+			ArrayList<String> followersList = a.getFollowerList();
+			
+			//If no one is following Luke
+			if (followersList.size() == 0)
+			{
+				a.say("No one is following me");
+				
+				SWWorld yavinFour = 
+				a.setWorld(yavinFour);
+			}
 			
 		}
 		
