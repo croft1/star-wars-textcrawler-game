@@ -38,7 +38,8 @@ public class PrincessLeia extends SWLegend  {
 	private boolean trainingPupil = false;
 	private boolean wantsToHeal = false;
 	private boolean lukeFollow = false;
-
+	private SWActor Luke;
+	
 	private PrincessLeia(MessageRenderer m, SWWorld world, Direction [] moves) {
 		super(Team.GOOD, 500, m, world);
 		this.setShortDescription("Princess Leia (General Organa)");
@@ -88,12 +89,15 @@ public class PrincessLeia extends SWLegend  {
 			if (leiaSurrounds.size() > 1) { // if it is equal to one, the only thing here is R2, so there is nothing to report
 				for (SWEntityInterface entity : leiaSurrounds) {
 					if (entity.getSymbol().contains("@")) { // If Leia sees Luke
+						Luke = (SWActor) entity;
+						
 						say("Luke came accross Leia. She will follow.");
+						
+						//Set Leia to follow Luke
 						this.lukeFollow = true;
-					}
-					else
-					{
-						say("Leia came accross " + entity.getShortDescription());
+						
+						//Add Leia to Lukes' following list
+						Luke.getFollowerList().add(this.getSymbol());
 					}
 				}
 			}
@@ -106,7 +110,11 @@ public class PrincessLeia extends SWLegend  {
 		//When following Luke
 		if (this.lukeFollow == true) 
 		{
+			//Get Lukes' Location
+			SWLocation lukeLocation = this.world.getEntityManager().whereIs(Luke);
 			
+			//Set Droids' position to owners' location (follow)
+			this.world.getEntityManager().setLocation(this, lukeLocation);
 		}
 		
 	}
