@@ -19,10 +19,10 @@ import starwars.entities.actors.Droid;
 import starwars.entities.actors.Player;
 
 /**
- * Class for Fly
+ * Class for Fly to Tatooine
  * 
- * The fly action will enable the SWActor (Player) the opportunity to travel inbetween worlds
- * - which currently are Tatooine, Yavin IV and the Death Star. 
+ * The fly action will enable the SWActor (Player) the opportunity to travel to the planet
+ * Tatooine from either the Death Star or Yavin IV
  * 
  * @author jas
  * @author mewc
