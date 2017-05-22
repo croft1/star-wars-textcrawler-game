@@ -134,6 +134,12 @@ public class Repair extends SWAffordance {
 						//Printing team affiliation
 						a.say(target.getShortDescription() + " affiliation has changed to: " +  target.getTeam() );
 	
+						//Adding the Droid to the SWActor a's following ArrayList
+						a.getFollowerList().add(target.getSymbol());
+						
+						//Printing notification of addition to follow list
+						a.say(target.getShortDescription() + " was added to " +  a.getShortDescription() + "'s follow list." );
+						
 						//Add an attack affordance to the repaired Droid, so it can be attacked again
 						target.addAffordance(new Attack(target, this.messageRenderer));
 					}

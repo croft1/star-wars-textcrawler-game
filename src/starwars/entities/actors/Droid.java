@@ -126,7 +126,32 @@ public class Droid extends SWActor {
 		if (this.getIsImmobile() == true) {
 			say(this.getShortDescription() + " is immobile. ");
 
-			return;
+			if(this.getOwner() != null)
+			{
+				say("Owned. checking in owners follow list");
+				
+				String thisDroidNoBraces = this.getSymbol().substring(1, this.getSymbol().length()-1);
+				say(thisDroidNoBraces);
+				int indexofDroid = this.getOwner().getFollowerList().indexOf(thisDroidNoBraces);
+				
+				say("The index of this droid is" + indexofDroid);
+
+				if (this.getOwner().getFollowerList().get(indexofDroid).equals(thisDroidNoBraces))
+				{
+					say("Removing");
+					this.getOwner().getFollowerList().remove(thisDroidNoBraces);
+					this.setOwner(null);
+				}
+				else
+				{
+					say("Not in list.  exiting");
+					return;
+				}
+			}
+			else
+			{
+				return;
+			}
 		}
 		
 		//If a Droid is mobile and human controlled
@@ -134,7 +159,10 @@ public class Droid extends SWActor {
 			
 			//Following Owner - since humancontrolled.
 			
-			if (isDead()) {
+			
+			if (isDead()) 
+			{
+				this.setIsImmobile(true);
 				return;
 			} 
 			
@@ -482,4 +510,7 @@ http://stackoverflow.com/questions/2429228/in-java-how-does-one-turn-a-string-in
 The Internet Movie Database 2017, Quotes for C-3PO (Character), viewed 10 April 2017,
 http://www.imdb.com/character/ch0000048/quotes 
 
+http://stackoverflow.com/questions/4313457/java-arraylist-index 22
+
+http://stackoverflow.com/questions/8846173/how-to-remove-first-and-last-character-of-a-string 22
 */

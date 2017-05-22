@@ -69,7 +69,7 @@ public class YavinFour extends SWWorld {
         //DONT DO LIKE THIS - need to reuse to keep stats
         Player luke = new Player(Team.GOOD, 100, iface, this);
         luke.setShortDescription("Luke");
-        loc = myGrid.getLocationByCoordinates(5, 9);
+        loc = myGrid.getLocationByCoordinates(0, 0);
         entityManager.setLocation(luke, loc);
         luke.resetMoveCommands(loc);
 

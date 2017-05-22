@@ -37,8 +37,9 @@ public class PrincessLeia extends SWLegend  {
 	private Patrol path;
 	private boolean trainingPupil = false;
 	private boolean wantsToHeal = false;
-	private boolean recollect = false;
-
+	private boolean lukeFollow = false;
+	private SWActor Luke;
+	
 	private PrincessLeia(MessageRenderer m, SWWorld world, Direction [] moves) {
 		super(Team.GOOD, 500, m, world);
 		this.setShortDescription("Princess Leia (General Organa)");
@@ -77,9 +78,45 @@ public class PrincessLeia extends SWLegend  {
 		if(isDead()) {
 			return;//DO YOU LOSE STUFF HERE
 		}
-
-
-		//DO FOLLOW STUFF HERE
+		
+		//Check to see if Luke is around (if not following already)
+		if (this.lukeFollow == false)
+		{
+			
+			//Get surrounds of Leia
+			List<SWEntityInterface> leiaSurrounds = this.world.getEntityManager().contents(this.world.getEntityManager().whereIs(this));
+			//and describe the contents
+			if (leiaSurrounds.size() > 1) { // if it is equal to one, the only thing here is R2, so there is nothing to report
+				for (SWEntityInterface entity : leiaSurrounds) {
+					if (entity.getSymbol().contains("@")) { // If Leia sees Luke
+						Luke = (SWActor) entity;
+						
+						say("Luke came accross Leia. She will follow.");
+						
+						//Set Leia to follow Luke
+						this.lukeFollow = true;
+						
+						//Add Leia to Lukes' following list
+						Luke.getFollowerList().add(this.getSymbol());
+					}
+				}
+			}
+			else
+			{
+				say("Leia cant see Luke");
+			}
+		}
+		
+		//When following Luke
+		if (this.lukeFollow == true) 
+		{
+			//Get Lukes' Location
+			SWLocation lukeLocation = this.world.getEntityManager().whereIs(Luke);
+			
+			//Set Droids' position to owners' location (follow)
+			this.world.getEntityManager().setLocation(this, lukeLocation);
+		}
+		
 	}
 	
 

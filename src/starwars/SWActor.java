@@ -72,8 +72,10 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	/**A set of <code>Capabilities</code> of this <code>SWActor</code>*/
 	private HashSet<Capability> capabilities;
-
 	
+	/* Followers Array (follower Symbols) */
+	private ArrayList<String> followingActor = new ArrayList<String>();
+
 	
 	/**
 	 * Constructor for the <code>SWActor</code>.
@@ -466,6 +468,32 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		Move myMove = new Move(heading, messageRenderer, world);
 
 		scheduler.schedule(myMove, this, 1);
+	}
+	
+	/**
+	 * getFollowerList() method
+	 * 
+	 * Returns the Array List of who is following the <code>SWActor</code> at a given time
+	 * 
+	 * @return  	 Array List of symbols describing the followers of a <code>SWActor</code>.
+	 * @ore 	The SWActor is defined, not null and either has or has no followers
+	 * 
+	 */
+	public ArrayList<String> getFollowerList(){
+		return this.followingActor;
+	}
+	
+	/**
+	 * addActorToFollowerList() method
+	 * 
+	 * Adds a element to the follower Array List of a <code>SWActor</code>.
+	 * 
+	 * @return  	String of the current weapon or item that the  <code>SWActor</code> is holding.
+	 * @ore 	The SWActor is defined, not null and holding an item
+	 * 
+	 */
+	public void addActorToFollowerList(SWActor newActor){
+		this.followingActor.add(newActor.getSymbol());
 	}
 }
 
