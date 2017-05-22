@@ -37,7 +37,7 @@ public class PrincessLeia extends SWLegend  {
 	private Patrol path;
 	private boolean trainingPupil = false;
 	private boolean wantsToHeal = false;
-	private boolean recollect = false;
+	private boolean lukeFollow = false;
 
 	private PrincessLeia(MessageRenderer m, SWWorld world, Direction [] moves) {
 		super(Team.GOOD, 500, m, world);
@@ -77,9 +77,38 @@ public class PrincessLeia extends SWLegend  {
 		if(isDead()) {
 			return;//DO YOU LOSE STUFF HERE
 		}
-
-
-		//DO FOLLOW STUFF HERE
+		
+		//Check to see if Luke is around (if not following already)
+		if (this.lukeFollow == false)
+		{
+			
+			//Get surrounds of Leia
+			List<SWEntityInterface> leiaSurrounds = this.world.getEntityManager().contents(this.world.getEntityManager().whereIs(this));
+			//and describe the contents
+			if (leiaSurrounds.size() > 1) { // if it is equal to one, the only thing here is R2, so there is nothing to report
+				for (SWEntityInterface entity : leiaSurrounds) {
+					if (entity.getSymbol().contains("@")) { // If Leia sees Luke
+						say("Luke came accross Leia. She will follow.");
+						this.lukeFollow = true;
+					}
+					else
+					{
+						say("Leia came accross " + entity.getShortDescription());
+					}
+				}
+			}
+			else
+			{
+				say("Leia cant see Luke");
+			}
+		}
+		
+		//When following Luke
+		if (this.lukeFollow == true) 
+		{
+			
+		}
+		
 	}
 	
 
