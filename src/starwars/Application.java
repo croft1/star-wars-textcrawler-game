@@ -5,6 +5,8 @@ import starwars.swinterfaces.SWGridController;
 import starwars.worlds.DeathStar;
 import starwars.worlds.Tatooine;
 import starwars.worlds.YavinFour;
+import starwars.SWUniverse;
+import java.util.ArrayList;
 
 /**
  * Driver class for the Star Wars package with <code>GridController</code>.  Contains nothing but a main().
@@ -26,9 +28,19 @@ public class Application {
 		SWWorld yavinFour = new YavinFour();
 		SWWorld deathStar = new DeathStar();
 
+		//Implement a new SWUniverse
+		SWUniverse SWuniv = new SWUniverse("Star Wars");
+		
+		//Add the three worlds (two planets, 1 ship) to the universe
+		SWuniv.getWorlds().add(tatooine);
+		SWuniv.getWorlds().add(yavinFour);
+		SWuniv.getWorlds().add(deathStar);
+		
+		//Run the three worlds
 		runWorld(tatooine);
 		//runWorld(yavinFour);
 		//runWorld(deathStar);
+
 
 	}
 

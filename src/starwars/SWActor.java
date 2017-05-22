@@ -496,6 +496,19 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	public void setWorld(SWWorld newWorld) {
 		this.world = newWorld;
 	}
+	
+	/**
+	 * getWorld() method
+	 * 
+	 * Gets the world in which the <code>SWActor</code> resides in.
+	 * 
+	 * @param  	actor	- The SWActor obtaining the query for
+	 * @return	The <code>SWWorld</code> in which the actor is set to
+	 * 
+	 */
+	public SWWorld getWorld(SWActor actor) {
+		return actor.world;
+	}
 }
 
 /*

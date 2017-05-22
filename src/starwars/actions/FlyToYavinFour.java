@@ -85,9 +85,7 @@ public class FlyToYavinFour extends SWAffordance {
 			if (followersList.size() == 0)
 			{
 				a.say("No one is following me");
-				
-				SWWorld yavinFour = 
-				a.setWorld(yavinFour);
+
 			}
 			
 		}

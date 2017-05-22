@@ -146,6 +146,15 @@ public abstract class SWWorld extends World {
 	public static EntityManager<SWEntityInterface, SWLocation> getEntitymanager() {
 		return entityManager;
 	}
+	
+	/**
+	 * Returns the name of this <code>SWWorld</code> 
+	 * 
+	 * @return 	the name of the <code>SWWorld</code>
+	 */
+	public String getWorldName() {
+		return this.name;
+	}
 }
 
 /*
