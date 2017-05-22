@@ -72,7 +72,9 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	
 	/**A set of <code>Capabilities</code> of this <code>SWActor</code>*/
 	private HashSet<Capability> capabilities;
-
+	
+	/* Followers Array (to keep track of who is following the player */
+	private String[] followingActor;
 	
 	
 	/**
