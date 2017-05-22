@@ -28,7 +28,7 @@ import starwars.entities.actors.Player;
  * @author mewc
  *
  */
-public class Fly extends SWAffordance {
+public class FlyToTatooine extends SWAffordance {
 
 	/**
 	 * Constructor for the <code>Fly</code> class. 
@@ -36,7 +36,7 @@ public class Fly extends SWAffordance {
 	 * @param theTarget 	- the Millenium Falcon being flown in (which is a SWEntity)
 	 * @param m 	- the message renderer to display messages
 	 */
-	public Fly(SWEntityInterface theTarget, MessageRenderer m) {
+	public FlyToTatooine(SWEntityInterface theTarget, MessageRenderer m) {
 		super(theTarget, m);
 		priority = 1;
 		// TODO Auto-generated constructor stub
