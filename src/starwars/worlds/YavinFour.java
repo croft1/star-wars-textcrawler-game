@@ -27,12 +27,12 @@ public class YavinFour extends SWWorld {
 	 * Constructor of <code>SWWorld</code>. This will initialize the <code>SWLocationMaker</code>
 	 * and the grid.
 	 */
-	public YavinFour() {
+	public YavinFour(SWUniverse inUniverse) {
 		SWLocation.SWLocationMaker factory = SWLocation.getMaker();
 		myGrid = new SWGrid(2,2,factory);
 		space = myGrid;
 		name = "Yavin IV";
-
+		universe = inUniverse;
 	}
 
 

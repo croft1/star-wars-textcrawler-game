@@ -26,13 +26,10 @@ import starwars.entities.actors.*;
  */
 public class SWUniverse {
 
-	//THe name of this universe
 	private String name;
 
-	//ArrayList of worlds within this universe
 	private ArrayList<SWWorld> worldsInUniverse;
 	
-	//Active world of the universe
 	private SWWorld activeWorld;
 	
 	//Constructor for the SWUniverse

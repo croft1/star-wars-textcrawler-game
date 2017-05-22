@@ -24,17 +24,19 @@ import java.util.ArrayList;
 
 public class Application {
 	public static void main(String args[]) {
-		SWWorld tatooine = new Tatooine();
-		SWWorld yavinFour = new YavinFour();
-		SWWorld deathStar = new DeathStar();
-
 		//Implement a new SWUniverse
 		SWUniverse SWuniv = new SWUniverse("Star Wars");
+		
+		//Implement three worlds in the Star Wars universe
+		SWWorld tatooine = new Tatooine(SWuniv);
+		SWWorld yavinFour = new YavinFour(SWuniv);
+		SWWorld deathStar = new DeathStar(SWuniv);
 		
 		//Add the three worlds (two planets, 1 ship) to the universe
 		SWuniv.getWorlds().add(tatooine);
 		SWuniv.getWorlds().add(yavinFour);
 		SWuniv.getWorlds().add(deathStar);
+		
 		
 		//Run the three worlds
 		runWorld(tatooine);

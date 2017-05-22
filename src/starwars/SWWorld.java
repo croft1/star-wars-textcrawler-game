@@ -34,7 +34,8 @@ public abstract class SWWorld extends World {
 	/**The entity manager of the world which keeps track of <code>SWEntities</code> and their <code>SWLocation</code>s*/
 	protected static final EntityManager<SWEntityInterface, SWLocation> entityManager = new EntityManager<SWEntityInterface, SWLocation>();
 	
-
+	/** the universe that the world belongs to */
+	protected SWUniverse universe;
 
 	/** 
 	 * Returns the height of the <code>Grid</code>. Useful to the Views when rendering the map.
@@ -154,6 +155,15 @@ public abstract class SWWorld extends World {
 	 */
 	public String getWorldName() {
 		return this.name;
+	}
+	
+	/**
+	 * Returns the universe that this <code>SWWorld</code> belongs to
+	 * 
+	 * @return 	the SWUniverse instance this <code>SWWorld</code> belongs to
+	 */
+	public SWUniverse getUniverse() {
+		return this.universe;
 	}
 }
 

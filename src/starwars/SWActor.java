@@ -76,6 +76,8 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	/* Followers Array (follower Symbols) */
 	private ArrayList<String> followingActor = new ArrayList<String>();
 
+	/* Universe that the SWActor is in */
+	private SWUniverse universe;
 	
 	/**
 	 * Constructor for the <code>SWActor</code>.
@@ -510,6 +512,8 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		return actor.world;
 	}
 }
+
+
 
 /*
 REFERENCES

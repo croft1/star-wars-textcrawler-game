@@ -29,13 +29,13 @@ public class Tatooine extends SWWorld {
      * and the grid.
      */
 
-    public Tatooine() {
+    public Tatooine(SWUniverse inUniverse) {
 
         SWLocation.SWLocationMaker factory = SWLocation.getMaker();
         myGrid = new SWGrid(10,15,factory);
         space = myGrid;
         name = "Tatooine";
-
+        universe = inUniverse;
     }
 
     /**

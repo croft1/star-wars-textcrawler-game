@@ -28,12 +28,12 @@ public class DeathStar extends SWWorld {
 	 * Constructor of <code>SWWorld</code>. This will initialize the <code>SWLocationMaker</code>
 	 * and the grid.
 	 */
-	public DeathStar() {
+	public DeathStar(SWUniverse inUniverse) {
 		SWLocation.SWLocationMaker factory = SWLocation.getMaker();
 		myGrid = new SWGrid(10,10, factory);
 		space = myGrid;
 		name = "The Death Star";
-
+		universe = inUniverse;
 	}
 
 	/**
