@@ -1,5 +1,5 @@
 /**
- * starwars.entities.actors package
+u * starwars.entities.actors package
  * 
  *  Used in the SWApplication (roguelike game) for all actors (both human
  *  and non human) who will wander the map in survival & questing!	
