@@ -104,6 +104,8 @@ public class Player extends SWForceActor {
 				" F: " + this.getForcePower() + "(" + this.getForceCharge() + "/100) " +
 				" I: " + this.getInfluenceString() + "] is at " + location.getShortDescription());
 		
+		
+		
 		//get the items carried for the player
 		SWEntityInterface itemCarried = this.getItemCarried();
 		if (itemCarried != null) {
