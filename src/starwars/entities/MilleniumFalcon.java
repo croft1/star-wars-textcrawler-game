@@ -12,7 +12,7 @@ package starwars.entities;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.Capability;
 import starwars.SWEntity;
-import starwars.actions.Fly;
+import starwars.actions.FlyToTatooine;
 import starwars.actions.Take;
 
 /**
@@ -45,7 +45,7 @@ public class MilleniumFalcon extends SWEntity {
 		this.longDescription = "the Millennium Falcon, the Correlian YT-1300f light freighter/spacecraft";
 		this.hitpoints = 100; // start with a fully charged pistol
 
-		this.addAffordance(new Fly(this, m));//add the Fly affordance so that Luke can use the Millenium Falcon to intertravel
+		this.addAffordance(new FlyToTatooine(this, m));//add the Fly affordance so that Luke can use the Millenium Falcon to intertravel
 		//destinations
 	}
 	

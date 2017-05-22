@@ -167,7 +167,7 @@ public class Tatooine extends SWWorld {
         MilleniumFalcon millFalc = new MilleniumFalcon(iface);
         loc = myGrid.getLocationByCoordinates(0, 2);
         entityManager.setLocation(millFalc, loc);
-        millFalc.addAffordance(new Fly(millFalc, iface));
+        millFalc.addAffordance(new FlyToTatooine(millFalc, iface));
 
         // A Tusken Raider
         TuskenRaider tim = new TuskenRaider(10, "Tim", iface, this);
