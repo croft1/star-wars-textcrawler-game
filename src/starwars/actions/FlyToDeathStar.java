@@ -89,7 +89,7 @@ public class FlyToDeathStar extends SWAffordance {
 	 */
 	@Override
 	public String getDescription() {
-		return "fly in the " + target.getShortDescription();
+		return "Fly to the Death Star";
 	}
 }
 

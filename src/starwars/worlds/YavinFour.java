@@ -72,6 +72,13 @@ public class YavinFour extends SWWorld {
         loc = myGrid.getLocationByCoordinates(0, 0);
         entityManager.setLocation(luke, loc);
         luke.resetMoveCommands(loc);
+        
+        // The Millenium Falcon
+        MilleniumFalcon millFalcYFour= new MilleniumFalcon(iface);
+        loc = myGrid.getLocationByCoordinates(0, 1);
+        entityManager.setLocation(millFalcYFour, loc);
+        millFalcYFour.addAffordance(new FlyToDeathStar(millFalcYFour, iface));
+        millFalcYFour.addAffordance(new FlyToTatooine(millFalcYFour, iface));
 
         GeneralAckbar ga = new GeneralAckbar(iface, this);
         loc = myGrid.getLocationByCoordinates(0, 1);

@@ -73,7 +73,8 @@ public class FlyToYavinFour extends SWAffordance {
 	public void act(SWActor a) {
 		//If the entity trying to fly is Luke
 		if (a instanceof Player) {
-
+			a.say("Luke is trying to go to Yavin IV");
+			
 		}
 		
 	}
@@ -89,7 +90,7 @@ public class FlyToYavinFour extends SWAffordance {
 	 */
 	@Override
 	public String getDescription() {
-		return "fly in the " + target.getShortDescription();
+		return "Fly to Yavin IV";
 	}
 }
 

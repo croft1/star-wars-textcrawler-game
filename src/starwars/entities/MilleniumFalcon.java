@@ -45,8 +45,7 @@ public class MilleniumFalcon extends SWEntity {
 		this.longDescription = "the Millennium Falcon, the Correlian YT-1300f light freighter/spacecraft";
 		this.hitpoints = 100; // start with a fully charged pistol
 
-		this.addAffordance(new FlyToTatooine(this, m));//add the Fly affordance so that Luke can use the Millenium Falcon to intertravel
-		//destinations
+
 	}
 	
 	
