@@ -29,13 +29,13 @@ public class Tatooine extends SWWorld {
      * and the grid.
      */
 
-    public Tatooine() {
+    public Tatooine(SWUniverse inUniverse) {
 
         SWLocation.SWLocationMaker factory = SWLocation.getMaker();
         myGrid = new SWGrid(10,15,factory);
         space = myGrid;
         name = "Tatooine";
-
+        universe = inUniverse;
     }
 
     /**
@@ -164,11 +164,12 @@ public class Tatooine extends SWWorld {
         entityManager.setLocation(blaster, loc);
 
         // The Millenium Falcon
-        MilleniumFalcon millFalc = new MilleniumFalcon(iface);
+        MilleniumFalcon millFalcTattoine = new MilleniumFalcon(iface);
         loc = myGrid.getLocationByCoordinates(0, 2);
-        entityManager.setLocation(millFalc, loc);
-        millFalc.addAffordance(new Fly(millFalc, iface));
-
+        entityManager.setLocation(millFalcTattoine, loc);
+        millFalcTattoine.addAffordance(new FlyToDeathStar(millFalcTattoine, iface));
+        millFalcTattoine.addAffordance(new FlyToYavinFour(millFalcTattoine, iface));
+        
         // A Tusken Raider
         TuskenRaider tim = new TuskenRaider(10, "Tim", iface, this);
         tim.setSymbol("T");

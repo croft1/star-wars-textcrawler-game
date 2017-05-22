@@ -8,7 +8,10 @@
  */
 package starwars.actions;
 
+import java.util.ArrayList;
+
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
+import starwars.*;
 import starwars.Capability;
 import starwars.SWActor;
 import starwars.SWAffordance;
@@ -17,18 +20,19 @@ import starwars.entities.Fillable;
 import starwars.entities.MilleniumFalcon;
 import starwars.entities.actors.Droid;
 import starwars.entities.actors.Player;
+import starwars.worlds.YavinFour;
 
 /**
- * Class for Fly
+ * Class for Fly to Yavin IV
  * 
- * The fly action will enable the SWActor (Player) the opportunity to travel inbetween worlds
- * - which currently are Tatooine, Yavin IV and the Death Star. 
+ * The fly action will enable the SWActor (Player) the opportunity to travel to the moon
+ * Yavin IV from either the Death Star or Tatooine
  * 
  * @author jas
  * @author mewc
  *
  */
-public class Fly extends SWAffordance {
+public class FlyToYavinFour extends SWAffordance {
 
 	/**
 	 * Constructor for the <code>Fly</code> class. 
@@ -36,7 +40,7 @@ public class Fly extends SWAffordance {
 	 * @param theTarget 	- the Millenium Falcon being flown in (which is a SWEntity)
 	 * @param m 	- the message renderer to display messages
 	 */
-	public Fly(SWEntityInterface theTarget, MessageRenderer m) {
+	public FlyToYavinFour(SWEntityInterface theTarget, MessageRenderer m) {
 		super(theTarget, m);
 		priority = 1;
 		// TODO Auto-generated constructor stub
@@ -73,7 +77,17 @@ public class Fly extends SWAffordance {
 	public void act(SWActor a) {
 		//If the entity trying to fly is Luke
 		if (a instanceof Player) {
+			
+			//Get the Array List depicting the followers of Luke
+			ArrayList<String> followersList = a.getFollowerList();
+			
+			//If no one is following Luke
+			if (followersList.size() == 0)
+			{
+				a.say("No one is following me");
 
+			}
+			
 		}
 		
 	}
@@ -89,7 +103,7 @@ public class Fly extends SWAffordance {
 	 */
 	@Override
 	public String getDescription() {
-		return "fly in the " + target.getShortDescription();
+		return "Fly to Yavin IV";
 	}
 }
 

@@ -76,6 +76,8 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	/* Followers Array (follower Symbols) */
 	private ArrayList<String> followingActor = new ArrayList<String>();
 
+	/* Universe that the SWActor is in */
+	private SWUniverse universe;
 	
 	/**
 	 * Constructor for the <code>SWActor</code>.
@@ -483,19 +485,35 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 		return this.followingActor;
 	}
 	
+	
 	/**
-	 * addActorToFollowerList() method
+	 * setWorld() method
 	 * 
-	 * Adds a element to the follower Array List of a <code>SWActor</code>.
+	 * Sets the world in which the <code>SWActor</code> resides in.
 	 * 
-	 * @return  	String of the current weapon or item that the  <code>SWActor</code> is holding.
-	 * @ore 	The SWActor is defined, not null and holding an item
+	 * @param  	newWorld	- SWWorld that the SWActor will be set to
+	 * @ore 	The SWActor & SWWorld being transferred to are defined and not null
 	 * 
 	 */
-	public void addActorToFollowerList(SWActor newActor){
-		this.followingActor.add(newActor.getSymbol());
+	public void setWorld(SWWorld newWorld) {
+		this.world = newWorld;
+	}
+	
+	/**
+	 * getWorld() method
+	 * 
+	 * Gets the world in which the <code>SWActor</code> resides in.
+	 * 
+	 * @param  	actor	- The SWActor obtaining the query for
+	 * @return	The <code>SWWorld</code> in which the actor is set to
+	 * 
+	 */
+	public SWWorld getWorld(SWActor actor) {
+		return actor.world;
 	}
 }
+
+
 
 /*
 REFERENCES

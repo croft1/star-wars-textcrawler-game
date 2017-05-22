@@ -117,6 +117,12 @@ public class PrincessLeia extends SWLegend  {
 			this.world.getEntityManager().setLocation(this, lukeLocation);
 		}
 		
+		SWWorld ownedWorld = this.getWorld(this);
+		
+		say(ownedWorld.getWorldName());
+		
+		say(ownedWorld.getUniverse().getUniverseName());
+		
 	}
 	
 
