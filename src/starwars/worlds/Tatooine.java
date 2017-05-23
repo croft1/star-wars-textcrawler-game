@@ -47,6 +47,7 @@ public class Tatooine extends SWWorld {
      */
     public void initializeWorld(MessageRenderer iface) {
         SWLocation loc;
+        SWLocation MFLoc;
         // Set default location string
         for (int row = 0; row < height(); row++) {
             for (int col = 0; col < width(); col++) {
@@ -83,6 +84,8 @@ public class Tatooine extends SWWorld {
 
         BenKenobi ben = BenKenobi.getBenKenobi(iface, this, patrolmoves);
         ben.setSymbol("B");
+        
+        MFLoc = myGrid.getLocationByCoordinates(4, 5);
         loc = myGrid.getLocationByCoordinates(4, 5);
         entityManager.setLocation(ben, loc);
 
@@ -167,8 +170,8 @@ public class Tatooine extends SWWorld {
         MilleniumFalcon millFalcTattoine = new MilleniumFalcon(iface);
         loc = myGrid.getLocationByCoordinates(0, 2);
         entityManager.setLocation(millFalcTattoine, loc);
+        millFalcTattoine.addAffordance(new FlyToYavinFour(millFalcTattoine, MFLoc, this.getEntityManager(), iface));
         millFalcTattoine.addAffordance(new FlyToDeathStar(millFalcTattoine, iface));
-        millFalcTattoine.addAffordance(new FlyToYavinFour(millFalcTattoine, iface));
         
         // A Tusken Raider
         TuskenRaider tim = new TuskenRaider(10, "Tim", iface, this);

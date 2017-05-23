@@ -21,7 +21,7 @@ import starwars.entities.actors.*;
 /*
  * Change log
  * 2017-02-02:  Render method was removed from Middle Earth
- * 				Displaying the Grid is now handled by the TextInterface rather 
+ * 				Displaying the Grid isedew now handled by the TextInterface rather 
  * 				than by the Grid or MiddleWorld classes (asel)
  */
 public class SWUniverse {
@@ -66,6 +66,10 @@ public class SWUniverse {
 	
 	public void setActiveWorld(SWWorld newActiveWorld) {
 		this.activeWorld = newActiveWorld;
+	}
+	
+	public SWWorld getActiveWorld() {
+		return this.activeWorld;
 	}
 }
 

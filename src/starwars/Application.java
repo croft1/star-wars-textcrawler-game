@@ -41,25 +41,23 @@ public class Application {
 		SWuniv.setActiveWorld(tatooine);
 		
 		//Run the three worlds
-		runWorld(tatooine);
-		runWorld(yavinFour);
-		runWorld(deathStar);
-
-
+		runUniverse(SWuniv);
+		//runWorld(yavinFour);
+		//runWorld(deathStar);
 	}
 
 
 	//primarily for testing,
-	private static void runWorld(SWWorld world){
+	private static void runUniverse(SWUniverse univ){
 
 		//Grid controller controls the data and commands between the UI and the model
-		SWGridController uiController = new SWGridController(world);
+		SWGridController uiController = new SWGridController(univ.getActiveWorld());
 
-		Scheduler theScheduler = new Scheduler(1, world);
+		Scheduler theScheduler = new Scheduler(1, univ.getActiveWorld());
 		SWActor.setScheduler(theScheduler);
 
 		// set up the world
-		world.initializeWorld(uiController);
+		univ.getActiveWorld().initializeWorld(uiController);
 
 		// kick off the scheduler
 		while(true) {

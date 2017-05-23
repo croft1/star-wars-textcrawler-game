@@ -10,13 +10,10 @@ package starwars.actions;
 
 import java.util.ArrayList;
 
+import edu.monash.fit2099.simulator.matter.EntityManager;
 import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.*;
-import starwars.Capability;
-import starwars.SWActor;
-import starwars.SWAffordance;
-import starwars.SWEntityInterface;
 import starwars.entities.Fillable;
 import starwars.entities.MilleniumFalcon;
 import starwars.entities.actors.Droid;
@@ -36,15 +33,22 @@ import starwars.worlds.YavinFour;
  */
 public class FlyToYavinFour extends SWAffordance {
 
+	SWLocation locTravelTo;
+	
+	EntityManager<SWEntityInterface, SWLocation> theEM;
+	
 	/**
 	 * Constructor for the <code>Fly</code> class. 
 	 * 
 	 * @param theTarget 	- the Millenium Falcon being flown in (which is a SWEntity)
 	 * @param m 	- the message renderer to display messages
 	 */
-	public FlyToYavinFour(SWEntityInterface theTarget, MessageRenderer m) {
+	public FlyToYavinFour(SWEntityInterface theTarget, SWLocation Benloc, EntityManager<SWEntityInterface, SWLocation> em, MessageRenderer m) {
 		super(theTarget, m);
 		priority = 1;
+		this.locTravelTo = Benloc;
+		this.theEM = em;
+		
 		// TODO Auto-generated constructor stub
 	}
 
@@ -95,25 +99,15 @@ public class FlyToYavinFour extends SWAffordance {
 				SWWorld yavin = a.getWorld().getUniverse().getWorlds().get(1);
 				a.say(yavin.getWorldName());
 				
+				
+				/*
 				//Set the world of luke to yavin IV
 				a.setWorld(yavin);
+				*/
 				
-				a.getWorld().getUniverse().setActiveWorld(yavin);
-				
-				//Grid controller controls the data and commands between the UI and the model
-				SWGridController uiController = new SWGridController(yavin);
-
-				Scheduler theScheduler = new Scheduler(1, yavin);
-				SWActor.setScheduler(theScheduler);
-
-				// set up the world
-				yavin.initializeWorld(uiController);
-				
-				// kick off the scheduler
-				while(true) {
-					uiController.render();
-					theScheduler.tick();
-				}
+				//Initially transport to 
+				this.theEM.setLocation(a, this.locTravelTo);
+			
 			}
 			
 		}

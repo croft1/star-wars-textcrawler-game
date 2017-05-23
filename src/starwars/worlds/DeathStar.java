@@ -78,7 +78,7 @@ public class DeathStar extends SWWorld {
         loc = myGrid.getLocationByCoordinates(0, 2);
         entityManager.setLocation(millFalcDS, loc);
         millFalcDS.addAffordance(new FlyToTatooine(millFalcDS, iface));
-        millFalcDS.addAffordance(new FlyToYavinFour(millFalcDS, iface));
+        //millFalcDS.addAffordance(new FlyToYavinFour(millFalcDS, iface));
 
 
         PrincessLeia leia = PrincessLeia.getPrincessLeia(iface, this, patrolmoves);
