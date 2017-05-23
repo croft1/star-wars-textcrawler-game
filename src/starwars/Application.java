@@ -52,6 +52,7 @@ public class Application {
 		SWGridController uiController = new SWGridController(univ.getActiveWorld());
 
 		Scheduler theScheduler = new Scheduler(1, univ.getActiveWorld());
+		
 		SWActor.setScheduler(theScheduler);
 
 		// set up the world

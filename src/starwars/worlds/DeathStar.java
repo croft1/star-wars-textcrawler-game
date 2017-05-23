@@ -81,7 +81,7 @@ public class DeathStar extends SWWorld {
         //Append the MF location to the MF Location list in SWUNiverse
         this.universe.getMFList().add(loc);
         
-        millFalcDS.addAffordance(new FlyToTatooine(millFalcDS, iface));
+        //millFalcDS.addAffordance(new FlyToTatooine(millFalcDS, iface));
         //millFalcDS.addAffordance(new FlyToYavinFour(millFalcDS, iface));
 
 

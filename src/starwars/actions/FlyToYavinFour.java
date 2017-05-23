@@ -43,10 +43,9 @@ public class FlyToYavinFour extends SWAffordance {
 	 * @param theTarget 	- the Millenium Falcon being flown in (which is a SWEntity)
 	 * @param m 	- the message renderer to display messages
 	 */
-	public FlyToYavinFour(SWEntityInterface theTarget, SWLocation Benloc, EntityManager<SWEntityInterface, SWLocation> em, MessageRenderer m) {
+	public FlyToYavinFour(SWEntityInterface theTarget, EntityManager<SWEntityInterface, SWLocation> em, MessageRenderer m) {
 		super(theTarget, m);
 		priority = 1;
-		this.locTravelTo = Benloc;
 		this.theEM = em;
 		
 		// TODO Auto-generated constructor stub
@@ -102,7 +101,30 @@ public class FlyToYavinFour extends SWAffordance {
 				//Initially transport to Ben 
 				//this.theEM.setLocation(a, this.locTravelTo);
 			
-				this.theEM.setLocation(a, a.getWorld().getUniverse().getMFList().get(0));
+				//this.theEM.setLocation(a, a.getWorld().getUniverse().getMFList().get(0));
+				
+				a.setWorld(yavin);
+				
+				SWLocation loc = a.getWorld().getGrid().getLocationByCoordinates(0, 0);
+		        yavin.getEntityManager().setLocation(a, loc);
+		        
+		        //Grid controller controls the data and commands between the UI and the model
+				SWGridController uiController = new SWGridController(a.getWorld());
+
+				Scheduler theScheduler = new Scheduler(1, a.getWorld());
+				
+				SWActor.setScheduler(theScheduler);
+
+				a.getWorld().getUniverse().setActiveWorld(yavin);
+				
+				// set up the world
+				a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
+
+				// kick off the scheduler
+				while(true) {
+					uiController.render();
+					theScheduler.tick();
+				}
 			}
 			
 		}

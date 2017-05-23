@@ -45,6 +45,8 @@ public class YavinFour extends SWWorld {
 	 */
 	public void initializeWorld(MessageRenderer iface) {
 		SWLocation loc;
+		SWLocation MFLoc;	//M falc location
+		
 		// Set default location string
 		for (int row = 0; row < height(); row++) {
 			for (int col = 0; col < width(); col++) {
@@ -64,25 +66,18 @@ public class YavinFour extends SWWorld {
 				CompassBearing.NORTHWEST, CompassBearing.NORTHWEST};
 
 
-		//TODO Need to move the existing player to this position, not create a new one
-        // Luke - add in the existing luke entity to here on transport.
-        //DONT DO LIKE THIS - need to reuse to keep stats
-        Player luke = new Player(Team.GOOD, 100, iface, this);
-        luke.setShortDescription("Luke");
-        loc = myGrid.getLocationByCoordinates(0, 0);
-        entityManager.setLocation(luke, loc);
-        luke.resetMoveCommands(loc);
+		
         
         // The Millenium Falcon
         MilleniumFalcon millFalcYFour= new MilleniumFalcon(iface);
-        loc = myGrid.getLocationByCoordinates(0, 1);
+        loc = myGrid.getLocationByCoordinates(0, 0);
         entityManager.setLocation(millFalcYFour, loc);
         
         //Append the MF location to the MF Location list in SWUNiverse
         this.universe.getMFList().add(loc);
         
-        millFalcYFour.addAffordance(new FlyToDeathStar(millFalcYFour, iface));
-        millFalcYFour.addAffordance(new FlyToTatooine(millFalcYFour, iface));
+        millFalcYFour.addAffordance(new FlyToTatooine(millFalcYFour, this.getEntityManager(), iface));
+
 
         GeneralAckbar ga = new GeneralAckbar(iface, this);
         loc = myGrid.getLocationByCoordinates(0, 1);

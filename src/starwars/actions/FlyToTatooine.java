@@ -8,15 +8,22 @@
  */
 package starwars.actions;
 
+import java.util.ArrayList;
+
+import edu.monash.fit2099.simulator.matter.EntityManager;
+import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.Capability;
 import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
+import starwars.SWLocation;
+import starwars.SWWorld;
 import starwars.entities.Fillable;
 import starwars.entities.MilleniumFalcon;
 import starwars.entities.actors.Droid;
 import starwars.entities.actors.Player;
+import starwars.swinterfaces.SWGridController;
 
 /**
  * Class for Fly to Tatooine
@@ -30,15 +37,20 @@ import starwars.entities.actors.Player;
  */
 public class FlyToTatooine extends SWAffordance {
 
+	SWLocation locTravelTo;
+	
+	EntityManager<SWEntityInterface, SWLocation> theEM;
+	
 	/**
 	 * Constructor for the <code>Fly</code> class. 
 	 * 
 	 * @param theTarget 	- the Millenium Falcon being flown in (which is a SWEntity)
 	 * @param m 	- the message renderer to display messages
 	 */
-	public FlyToTatooine(SWEntityInterface theTarget, MessageRenderer m) {
+	public FlyToTatooine(SWEntityInterface theTarget, EntityManager<SWEntityInterface, SWLocation> em, MessageRenderer m) {
 		super(theTarget, m);
 		priority = 1;
+		this.theEM = em;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -74,6 +86,51 @@ public class FlyToTatooine extends SWAffordance {
 		//If the entity trying to fly is Luke
 		if (a instanceof Player) {
 
+			//Get the Array List depicting the followers of Luke
+			ArrayList<String> followersList = a.getFollowerList();
+			
+			//If no one is following Luke
+			if (followersList.size() == 0)
+			{
+				
+				a.say(a.getShortDescription() + " is on world " + a.getWorld().getWorldName() 
+						+ " in the " + a.getWorld().getUniverse().getUniverseName());
+				
+				//Yavin IV is at index 1 of the universe world list.. obtain it
+				SWWorld tatooine = a.getWorld().getUniverse().getWorlds().get(0);
+				a.say(tatooine.getWorldName());
+
+				//Initially transport to Ben 
+				//this.theEM.setLocation(a, this.locTravelTo);
+			
+				//this.theEM.setLocation(a, a.getWorld().getUniverse().getMFList().get(0));
+				
+				a.setWorld(tatooine);
+				
+				SWLocation loc = a.getWorld().getGrid().getLocationByCoordinates(0, 0);
+				tatooine.getEntityManager().setLocation(a, loc);
+		        
+		        //Grid controller controls the data and commands between the UI and the model
+				SWGridController uiController = new SWGridController(a.getWorld());
+
+				Scheduler theScheduler = new Scheduler(1, a.getWorld());
+				
+				SWActor.setScheduler(theScheduler);
+
+				a.getWorld().getUniverse().setActiveWorld(tatooine);
+				
+				// set up the world
+				a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
+
+				// kick off the scheduler
+				while(true) {
+					uiController.render();
+					theScheduler.tick();
+				}
+			}
+			
+			
+			
 		}
 		
 	}
