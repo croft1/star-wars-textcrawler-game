@@ -170,6 +170,10 @@ public class Tatooine extends SWWorld {
         MilleniumFalcon millFalcTattoine = new MilleniumFalcon(iface);
         loc = myGrid.getLocationByCoordinates(0, 2);
         entityManager.setLocation(millFalcTattoine, loc);
+        
+        //Append the MF location to the MF Location list in SWUNiverse
+        this.universe.getMFList().add(loc);
+        
         millFalcTattoine.addAffordance(new FlyToYavinFour(millFalcTattoine, MFLoc, this.getEntityManager(), iface));
         millFalcTattoine.addAffordance(new FlyToDeathStar(millFalcTattoine, iface));
         

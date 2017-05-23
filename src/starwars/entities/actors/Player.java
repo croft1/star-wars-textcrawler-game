@@ -135,6 +135,8 @@ public class Player extends SWForceActor {
 		say(ownedWorld.getWorldName());
 		
 		say(ownedWorld.getUniverse().getUniverseName());
+		
+		say(ownedWorld.getUniverse().getMFList().get(0).toString());
 	}
 }
 

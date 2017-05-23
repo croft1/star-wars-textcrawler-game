@@ -77,6 +77,10 @@ public class DeathStar extends SWWorld {
         MilleniumFalcon millFalcDS = new MilleniumFalcon(iface);
         loc = myGrid.getLocationByCoordinates(0, 2);
         entityManager.setLocation(millFalcDS, loc);
+        
+        //Append the MF location to the MF Location list in SWUNiverse
+        this.universe.getMFList().add(loc);
+        
         millFalcDS.addAffordance(new FlyToTatooine(millFalcDS, iface));
         //millFalcDS.addAffordance(new FlyToYavinFour(millFalcDS, iface));
 

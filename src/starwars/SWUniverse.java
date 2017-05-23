@@ -30,6 +30,8 @@ public class SWUniverse {
 
 	private ArrayList<SWWorld> worldsInUniverse;
 	
+	private ArrayList<SWLocation> MFLocations;
+	
 	private SWWorld activeWorld;
 	
 	//Constructor for the SWUniverse
@@ -38,6 +40,7 @@ public class SWUniverse {
 	{
 		this.name = givenName;
 		this.worldsInUniverse = new ArrayList<SWWorld>();
+		this.MFLocations = new ArrayList<SWLocation>();
 	}
 	
 	
@@ -48,6 +51,15 @@ public class SWUniverse {
 	 */
 	public ArrayList<SWWorld> getWorlds() {
 		return worldsInUniverse;
+	}
+	
+	/**
+	 * Returns the worlds in the specified <code>SWUniverse</code>.
+	 * 
+	 * @return 	the Array List containing the SWWorlds of this universe
+	 */
+	public ArrayList<SWLocation> getMFList() {
+		return MFLocations;
 	}
 
 	

@@ -98,16 +98,11 @@ public class FlyToYavinFour extends SWAffordance {
 				//Yavin IV is at index 1 of the universe world list.. obtain it
 				SWWorld yavin = a.getWorld().getUniverse().getWorlds().get(1);
 				a.say(yavin.getWorldName());
-				
-				
-				/*
-				//Set the world of luke to yavin IV
-				a.setWorld(yavin);
-				*/
-				
-				//Initially transport to 
-				this.theEM.setLocation(a, this.locTravelTo);
+
+				//Initially transport to Ben 
+				//this.theEM.setLocation(a, this.locTravelTo);
 			
+				this.theEM.setLocation(a, a.getWorld().getUniverse().getMFList().get(0));
 			}
 			
 		}

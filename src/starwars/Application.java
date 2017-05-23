@@ -42,8 +42,6 @@ public class Application {
 		
 		//Run the three worlds
 		runUniverse(SWuniv);
-		//runWorld(yavinFour);
-		//runWorld(deathStar);
 	}
 
 

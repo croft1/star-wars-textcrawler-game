@@ -77,6 +77,10 @@ public class YavinFour extends SWWorld {
         MilleniumFalcon millFalcYFour= new MilleniumFalcon(iface);
         loc = myGrid.getLocationByCoordinates(0, 1);
         entityManager.setLocation(millFalcYFour, loc);
+        
+        //Append the MF location to the MF Location list in SWUNiverse
+        this.universe.getMFList().add(loc);
+        
         millFalcYFour.addAffordance(new FlyToDeathStar(millFalcYFour, iface));
         millFalcYFour.addAffordance(new FlyToTatooine(millFalcYFour, iface));
 
