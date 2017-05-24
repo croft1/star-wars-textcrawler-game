@@ -142,7 +142,7 @@ public class FlyToTatooine extends SWAffordance {
 			else
 			{
 				//Yavin IV is at index 1 of the universe world list.. obtain it
-				SWWorld tatooine = a.getWorld().getUniverse().getWorlds().get(1);
+				SWWorld tatooine = a.getWorld().getUniverse().getWorlds().get(0);
 				a.say(tatooine.getWorldName());
 				
 				//Each actor is represented by their symbol

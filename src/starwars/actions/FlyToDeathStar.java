@@ -144,7 +144,7 @@ public class FlyToDeathStar extends SWAffordance {
 			else
 			{
 				//Yavin IV is at index 1 of the universe world list.. obtain it
-				SWWorld deathStar = a.getWorld().getUniverse().getWorlds().get(1);
+				SWWorld deathStar = a.getWorld().getUniverse().getWorlds().get(2);
 				a.say(deathStar.getWorldName());
 				
 				//Each actor is represented by their symbol
