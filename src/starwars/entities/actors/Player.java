@@ -104,9 +104,13 @@ public class Player extends SWForceActor {
 		//If dead, the game is lost
 		if (this.isDead()) 
 		{
-			Lose playerDeath = new Lose(this, messageRenderer);
 			
-			scheduler.scheduleLoss(playerDeath, this, 0);
+			this.messageRenderer.render("\n\nLuke has been killed in action!");
+			scheduler.lossSchedule(this.messageRenderer);
+			
+			//Lose playerDeath = new Lose(this, messageRenderer);
+			
+			//scheduler.schedule(playerDeath, null, 0);
 		}
 		
 		//If on Yavin 4
@@ -119,18 +123,12 @@ public class Player extends SWForceActor {
 			containsR2D2 = (this.getFollowerList().contains("R2"));
 			containsLeia = (this.getFollowerList().contains("L"));
 			
-			this.say("Has Leia? " + containsLeia);
-			this.say("Has R2-D2? " + containsR2D2);
-			this.say("Has Test Droid? " + containsTD);
-			
 			if (containsR2D2 == true && containsLeia == true)
 			{
 				Win boughtR2AndLeia = new Win(this, messageRenderer);
 				
 				scheduler.scheduleWin(boughtR2AndLeia, this, -2);
 			}
-			
-
 		}
 		
 		//get the location of the player and describe it

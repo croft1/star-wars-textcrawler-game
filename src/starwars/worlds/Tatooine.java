@@ -95,7 +95,8 @@ public class Tatooine extends SWWorld {
         loc = myGrid.getLocationByCoordinates(5, 9);
         entityManager.setLocation(luke, loc);
         luke.resetMoveCommands(loc);
-   
+        luke.setHitpoints(1);
+        
         // Owen and Beru
         Humanoid owen = new Humanoid(Team.GOOD, 200, iface, this);
         owen.setShortDescription("Uncle Owen");
@@ -307,8 +308,8 @@ public class Tatooine extends SWWorld {
         //Make R2D2 hold some Droid Parts from the beginning
         DroidParts r2dp = new DroidParts(iface);
         R2D2.setItemCarried(r2dp);
-        
-        
+        R2D2.setHitpoints(0);
+        R2D2.setIsImmobile(true);
         
         
         

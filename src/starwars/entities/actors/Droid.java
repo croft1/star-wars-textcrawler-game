@@ -28,6 +28,7 @@ import starwars.actions.Repair;
 import starwars.actions.Take;
 import starwars.actions.HealDroid;
 import starwars.actions.Leave;
+import starwars.actions.Lose;
 
 
 /**
@@ -119,7 +120,7 @@ public class Droid extends SWActor {
 		
 		//Begin act
 		
-		say(describeLocation());
+		say(describeLocation());		
 		
 		//If a Droid is immobile (Dead)
 
@@ -202,6 +203,16 @@ public class Droid extends SWActor {
 		
 		//R2-D2 Repair droid specific act() code
 		else if (this.getSymbol() == "R2") {
+			
+	
+			
+			if(this.isDisassembled) 
+			{
+				//Lose
+				Lose r2Dissasembled = new Lose(this, messageRenderer);
+				
+				scheduler.scheduleLoss(r2Dissasembled, this, 0);
+			}
 			
 			//Describe who R2 can see
 			//get the contents of the location

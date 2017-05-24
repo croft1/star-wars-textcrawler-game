@@ -6,6 +6,7 @@ import edu.monash.fit2099.simulator.matter.Action;
 import edu.monash.fit2099.simulator.matter.ActionInterface;
 import edu.monash.fit2099.simulator.matter.Actor;
 import edu.monash.fit2099.simulator.space.World;
+import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 
 /** 
  * This class handles time in the simulation by maintaining a priority queue of <code>Events</code>, prioritized by time and then
@@ -301,6 +302,17 @@ public class Scheduler {
 		//add Win to queue of events. Note for the actor the event will be scheduled to happen after the delay from now
 		events.offer(new Event(c, a, now + duration + delay));
 
+			
+	}
+	
+	public void lossSchedule(MessageRenderer m) {
+		
+		//Render a message notifying the loss
+		m.render("You have unfortunately lost the game. Gave Over.");
+		
+		//Stop execution of the game.
+		System.exit(0);
+		
 			
 	}
 			

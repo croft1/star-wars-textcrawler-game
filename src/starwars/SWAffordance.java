@@ -85,7 +85,7 @@ public abstract class SWAffordance extends Affordance implements SWActionInterfa
 	 * This method only calls the <code>act()</code> method if and only,
 	 * <ul>
 	 * 	<li>The sub class of <code>Actor a</code> is a <code>SWActor</code>, and</li>
-	 * 	<li>The <code>SWActor</code> is not dead</li>
+	 * 	<li>The <code>SWActor</code> is not dead or dead (for possibilities)</li>
 	 * </ul>
 	 * else this method does nothing.
 	 * 
@@ -98,9 +98,11 @@ public abstract class SWAffordance extends Affordance implements SWActionInterfa
 		if (this instanceof Fill) {
 			System.out.println("Fill execute called");
 		}
-		if (actor instanceof SWActor && !((SWActor)actor).isDead())
+		
+		//Etiher if the actor is or is not dead, able to execute actions (actions in death are Win/Lose)
+		if (actor instanceof SWActor && !((SWActor)actor).isDead() || ((SWActor)actor).isDead())
 			act((SWActor) actor);
-
+		
 	}
 	
 }

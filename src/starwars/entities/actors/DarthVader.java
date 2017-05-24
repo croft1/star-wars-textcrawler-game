@@ -79,7 +79,12 @@ public class DarthVader extends SWLegend  {
 		say(describeLocation());
 		
 		if(isDead()) {
-			return;
+			say("Darth Vader has been killed!");
+			
+			Win deathToVader = new Win(this, messageRenderer);
+			
+			scheduler.scheduleWin(deathToVader, this, -2);
+			
 		}
 		
 
