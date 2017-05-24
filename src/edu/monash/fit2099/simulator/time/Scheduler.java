@@ -247,9 +247,11 @@ public class Scheduler {
 	}
 	
 	/**
-	 * Scheduler schedules a winning event and instantiates the win sequence
+	 * Scheduler schedules a winning event and instantiates the win sequence defined by the winning 
+	 * action of the game.
 	 * 
 	 * @author 	jas
+	 * @author  mewc
 	 * @date 	24 May 2017
 	 * 
 	 * @see {@link #events}
@@ -261,9 +263,11 @@ public class Scheduler {
 	}
 	
 	/**
-	 * Scheduler schedules a loss event and instantiates the losing sequence
+	 * Scheduler schedules a loss event and instantiates the losing sequence defined by the losing 
+	 * action of the game.
 	 * 
 	 * @author 	jas
+	 * @author  mewc
 	 * @date 	24 May 2017
 	 * 
 	 * @see {@link #events}

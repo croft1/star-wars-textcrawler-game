@@ -115,6 +115,13 @@ public class Player extends SWForceActor {
 
 		}
 		
+		//If dead, the game is lost
+		if (this.isDead()) 
+		{
+			//Schedule a loss
+			//i.e SWActor.scheduler.scheduleLoss();
+		}
+		
 		//weild
 		
 		//get the contents of the location
@@ -138,6 +145,9 @@ public class Player extends SWForceActor {
 		say(ownedWorld.getUniverse().getUniverseName());
 		
 		say(ownedWorld.getUniverse().getMFList().get(0).toString());
+		
+		
+		
 		
 		/*
 		say(ownedWorld.getUniverse().getWorlds().get(0).getWorldName()
