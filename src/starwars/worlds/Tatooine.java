@@ -95,7 +95,7 @@ public class Tatooine extends SWWorld {
         loc = myGrid.getLocationByCoordinates(5, 9);
         entityManager.setLocation(luke, loc);
         luke.resetMoveCommands(loc);
-
+   
         // Owen and Beru
         Humanoid owen = new Humanoid(Team.GOOD, 200, iface, this);
         owen.setShortDescription("Uncle Owen");

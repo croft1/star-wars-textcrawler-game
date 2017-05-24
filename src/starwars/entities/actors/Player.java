@@ -20,8 +20,11 @@ import starwars.SWLocation;
 import starwars.SWWorld;
 import starwars.Team;
 import starwars.actions.Attack;
+import starwars.actions.HealDroid;
 import starwars.actions.Influence;
+import starwars.actions.Lose;
 import starwars.actions.Move;
+import starwars.actions.Win;
 import starwars.entities.Force;
 import starwars.swinterfaces.SWGridController;
 
@@ -98,6 +101,38 @@ public class Player extends SWForceActor {
 	 *  @see {@link edu.monash.fit2099.simulator.userInterface.MessageRenderer}
 	 */
 	public void describeScene() {
+		//If dead, the game is lost
+		if (this.isDead()) 
+		{
+			Lose playerDeath = new Lose(this, messageRenderer);
+			
+			scheduler.scheduleLoss(playerDeath, this, 0);
+		}
+		
+		//If on Yavin 4
+		if (this.getWorld() == this.getWorld().getUniverse().getWorlds().get(1))
+		{
+			boolean containsTD;
+			boolean containsR2D2;
+			boolean containsLeia;
+			containsTD = (this.getFollowerList().contains("TD"));
+			containsR2D2 = (this.getFollowerList().contains("R2"));
+			containsLeia = (this.getFollowerList().contains("L"));
+			
+			this.say("Has Leia? " + containsLeia);
+			this.say("Has R2-D2? " + containsR2D2);
+			this.say("Has Test Droid? " + containsTD);
+			
+			if (containsR2D2 == true && containsLeia == true)
+			{
+				Win boughtR2AndLeia = new Win(this, messageRenderer);
+				
+				scheduler.scheduleWin(boughtR2AndLeia, this, -2);
+			}
+			
+
+		}
+		
 		//get the location of the player and describe it
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		say(this.getShortDescription() + " [HP: " + this.getHitpoints() +
@@ -115,12 +150,7 @@ public class Player extends SWForceActor {
 
 		}
 		
-		//If dead, the game is lost
-		if (this.isDead()) 
-		{
-			//Schedule a loss
-			//i.e SWActor.scheduler.scheduleLoss();
-		}
+		
 		
 		//weild
 		

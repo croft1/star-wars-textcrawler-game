@@ -76,7 +76,11 @@ public class PrincessLeia extends SWLegend  {
 		say(describeLocation());
 		
 		if(isDead()) {
-			return;//DO YOU LOSE STUFF HERE
+			
+			this.say("Leia is killed!");
+			Lose LeiaDeath = new Lose(this, messageRenderer);
+			
+			scheduler.scheduleLoss(LeiaDeath, this, 0);
 		}
 		
 		//Check to see if Luke is around (if not following already)

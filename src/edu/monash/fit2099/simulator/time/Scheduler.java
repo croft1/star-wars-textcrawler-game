@@ -250,6 +250,7 @@ public class Scheduler {
 	 * Scheduler schedules a winning event and instantiates the win sequence defined by the winning 
 	 * action of the game.
 	 * 
+	 * @author 	ram 
 	 * @author 	jas
 	 * @author  mewc
 	 * @date 	24 May 2017
@@ -257,8 +258,20 @@ public class Scheduler {
 	 * @see {@link #events}
 	 */
 	
-	public void scheduleWin() {
+	public void scheduleWin(ActionInterface c, Actor<?> a, int duration) {
 		
+		int delay;
+		int cooldown;
+		
+		//No delay and cooldowns for a wins - regardless of specification!
+		delay = 0;
+		cooldown = 0;
+		int waittime = delay + cooldown;
+		a.setWaittime(waittime);//set actor's wait time
+	
+		//add Win to queue of events. Note for the actor the event will be scheduled to happen after the delay from now
+		events.offer(new Event(c, a, now + duration + delay));
+
 		
 	}
 	
@@ -266,6 +279,7 @@ public class Scheduler {
 	 * Scheduler schedules a loss event and instantiates the losing sequence defined by the losing 
 	 * action of the game.
 	 * 
+	 * @author 	ram 
 	 * @author 	jas
 	 * @author  mewc
 	 * @date 	24 May 2017
@@ -273,8 +287,20 @@ public class Scheduler {
 	 * @see {@link #events}
 	 */
 	
-	public void scheduleLoss() {
+	public void scheduleLoss(ActionInterface c, Actor<?> a, int duration) {
 			
+		int delay;
+		int cooldown;
+		
+		//No delay and cooldowns for a wins - regardless of specification!
+		delay = 0;
+		cooldown = 0;
+		int waittime = delay + cooldown;
+		a.setWaittime(waittime);//set actor's wait time
+	
+		//add Win to queue of events. Note for the actor the event will be scheduled to happen after the delay from now
+		events.offer(new Event(c, a, now + duration + delay));
+
 			
 	}
 			
