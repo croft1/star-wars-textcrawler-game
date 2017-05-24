@@ -245,5 +245,33 @@ public class Scheduler {
 		events = new PriorityQueue<Event>();
 		this.ticksize = ticksize;
 	}
+	
+	/**
+	 * Scheduler schedules a winning event and instantiates the win sequence
+	 * 
+	 * @author 	jas
+	 * @date 	24 May 2017
+	 * 
+	 * @see {@link #events}
+	 */
+	
+	public void scheduleWin() {
 		
+		
+	}
+	
+	/**
+	 * Scheduler schedules a loss event and instantiates the losing sequence
+	 * 
+	 * @author 	jas
+	 * @date 	24 May 2017
+	 * 
+	 * @see {@link #events}
+	 */
+	
+	public void scheduleLoss() {
+			
+			
+	}
+			
 }

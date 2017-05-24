@@ -54,7 +54,7 @@ public class Application {
 		Scheduler theScheduler = new Scheduler(1, univ.getActiveWorld());
 		
 		SWActor.setScheduler(theScheduler);
-
+		
 		// set up the world (Tatooine)
 		univ.getActiveWorld().initializeWorld(uiController);
 		
