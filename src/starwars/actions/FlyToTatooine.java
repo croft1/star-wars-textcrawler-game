@@ -118,9 +118,6 @@ public class FlyToTatooine extends SWAffordance {
 				SWActor.setScheduler(theScheduler);
 
 				a.getWorld().getUniverse().setActiveWorld(tatooine);
-				
-				// set up the world
-				a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
 
 				// kick off the scheduler
 				while(true) {
@@ -128,11 +125,7 @@ public class FlyToTatooine extends SWAffordance {
 					theScheduler.tick();
 				}
 			}
-			
-			
-			
 		}
-		
 	}
 
 	/**

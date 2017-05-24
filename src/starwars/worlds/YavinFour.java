@@ -88,6 +88,11 @@ public class YavinFour extends SWWorld {
         loc = myGrid.getLocationByCoordinates(1, 1);
         entityManager.setLocation(mm, loc);
         mm.setSymbol("MM");
+        
+        // A blaster
+        Blaster blaster = new Blaster(iface);
+        loc = myGrid.getLocationByCoordinates(0, 1);
+        entityManager.setLocation(blaster, loc);
 
 	}
 }

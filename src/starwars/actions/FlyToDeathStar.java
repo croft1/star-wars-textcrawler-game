@@ -8,15 +8,21 @@
  */
 package starwars.actions;
 
+import java.util.ArrayList;
+
+import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.Capability;
 import starwars.SWActor;
 import starwars.SWAffordance;
 import starwars.SWEntityInterface;
+import starwars.SWLocation;
+import starwars.SWWorld;
 import starwars.entities.Fillable;
 import starwars.entities.MilleniumFalcon;
 import starwars.entities.actors.Droid;
 import starwars.entities.actors.Player;
+import starwars.swinterfaces.SWGridController;
 
 /**
  * Class for Fly to the Death Star
@@ -74,6 +80,54 @@ public class FlyToDeathStar extends SWAffordance {
 		//If the entity trying to fly is Luke
 		if (a instanceof Player) {
 
+			//Get the Array List depicting the followers of Luke
+			ArrayList<String> followersList = a.getFollowerList();
+			
+			//If no one is following Luke
+			if (followersList.size() == 0)
+			{
+				a.say("No one is following me");
+				
+				a.say(a.getShortDescription() + " is on world " + a.getWorld().getWorldName() 
+						+ " in the " + a.getWorld().getUniverse().getUniverseName());
+				
+				//Yavin IV is at index 1 of the universe world list.. obtain it
+				SWWorld deathStar = a.getWorld().getUniverse().getWorlds().get(2);
+				a.say(deathStar.getWorldName());
+
+				//Initially transport to Ben 
+				//this.theEM.setLocation(a, this.locTravelTo);
+			
+				//this.theEM.setLocation(a, a.getWorld().getUniverse().getMFList().get(0));
+				
+				a.setWorld(deathStar);
+				
+				SWLocation loc = a.getWorld().getGrid().getLocationByCoordinates(0, 0);
+				deathStar.getEntityManager().setLocation(a, loc);
+		        
+		        //Grid controller controls the data and commands between the UI and the model
+				SWGridController uiController = new SWGridController(a.getWorld());
+
+				Scheduler theScheduler = new Scheduler(1, a.getWorld());
+				
+				SWActor.setScheduler(theScheduler);
+
+				a.getWorld().getUniverse().setActiveWorld(deathStar);
+				
+				// set up the world
+				a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
+
+				// kick off the scheduler
+				while(true) {
+					uiController.render();
+					theScheduler.tick();
+				}
+			}
+			
+			
+			
+			
+			
 		}
 		
 	}

@@ -39,7 +39,7 @@ public class MonMothma extends SWActor {
 	private String describeLocation() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		Boolean winConditionMet = false;
-		String says = " What are you doing here, farmboy. Bring us General organa (Pricess Leia) and the plans!";
+		String says = " says: 'What are you doing here, farmboy!? Bring us \nGeneral Organa (Princess Leia) and the plans!'";
 		if (winConditionMet){
 			says += " YOU WIN!";
 		}

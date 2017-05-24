@@ -63,16 +63,6 @@ public class DeathStar extends SWWorld {
 				CompassBearing.EAST, CompassBearing.EAST,
 				CompassBearing.NORTHWEST, CompassBearing.NORTHWEST};
 
-
-		// TODO Luke - add in the existing luke entity to here on transport.
-        //DONT DO LIKE THIS - need to reuse to keep stats
-        Player luke = new Player(Team.GOOD, 100, iface, this);
-        luke.setShortDescription("Luke");
-        loc = myGrid.getLocationByCoordinates(0, 0);
-        entityManager.setLocation(luke, loc);
-        luke.resetMoveCommands(loc);
-
-
         // The Millenium Falcon
         MilleniumFalcon millFalcDS = new MilleniumFalcon(iface);
         loc = myGrid.getLocationByCoordinates(0, 2);
