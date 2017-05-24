@@ -89,11 +89,6 @@ public class FlyToYavinFour extends SWAffordance {
 			//If no one is following Luke
 			if (followersList.size() == 0)
 			{
-				a.say("No one is following me");
-				
-				a.say(a.getShortDescription() + " is on world " + a.getWorld().getWorldName() 
-						+ " in the " + a.getWorld().getUniverse().getUniverseName());
-				
 				//Yavin IV is at index 1 of the universe world list.. obtain it
 				SWWorld yavin = a.getWorld().getUniverse().getWorlds().get(1);
 				a.say(yavin.getWorldName());
@@ -137,9 +132,57 @@ public class FlyToYavinFour extends SWAffordance {
 					theScheduler.tick();
 				}
 			}
-			
+			//Luke has followers. Transport them to Yavin IV with the SAME location
+			else
+			{
+				//Yavin IV is at index 1 of the universe world list.. obtain it
+				SWWorld yavin = a.getWorld().getUniverse().getWorlds().get(1);
+				a.say(yavin.getWorldName());
+				
+				//Each actor is represented by their symbol
+				for (SWActor followingActor : a.getFollowerListSWActors())
+				{
+					//Set location of Actors to Yavin 4's Millenium Falcon 
+					SWLocation loc = followingActor.getWorld().getGrid().getLocationByCoordinates(0, 0);
+			        yavin.getEntityManager().setLocation(followingActor, loc);
+				}
+				
+				//Transport Luke
+				a.setWorld(yavin);
+				
+				a.getWorld().getUniverse().setActiveWorld(yavin);
+				
+				SWLocation loc = a.getWorld().getGrid().getLocationByCoordinates(0, 0);
+		        yavin.getEntityManager().setLocation(a, loc);
+		        
+		        //Grid controller controls the data and commands between the UI and the model
+				SWGridController uiController = new SWGridController(a.getWorld());
+
+				Scheduler theScheduler = new Scheduler(1, a.getWorld());
+				
+				SWActor.setScheduler(theScheduler);
+				
+				// Set up the world if not done so already, otherwise pass 
+				if (a.getWorld().getUniverse().getActiveWorld().getIsInitialised() == false)
+				{
+					//Set up Tatooine (if not done already)
+					a.say("Yavin IV has not been initialised. Setting up...");
+					
+					// set up the world (Yavin Four)
+					a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
+					
+					//Set the active worlds initialisation to true (for not re-initialising worlds in transport)
+					a.getWorld().getUniverse().getActiveWorld().setIsInitialised(true);
+				}
+				a.say("Yavin IV has been initialised.");
+
+				// kick off the scheduler
+				while(true) {
+					uiController.render();
+					theScheduler.tick();
+				}
+			}
 		}
-		
 	}
 
 	/**

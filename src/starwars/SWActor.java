@@ -73,8 +73,11 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	/**A set of <code>Capabilities</code> of this <code>SWActor</code>*/
 	private HashSet<Capability> capabilities;
 	
+	/* Followers Array (follower Symbols) for display */
+	private ArrayList<String> followingActorSymbol = new ArrayList<String>();
+	
 	/* Followers Array (follower Symbols) */
-	private ArrayList<String> followingActor = new ArrayList<String>();
+	private ArrayList<SWActor> followingSWActor = new ArrayList<SWActor>();
 
 	/* Universe that the SWActor is in */
 	private SWUniverse universe;
@@ -475,14 +478,27 @@ public abstract class SWActor extends Actor<SWActionInterface> implements SWEnti
 	/**
 	 * getFollowerList() method
 	 * 
-	 * Returns the Array List of who is following the <code>SWActor</code> at a given time
+	 * Returns the Array List of symbols who is following the <code>SWActor</code> at a given time
 	 * 
 	 * @return  	 Array List of symbols describing the followers of a <code>SWActor</code>.
 	 * @ore 	The SWActor is defined, not null and either has or has no followers
 	 * 
 	 */
 	public ArrayList<String> getFollowerList(){
-		return this.followingActor;
+		return this.followingActorSymbol;
+	}
+	
+	/**
+	 * getFollowerListSWActor() method
+	 * 
+	 * Returns the Array List of SWActors who is following the <code>SWActor</code> at a given time
+	 * 
+	 * @return  	 Array List of symbols describing the followers of a <code>SWActor</code>.
+	 * @ore 	The SWActor is defined, not null and either has or has no followers
+	 * 
+	 */
+	public ArrayList<SWActor> getFollowerListSWActors(){
+		return this.followingSWActor;
 	}
 	
 	

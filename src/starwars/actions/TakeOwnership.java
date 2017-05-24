@@ -117,8 +117,9 @@ public class TakeOwnership extends SWAffordance implements SWActionInterface {
 			//Printing team affiliation
 			a.say(target.getShortDescription() + " affiliation has changed to: " +  target.getTeam() );
 			
-			//Adding the Droid to the SWActor a's following ArrayList
+			//Adding the Droid to the SWActor a's following ArrayList (symbols and SWActor)
 			a.getFollowerList().add(target.getSymbol());
+			a.getFollowerListSWActors().add(target);
 			
 			//Printing notification of addition to follow list
 			a.say(target.getShortDescription() + " was added to " +  a.getShortDescription() + "'s follow list." );

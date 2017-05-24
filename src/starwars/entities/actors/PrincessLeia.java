@@ -96,8 +96,9 @@ public class PrincessLeia extends SWLegend  {
 						//Set Leia to follow Luke
 						this.lukeFollow = true;
 						
-						//Add Leia to Lukes' following list
+						//Add Leia to Lukes' following list (symbol and SWActor)
 						Luke.getFollowerList().add(this.getSymbol());
+						Luke.getFollowerListSWActors().add(this);
 					}
 				}
 			}

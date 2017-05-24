@@ -131,20 +131,18 @@ public class Droid extends SWActor {
 				say("Owned. checking in owners follow list");
 				
 				String thisDroidNoBraces = this.getSymbol().substring(1, this.getSymbol().length()-1);
-				say(thisDroidNoBraces);
+
 				int indexofDroid = this.getOwner().getFollowerList().indexOf(thisDroidNoBraces);
 				
-				say("The index of this droid is" + indexofDroid);
-
 				if (this.getOwner().getFollowerList().get(indexofDroid).equals(thisDroidNoBraces))
 				{
 					say("Removing");
 					this.getOwner().getFollowerList().remove(thisDroidNoBraces);
+					this.getOwner().getFollowerListSWActors().remove(this);
 					this.setOwner(null);
 				}
 				else
 				{
-					say("Not in list.  exiting");
 					return;
 				}
 			}
