@@ -79,14 +79,12 @@ public class DarthVader extends SWLegend  {
 		say(describeLocation());
 		
 		if(isDead()) {
-			say("Darth Vader has been killed!");
+			//Message stating Darth Vader was killed in action
+			this.messageRenderer.render("\n\nDarth Vader has been killed in action!");
 			
-			Win deathToVader = new Win(this, messageRenderer);
-			
-			scheduler.scheduleWin(deathToVader, this, -2);
-			
+			//Scheduler schedules the loss
+			scheduler.winSchedule(this.messageRenderer);
 		}
-		
 
 		if (this.getHitpoints() < 100) {
 			say("Darth Vader is almost gone!");
@@ -103,8 +101,14 @@ public class DarthVader extends SWLegend  {
                 scheduler.schedule(attack.affordance, this, 1);
             }
 
+            //Otherwise, convert Luke to the dark side
             else {
-
+            	
+            	//check to see if Luke has trained by Ben Kenobi
+            	
+            	//If Luke trained, 75% chance to resise
+            		//Else, turn to the dark side!
+            		//Lose here
             }
         }else{ //move
             randomMovement();

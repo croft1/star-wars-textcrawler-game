@@ -119,14 +119,32 @@ public class Droid extends SWActor {
 		char locationSymbol = this.world.getEntityManager().whereIs(this).getSymbol();
 		
 		//Begin act
-		
 		say(describeLocation());		
 		
+		//Check for the lose condition that R2 is disassembled
+		//If R2's HP is <=0
+		if (this.isDead())
+		{
+			//If R2 is disassembled
+			if(this.getIsDisassembled())
+			{
+				//Is the symbol of the disassembled Droid is R2's
+				if(this.getSymbol().contains("{R2}"))
+				{
+					//Message stating R2 was disassembled
+					this.messageRenderer.render("\n\nR2-D2 has been disassembled!");
+					
+					//Scheduler schedules the loss
+					scheduler.lossSchedule(this.messageRenderer);
+				}
+			}
+		}
+		
+		
 		//If a Droid is immobile (Dead)
-
 		if (this.getIsImmobile() == true) {
 			say(this.getShortDescription() + " is immobile. ");
-
+						
 			if(this.getOwner() != null)
 			{
 				say("Owned. checking in owners follow list");
@@ -149,7 +167,7 @@ public class Droid extends SWActor {
 			}
 			else
 			{
-				return;
+				
 			}
 		}
 		
@@ -204,15 +222,7 @@ public class Droid extends SWActor {
 		//R2-D2 Repair droid specific act() code
 		else if (this.getSymbol() == "R2") {
 			
-	
-			
-			if(this.isDisassembled) 
-			{
-				//Lose
-				Lose r2Dissasembled = new Lose(this, messageRenderer);
-				
-				scheduler.scheduleLoss(r2Dissasembled, this, 0);
-			}
+			this.messageRenderer.render("R2 DISS: " + this.isDisassembled);
 			
 			//Describe who R2 can see
 			//get the contents of the location

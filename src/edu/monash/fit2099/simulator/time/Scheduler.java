@@ -311,9 +311,16 @@ public class Scheduler {
 		m.render("You have unfortunately lost the game. Gave Over.");
 		
 		//Stop execution of the game.
-		System.exit(0);
+		System.exit(0);		
+	}
+	
+	public void winSchedule(MessageRenderer m) {
 		
-			
+		//Render a message notifying the loss
+		m.render("You have won the game. Congratulations - the Force is with you!");
+		
+		//Stop execution of the game.
+		System.exit(0);		
 	}
 			
 }

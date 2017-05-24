@@ -78,13 +78,14 @@ public class DeathStar extends SWWorld {
         leia.setSymbol("L");
         loc = myGrid.getLocationByCoordinates(9, 9);
         entityManager.setLocation(leia, loc);
-
+ 
 
         DarthVader dv = DarthVader.getDarthVader(iface, this, patrolmoves);
         loc = myGrid.getLocationByCoordinates(4, 4);
         entityManager.setLocation(dv, loc);
         dv.setSymbol("V");
-
+        dv.setHitpoints(1);
+        
         StormTrooper st = new StormTrooper(iface, this);
 
         loc = myGrid.getLocationByCoordinates(2, 2);

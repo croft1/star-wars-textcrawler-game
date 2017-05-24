@@ -95,7 +95,6 @@ public class Tatooine extends SWWorld {
         loc = myGrid.getLocationByCoordinates(5, 9);
         entityManager.setLocation(luke, loc);
         luke.resetMoveCommands(loc);
-        luke.setHitpoints(1);
         
         // Owen and Beru
         Humanoid owen = new Humanoid(Team.GOOD, 200, iface, this);
@@ -181,7 +180,7 @@ public class Tatooine extends SWWorld {
         // A Tusken Raider
         TuskenRaider tim = new TuskenRaider(10, "Tim", iface, this);
         tim.setSymbol("T");
-        loc = myGrid.getLocationByCoordinates(2, 1);
+        loc = myGrid.getLocationByCoordinates(2, 0);
         entityManager.setLocation(tim, loc);
 
         // A second Tusken Raider
@@ -308,34 +307,5 @@ public class Tatooine extends SWWorld {
         //Make R2D2 hold some Droid Parts from the beginning
         DroidParts r2dp = new DroidParts(iface);
         R2D2.setItemCarried(r2dp);
-        R2D2.setHitpoints(0);
-        R2D2.setIsImmobile(true);
-        
-        
-        
-        
-        
-        
-        //TEST DROID
-    
-        Droid TD = new Droid(50, "Test Droid", iface, this, null);
-
-        TD.setSymbol("TD");
-        loc = myGrid.getLocationByCoordinates(5, 11);
-        entityManager.setLocation(TD, loc);
-
-
-        //Adding a TakeOwnership Affordance to the Droid - thus an SWActor can take ownership of it.
-        TD.addAffordance(new TakeOwnership(TD, iface));
-        //Adding a HealDroid affordance - that SWACtors act upon
-        TD.addAffordance(new HealDroid(TD, iface));
-        //Adding a Repair affordance to the Droid - can be repaired
-        TD.addAffordance(new Repair(TD, iface));
-        //Adding a Disassesmble affordance to the Droid - can be disassembled into DroidParts
-        TD.addAffordance(new Disassemble(TD, iface));
-        
-        TD.setHitpoints(1);
-        
-
     }
 }

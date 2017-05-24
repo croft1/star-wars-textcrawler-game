@@ -104,30 +104,28 @@ public class Player extends SWForceActor {
 		//If dead, the game is lost
 		if (this.isDead()) 
 		{
-			
+			//Message stating Luke was killed in action
 			this.messageRenderer.render("\n\nLuke has been killed in action!");
+			
+			//Scheduler schedules the loss
 			scheduler.lossSchedule(this.messageRenderer);
-			
-			//Lose playerDeath = new Lose(this, messageRenderer);
-			
-			//scheduler.schedule(playerDeath, null, 0);
 		}
 		
 		//If on Yavin 4
 		if (this.getWorld() == this.getWorld().getUniverse().getWorlds().get(1))
 		{
-			boolean containsTD;
 			boolean containsR2D2;
 			boolean containsLeia;
-			containsTD = (this.getFollowerList().contains("TD"));
 			containsR2D2 = (this.getFollowerList().contains("R2"));
 			containsLeia = (this.getFollowerList().contains("L"));
 			
 			if (containsR2D2 == true && containsLeia == true)
 			{
-				Win boughtR2AndLeia = new Win(this, messageRenderer);
+				//Message stating Luke was killed in action
+				this.messageRenderer.render("\n\nYou successfully took Leia and R2-D2 to the rebel base!");
 				
-				scheduler.scheduleWin(boughtR2AndLeia, this, -2);
+				//Scheduler schedules the win
+				scheduler.winSchedule(this.messageRenderer);
 			}
 		}
 		
