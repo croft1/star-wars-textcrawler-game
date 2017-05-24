@@ -143,6 +143,10 @@ public class Player extends SWForceActor {
 				+ ownedWorld.getUniverse().getWorlds().get(1).getWorldName()
 				+ ownedWorld.getUniverse().getWorlds().get(2).getWorldName());
 				*/
+		
+		System.out.println("Tatooine init: " + ownedWorld.getUniverse().getWorlds().get(0).getIsInitialised());
+		System.out.println("Yavin init init: " + ownedWorld.getUniverse().getWorlds().get(1).getIsInitialised());
+		System.out.println("DS init init: " + ownedWorld.getUniverse().getWorlds().get(2).getIsInitialised());
 	}
 }
 

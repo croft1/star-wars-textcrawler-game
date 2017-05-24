@@ -10,6 +10,7 @@ package starwars.actions;
 
 import java.util.ArrayList;
 
+import edu.monash.fit2099.simulator.matter.EntityManager;
 import edu.monash.fit2099.simulator.time.Scheduler;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.Capability;
@@ -36,15 +37,20 @@ import starwars.swinterfaces.SWGridController;
  */
 public class FlyToDeathStar extends SWAffordance {
 
+	SWLocation locTravelTo;
+	
+	EntityManager<SWEntityInterface, SWLocation> theEM;
+	
 	/**
 	 * Constructor for the <code>Fly</code> class. 
 	 * 
 	 * @param theTarget 	- the Millenium Falcon being flown in (which is a SWEntity)
 	 * @param m 	- the message renderer to display messages
 	 */
-	public FlyToDeathStar(SWEntityInterface theTarget, MessageRenderer m) {
+	public FlyToDeathStar(SWEntityInterface theTarget, EntityManager<SWEntityInterface, SWLocation> em, MessageRenderer m) {
 		super(theTarget, m);
 		priority = 1;
+		this.theEM = em;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -114,8 +120,19 @@ public class FlyToDeathStar extends SWAffordance {
 
 				a.getWorld().getUniverse().setActiveWorld(deathStar);
 				
-				// set up the world
-				a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
+				// Set up the world if not done so already, otherwise pass 
+				if (a.getWorld().getUniverse().getActiveWorld().getIsInitialised() == false)
+				{
+					//Set up Tatooine (if not done already)
+					a.say("The Death Star has not been initialised. Setting up...");
+					
+					// set up the world (Yavin Four)
+					a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
+					
+					//Set the active worlds initialisation to true (for not re-initialising worlds in transport)
+					a.getWorld().getUniverse().getActiveWorld().setIsInitialised(true);
+				}
+				a.say("The Death Star has been initialised.");
 
 				// kick off the scheduler
 				while(true) {

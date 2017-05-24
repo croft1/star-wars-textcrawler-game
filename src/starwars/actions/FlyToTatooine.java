@@ -119,6 +119,19 @@ public class FlyToTatooine extends SWAffordance {
 
 				a.getWorld().getUniverse().setActiveWorld(tatooine);
 
+				// Set up the world if not done so already, otherwise pass 
+				if (a.getWorld().getUniverse().getActiveWorld().getIsInitialised() == false)
+				{
+					a.say("Tatooine has not been initialised. Setting up...");
+					
+					// set up the world (Tatooine)
+					a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
+					
+					//Set the active worlds initialisation to true (for not re-initialising worlds in transport)
+					a.getWorld().getUniverse().getActiveWorld().setIsInitialised(true);
+				}
+				a.say("Tatooine is already initialised.");
+				
 				// kick off the scheduler
 				while(true) {
 					uiController.render();

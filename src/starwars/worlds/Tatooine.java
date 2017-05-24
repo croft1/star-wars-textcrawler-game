@@ -175,7 +175,7 @@ public class Tatooine extends SWWorld {
         this.universe.getMFList().add(loc);
         
         millFalcTattoine.addAffordance(new FlyToYavinFour(millFalcTattoine, this.getEntityManager(), iface));
-        millFalcTattoine.addAffordance(new FlyToDeathStar(millFalcTattoine, iface));
+        millFalcTattoine.addAffordance(new FlyToDeathStar(millFalcTattoine, this.getEntityManager(), iface));
         
         // A Tusken Raider
         TuskenRaider tim = new TuskenRaider(10, "Tim", iface, this);

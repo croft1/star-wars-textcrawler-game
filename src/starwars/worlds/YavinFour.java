@@ -77,7 +77,7 @@ public class YavinFour extends SWWorld {
         this.universe.getMFList().add(loc);
         
         millFalcYFour.addAffordance(new FlyToTatooine(millFalcYFour, this.getEntityManager(), iface));
-
+        millFalcYFour.addAffordance(new FlyToDeathStar(millFalcYFour, this.getEntityManager(), iface));
 
         GeneralAckbar ga = new GeneralAckbar(iface, this);
         loc = myGrid.getLocationByCoordinates(0, 1);

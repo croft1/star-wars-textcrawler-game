@@ -55,8 +55,11 @@ public class Application {
 		
 		SWActor.setScheduler(theScheduler);
 
-		// set up the world
+		// set up the world (Tatooine)
 		univ.getActiveWorld().initializeWorld(uiController);
+		
+		//Set the active worlds initialisation to true (for not re-initialising worlds in transport)
+		univ.getActiveWorld().setIsInitialised(true);
 
 		// kick off the scheduler
 		while(true) {

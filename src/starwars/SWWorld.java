@@ -36,6 +36,9 @@ public abstract class SWWorld extends World {
 	
 	/** the universe that the world belongs to */
 	protected SWUniverse universe;
+	
+	/* Boolean depicting if the world has been initialised yet  */
+	protected boolean isInitialised = false;
 
 	/** 
 	 * Returns the height of the <code>Grid</code>. Useful to the Views when rendering the map.
@@ -164,6 +167,14 @@ public abstract class SWWorld extends World {
 	 */
 	public SWUniverse getUniverse() {
 		return this.universe;
+	}
+	
+	public boolean getIsInitialised() {
+		return isInitialised;
+	}
+	
+	public void setIsInitialised(boolean setIsInit) {
+		this.isInitialised = setIsInit;
 	}
 }
 

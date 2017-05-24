@@ -117,8 +117,19 @@ public class FlyToYavinFour extends SWAffordance {
 
 				a.getWorld().getUniverse().setActiveWorld(yavin);
 				
-				// set up the world
-				a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
+				// Set up the world if not done so already, otherwise pass 
+				if (a.getWorld().getUniverse().getActiveWorld().getIsInitialised() == false)
+				{
+					//Set up Tatooine (if not done already)
+					a.say("Yavin IV has not been initialised. Setting up...");
+					
+					// set up the world (Yavin Four)
+					a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
+					
+					//Set the active worlds initialisation to true (for not re-initialising worlds in transport)
+					a.getWorld().getUniverse().getActiveWorld().setIsInitialised(true);
+				}
+				a.say("Yavin IV has been initialised.");
 
 				// kick off the scheduler
 				while(true) {

@@ -4,6 +4,7 @@ import edu.monash.fit2099.gridworld.Grid.CompassBearing;
 import edu.monash.fit2099.simulator.space.Direction;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
 import starwars.*;
+import starwars.actions.FlyToDeathStar;
 import starwars.actions.FlyToTatooine;
 import starwars.actions.FlyToYavinFour;
 import starwars.entities.*;
@@ -65,16 +66,14 @@ public class DeathStar extends SWWorld {
 
         // The Millenium Falcon
         MilleniumFalcon millFalcDS = new MilleniumFalcon(iface);
-        loc = myGrid.getLocationByCoordinates(0, 2);
+        loc = myGrid.getLocationByCoordinates(0, 0);
         entityManager.setLocation(millFalcDS, loc);
         
         //Append the MF location to the MF Location list in SWUNiverse
         this.universe.getMFList().add(loc);
+        millFalcDS.addAffordance(new FlyToYavinFour(millFalcDS, this.getEntityManager(), iface));
+        millFalcDS.addAffordance(new FlyToTatooine(millFalcDS, this.getEntityManager(), iface));
         
-        //millFalcDS.addAffordance(new FlyToTatooine(millFalcDS, iface));
-        //millFalcDS.addAffordance(new FlyToYavinFour(millFalcDS, iface));
-
-
         PrincessLeia leia = PrincessLeia.getPrincessLeia(iface, this, patrolmoves);
         leia.setSymbol("L");
         loc = myGrid.getLocationByCoordinates(9, 9);
