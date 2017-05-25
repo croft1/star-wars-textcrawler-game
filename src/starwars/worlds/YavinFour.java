@@ -11,22 +11,24 @@ import starwars.entities.*;
 import starwars.entities.actors.*;
 
 /**
- * Class representing a world in the Star Wars universe. 
+ * Class representing the Yavin IV (Four) moon in the Star Wars universe. The rebel 
+ * base - this moon is home to Mon Mothma and General Ackbar - who are in search of their
+ * General - Princess Leia. Luke is tasked to bring her to the base to win the game (along
+ * with R2-D2 and the Death Star plans)
  * 
  * @author ram
- */
-/*
- * Change log
- * 2017-02-02:  Render method was removed from Middle Earth
- * 				Displaying the Grid is now handled by the TextInterface rather 
- * 				than by the Grid or MiddleWorld classes (asel)
+ * @author jas
+ * @author mewc
  */
 public class YavinFour extends SWWorld {
 
 	/**
-	 * Constructor of <code>SWWorld</code>. This will initialize the <code>SWLocationMaker</code>
-	 * and the grid.
+	 * Constructor of <code>YavinFour</code>. This will initialize the <code>SWLocationMaker</code>
+	 * and the grid for setup of the Yavin IV instance.
+	 * 
+	 * @param 	inUniverse		The universe into which this Yavin IV instance belongs to.
 	 */
+
 	public YavinFour(SWUniverse inUniverse) {
 		SWLocation.SWLocationMaker factory = SWLocation.getMaker();
 		myGrid = new SWGrid(2,2,factory);
@@ -35,17 +37,15 @@ public class YavinFour extends SWWorld {
 		universe = inUniverse;
 	}
 
-
 	/**
-	 * Set up the world, setting descriptions for locations and placing items and actors
-	 * on the grid.
-	 *
-	 * @param iface a MessageRenderer to be passed onto newly-created entities
-	 * @author ram
-	 */
+     * Sets up Yavin IV, setting descriptions for locations and placing items and actors
+     * on the grid.
+     *
+     * @param iface a MessageRenderer to be passed onto newly-created entities
+     * @author ram
+     */
 	public void initializeWorld(MessageRenderer iface) {
 		SWLocation loc;
-		SWLocation MFLoc;	//M falc location
 		
 		// Set default location string
 		for (int row = 0; row < height(); row++) {

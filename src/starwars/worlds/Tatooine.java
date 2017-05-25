@@ -12,23 +12,22 @@ import starwars.entities.*;
 import starwars.entities.actors.*;
 
 /**
- * Class representing a world in the Star Wars universe. 
+ * Class representing the planet Tatooine in the Star Wars universe. This is a very sandy
+ * planet full of Tusken Raiders and remote Droids - but also houses the Master Jedi Obi Wan
+ * 'Ben' Kenobi.
  * 
  * @author ram
- */
-/*
- * Change log
- * 2017-02-02:  Render method was removed from Middle Earth
- * 				Displaying the Grid is now handled by the TextInterface rather 
- * 				than by the Grid or MiddleWorld classes (asel)
+ * @author jas
+ * @author mewc
  */
 public class Tatooine extends SWWorld {
 
-    /**
-     * Constructor of <code>SWWorld</code>. This will initialize the <code>SWLocationMaker</code>
-     * and the grid.
-     */
-
+	/**
+	 * Constructor of <code>Tatooine</code>. This will initialize the <code>SWLocationMaker</code>
+	 * and the grid for setup of the Tatooine instance.
+	 * 
+	 * @param 	inUniverse		The universe into which this Tatooine instance belongs to.
+	 */
     public Tatooine(SWUniverse inUniverse) {
 
         SWLocation.SWLocationMaker factory = SWLocation.getMaker();
@@ -39,7 +38,7 @@ public class Tatooine extends SWWorld {
     }
 
     /**
-     * Set up the world, setting descriptions for locations and placing items and actors
+     * Sets up Tatooine, setting descriptions for locations and placing items and actors
      * on the grid.
      *
      * @param iface a MessageRenderer to be passed onto newly-created entities
@@ -84,8 +83,6 @@ public class Tatooine extends SWWorld {
 
         BenKenobi ben = BenKenobi.getBenKenobi(iface, this, patrolmoves);
         ben.setSymbol("B");
-        
-
         loc = myGrid.getLocationByCoordinates(4, 5);
         entityManager.setLocation(ben, loc);
 

@@ -11,23 +11,22 @@ import starwars.entities.*;
 import starwars.entities.actors.*;
 
 /**
- * Class representing a world in the Star Wars universe. 
+ * Class representing the Death Star 'world' in the Star Wars universe. This spacecraft houses
+ * the evil Darth Vader and various Stormtrppoers - who patrol in a random like fashion. Princess
+ * Leia is also trapped on the Death Star - hoping Luke will come in her aid.
  * 
  * @author ram
+ * @author jas
+ * @author mewc
  */
-/*
- * Change log
- * 2017-02-02:  Render method was removed from Middle Earth
- * 				Displaying the Grid is now handled by the TextInterface rather 
- * 				than by the Grid or MiddleWorld classes (asel)
- */
+
 public class DeathStar extends SWWorld {
 
-
-
 	/**
-	 * Constructor of <code>SWWorld</code>. This will initialize the <code>SWLocationMaker</code>
-	 * and the grid.
+	 * Constructor of <code>DeathStar</code>. This will initialize the <code>SWLocationMaker</code>
+	 * and the grid for setup of the Death Star instance.
+	 * 
+	 * @param 	inUniverse		The universe into which this Death Star instance belongs to.
 	 */
 	public DeathStar(SWUniverse inUniverse) {
 		SWLocation.SWLocationMaker factory = SWLocation.getMaker();
@@ -38,7 +37,7 @@ public class DeathStar extends SWWorld {
 	}
 
 	/**
-	 * Set up the world, setting descriptions for locations and placing items and actors
+	 * Set up the Death Star, setting descriptions for locations and placing items and actors
 	 * on the grid.
 	 *
 	 * @param iface a MessageRenderer to be passed onto newly-created entities
