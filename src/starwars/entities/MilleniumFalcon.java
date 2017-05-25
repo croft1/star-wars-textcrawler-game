@@ -19,9 +19,9 @@ import starwars.actions.Take;
  * Class for the Millenium Falcon SWEntity
  * 
  * The Millenium Falcon is the main usage of travel between the planets and destinations
- * in the Star Wars universe - mainly for the Resistance and New Repulic in the main film
+ * in the Star Wars universe - mainly for the Resistance and New Republic in the main film
  * series and other various media. In this game, Luke will be able to use the Millenium Falcon
- * to travel to the Death Star and Yavin 4 moon.
+ * to travel in-between Tatooine, the Death Star and Yavin 4.
  * 
  * @author jas
  * @author mewc
@@ -32,8 +32,8 @@ public class MilleniumFalcon extends SWEntity {
 	/**
 	 * Constructor for the <code>Miilenium Flacon</code>. 
 	 * 
-	 * Creates the Millenium Falcon that will be denoted by a "MF". Luke can use this spacefract to travel
-	 * inbetween worlds of this game (
+	 * Creates the Millenium Falcon that will be denoted by a "^". Luke can use this spacecraft to travel
+	 * inbetween worlds of this game (as well as his followers)
 	 * 
 	 * @param	m	- MessageRenderer that these Droid Parts will use to display notification
 	 * to (mainly their description)
@@ -43,11 +43,8 @@ public class MilleniumFalcon extends SWEntity {
 		
 		this.shortDescription = "the Millennium Falcon";
 		this.longDescription = "the Millennium Falcon, the Correlian YT-1300f light freighter/spacecraft";
-		this.hitpoints = 100; // start with a fully charged pistol
-
-
+		this.hitpoints = 100; 
 	}
-	
 	
 	/**
 	 * A symbol that is used to represent the Millenium Falcon on a text based user interface
