@@ -28,8 +28,8 @@ import starwars.swinterfaces.SWGridController;
 /**
  * Class for Fly to the Death Star
  * 
- * The fly action will enable the SWActor (Player) the opportunity to travel to the 
- * enemy spaceraft named the Death Star from either the Yavin IV or Tatooine
+ * The FlyToDeathStar action will enable the SWActor (Player) the opportunity to travel to the 
+ * enemy spacecraft named the Death Star from either the Yavin IV or Tatooine
  * 
  * @author jas
  * @author mewc
@@ -42,7 +42,7 @@ public class FlyToDeathStar extends SWAffordance {
 	EntityManager<SWEntityInterface, SWLocation> theEM;
 	
 	/**
-	 * Constructor for the <code>Fly</code> class. 
+	 * Constructor for the <code>FlyToDeathStar</code> class. 
 	 * 
 	 * @param theTarget 	- the Millenium Falcon being flown in (which is a SWEntity)
 	 * @param m 	- the message renderer to display messages
@@ -51,14 +51,13 @@ public class FlyToDeathStar extends SWAffordance {
 		super(theTarget, m);
 		priority = 1;
 		this.theEM = em;
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * Public Method canDo(SWActor a)
 	 *
 	 * Returns a boolean exclaiming that the particular SWActor (a) is able to
-	 * use Fly (within the Millenium Falcon
+	 * use FlyToDeathStar(within the Millenium Falcon)
 	 * 
 	 * @param 	a	- The SWActor in question of being able to undertake this action
 	 * 
@@ -74,7 +73,7 @@ public class FlyToDeathStar extends SWAffordance {
 	/**
 	 * Public Method act(SWActor a)
 	 *
-	 * Initiates the Fly process once option is selected from the same menu.
+	 * Initiates the Fly to the Death Star process once option is selected from the same menu.
 	 *
 	 * 
 	 * @param 	a	- The SWActor in question of being able to undertake the process of 
@@ -97,15 +96,10 @@ public class FlyToDeathStar extends SWAffordance {
 				a.say(a.getShortDescription() + " is on world " + a.getWorld().getWorldName() 
 						+ " in the " + a.getWorld().getUniverse().getUniverseName());
 				
-				//Yavin IV is at index 1 of the universe world list.. obtain it
+				//The Death Star is at index 2 of the universe world list.. obtain it
 				SWWorld deathStar = a.getWorld().getUniverse().getWorlds().get(2);
-				a.say(deathStar.getWorldName());
 
-				//Initially transport to Ben 
-				//this.theEM.setLocation(a, this.locTravelTo);
-			
-				//this.theEM.setLocation(a, a.getWorld().getUniverse().getMFList().get(0));
-				
+				//Set Lukes' current world to the Death Star
 				a.setWorld(deathStar);
 				
 				SWLocation loc = a.getWorld().getGrid().getLocationByCoordinates(0, 0);
@@ -123,16 +117,12 @@ public class FlyToDeathStar extends SWAffordance {
 				// Set up the world if not done so already, otherwise pass 
 				if (a.getWorld().getUniverse().getActiveWorld().getIsInitialised() == false)
 				{
-					//Set up Tatooine (if not done already)
-					a.say("The Death Star has not been initialised. Setting up...");
-					
-					// set up the world (Yavin Four)
+					//Set up the Death Star (if not done already)
 					a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
 					
 					//Set the active worlds initialisation to true (for not re-initialising worlds in transport)
 					a.getWorld().getUniverse().getActiveWorld().setIsInitialised(true);
 				}
-				a.say("The Death Star has been initialised.");
 
 				// kick off the scheduler
 				while(true) {
@@ -140,10 +130,10 @@ public class FlyToDeathStar extends SWAffordance {
 					theScheduler.tick();
 				}
 			}
-			//Luke has followers. Transport them to Yavin IV with the SAME location
+			//Luke has followers. Transport them to the Death Star with the SAME location
 			else
 			{
-				//Yavin IV is at index 1 of the universe world list.. obtain it
+				//The Death Star is at index 2 of the universe world list.. obtain it
 				SWWorld deathStar = a.getWorld().getUniverse().getWorlds().get(2);
 				a.say(deathStar.getWorldName());
 				
@@ -196,7 +186,7 @@ public class FlyToDeathStar extends SWAffordance {
 	/**
 	 * public method getDescription()
 	 * 
-	 * Returns a string description of Fly. Used when showing the player they 
+	 * Returns a string description of FlyToDeathStar. Used when showing the player they 
 	 * are able to complete this action selected.
 	 * 
 	 * @return	-	String of action - implemented in game selection options.

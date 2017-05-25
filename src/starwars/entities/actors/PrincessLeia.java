@@ -34,9 +34,7 @@ import java.util.List;
 public class PrincessLeia extends SWLegend  {
 
 	private static PrincessLeia leia = null; // yes, it is OK to return the static instance!
-	private Patrol path;
 	private boolean trainingPupil = false;
-	private boolean wantsToHeal = false;
 	private boolean lukeFollow = false;
 	private SWActor Luke;
 	
@@ -44,13 +42,13 @@ public class PrincessLeia extends SWLegend  {
 		super(Team.GOOD, 500, m, world);
 		this.setShortDescription("Princess Leia (General Organa)");
 		this.setLongDescription("Princess Leia, or General Organa - a very important woman to the rebels");
-		//LightSaber bensweapon = new LightSaber(m);
-		//setItemCarried(bensweapon);
-		Force f = new Force(m, 40);	//80+ means hes the chosen one
+		
+		//Set Princess Leias' Force levels
+		Force f = new Force(m, 40);	
 		setForce(f);
+		
+		//Set Leia to be holding the plans for the rebel attack
 		setItemCarried(new Plans(m));
-		//this.addAffordance();	//ADD IN FOLLOW AFFORDANCE
-
 	}
 
 	/**
@@ -72,12 +70,12 @@ public class PrincessLeia extends SWLegend  {
 	@Override
 	protected void legendAct() {
 
-		//Describes Bens location & HP to output
+		//Describes Leia's location & HP to output
 		say(describeLocation());
 		
 		if(isDead()) {
 			
-			//Message stating Luke was killed in action
+			//Message stating Leia was killed in action
 			this.messageRenderer.render("\n\nLeia was killed!");
 			
 			//Scheduler schedules the win
@@ -96,7 +94,7 @@ public class PrincessLeia extends SWLegend  {
 					if (entity.getSymbol().contains("@")) { // If Leia sees Luke
 						Luke = (SWActor) entity;
 						
-						say("Luke came accross Leia. She will follow.");
+						say("Luke came accross Leia. The General of Organa will follow.");
 						
 						//Set Leia to follow Luke
 						this.lukeFollow = true;
@@ -109,7 +107,7 @@ public class PrincessLeia extends SWLegend  {
 			}
 			else
 			{
-				say("Leia cant see Luke");
+				return;
 			}
 		}
 		

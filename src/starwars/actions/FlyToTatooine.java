@@ -42,7 +42,7 @@ public class FlyToTatooine extends SWAffordance {
 	EntityManager<SWEntityInterface, SWLocation> theEM;
 	
 	/**
-	 * Constructor for the <code>Fly</code> class. 
+	 * Constructor for the <code>FlyToTatooine</code> class. 
 	 * 
 	 * @param theTarget 	- the Millenium Falcon being flown in (which is a SWEntity)
 	 * @param m 	- the message renderer to display messages
@@ -58,7 +58,7 @@ public class FlyToTatooine extends SWAffordance {
 	 * Public Method canDo(SWActor a)
 	 *
 	 * Returns a boolean exclaiming that the particular SWActor (a) is able to
-	 * use Fly (within the Millenium Falcon
+	 * use FlyToTatooine (within the Millenium Falcon)
 	 * 
 	 * @param 	a	- The SWActor in question of being able to undertake this action
 	 * 
@@ -74,8 +74,7 @@ public class FlyToTatooine extends SWAffordance {
 	/**
 	 * Public Method act(SWActor a)
 	 *
-	 * Initiates the Fly process once option is selected from the same menu.
-	 *
+	 * Initiates the Fly process to Tatooine once option is selected from the same menu.
 	 * 
 	 * @param 	a	- The SWActor in question of being able to undertake the process of 
 	 * flight.
@@ -96,15 +95,10 @@ public class FlyToTatooine extends SWAffordance {
 				a.say(a.getShortDescription() + " is on world " + a.getWorld().getWorldName() 
 						+ " in the " + a.getWorld().getUniverse().getUniverseName());
 				
-				//Yavin IV is at index 1 of the universe world list.. obtain it
+				//Tatooine is at index 0 is of the universe world list.. obtain it
 				SWWorld tatooine = a.getWorld().getUniverse().getWorlds().get(0);
-				a.say(tatooine.getWorldName());
-
-				//Initially transport to Ben 
-				//this.theEM.setLocation(a, this.locTravelTo);
-			
-				//this.theEM.setLocation(a, a.getWorld().getUniverse().getMFList().get(0));
 				
+				//Set the players' current world to Tatooine
 				a.setWorld(tatooine);
 				
 				SWLocation loc = a.getWorld().getGrid().getLocationByCoordinates(0, 0);
@@ -122,15 +116,12 @@ public class FlyToTatooine extends SWAffordance {
 				// Set up the world if not done so already, otherwise pass 
 				if (a.getWorld().getUniverse().getActiveWorld().getIsInitialised() == false)
 				{
-					a.say("Tatooine has not been initialised. Setting up...");
-					
-					// set up the world (Tatooine)
+					// Set up the world (Tatooine)
 					a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
 					
 					//Set the active worlds initialisation to true (for not re-initialising worlds in transport)
 					a.getWorld().getUniverse().getActiveWorld().setIsInitialised(true);
 				}
-				a.say("Tatooine is already initialised.");
 				
 				// kick off the scheduler
 				while(true) {
@@ -138,10 +129,10 @@ public class FlyToTatooine extends SWAffordance {
 					theScheduler.tick();
 				}
 			}
-			//Luke has followers. Transport them to Yavin IV with the SAME location
+			//Luke has followers. Transport them to Tatooine with the SAME location
 			else
 			{
-				//Yavin IV is at index 1 of the universe world list.. obtain it
+				//Tatooine is at index 0 of the universe world list.. obtain it
 				SWWorld tatooine = a.getWorld().getUniverse().getWorlds().get(0);
 				a.say(tatooine.getWorldName());
 				
@@ -172,16 +163,12 @@ public class FlyToTatooine extends SWAffordance {
 				if (a.getWorld().getUniverse().getActiveWorld().getIsInitialised() == false)
 				{
 					//Set up Tatooine (if not done already)
-					a.say("Tatooine has not been initialised. Setting up...");
-					
-					// set up the world (Yavin Four)
 					a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
 					
 					//Set the active worlds initialisation to true (for not re-initialising worlds in transport)
 					a.getWorld().getUniverse().getActiveWorld().setIsInitialised(true);
 				}
-				a.say("Tatooine has been initialised.");
-
+				
 				// kick off the scheduler
 				while(true) {
 					uiController.render();

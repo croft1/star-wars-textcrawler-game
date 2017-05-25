@@ -24,7 +24,7 @@ import starwars.worlds.YavinFour;
 /**
  * Class for Fly to Yavin IV
  * 
- * The fly action will enable the SWActor (Player) the opportunity to travel to the moon
+ * The FlyToYavinFour action will enable the SWActor (Player) the opportunity to travel to the moon
  * Yavin IV from either the Death Star or Tatooine
  * 
  * @author jas
@@ -38,7 +38,7 @@ public class FlyToYavinFour extends SWAffordance {
 	EntityManager<SWEntityInterface, SWLocation> theEM;
 	
 	/**
-	 * Constructor for the <code>Fly</code> class. 
+	 * Constructor for the <code>FlyToYavinFour</code> class. 
 	 * 
 	 * @param theTarget 	- the Millenium Falcon being flown in (which is a SWEntity)
 	 * @param m 	- the message renderer to display messages
@@ -55,7 +55,7 @@ public class FlyToYavinFour extends SWAffordance {
 	 * Public Method canDo(SWActor a)
 	 *
 	 * Returns a boolean exclaiming that the particular SWActor (a) is able to
-	 * use Fly (within the Millenium Falcon
+	 * use FlyToYavinFour (within the Millenium Falcon
 	 * 
 	 * @param 	a	- The SWActor in question of being able to undertake this action
 	 * 
@@ -71,7 +71,7 @@ public class FlyToYavinFour extends SWAffordance {
 	/**
 	 * Public Method act(SWActor a)
 	 *
-	 * Initiates the Fly process once option is selected from the same menu.
+	 * Initiates the FlyToYavinFour process once option is selected from the same menu.
 	 *
 	 * 
 	 * @param 	a	- The SWActor in question of being able to undertake the process of 
@@ -91,13 +91,8 @@ public class FlyToYavinFour extends SWAffordance {
 			{
 				//Yavin IV is at index 1 of the universe world list.. obtain it
 				SWWorld yavin = a.getWorld().getUniverse().getWorlds().get(1);
-				a.say(yavin.getWorldName());
 
-				//Initially transport to Ben 
-				//this.theEM.setLocation(a, this.locTravelTo);
-			
-				//this.theEM.setLocation(a, a.getWorld().getUniverse().getMFList().get(0));
-				
+				//Set Lukes' current world to Yavin IV
 				a.setWorld(yavin);
 				
 				SWLocation loc = a.getWorld().getGrid().getLocationByCoordinates(0, 0);
@@ -115,16 +110,12 @@ public class FlyToYavinFour extends SWAffordance {
 				// Set up the world if not done so already, otherwise pass 
 				if (a.getWorld().getUniverse().getActiveWorld().getIsInitialised() == false)
 				{
-					//Set up Tatooine (if not done already)
-					a.say("Yavin IV has not been initialised. Setting up...");
-					
-					// set up the world (Yavin Four)
+					// Set up the world (Yavin Four)
 					a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
 					
 					//Set the active worlds initialisation to true (for not re-initialising worlds in transport)
 					a.getWorld().getUniverse().getActiveWorld().setIsInitialised(true);
 				}
-				a.say("Yavin IV has been initialised.");
 
 				// kick off the scheduler
 				while(true) {
@@ -165,17 +156,12 @@ public class FlyToYavinFour extends SWAffordance {
 				// Set up the world if not done so already, otherwise pass 
 				if (a.getWorld().getUniverse().getActiveWorld().getIsInitialised() == false)
 				{
-					//Set up Tatooine (if not done already)
-					a.say("Yavin IV has not been initialised. Setting up...");
-					
 					// set up the world (Yavin Four)
 					a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
 					
 					//Set the active worlds initialisation to true (for not re-initialising worlds in transport)
 					a.getWorld().getUniverse().getActiveWorld().setIsInitialised(true);
 				}
-				a.say("Yavin IV has been initialised.");
-
 				// kick off the scheduler
 				while(true) {
 					uiController.render();
