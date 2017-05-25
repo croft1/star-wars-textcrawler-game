@@ -54,12 +54,12 @@ public class PrincessLeia extends SWLegend  {
 	/**
 	 * getBenKenobi() method 
 	 * 
-	 * Implements a new Ben Kenobi to the world - and activates the SWLegend into the SWWorld map.
+	 * Implements a new Leia Organa to the world - and activates the SWLegend into the SWWorld map.
 	 * 
 	 * @param	m	- Messagerenderer used for displaying messages to output.
-	 * @param 	world	- SWWorld that Ben will be placed in
-	 * @param 	moves	- The Direction array that Ben will follow in his Patrol (set in constructor)
-	 * @return	ben		- The SWLegend Ben Kenobi that is created
+	 * @param 	world	- SWWorld that Leia will be placed in
+	 * @param 	moves	- The Direction array that Leia will follow in his Patrol (set in constructor)
+	 * @return	leia	- The SWLegend PrincessLeia that is created
 	 */
 	public static PrincessLeia getPrincessLeia(MessageRenderer m, SWWorld world, Direction [] moves) {
 		leia = new PrincessLeia(m, world, moves);
@@ -117,7 +117,7 @@ public class PrincessLeia extends SWLegend  {
 			//Get Lukes' Location
 			SWLocation lukeLocation = this.world.getEntityManager().whereIs(Luke);
 			
-			//Set Droids' position to owners' location (follow)
+			//Set Leia's position to Lukes' location (follow)
 			this.world.getEntityManager().setLocation(this, lukeLocation);
 		}
 		
@@ -133,9 +133,9 @@ public class PrincessLeia extends SWLegend  {
 	/**
 	 * isTrainingPupil() method
 	 * 
-	 * Boolean describing if Ben is currently training a pupil (assumed to be Luke!)
+	 * Boolean describing if Leia is currently training a pupil
 	 * 
-	 * @return 	trainingPupil	- Boolean implementing Bens' status of training a pupil currently.
+	 * @return 	trainingPupil	- Boolean implementing Leia's status of training a pupil currently.
 	 *
 	 */
 	public boolean isTrainingPupil(){
@@ -145,9 +145,9 @@ public class PrincessLeia extends SWLegend  {
 	/**
 	 * setTrainingPupil() method
 	 * 
-	 * Sets the Boolean describing if Ben is currently training a pupil (assumed to be Luke!)
+	 * Sets the Boolean describing if Leia is currently training a pupil
 	 * 
-	 * @param 	t	- Boolean describing Bens' current status of training a pupil currently.
+	 * @param 	t	- Boolean describing Leia's current status of training a pupil currently.
 	 *
 	 */
 	public void setTrainingPupil(boolean t){
@@ -157,18 +157,15 @@ public class PrincessLeia extends SWLegend  {
 	/**
 	 * describeLocation() method
 	 * 
-	 * Returns the SWLocation of the created Ben in the SWWorld map currently.
+	 * Returns the SWLocation of the created Leia in the SWWorld map currently.
 	 * 
-	 * @return	SWLocation of the SWLegend Ben Kenobi.
+	 * @return	SWLocation of the SWLegend Leia Organa
 	 *
 	 */
 	private String describeLocation() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		return this.getLongDescription() + " is at " + location.getShortDescription();
 	}
-
-
-
 }
 
 /*

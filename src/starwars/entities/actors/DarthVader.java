@@ -21,11 +21,11 @@ import starwars.entities.actors.behaviors.Patrol;
 import java.util.List;
 
 /**
- * Darth Vader (aka Obe-Wan) Kenobi.
+ * Darth Vader (aka Anakin Skywalker).
  * 
- * At this stage, he's an extremely strong critter with a <code>Lightsaber</code>
- * who wanders around in a fixed pattern and neatly slices any Actor not on his
- * team with his lightsaber.
+ * The father of Luke and Leia and the Sith Lord - he is an EXTREMELY POWERFUL enemy that should not be
+ * taken lightly. Attacks are brutal, and is able to Force Choke enemies and able to
+ * attempt to sway them to the Dark Side.
  * 
  * Note that you can only create ONE Darth Vader, like all SWLegends.
  * @author rober_000
@@ -36,8 +36,7 @@ public class DarthVader extends SWLegend  {
 	private static DarthVader dv = null; // yes, it is OK to return the static instance!
 	private Patrol path;
 	private boolean trainingPupil = false;
-	private boolean wantsToHeal = false;
-	private boolean recollect = false;
+
 
 	private DarthVader(MessageRenderer m, SWWorld world, Direction [] moves) {
 		super(Team.EVIL, 10000, m, world);
@@ -51,13 +50,10 @@ public class DarthVader extends SWLegend  {
 		setForce(dv);
 		setInfluence(-100);
         estSideOfForce();
-
-
-
 	}
 
 	/**
-	 * getDarth VaderKenobi() method
+	 * getDarth getDarthVader() method
 	 * 
 	 * Implements a new DV to the world - and activates the SWLegend into the SWWorld map.
 	 * 
@@ -75,9 +71,10 @@ public class DarthVader extends SWLegend  {
 	@Override
 	protected void legendAct() {
 
-		//Describes Darth Vaders location & HP to output
+		//Describes Darth Vaders' location & HP to output
 		say(describeLocation());
 		
+		//If Darth Vader is dead - the game is won!
 		if(isDead()) {
 			//Message stating Darth Vader was killed in action
 			this.messageRenderer.render("\n\nDarth Vader has been killed in action!");
@@ -86,12 +83,15 @@ public class DarthVader extends SWLegend  {
 			scheduler.winSchedule(this.messageRenderer);
 		}
 
+		//If Darth Vaders' HP is below 100 (from an initial 10,000)
 		if (this.getHitpoints() < 100) {
+			
+			//Inspirational output
 			say("Darth Vader is almost gone!");
 		}
 			
-		//TODO DV ATTACKING / choking PEEPS / seeing luke
-        if(Math.random() > 0.5){        //50% chance to attack
+		//Attack, force choke, sway code (50% chance).
+        if(Math.random() > 0.5){     
 
             tryAttack();
             AttackInformation attack = AttackNeighbours.attackLocals(this, this.world, false, true);
@@ -105,23 +105,18 @@ public class DarthVader extends SWLegend  {
             	return;
             }
         }
+        //Movement code (50%)
         else
         { 
-        	//move
             randomMovement();
         }
-
-
-
-
-
 	}
 	
 
 	/**
 	 * isTrainingPupil() method
 	 * 
-	 * Boolean describing if Darth Vader is currently training a pupil (assumed to be Luke!)
+	 * Boolean describing if Darth Vader is currently training a pupil (assumed to be other evil troops!)
 	 * 
 	 * @return 	trainingPupil	- Boolean implementing Darth Vaders' status of training a pupil currently.
 	 *
@@ -154,12 +149,6 @@ public class DarthVader extends SWLegend  {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		return this.getShortDescription() + " [" + this.getHitpoints() + "] is at " + location.getShortDescription();
 	}
-
-
-
-
-
-
 }
 
 /*

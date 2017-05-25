@@ -14,6 +14,11 @@ import starwars.entities.actors.behaviors.AttackNeighbours;
 
 import java.util.ArrayList;
 
+/**
+ * Class for General Ackbar SWActors
+ * 
+ * A humanoid character who resides on Tatooine. The 
+ */
 public class GeneralAckbar extends SWActor {
 
 	private String name;
@@ -53,13 +58,4 @@ public class GeneralAckbar extends SWActor {
 
 		return this.getShortDescription() + says;
 	}
-
-	
-
-	
-	//obeyMindControl will be called from the SWActor class, doesn't need to be customised within here
-	
-	
-
-	
 }
