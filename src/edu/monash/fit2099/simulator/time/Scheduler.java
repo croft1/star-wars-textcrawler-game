@@ -246,6 +246,26 @@ public class Scheduler {
 		events = new PriorityQueue<Event>();
 		this.ticksize = ticksize;
 	}
+
+	/**
+	 * Scheduler schedules a loss event and instantiates the losing sequence defined by the losing 
+	 * action of the game.
+	 * 
+	 * @author 	ram 
+	 * @author 	jas
+	 * @author  mewc
+	 * @date 	24 May 2017
+	 * 
+	 * @see {@link #events}
+	 */
+	public void lossSchedule(MessageRenderer m) {
+		
+		//Render a message notifying the loss
+		m.render("You have unfortunately lost the game. Gave Over.");
+		
+		//Stop execution of the game.
+		System.exit(0);		
+	}
 	
 	/**
 	 * Scheduler schedules a winning event and instantiates the win sequence defined by the winning 
@@ -258,62 +278,6 @@ public class Scheduler {
 	 * 
 	 * @see {@link #events}
 	 */
-	
-	public void scheduleWin(ActionInterface c, Actor<?> a, int duration) {
-		
-		int delay;
-		int cooldown;
-		
-		//No delay and cooldowns for a wins - regardless of specification!
-		delay = 0;
-		cooldown = 0;
-		int waittime = delay + cooldown;
-		a.setWaittime(waittime);//set actor's wait time
-	
-		//add Win to queue of events. Note for the actor the event will be scheduled to happen after the delay from now
-		events.offer(new Event(c, a, now + duration + delay));
-
-		
-	}
-	
-	/**
-	 * Scheduler schedules a loss event and instantiates the losing sequence defined by the losing 
-	 * action of the game.
-	 * 
-	 * @author 	ram 
-	 * @author 	jas
-	 * @author  mewc
-	 * @date 	24 May 2017
-	 * 
-	 * @see {@link #events}
-	 */
-	
-	public void scheduleLoss(ActionInterface c, Actor<?> a, int duration) {
-			
-		int delay;
-		int cooldown;
-		
-		//No delay and cooldowns for a wins - regardless of specification!
-		delay = 0;
-		cooldown = 0;
-		int waittime = delay + cooldown;
-		a.setWaittime(waittime);//set actor's wait time
-	
-		//add Win to queue of events. Note for the actor the event will be scheduled to happen after the delay from now
-		events.offer(new Event(c, a, now + duration + delay));
-
-			
-	}
-	
-	public void lossSchedule(MessageRenderer m) {
-		
-		//Render a message notifying the loss
-		m.render("You have unfortunately lost the game. Gave Over.");
-		
-		//Stop execution of the game.
-		System.exit(0);		
-	}
-	
 	public void winSchedule(MessageRenderer m) {
 		
 		//Render a message notifying the loss
