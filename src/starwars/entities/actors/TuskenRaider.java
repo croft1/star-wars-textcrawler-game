@@ -48,6 +48,7 @@ public class TuskenRaider extends SWActor {
 
 	@Override
 	public void act() {
+		
 		if (isDead()) {
 			return;
 		}

@@ -90,7 +90,6 @@ public class DarthVader extends SWLegend  {
 			say("Darth Vader is almost gone!");
 		}
 			
-        //patrolling
 		//TODO DV ATTACKING / choking PEEPS / seeing luke
         if(Math.random() > 0.5){        //50% chance to attack
 
@@ -100,17 +99,15 @@ public class DarthVader extends SWLegend  {
                 say(getShortDescription() + " has attacked " + attack.entity.getShortDescription());
                 scheduler.schedule(attack.affordance, this, 1);
             }
-
-            //Otherwise, convert Luke to the dark side
-            else {
-            	
-            	//check to see if Luke has trained by Ben Kenobi
-            	
-            	//If Luke trained, 75% chance to resise
-            		//Else, turn to the dark side!
-            		//Lose here
+            else 
+            {
+            	//Return
+            	return;
             }
-        }else{ //move
+        }
+        else
+        { 
+        	//move
             randomMovement();
         }
 

@@ -7,7 +7,6 @@
  */
 package starwars.entities.actors;
 
-
 import java.util.List;
 
 import edu.monash.fit2099.simulator.time.Scheduler;
@@ -99,7 +98,7 @@ public class Player extends SWForceActor {
 	 *  @see {@link edu.monash.fit2099.simulator.userInterface.MessageRenderer}
 	 */
 	public void describeScene() {
-		//If dead, the game is lost
+		//Initial check if dead, the game is lost
 		if (this.isDead()) 
 		{
 			//Message stating Luke was killed in action
@@ -109,7 +108,18 @@ public class Player extends SWForceActor {
 			scheduler.lossSchedule(this.messageRenderer);
 		}
 		
-		//If on Yavin 4
+		//Check if Luke is on team EVIL. If so, the game is lost.
+		if(this.getTeam() == Team.EVIL)
+		{
+			//Message stating Luke was killed in action
+			this.messageRenderer.render("\n\nLuke has been swayed to the Dark Side!");
+			
+			//Scheduler schedules the loss
+			scheduler.lossSchedule(this.messageRenderer);
+		}
+		
+		
+		//If on Yavin 4, check if Leia and R2 are with Luke!
 		if (this.getWorld() == this.getWorld().getUniverse().getWorlds().get(1))
 		{
 			boolean containsR2D2;
@@ -145,10 +155,7 @@ public class Player extends SWForceActor {
 		}
 		
 		
-		
-		//weild
-		
-		//get the contents of the location
+		//Get the contents of the location
 		List<SWEntityInterface> contents = this.world.getEntityManager().contents(location);
 		
 		//and describe the contents
