@@ -91,18 +91,16 @@ public class FlyToDeathStar extends SWAffordance {
 			//If no one is following Luke
 			if (followersList.size() == 0)
 			{
-				a.say("No one is following me");
-				
-				a.say(a.getShortDescription() + " is on world " + a.getWorld().getWorldName() 
-						+ " in the " + a.getWorld().getUniverse().getUniverseName());
-				
 				//The Death Star is at index 2 of the universe world list.. obtain it
 				SWWorld deathStar = a.getWorld().getUniverse().getWorlds().get(2);
 
 				//Set Lukes' current world to the Death Star
 				a.setWorld(deathStar);
 				
+				//Get the location to teleport to (Death Star Millenium Falcon)
 				SWLocation loc = a.getWorld().getGrid().getLocationByCoordinates(0, 0);
+		
+				//Set the location of Luke to the Millenium Falcon
 				deathStar.getEntityManager().setLocation(a, loc);
 		        
 		        //Grid controller controls the data and commands between the UI and the model
@@ -124,7 +122,7 @@ public class FlyToDeathStar extends SWAffordance {
 					a.getWorld().getUniverse().getActiveWorld().setIsInitialised(true);
 				}
 
-				// kick off the scheduler
+				// Kick off the scheduler
 				while(true) {
 					uiController.render();
 					theScheduler.tick();
@@ -140,17 +138,23 @@ public class FlyToDeathStar extends SWAffordance {
 				//Each actor is represented by their symbol
 				for (SWActor followingActor : a.getFollowerListSWActors())
 				{
-					//Set location of Actors to Yavin 4's Millenium Falcon 
+					//Get the location to teleport to (Death Star Millenium Falcon)
 					SWLocation loc = followingActor.getWorld().getGrid().getLocationByCoordinates(0, 0);
+					
+					//Teleport the SWActor to the Death Star Millenium Falcon
 					deathStar.getEntityManager().setLocation(followingActor, loc);
 				}
 				
 				//Transport Luke
 				a.setWorld(deathStar);
 				
+				//Set Lukes' active world to the Death Star
 				a.getWorld().getUniverse().setActiveWorld(deathStar);
 				
+				//Get the location to teleport to (Death Star Millenium Falcon)
 				SWLocation loc = a.getWorld().getGrid().getLocationByCoordinates(0, 0);
+			
+				//Teleport Luke
 				deathStar.getEntityManager().setLocation(a, loc);
 		        
 		        //Grid controller controls the data and commands between the UI and the model
@@ -163,18 +167,14 @@ public class FlyToDeathStar extends SWAffordance {
 				// Set up the world if not done so already, otherwise pass 
 				if (a.getWorld().getUniverse().getActiveWorld().getIsInitialised() == false)
 				{
-					//Set up the Death Star (if not done already)
-					a.say("The Death Star  has not been initialised. Setting up...");
-					
 					// set up the world (Death Star)
 					a.getWorld().getUniverse().getActiveWorld().initializeWorld(uiController);
 					
 					//Set the active worlds initialisation to true (for not re-initialising worlds in transport)
 					a.getWorld().getUniverse().getActiveWorld().setIsInitialised(true);
 				}
-				a.say("The Death Star has been initialised.");
 
-				// kick off the scheduler
+				// Kick off the scheduler
 				while(true) {
 					uiController.render();
 					theScheduler.tick();

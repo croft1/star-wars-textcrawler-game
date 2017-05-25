@@ -28,7 +28,7 @@ import starwars.swinterfaces.SWGridController;
 /**
  * Class for Fly to Tatooine
  * 
- * The fly action will enable the SWActor (Player) the opportunity to travel to the planet
+ * The FlyToTatooine action will enable the SWActor (Player) the opportunity to travel to the planet
  * Tatooine from either the Death Star or Yavin IV
  * 
  * @author jas
@@ -74,7 +74,7 @@ public class FlyToTatooine extends SWAffordance {
 	/**
 	 * Public Method act(SWActor a)
 	 *
-	 * Initiates the Fly process to Tatooine once option is selected from the same menu.
+	 * Initiates the FlyToTatooine process to Tatooine once option is selected from the same menu.
 	 * 
 	 * @param 	a	- The SWActor in question of being able to undertake the process of 
 	 * flight.
@@ -91,17 +91,16 @@ public class FlyToTatooine extends SWAffordance {
 			//If no one is following Luke
 			if (followersList.size() == 0)
 			{
-				
-				a.say(a.getShortDescription() + " is on world " + a.getWorld().getWorldName() 
-						+ " in the " + a.getWorld().getUniverse().getUniverseName());
-				
 				//Tatooine is at index 0 is of the universe world list.. obtain it
 				SWWorld tatooine = a.getWorld().getUniverse().getWorlds().get(0);
 				
 				//Set the players' current world to Tatooine
 				a.setWorld(tatooine);
 				
+				//Get the location to teleport to (Tatooine Millenium Falcon)
 				SWLocation loc = a.getWorld().getGrid().getLocationByCoordinates(0, 0);
+				
+				//Teleport Luke to Tatooine
 				tatooine.getEntityManager().setLocation(a, loc);
 		        
 		        //Grid controller controls the data and commands between the UI and the model
@@ -139,17 +138,23 @@ public class FlyToTatooine extends SWAffordance {
 				//Each actor is represented by their symbol
 				for (SWActor followingActor : a.getFollowerListSWActors())
 				{
-					//Set location of Actors to Yavin 4's Millenium Falcon 
+					//Get the location to teleport to (Tatooine Millenium Falcon)
 					SWLocation loc = followingActor.getWorld().getGrid().getLocationByCoordinates(0, 0);
+					
+					//Teleport the SWActor to the Millenium Falcon on Tatooine
 					tatooine.getEntityManager().setLocation(followingActor, loc);
 				}
 				
 				//Transport Luke
 				a.setWorld(tatooine);
 				
+				//Set the active world of Luke to Tatooine
 				a.getWorld().getUniverse().setActiveWorld(tatooine);
 				
+				//Get the location to teleport to (Tatooine Millenium Falcon)
 				SWLocation loc = a.getWorld().getGrid().getLocationByCoordinates(0, 0);
+				
+				//Teleport Luke to Tatooine
 				tatooine.getEntityManager().setLocation(a, loc);
 		        
 		        //Grid controller controls the data and commands between the UI and the model
@@ -169,7 +174,7 @@ public class FlyToTatooine extends SWAffordance {
 					a.getWorld().getUniverse().getActiveWorld().setIsInitialised(true);
 				}
 				
-				// kick off the scheduler
+				// Kick off the scheduler
 				while(true) {
 					uiController.render();
 					theScheduler.tick();
@@ -181,7 +186,7 @@ public class FlyToTatooine extends SWAffordance {
 	/**
 	 * public method getDescription()
 	 * 
-	 * Returns a string description of Fly. Used when showing the player they 
+	 * Returns a string description of FlyToTatooine. Used when showing the player they 
 	 * are able to complete this action selected.
 	 * 
 	 * @return	-	String of action - implemented in game selection options.

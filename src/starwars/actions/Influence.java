@@ -8,11 +8,10 @@ import static starwars.SWForceEntityInterface.CHOKE_CHARGE_USE;
 import static starwars.SWForceEntityInterface.CHOKE_FORCE_DMG;
 
 /**
- * Command to attack entities.
+ * This Influence affordance is attached to all weak minded entities that can be 
+ * swayed to turn to the Dark Side
  *
- * This affordance is attached to all weak minded entities
- *
- * @author croft1
+ * @author mewc
  */
 
 public class Influence extends SWAffordance implements SWActionInterface {
@@ -56,7 +55,7 @@ public class Influence extends SWAffordance implements SWActionInterface {
 	/**
 	 * Determine whether a particular <code>SWActor a</code> can attack the target.
 	 *
-	 * @author 	croft1
+	 * @author 	mewc
 	 * @param 	a the <code>SWActor</code> being queried
 	 * @return 	true any <code>SWActor</code> that tried to perform Influence must be a <code>SWForceActor</code> and
 	 * 	also have the necessary force power requirements to perform the mind control
@@ -101,10 +100,5 @@ public class Influence extends SWAffordance implements SWActionInterface {
 			feedback = (influenceSwing>0)? "The Light Side is enhanced": "The Dark Side infects you more";
 			target.say(feedback);
 		}
-
-
-
-
-
 	}
 }

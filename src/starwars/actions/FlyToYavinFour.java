@@ -95,8 +95,11 @@ public class FlyToYavinFour extends SWAffordance {
 				//Set Lukes' current world to Yavin IV
 				a.setWorld(yavin);
 				
+				//Get the location to teleport to (Yavin IV Millenium Falcon)
 				SWLocation loc = a.getWorld().getGrid().getLocationByCoordinates(0, 0);
-		        yavin.getEntityManager().setLocation(a, loc);
+		       
+				//Teleport Luke to Yavin IV
+				yavin.getEntityManager().setLocation(a, loc);
 		        
 		        //Grid controller controls the data and commands between the UI and the model
 				SWGridController uiController = new SWGridController(a.getWorld());
@@ -133,18 +136,24 @@ public class FlyToYavinFour extends SWAffordance {
 				//Each actor is represented by their symbol
 				for (SWActor followingActor : a.getFollowerListSWActors())
 				{
-					//Set location of Actors to Yavin 4's Millenium Falcon 
+					//Get the location to teleport to (Death Star Millenium Falcon)
 					SWLocation loc = followingActor.getWorld().getGrid().getLocationByCoordinates(0, 0);
-			        yavin.getEntityManager().setLocation(followingActor, loc);
+			       
+					//Teleport the SWActor to the Yavin IV Millenium Falcon
+					yavin.getEntityManager().setLocation(followingActor, loc);
 				}
 				
 				//Transport Luke
 				a.setWorld(yavin);
 				
+				//Set active world to Yavin IV
 				a.getWorld().getUniverse().setActiveWorld(yavin);
 				
+				//Get the location to teleport to (Yavin IV Millenium Falcon)
 				SWLocation loc = a.getWorld().getGrid().getLocationByCoordinates(0, 0);
-		        yavin.getEntityManager().setLocation(a, loc);
+		        
+				//Teleport Luke to Yavin IV
+				yavin.getEntityManager().setLocation(a, loc);
 		        
 		        //Grid controller controls the data and commands between the UI and the model
 				SWGridController uiController = new SWGridController(a.getWorld());
@@ -174,7 +183,7 @@ public class FlyToYavinFour extends SWAffordance {
 	/**
 	 * public method getDescription()
 	 * 
-	 * Returns a string description of Fly. Used when showing the player they 
+	 * Returns a string description of FlyToYavinFour. Used when showing the player they 
 	 * are able to complete this action selected.
 	 * 
 	 * @return	-	String of action - implemented in game selection options.

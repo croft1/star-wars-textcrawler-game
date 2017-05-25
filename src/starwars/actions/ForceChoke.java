@@ -14,11 +14,11 @@ import static starwars.SWForceEntityInterface.CHOKE_CHARGE_USE;
 import static starwars.SWForceEntityInterface.CHOKE_FORCE_DMG;
 
 /**
- * Command to attack entities.
+ * Command to attack entities using the Force Choke Attack.
  *
  * This affordance is attached to all weak minded entities
  *
- * @author croft1
+ * @author mewc
  */
 
 public class ForceChoke extends SWAffordance implements SWActionInterface {
@@ -62,7 +62,7 @@ public class ForceChoke extends SWAffordance implements SWActionInterface {
 	/**
 	 * Determine whether a particular <code>SWActor a</code> can attack the target.
 	 *
-	 * @author 	croft1
+	 * @author 	mewc
 	 * @param 	a the <code>SWActor</code> being queried
 	 * @return 	true any <code>SWActor</code> that tried to perform ForceChoke must be a <code>SWForceActor</code> and
 	 * 	also have the necessary force power requirements to perform the mind control
@@ -117,12 +117,6 @@ public class ForceChoke extends SWAffordance implements SWActionInterface {
             a.say("Bow to the strength of the dark side -- FORCE CHOKE!");
             target.say("I SUBMIT! STOP CHOKING");
 
-
 		}
-
-
-
-
-
 	}
 }
