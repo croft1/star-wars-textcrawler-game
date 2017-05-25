@@ -28,7 +28,6 @@ import starwars.actions.Repair;
 import starwars.actions.Take;
 import starwars.actions.HealDroid;
 import starwars.actions.Leave;
-import starwars.actions.Lose;
 
 
 /**

@@ -22,9 +22,7 @@ import starwars.Team;
 import starwars.actions.Attack;
 import starwars.actions.HealDroid;
 import starwars.actions.Influence;
-import starwars.actions.Lose;
 import starwars.actions.Move;
-import starwars.actions.Win;
 import starwars.entities.Force;
 import starwars.swinterfaces.SWGridController;
 
@@ -65,7 +63,7 @@ public class Player extends SWForceActor {
 		humanControlled = true; // this feels like a hack. Surely this should('nt?) be dynamic. Thats starwars
 		this.setSymbol("@");
 		//use default force
-		//use default force influecen
+		//use default force influence
 		estSideOfForce();
 		RESIST_INFLUENCE = 0.75;
 		addAffordance(new Influence(this, m));		//player may be influenced to a side of the force
