@@ -46,39 +46,40 @@ public class Humanoid extends SWActor {
 		
 	}
 
-	
 	/**
-	 **A humanoid doesn't move, so it doesn't need to do anything
-	
-	 * @author 	croft1
-	 *
+	 * act() method for Humanoid Characters
+	 * 
+	 * Implements the actions defined that will be taken by this Humanoid instance.
+	 * 
+	 * Humanoids dont need to do anything apart from display messages - which essentially
+	 * means no movement!  
 	 */
 	@Override
 	public void act() {
 		
-		
 	}
 	
-	
-
+	/**
+	 * getShortDescription() method
+	 * 
+	 * Returns the name of this Humanoid, which is a String.
+	 * 
+	 * @return	name	The name of this Humanoid, as a String 
+	 */
 	@Override
 	public String getShortDescription() {
 		return shortDescription ;
 	}
 
+	/**
+	 * getLongDescription() method
+	 * 
+	 * Returns the name of this Humanoid, which is a String (calls getShortDescrription()).
+	 * 
+	 * @return	name	The name of this Humanoid, as a String 
+	 */
 	@Override
 	public String getLongDescription() {
 		return this.getShortDescription() + " the regular Humanoid";
 	}
-
-	
-
-	
-
-	
-	//obeyMindControl will be called from the SWActor class, doesn't need to be customised within here
-	
-	
-
-	
 }

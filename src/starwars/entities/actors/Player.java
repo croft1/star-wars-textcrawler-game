@@ -106,6 +106,7 @@ public class Player extends SWForceActor {
 			
 			//Scheduler schedules the loss
 			scheduler.lossSchedule(this.messageRenderer);
+			
 		}
 		
 		//Check if Luke is on team EVIL. If so, the game is lost.

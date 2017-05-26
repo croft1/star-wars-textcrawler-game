@@ -46,14 +46,14 @@ public class DarthVader extends SWLegend  {
 		LightSaber dvweap = new LightSaber(m);
 		setItemCarried(dvweap);
 		setWielding(true);
-		Force dv = new Force(m, 79);	//80+ means hes a sith lord
+		Force dv = new Force(m, 79);	//80+ means he's a sith lord
 		setForce(dv);
 		setInfluence(-100);
         estSideOfForce();
 	}
 
 	/**
-	 * getDarth getDarthVader() method
+	 * getDarthVader() method
 	 * 
 	 * Implements a new DV to the world - and activates the SWLegend into the SWWorld map.
 	 * 
