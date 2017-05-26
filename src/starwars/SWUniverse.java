@@ -14,15 +14,13 @@ import starwars.entities.*;
 import starwars.entities.actors.*;
 
 /**
- * Class representing a world in the Star Wars universe. 
+ * Class representing a universe of the Star Wars franchise. The <code>SWUniverse</code> depicts
+ * the planets and spacecraft that is in within the universe as of now.
  * 
  * @author ram
- */
-/*
- * Change log
- * 2017-02-02:  Render method was removed from Middle Earth
- * 				Displaying the Grid isedew now handled by the TextInterface rather 
- * 				than by the Grid or MiddleWorld classes (asel)
+ * @author jas
+ * @author mewc
+ * 
  */
 public class SWUniverse {
 
@@ -34,8 +32,12 @@ public class SWUniverse {
 	
 	private SWWorld activeWorld;
 	
-	//Constructor for the SWUniverse
-	
+	/**
+	 * Constructor for this <code>SWUniverse</code>. This constructor creates the universe with 
+	 * a name, a world Array List and a Millenium Falcon list.
+	 * 
+	 * @param 	giveName	the name of this <code>SWUniverse</code>.
+	 */
 	public SWUniverse(String givenName)
 	{
 		this.name = givenName;
@@ -43,20 +45,23 @@ public class SWUniverse {
 		this.MFLocations = new ArrayList<SWLocation>();
 	}
 	
-	
 	/**
-	 * Returns the worlds in the specified <code>SWUniverse</code>.
+	 * getWorlds() function
 	 * 
-	 * @return 	the Array List containing the SWWorlds of this universe
+	 * Returns the Array List of worlds in the specified <code>SWUniverse</code>.
+	 * 
+	 * @return	worldsInUniverse 	the Array List containing the SWWorlds of this universe
 	 */
 	public ArrayList<SWWorld> getWorlds() {
 		return worldsInUniverse;
 	}
 	
 	/**
-	 * Returns the worlds in the specified <code>SWUniverse</code>.
+	 * getMFList() function
 	 * 
-	 * @return 	the Array List containing the SWWorlds of this universe
+	 * Returns the Array List of Millenium Falcon locations in the specified <code>SWUniverse</code>.
+	 * 
+	 * @return 	MFLocations 	the Array List containing the Millenium Falcon locations of this <code>SWUniverse</code>.
 	 */
 	public ArrayList<SWLocation> getMFList() {
 		return MFLocations;
@@ -64,22 +69,44 @@ public class SWUniverse {
 
 	
 	/**
-	 * Sets the <code>SWUniverse</code> name.
+	 * setUniverseName(newName) function
 	 * 
-	 * @return 	the Array List containing the SWWorlds of this universe
+	 * Sets the <code>SWUniverse</code> name - if desired to change
+	 * 
+	 * @param 	newName		The new name of the universe to be implemented
 	 */
 	public void setUniverseName(String newName) {
 		this.name = newName;
 	}
 	
+	/**
+	 * getUniverseName() function
+	 * 
+	 * Returns the String name of this <code>SWUniverse</code>.
+	 * 
+	 * @return 	this.name 	The String name of this <code>SWUniverse</code>.
+	 */
 	public String getUniverseName() {
 		return this.name;
 	}
 	
+	/**
+	 * Sets the <code>SWUniverse</code>'s active world - since our implementation implements a single
+	 * world display at a time. If the worlds have been visited before, time does pass on them.
+	 * 
+	 * @param 	newActiveWorld		The current active world of this <code>SWUniverse</code>
+	 */
 	public void setActiveWorld(SWWorld newActiveWorld) {
 		this.activeWorld = newActiveWorld;
 	}
 	
+	/**
+	 * getActiveWorld() function
+	 * 
+	 * Returns the active world of this <code>SWUniverse</code>.
+	 * 
+	 * @return 	this.activeWorld 	The active SwWorld of the <code>SWUniverse</code>.
+	 */
 	public SWWorld getActiveWorld() {
 		return this.activeWorld;
 	}
