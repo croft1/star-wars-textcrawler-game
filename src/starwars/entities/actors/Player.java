@@ -83,7 +83,6 @@ public class Player extends SWForceActor {
 		describeScene();
 		//say(nextToDroid()); (used to see if a player is next to a Droid 
 		scheduler.schedule(SWGridController.getUserDecision(this), this, 1);
-		
 	}
 	/**
 	 * This method will describe, 

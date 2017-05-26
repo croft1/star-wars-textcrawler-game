@@ -12,6 +12,7 @@ import starwars.entities.Blaster;
 import starwars.entities.Mace;
 import starwars.entities.actors.behaviors.AttackInformation;
 import starwars.entities.actors.behaviors.AttackNeighbours;
+import starwars.worlds.DeathStar;
 
 import java.util.ArrayList;
 
@@ -77,14 +78,27 @@ public class StormTrooper extends SWActor {
 			} else{
 				say(getShortDescription() + " shoots wildly");
 			}
-		}else if (Math.random() > 0.04) {
+		}else if (Math.random() > 0.4) {
 			//Call for backup!
 			say(getShortDescription() + " called for backup. "); 
-		      StormTrooper backupDude =  new StormTrooper(messageRenderer, world); 
-		      SWLocation loc = world.getGrid().getLocationByCoordinates(world.getGrid().getWidth() - 1, 0); //set the position to top right of the map 
+			
+			DeathStar dsRef = (DeathStar) this.getWorld().getUniverse().getWorlds().get(2);
+			boolean backupCall = dsRef.getCallForBackupAllowed();
+			
+			if (backupCall)
+			{
+			
+		      StormTrooper backupDude =  new StormTrooper(messageRenderer, dsRef); 
+		      SWLocation loc = dsRef.getGrid().getLocationByCoordinates(1, 0); //set the position to top right of the map 
 		      world.getEntityManager().setLocation(backupDude, loc); 
 		      backupDude.say(backupDude.getShortDescription() + " reporting for duty"); 
-
+		      dsRef.setCallForBackupAllowed(false);
+			}
+			else
+			{
+				this.say("Another Trooper answered the call!");;
+				
+			}
 		}else{
 			
 			randomMovement();

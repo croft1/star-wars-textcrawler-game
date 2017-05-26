@@ -22,6 +22,9 @@ import starwars.entities.actors.*;
 
 public class DeathStar extends SWWorld {
 
+	//callBackup boolean - allows for a Trooper to come into the field if desired
+	private boolean callBackup;
+	
 	/**
 	 * Constructor of <code>DeathStar</code>. This will initialize the <code>SWLocationMaker</code>
 	 * and the grid for setup of the Death Star instance.
@@ -34,6 +37,7 @@ public class DeathStar extends SWWorld {
 		space = myGrid;
 		name = "The Death Star";
 		universe = inUniverse;
+		this.callBackup = false;
 	}
 
 	/**
@@ -107,7 +111,29 @@ public class DeathStar extends SWWorld {
         loc = myGrid.getLocationByCoordinates(1, 9);
         entityManager.setLocation(st1, loc);
     }
+	
+	/**
+	 * getCallForBackupAllowed() method
+	 * 
+	 * Gets the allowance if a Storm Trooper can call for backup.
+	 * 
+	 * @return this.callBackup;
+	 */
+	public boolean getCallForBackupAllowed()
+	{
+		return this.callBackup;
+	}
 
+	/**
+	 * Sets the allowance if a Storm Trooper can call for backup.
+	 * 
+	 * @param	newBool	 this.callBackup's new value;
+	 */
+	public void setCallForBackupAllowed(boolean newbool)
+	{
+		this.callBackup = newbool;
+	}
+	
 }
 
 /*
