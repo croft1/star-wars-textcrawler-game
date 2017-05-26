@@ -79,10 +79,10 @@ public class StormTrooper extends SWActor {
 			} else{
 				say(getShortDescription() + " shoots wildly");
 			}
-		}else if (Math.random() > 0.94) {
+		}else if (Math.random() > 0.94) { //5% chzance
 			//Call for backup!
 			say(getShortDescription() + " called for backup. ");
-			scheduler.schedule(summon, this, 1);
+			scheduler.schedule(summon, this, 1);  //iterate through available affordances, or be lazy....	
 
 		}else{
 			
