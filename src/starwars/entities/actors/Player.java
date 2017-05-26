@@ -109,7 +109,7 @@ public class Player extends SWForceActor {
 		}
 		
 		//Check if Luke is on team EVIL. If so, the game is lost.
-		if(this.getTeam() == Team.EVIL)
+		if(this.getTeam() == Team.EVIL || this.getInfluence() < 0)
 		{
 			//Message stating Luke was killed in action
 			this.messageRenderer.render("\n\nLuke has been swayed to the Dark Side!");
