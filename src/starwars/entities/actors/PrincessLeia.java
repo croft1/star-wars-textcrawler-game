@@ -21,14 +21,13 @@ import starwars.entities.actors.behaviors.Patrol;
 import java.util.List;
 
 /**
- * Ben (aka Obe-Wan) Kenobi.  
+ * General 'Princess' Leia Organa.  
  * 
- * At this stage, he's an extremely strong critter with a <code>Lightsaber</code>
- * who wanders around in a fixed pattern and neatly slices any Actor not on his
- * team with his lightsaber.
+ * The General of the rebel alliance - also Lukes twin brother, who will be waiting on
+ * the Death Star in hopes of a rescue from her twin brother!
  * 
- * Note that you can only create ONE Ben, like all SWLegends.
- * @author rober_000
+ * @author jas
+ * @author mewc
  *
  */
 public class PrincessLeia extends SWLegend  {
@@ -38,6 +37,7 @@ public class PrincessLeia extends SWLegend  {
 	private boolean lukeFollow = false;
 	private SWActor Luke;
 	
+	//Private constructor to set the current instance of Princess Leia
 	private PrincessLeia(MessageRenderer m, SWWorld world, Direction [] moves) {
 		super(Team.GOOD, 500, m, world);
 		this.setShortDescription("Princess Leia (General Organa)");
@@ -52,7 +52,7 @@ public class PrincessLeia extends SWLegend  {
 	}
 
 	/**
-	 * getBenKenobi() method 
+	 * getPrincessLeia() method 
 	 * 
 	 * Implements a new Leia Organa to the world - and activates the SWLegend into the SWWorld map.
 	 * 
@@ -67,6 +67,7 @@ public class PrincessLeia extends SWLegend  {
 		return leia;
 	}
 	
+	//Protected method lenegdAct() which describes Leia's actions.
 	@Override
 	protected void legendAct() {
 

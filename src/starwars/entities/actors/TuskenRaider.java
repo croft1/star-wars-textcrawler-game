@@ -66,28 +66,34 @@ public class TuskenRaider extends SWActor {
 		}
 	}
 
+	/**
+	 * getShortDescription() method for <code>TuskenRaider</code>
+	 * 
+	 * Returns the short string description of a <code>TuskenRaider</code>
+	 * 
+	 * @return 	description	- The <code>TuskenRaider</code>'s short description in String format
+	 */
 	@Override
 	public String getShortDescription() {
 		return name + " the Tusken Raider";
 	}
 
+	/**
+	 * getLongDescription() method for <code>TuskenRaider</code>
+	 * 
+	 * Returns the long string description of a <code>TuskenRaider</code>, calling the getShortDescription() method
+	 * 
+	 * @return 	description	- The <code>TuskenRaider</code>'s short description in String format
+	 */
 	@Override
 	public String getLongDescription() {
 		return this.getShortDescription();
 	}
-
+	
+	//Private method describeLocation()
 	private String describeLocation() {
 		SWLocation location = this.world.getEntityManager().whereIs(this);
 		return this.getShortDescription() + " [" + this.getHitpoints() + "] is at " + location.getShortDescription();
 
 	}
-
-	
-
-	
-	//obeyMindControl will be called from the SWActor class, doesn't need to be customised within here
-	
-	
-
-	
 }

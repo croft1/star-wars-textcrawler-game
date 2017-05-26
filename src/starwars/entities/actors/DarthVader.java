@@ -37,7 +37,7 @@ public class DarthVader extends SWLegend  {
 	private Patrol path;
 	private boolean trainingPupil = false;
 
-
+	//Private constructer for this Darth Vader instance
 	private DarthVader(MessageRenderer m, SWWorld world, Direction [] moves) {
 		super(Team.EVIL, 10000, m, world);
 		path = new Patrol(moves);
@@ -68,6 +68,7 @@ public class DarthVader extends SWLegend  {
 		return dv;
 	}
 	
+	//Protected method legendAct() that describes Vaders' actions
 	@Override
 	protected void legendAct() {
 
