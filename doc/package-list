@@ -4,6 +4,7 @@ edu.monash.fit2099.simulator.space
 edu.monash.fit2099.simulator.time
 edu.monash.fit2099.simulator.userInterface
 edu.monash.fit2099.simulator.util
+edu.monash.fit2099.values
 starwars
 starwars.actions
 starwars.entities
@@ -11,3 +12,4 @@ starwars.entities.actors
 starwars.entities.actors.behaviors
 starwars.swinterfaces
 starwars.userinterfaces
+starwars.worlds

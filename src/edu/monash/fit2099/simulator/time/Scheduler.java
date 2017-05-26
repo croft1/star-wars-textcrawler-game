@@ -256,6 +256,8 @@ public class Scheduler {
 	 * @author  mewc
 	 * @date 	24 May 2017
 	 * 
+	 * @param	m	The messagerenderer that will handle message display for the loss
+	 * 
 	 * @see {@link #events}
 	 */
 	public void lossSchedule(MessageRenderer m) {
@@ -275,6 +277,8 @@ public class Scheduler {
 	 * @author 	jas
 	 * @author  mewc
 	 * @date 	24 May 2017
+	 * 
+	 * @param	m	The messagerenderer that will handle message display for the win
 	 * 
 	 * @see {@link #events}
 	 */
