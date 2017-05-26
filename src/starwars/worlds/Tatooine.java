@@ -31,7 +31,7 @@ public class Tatooine extends SWWorld {
     public Tatooine(SWUniverse inUniverse) {
 
         SWLocation.SWLocationMaker factory = SWLocation.getMaker();
-        myGrid = new SWGrid(10,15,factory);
+        myGrid = new SWGrid(10,10,factory);
         space = myGrid;
         name = "Tatooine";
         universe = inUniverse;
