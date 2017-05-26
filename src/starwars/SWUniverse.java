@@ -91,6 +91,8 @@ public class SWUniverse {
 	}
 	
 	/**
+	 * setActiveWorld(SWWorld) function
+	 * 
 	 * Sets the <code>SWUniverse</code>'s active world - since our implementation implements a single
 	 * world display at a time. If the worlds have been visited before, time does pass on them.
 	 * 
