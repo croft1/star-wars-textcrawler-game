@@ -24,8 +24,4 @@ public class Rake extends SWEntity {
 		capabilities.add(Capability.HOME);
 		
 	}
-
-
-	
-	
 }
