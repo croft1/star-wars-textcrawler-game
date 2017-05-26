@@ -68,7 +68,7 @@ public class YavinFour extends SWWorld {
 
 		
         
-        // The Millenium Falcon
+        // The Millennium Falcon
         MilleniumFalcon millFalcYFour= new MilleniumFalcon(iface);
         loc = myGrid.getLocationByCoordinates(0, 0);
         entityManager.setLocation(millFalcYFour, loc);

@@ -63,7 +63,7 @@ public class DeathStar extends SWWorld {
 				CompassBearing.EAST, CompassBearing.EAST,
 				CompassBearing.NORTHWEST, CompassBearing.NORTHWEST};
 
-        // The Millenium Falcon
+        // The Millennium Falcon
         MilleniumFalcon millFalcDS = new MilleniumFalcon(iface);
         loc = myGrid.getLocationByCoordinates(0, 0);
         entityManager.setLocation(millFalcDS, loc);

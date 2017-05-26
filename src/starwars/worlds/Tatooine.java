@@ -163,7 +163,7 @@ public class Tatooine extends SWWorld {
         loc = myGrid.getLocationByCoordinates(3, 4);
         entityManager.setLocation(blaster, loc);
 
-        // The Millenium Falcon
+        // The Millennium Falcon
         MilleniumFalcon millFalcTattoine = new MilleniumFalcon(iface);
         loc = myGrid.getLocationByCoordinates(0, 0);
         entityManager.setLocation(millFalcTattoine, loc);

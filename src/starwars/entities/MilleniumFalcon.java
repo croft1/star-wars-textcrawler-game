@@ -16,11 +16,11 @@ import starwars.actions.FlyToTatooine;
 import starwars.actions.Take;
 
 /**
- * Class for the Millenium Falcon SWEntity
+ * Class for the Millennium Falcon SWEntity
  * 
- * The Millenium Falcon is the main usage of travel between the planets and destinations
+ * The Millennium Falcon is the main usage of travel between the planets and destinations
  * in the Star Wars universe - mainly for the Resistance and New Republic in the main film
- * series and other various media. In this game, Luke will be able to use the Millenium Falcon
+ * series and other various media. In this game, Luke will be able to use the Millennium Falcon
  * to travel in-between Tatooine, the Death Star and Yavin 4.
  * 
  * @author jas
@@ -30,9 +30,9 @@ import starwars.actions.Take;
 public class MilleniumFalcon extends SWEntity {
 
 	/**
-	 * Constructor for the <code>Miilenium Flacon</code>. 
+	 * Constructor for the <code>Millennium Flacon</code>. 
 	 * 
-	 * Creates the Millenium Falcon that will be denoted by a "^". Luke can use this spacecraft to travel
+	 * Creates the Millennium Falcon that will be denoted by a "^". Luke can use this spacecraft to travel
 	 * inbetween worlds of this game (as well as his followers)
 	 * 
 	 * @param	m	- MessageRenderer that these Droid Parts will use to display notification
@@ -47,7 +47,7 @@ public class MilleniumFalcon extends SWEntity {
 	}
 	
 	/**
-	 * A symbol that is used to represent the Millenium Falcon on a text based user interface
+	 * A symbol that is used to represent the Millennium Falcon on a text based user interface
 	 * 
 	 * @return 	Single Character string "s"
 	 * @see 	{@link starwars.SWEntityInterface#getSymbol()}
