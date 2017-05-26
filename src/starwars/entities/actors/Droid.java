@@ -272,9 +272,7 @@ public class Droid extends SWActor {
 			Move myMove = new Move(R2Direction, messageRenderer, world);
 
 			scheduler.schedule(myMove, this, 1);
-			
-			
-			
+	
 		}
 		
 		//If a Droid is not immobile, and not human controlled (roaming)
