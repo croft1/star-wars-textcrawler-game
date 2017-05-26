@@ -59,7 +59,12 @@ public class StormTrooper extends SWActor {
 				say(getShortDescription() + " shoots wildly");
 			}
 		}else if (Math.random() > 0.94) {
-			//TODO radio for backup
+
+			say(getShortDescription() + " called for backup. ");
+			StormTrooper backupDude =  new StormTrooper(messageRenderer, world);
+			SWLocation loc = world.getGrid().getLocationByCoordinates(world.getGrid().getWidth() - 1, 0); //set the position to top right of the map
+			world.getEntityManager().setLocation(backupDude, loc);
+			backupDude.say(backupDude.getShortDescription() + " reporting for duty");
 
 		}else{
 			
