@@ -21,7 +21,6 @@ import java.util.ArrayList;
  * 
  * @author jas
  * @author mewc
- *
  */
 public class GeneralAckbar extends SWActor {
 
@@ -32,7 +31,7 @@ public class GeneralAckbar extends SWActor {
 	 * General Ackbar constructor
 	 * 
 	 * Implements a new instance of General Ackbar into the world - placed into the 
-	 * curent world defined in its parameters.
+	 * current world defined in its parameters.
 	 * 
 	 * @param	m	- Messagerenderer used for displaying messages to output.
 	 * @param 	world	- SWWorld that General Ackbar will be placed in
