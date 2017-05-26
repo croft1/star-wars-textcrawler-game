@@ -95,7 +95,7 @@ public class PrincessLeia extends SWLegend  {
 					if (entity.getSymbol().contains("@")) { // If Leia sees Luke
 						Luke = (SWActor) entity;
 						
-						say("Luke came accross Leia. The General of Organa will follow.");
+						say("Luke came accross Leia. General Organa will follow.");
 						
 						//Set Leia to follow Luke
 						this.lukeFollow = true;
