@@ -3,11 +3,10 @@ package starwars.entities.actors;
 import edu.monash.fit2099.gridworld.Grid;
 import edu.monash.fit2099.simulator.space.Direction;
 import edu.monash.fit2099.simulator.userInterface.MessageRenderer;
-import starwars.SWActor;
-import starwars.SWLocation;
-import starwars.SWWorld;
-import starwars.Team;
+import starwars.*;
+import starwars.actions.Attack;
 import starwars.actions.Move;
+import starwars.actions.Summon;
 import starwars.entities.Blaster;
 import starwars.entities.Mace;
 import starwars.entities.actors.behaviors.AttackInformation;
@@ -30,7 +29,7 @@ public class StormTrooper extends SWActor {
 	//Private name variable - String of the name of this 
 	private String name;
     private static int cloneNumber = 1471;
-   
+   	private SWAffordance summon;  //because it was close to the end
     /**
 	 * Constructor for a <code>StormTrooper</code> soldier. They are of team EVIL, and wander about on the Death
 	 * Star in search for Luke and compatriots.
@@ -47,6 +46,8 @@ public class StormTrooper extends SWActor {
 		// TODO Auto-generated constructor stub
 		this.name = "#" + getNextCloneNumber();
 		setItemCarried(new Blaster(m));
+		summon = new Summon(this, m);
+		this.addAffordance(summon);
 	}
 	
 	/**
@@ -80,25 +81,9 @@ public class StormTrooper extends SWActor {
 			}
 		}else if (Math.random() > 0.4) {
 			//Call for backup!
-			say(getShortDescription() + " called for backup. "); 
-			
-			DeathStar dsRef = (DeathStar) this.getWorld().getUniverse().getWorlds().get(2);
-			boolean backupCall = dsRef.getCallForBackupAllowed();
-			
-			if (backupCall)
-			{
-			
-		      StormTrooper backupDude =  new StormTrooper(messageRenderer, dsRef); 
-		      SWLocation loc = dsRef.getGrid().getLocationByCoordinates(1, 0); //set the position to top right of the map 
-		      world.getEntityManager().setLocation(backupDude, loc); 
-		      backupDude.say(backupDude.getShortDescription() + " reporting for duty"); 
-		      dsRef.setCallForBackupAllowed(false);
-			}
-			else
-			{
-				this.say("Another Trooper answered the call!");;
-				
-			}
+			say(getShortDescription() + " called for backup. ");
+			scheduler.schedule(summon, this, 1);
+
 		}else{
 			
 			randomMovement();
