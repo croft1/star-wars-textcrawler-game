@@ -7,8 +7,8 @@ import starwars.SWEntity;
 /**
  * Class for the Death Star Plans
  * 
- * The Death Star plans entity, which is to be held by Princess Leia, is key in the rebels'
- * assault on the dark side. Bring these with Leia, along with R2-D2 to Yavin Four - and
+ * The Death Star plans entity, which is to be held by R2-D2, is key in the rebels'
+ * assault on the dark side. Bring these (with R2-D2), along with Leia to Yavin Four - and
  * the game is won!
  * 
  * @author jas
